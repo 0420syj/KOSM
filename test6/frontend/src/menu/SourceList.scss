@@ -1,0 +1,15 @@
+.listStyle{
+    font-size: 20px;
+    padding: 20px 30px 10px 0px;
+    .listTitle{
+        width: 200px;
+        margin: 10px 0px;
+        background: white;        
+        border-radius: 10px;
+        font-style:bold;
+        font-size: 30px;
+        &:hover{
+            background: yellow;            
+        }
+    }
+}

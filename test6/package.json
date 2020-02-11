@@ -1,0 +1,15 @@
+{
+  "name": "test6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^4.13.1",
+    "sass": "^1.25.0"
+  }
+}
