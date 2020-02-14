@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import './Login.css';
+import './Login.scss';
 import { login } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ class Login extends Component {
             <div className="login-container">
                 <h1 className="page-title">Login</h1>
                 <div className="login-content">
-                    <AntWrappedLoginForm onLogin={this.props.onLogin} />
+                    <AntWrappedLoginForm onLogin={this.props.onLogin}/>
                 </div>
             </div>
         );
@@ -34,7 +34,6 @@ class LoginForm extends Component {
                 .then(response => {
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                     this.props.onLogin();
-                    console.log("login");
                 }).catch(error => {
                     if(error.status === 401) {
                         notification.error({
@@ -56,7 +55,7 @@ class LoginForm extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <Form onSubmit={this.handleSubmit} className="login-form">
-                <FormItem>
+                <div>
                     {getFieldDecorator('usernameOrEmail', {
                         rules: [{ required: true, message: '아이디 혹은 이메일을 입력해주세요.' }],
                     })(
@@ -66,8 +65,8 @@ class LoginForm extends Component {
                         name="usernameOrEmail" 
                         placeholder="Username or Email" />    
                     )}
-                </FormItem>
-                <FormItem>
+                </div>
+                <div>
                 {getFieldDecorator('password', {
                     rules: [{ required: true, message: '비밀번호를 입력해주세요.' }],
                 })(
@@ -78,11 +77,11 @@ class LoginForm extends Component {
                         type="password" 
                         placeholder="Password"  />                        
                 )}
-                </FormItem>
-                <FormItem>
+                </div>
+                <div>
                     <Button type="primary" htmlType="submit" size="large" className="login-form-button">Login</Button>
                     Or <Link to="/signup">register now!</Link>
-                </FormItem>
+                    </div>
             </Form>
         );
     }

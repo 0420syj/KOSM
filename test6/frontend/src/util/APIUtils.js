@@ -1,5 +1,5 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
-
+const axios = require('axios');
 const request = (options) => {
     const headers = new Headers({
         'Content-Type' : 'application/json',
@@ -46,6 +46,7 @@ export function login(loginRequest) {
     });
 }
 
+
 export function signup(signupRequest) {
     return request({
         url: API_BASE_URL + "/api/auth/signup",
@@ -53,6 +54,7 @@ export function signup(signupRequest) {
         body: JSON.stringify(signupRequest)
     });
 }
+
 
 
 export function checkUsernameAvailability(username) {

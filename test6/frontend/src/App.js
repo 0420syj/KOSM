@@ -15,7 +15,6 @@ import Profile from './profile/Profile';
 import { Layout, notification } from 'antd';
 const { Content } = Layout;
 
-
 //import { render } from 'node-sass';
 //import { LayoutContext } from 'antd/lib/layout/layout';
 
@@ -53,8 +52,6 @@ class App extends Component {
         username : response.username,
         role : response.authorities[0].authority
       },function(){
-        console.log('App');
-        console.log(this.state);
       });
     }).catch(error => {
       this.setState({
@@ -86,6 +83,7 @@ class App extends Component {
   }
 
   handleLogin() {
+    alert('로그인을 눌렀습니다.');
     notification.success({
       message: 'Cheeze Toon',
       description: "로그인 되었습니다.",

@@ -27,8 +27,6 @@ class AppHeader extends Component {
     
     }
     render() {
-      console.log('render start');
-        
         let menuItems;
         if(this.props.role === "ROLE_ADMIN") {
           menuItems = [ 
@@ -53,8 +51,6 @@ class AppHeader extends Component {
           </Menu.Item>
           ];
       } else {
-        console.log('start');
-        console.log(this.props);
           menuItems = [
           <Menu.Item key="/login">
               <Link to="/login">Login</Link>
