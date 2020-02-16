@@ -24,26 +24,6 @@ class Profile extends Component {
             })
     }
 
-    /*
-    loadFav(username){
-        fetchFav(username)
-            .then(res => {
-                this.setState({
-                favs : res
-                }, function(){
-                    console.log('profile');
-                    console.log(res)
-                });
-            })
-            .catch(error => {
-                console.log('profile');
-
-                console.log(error);
-            });
-    }
-    */
-
-
     loadUserProfile(username) {
         this.setState({
             isLoading: true

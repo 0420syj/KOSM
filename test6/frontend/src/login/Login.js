@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import './Login.scss';
+import './Login.css';
 import { login } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ class Login extends Component {
             <div className="login-container">
                 <h1 className="page-title">Login</h1>
                 <div className="login-content">
-                    <AntWrappedLoginForm onLogin={this.props.onLogin}/>
+                    <AntWrappedLoginForm onLogin={this.props.onLogin} />
                 </div>
             </div>
         );
@@ -28,12 +28,18 @@ class LoginForm extends Component {
     handleSubmit(event) {
         event.preventDefault();   
         this.props.form.validateFields((err, values) => {
+            console.log('submit');
+            console.log(values);
             if (!err) {
                 const loginRequest = Object.assign({}, values);
                 login(loginRequest)
                 .then(response => {
+                    console.log(loginRequest);
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+                    console.log('token: ' + response);  //알수없는 문자열 출력
                     this.props.onLogin();
+                    console.log("login");
+                    
                 }).catch(error => {
                     if(error.status === 401) {
                         notification.error({
@@ -55,7 +61,7 @@ class LoginForm extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <Form onSubmit={this.handleSubmit} className="login-form">
-                <div>
+                <FormItem>
                     {getFieldDecorator('usernameOrEmail', {
                         rules: [{ required: true, message: '아이디 혹은 이메일을 입력해주세요.' }],
                     })(
@@ -65,8 +71,8 @@ class LoginForm extends Component {
                         name="usernameOrEmail" 
                         placeholder="Username or Email" />    
                     )}
-                </div>
-                <div>
+                </FormItem>
+                <FormItem>
                 {getFieldDecorator('password', {
                     rules: [{ required: true, message: '비밀번호를 입력해주세요.' }],
                 })(
@@ -77,11 +83,11 @@ class LoginForm extends Component {
                         type="password" 
                         placeholder="Password"  />                        
                 )}
-                </div>
-                <div>
+                </FormItem>
+                <FormItem>
                     <Button type="primary" htmlType="submit" size="large" className="login-form-button">Login</Button>
                     Or <Link to="/signup">register now!</Link>
-                    </div>
+                </FormItem>
             </Form>
         );
     }

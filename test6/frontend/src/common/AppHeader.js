@@ -41,8 +41,7 @@ class AppHeader extends Component {
             handleMenuClick={this.handleMenuClick}/>
           </Menu.Item>
         ]; 
-      } else if(this.props.role ==="ROLE_USER") {
-        
+      } else if(this.props.role ==="ROLE_USER") {   //로그인 된 상태
           menuItems = [
             <Menu.Item key="/profile" className="profile-menu">
               <ProfileDropdownMenu 
@@ -92,7 +91,7 @@ function ProfileDropdownMenu(props) {
           {props.currentUser.name}
         </div>
         <div className="username-info">
-          @{props.currentUser.username}
+          {props.currentUser.username}
         </div>
       </Menu.Item>
       <Menu.Divider />

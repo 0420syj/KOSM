@@ -1,17 +1,13 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
-const axios = require('axios');
 const request = (options) => {
     const headers = new Headers({
         'Content-Type' : 'application/json',
     })
-
     if(localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
     }
-
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
-
     return fetch(options.url, options)
     .then(response => 
         response.json().then(json => {
@@ -66,6 +62,7 @@ export function checkUsernameAvailability(username) {
 
 export function checkEmailAvailability(email) {
     return request({
+        // http://localhost:5000
         url: API_BASE_URL + "/user/checkEmailAvailability?email=" + email,
         method: 'GET'
     });
