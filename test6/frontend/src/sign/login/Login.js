@@ -4,8 +4,8 @@ import { login, getCurrentUser } from '../../util/APIUtils';
 
 const Login = (props) => {
     const [userinfo, setUserInfo] = useState({
-        usernameOrEmail:'',     //username이랑 email나누기
-        phonenumber: '',
+        email:'',     //username이랑 email나누기
+        username: '',
         password:'',
     })
 
@@ -18,6 +18,8 @@ const Login = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log('userInfo');
+        console.log(userinfo);
         login(userinfo)
         .then(res => {
             localStorage.setItem('accessToken', res.accessToken);
@@ -25,10 +27,8 @@ const Login = (props) => {
             .then(res => {
                 props.setUser(props.user.isLogin='true');
                 localStorage.setItem('isLogin', 'true');
-                localStorage.setItem('email', props.user.email);
-                localStorage.setItem('username', props.user.username);
-                localStorage.setItem('password', props.user.password);
-                localStorage.setItem('phonenumber', props.user.phonenumber);
+                localStorage.setItem('email', res.email);
+                localStorage.setItem('username', res.username);
             }).catch(e => {
                 console.log(e);
             })
@@ -44,7 +44,7 @@ const Login = (props) => {
                 <form className='loginForm' onSubmit={onSubmit}>
                     <div className='loginFormContainer'>
                         <div className='loginSubTitle'>이메일</div>
-                        <input onChange={onChange} name='usernameOrEmail' className='form-control'/>
+                        <input onChange={onChange} name='email' className='form-control'/>
                     </div>
                     <div className='loginFormContainer'>
                         <div className='loginSubTitle'>비밀번호</div>

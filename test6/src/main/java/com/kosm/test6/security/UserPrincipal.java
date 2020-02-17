@@ -18,26 +18,25 @@ public class UserPrincipal implements UserDetails {
 
     private String username;
 
-    @JsonIgnore
+    // @JsonIgnore
     private String email;
 
-    @JsonIgnore
+    // @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-
-
-    public UserPrincipal(Long id,  String username, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.authorities = authorities;
-    }
     public UserPrincipal(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.authorities = authorities;
+    }
+
+    public UserPrincipal(Long id,  String username, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
         this.authorities = authorities;
     }
 

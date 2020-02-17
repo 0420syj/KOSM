@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public UserPrincipal getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserPrincipal userPrincipal = new UserPrincipal(currentUser.getId(), currentUser.getUsername(), currentUser.getAuthorities());
+        UserPrincipal userPrincipal = new UserPrincipal(currentUser.getId(), currentUser.getUsername(), currentUser.getEmail(), currentUser.getPassword(), currentUser.getAuthorities());
         return userPrincipal;
     }
 
