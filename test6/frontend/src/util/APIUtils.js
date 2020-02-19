@@ -52,6 +52,22 @@ export function signup(signupRequest) {
 }
 
 
+export function getBoards() {
+    return request({
+        url: API_BASE_URL + "/api/board",
+        method: 'GET'
+    });
+}
+
+
+export function getBoardOnce() {
+    return request({
+        url: API_BASE_URL + "/api/board/4",
+        method: 'GET'
+    });
+}
+
+
 
 export function checkUsernameAvailability(username) {
     return request({

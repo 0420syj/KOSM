@@ -1,6 +1,9 @@
 package com.kosm.test6.controller;
 
+import java.util.List;
+
 import com.kosm.test6.model.Boards;
+import com.kosm.test6.payload.BoardListResponse;
 import com.kosm.test6.payload.BoardResponse;
 import com.kosm.test6.payload.BoardSaveRequest;
 import com.kosm.test6.service.BoardService;
@@ -20,7 +23,13 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
     
     private final BoardService boardService;
-    @PostMapping("/api/board")
+
+    @GetMapping("/api/board")
+    public List<BoardListResponse> findAllDesc() {
+        return boardService.findAllDesc();
+    }
+
+    @PostMapping("/api/board/save")
     public Boards save(@RequestBody BoardSaveRequest request) {
         return boardService.save(request);
     }
