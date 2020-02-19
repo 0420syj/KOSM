@@ -31,21 +31,23 @@ const data = [
 getBoardOnce()
     .then(response => {
         data.push({
-            id: response.id,
+            id: 5,
             title: response.title,
             author: response.author,
-            time: response.created_date,
-        });
-        localStorage.articles = JSON.stringify(data); // 게시글 데이터 localStorage.data에 저장
+            time: '2020.01.01'
+        })
+        localStorage.articles = JSON.stringify(data);
     });
 
 
-
-// getBoards()
-//     .then(response => {
-//         console.log(response);
-//     });
-
-
+/*
+for(var i = 5; i<=100; i++)
+    data.push({
+        id: i,
+        title: data[i%4].title,
+        author: data[i%4].author,
+        time: data[i%4].time,
+    })
+*/
 
 export default data;
