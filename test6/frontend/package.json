@@ -10,13 +10,16 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "node-sass": "^4.13.1",
-    "react": "^16.12.0",
+    "nodemailer": "^6.4.2",
+    "react": "^16.8.6",
     "react-bootstrap-table-next": "^3.3.4",
     "react-bootstrap-table2-paginator": "^2.1.0",
     "react-bootstrap-table2-toolkit": "^2.1.2",
-    "react-dom": "^16.12.0",
+    "react-dom": "^16.8.6",
+    "react-is": "^16.8.6",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1"
+    "react-scripts": "3.3.1",
+    "styled-components": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

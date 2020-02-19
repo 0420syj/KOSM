@@ -4,6 +4,7 @@ import SignUp from './sign/signup/SignUp';
 import Board from './board/Board';
 import Source from './source/Source';
 import MyPage from './mypage/MyPage';
+import ForgotPassword from './sign/login/ForgotPassword';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route exact path='/board' component={Board}/>
         <Route exact path='/source/:item' component={Source}/>
         <Route exact path='/mypage' component={MyPage}/>
+        <Route exact path='/forgot' component={ForgotPassword}/>
       </Router>
     </div>
   );

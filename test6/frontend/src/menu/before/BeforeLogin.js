@@ -2,14 +2,12 @@ import React, {useState} from 'react';
 import SourceList from '../SourceList';
 import Description from './Description';
 import Login from '../../sign/login/Login'
-import './BeforeLogin.scss';
 import BeforeMenu from './BeforeMenu';
 
 const BeforeLogin = (props) => {
-    console.log('BeforeLogin');
     return ( 
         <div>
-            <div>
+            <div style={{width: '100%'}}>
                 <BeforeMenu/>
             </div>
             <div style={{display: 'flex'}}>
