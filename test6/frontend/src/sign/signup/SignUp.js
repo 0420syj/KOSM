@@ -10,7 +10,7 @@ import { OmitProps } from 'antd/lib/transfer/renderListBody';
 const SignUp = ({match}) => {
     const history = useHistory();
     const [emailConfirm, setEmailConfirm] = useState('false');
-    const [timer, setTimer] = useState(5);
+    const [timer, setTimer] = useState(299);
 
     // const [success, setSuccess] = useState(false);
     

@@ -1,6 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 const BeforeMenu = () => {
+    const [isDropdown, setIsDropdown] = useState(false);
+    const toggle = () => {
+        setIsDropdown(prev => !prev);
+    }
+
+    const dropDownHover = () => {
+        
+    }
+    
     return ( 
         <div style={{
             width: '100%',
@@ -27,21 +37,26 @@ const BeforeMenu = () => {
                         <div style={{
                             display: 'flex', 
                             justifyContent:'space-between', 
-                            width: '100%'}}>
+                            width: '100%',
+                            height: '80px'}}>
                             <Link to='/board' style={{
                                 color: 'inherit', 
                                 textDecoration: 'none'}}>
                                 <div style={{cursor: 'pointer'}}>Board</div>
                             </Link>
 
-                            <div className='dropdown'>
-                                <button className='dropbtn'>Login</button>
-                                <div className='dropdown-content'>
-                                    <Link to='/signup'>
-                                        <div>회원가입</div>
-                                    </Link>
-                                </div>
-                            </div>
+                            <Dropdown isOpen = {isDropdown} toggle={toggle}>
+                                <DropdownToggle style={{boxShadow: 'none', background: '#000000', border: 'none', height: '100%'}}>
+                                    Login                                    
+                                </DropdownToggle>
+                                <DropdownMenu onMouseOver={dropDownHover} style={{background: '#000000'}}>
+                                    <DropdownItem>
+                                        <Link to='/signup' style={{background: '#000000', color: '#FFFFFF'}}>회원가입</Link>
+                                    </DropdownItem>
+                                    <DropdownItem divider/>
+                                    <DropdownItem style={{color: '#FFFFFF'}}>로그인</DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
                         </div>
                     </div>
                 </div>
