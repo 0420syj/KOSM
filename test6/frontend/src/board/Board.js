@@ -6,48 +6,60 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 // import Data from './ArticleData'
-import {getBoardOnce, getBoards} from '../util/APIUtils'
+import {getBoardOnce, getBoardCount} from '../util/APIUtils'
 
 // localStorage 초기화 영역 시작 
 
 const data = [
     {
-        id: 1,
+        id: 5,
         title: '안녕하세요',
         author: '강파고',
         time: '2020.01.31',
     },
     {
-        id: 2,
+        id: 6,
         title: '이럴수가',
         author: '완파고',
         time: '2020.02.04',
     },
     {
-        id: 3,
+        id: 7,
         title: '정말',
         author: '손파고',
         time: '2020.01.29',
     },
     {
-        id: 4,
+        id: 8,
         title: '멋져요',
         author: '백파고',
         time: '2020.02.03',
     },
 ];
 
-getBoardOnce()
-    .then(response => {
-        localStorage.removeItem("articles"); // 초기화
-        data.push({
-            id: 5,
-            title: response.title,
-            author: response.author,
-            time: '2020.01.01'
-        })
-        localStorage.articles = JSON.stringify(data); // localStorage에 저장
+var count = 0;
+
+getBoardCount()
+    .then(res => {
+        count= res
+        console.log(count)
     });
+
+while(count--){
+    console.log(count)
+    getBoardOnce(count)
+        .then(response => {
+            console.log(count)
+            localStorage.removeItem("articles"); // 초기화
+            data.push({
+                id: response.id,
+                title: response.title,
+                author: response.author,
+                time: '2020.01.01'
+            })
+            localStorage.articles = JSON.stringify(data); // localStorage에 저장
+        });
+    }
 
 // localStorage 초기화 끝 
 

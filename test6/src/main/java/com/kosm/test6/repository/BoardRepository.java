@@ -13,4 +13,8 @@ public interface BoardRepository extends JpaRepository<Boards,Long> {
 
     @Query(value = "SELECT * FROM boards ORDER BY id DESC", nativeQuery = true)
     List<Boards> findAllDesc(); 
+
+
+    @Query(value = "SELECT COUNT(*) as cnt FROM boards", nativeQuery = true)
+    Long getCount();
 }

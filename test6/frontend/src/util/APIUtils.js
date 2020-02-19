@@ -60,13 +60,19 @@ export function getBoards() {
 }
 
 
-export function getBoardOnce() {
+export function getBoardOnce(id) {
     return request({
-        url: API_BASE_URL + "/api/board/1",
+        url: API_BASE_URL + "/api/board/" + id,
         method: 'GET'
     });
 }
 
+export function getBoardCount() {
+    return request({
+        url: API_BASE_URL + "/api/board/count",
+        method : 'GET'
+    });
+}
 
 
 export function checkUsernameAvailability(username) {

@@ -39,7 +39,7 @@ public class BoardController {
         return boardService.update(id, requestDto);
     }
 
-    @DeleteMapping("/api/v1/posts/{id}   ")
+    @DeleteMapping("/api/v1/posts/{id}")
     public Long delete(@PathVariable Long id) {
         boardService.delete(id);
         return id;
@@ -51,5 +51,9 @@ public class BoardController {
         return boardService.findById(id);
     }
 
+    @GetMapping("/api/board/count")
+    public Long count() {
+        return boardService.getCount();
+    }
 
 }

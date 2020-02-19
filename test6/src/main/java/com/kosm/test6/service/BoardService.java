@@ -39,6 +39,10 @@ public class BoardService {
                 .collect(Collectors.toList());
     }
 
+    public Long getCount(){
+        return boardRepository.getCount();
+    }
+
     @Transactional
     public Long update(Long id, BoardResponse requestDto){
         Boards boards = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
