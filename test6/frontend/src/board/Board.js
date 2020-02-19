@@ -4,7 +4,6 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import {getBoardOnce, getBoards} from '../util/APIUtils'
 import Data from './ArticleData' // 게시글 테스트 데이터
 import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 
@@ -41,23 +40,11 @@ const columns = [
 ];
   
 const Board = () => {
-    const [articles, setArticles] = useState(Data);
-    console.log(Data);
-    console.log(articles);
-    useEffect(() => {
-        getBoardOnce() 
-        .then(response => {
-            console.log(response);
-        });
-    }, [getBoardOnce, articles]);
-
-    localStorage.setItem(Data, articles);
-
     return (
         <div className='boardScreen'>
             <ToolkitProvider
                 keyField="id"
-                data={ articles }
+                data={ JSON.parse(localStorage.articles) } // 게시글 데이터 localStorage.data에서 불러오기
                 columns={ columns }
                 search>
                 {
