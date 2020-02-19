@@ -30,13 +30,14 @@ const data = [
 
 getBoardOnce()
     .then(response => {
+        localStorage.removeItem("articles"); // 초기화
         data.push({
             id: 5,
             title: response.title,
             author: response.author,
             time: '2020.01.01'
         })
-        localStorage.articles = JSON.stringify(data);
+        localStorage.articles = JSON.stringify(data); // localStorage에 저장
     });
 
 

@@ -41,6 +41,7 @@ const columns = [
 ];
   
 const Board = () => {
+    /*
     const [articles, setArticles] = useState(Data);
     console.log(Data);
     console.log(articles);
@@ -52,13 +53,12 @@ const Board = () => {
     }, [getBoardOnce, articles]);
 
     localStorage.setItem(Data, articles);
-
+*/
     return (
         <div className='boardScreen'>
             <ToolkitProvider
                 keyField="id"
-                data={ articles }
-                // data={ JSON.parse(localStorage.articles) } // 서버 500 에러 없으면 이거로 변경
+                data={ JSON.parse(localStorage.articles) } // 서버 500 에러 없으면 이거로 변경
                 columns={ columns }
                 search>
                 {
