@@ -10,8 +10,6 @@ import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 
 const { SearchBar } = Search;
 
-
-
 const columns = [
     {
         dataField: 'id',
@@ -53,7 +51,8 @@ const Board = () => {
         });
     }, [getBoardOnce, articles]);
 
-    
+    localStorage.setItem(Data, articles);
+
     return (
         <div className='boardScreen'>
             <ToolkitProvider

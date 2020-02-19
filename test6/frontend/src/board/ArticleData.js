@@ -1,7 +1,5 @@
 import {getBoardOnce, getBoards} from '../util/APIUtils'
-import React, {useState, useEffect} from 'react';
 // 게시글 테스트 데이터
-
 
 const data = [
     {
@@ -30,18 +28,8 @@ const data = [
     },
 ];
 
-/*
-const data = {
-    id: '',
-    title: '',
-    author: '',
-    content: ''
-}
-*/
-getBoardOnce() 
+getBoardOnce()
     .then(response => {
-        //console.log(response)
-        
         data.push({
             id: 5,
             title: response.title,
@@ -61,5 +49,4 @@ for(var i = 5; i<=100; i++)
     })
 */
 
-//console.log(data);
 export default data;
