@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './SignUp.scss';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
@@ -9,6 +9,9 @@ import { OmitProps } from 'antd/lib/transfer/renderListBody';
 
 const SignUp = ({match}) => {
     const history = useHistory();
+    const [emailConfirm, setEmailConfirm] = useState('false');
+    const [timer, setTimer] = useState(5);
+
     // const [success, setSuccess] = useState(false);
     
     const [userInfo, setUserInfo] = useState({
@@ -16,8 +19,6 @@ const SignUp = ({match}) => {
             validNickName: false,
             'email':'',
             validEmail: false,
-            'phonenumber':'',
-            validPhoneNumber: false,
             'password': '',
             validPassWord: false,
             'confirmpassword': '',
@@ -69,29 +70,6 @@ const SignUp = ({match}) => {
         }
     }
     
-    const validatePhoneNumber = phonenumber => {
-        // 010-0000-0000 형식
-        const phoneNumberRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
-        
-        if(phonenumber.match(phoneNumberRegExp))
-        {
-            setUserInfo({
-                ...userInfo,
-                validPhoneNumber: true,
-                phonenumber
-            });
-        }
-
-        else
-        {
-            setUserInfo({
-                ...userInfo,
-                validPhoneNumber: false,
-                phonenumber
-            });
-        }
-    }
-
     const validatePassWord = password =>
     {
         // 영문숫자 조합 6~20자
@@ -159,7 +137,6 @@ const SignUp = ({match}) => {
         const validateForm = () => {
             return userInfo.validNickName
                 && userInfo.validEmail
-                && userInfo.validPhoneNumber
                 && userInfo.validPassWord
                 && userInfo.validConfirmPassWord;
         }
@@ -167,9 +144,7 @@ const SignUp = ({match}) => {
         if(validateForm())
         {
             return(
-                <button type="submit" className="btn btn-success" onClick={handleSubmit}>
-                    회원가입
-                </button>
+                true
             )
         }
     }
@@ -191,18 +166,26 @@ const SignUp = ({match}) => {
         });
     }
 
-    const emailCheck = (email) => {
-    }
-    
-    const emailClick = () => {        
-        console.log(localStorage.getItem('king6096211@naver.com'));
-        checkUsernameAvailability('kang')
-        .then(res => {
-            console.log('success');
-        })
-        .catch(e => {
-            console.log(e);
-        })
+    useEffect(() => {
+        if(emailConfirm === 'true'){
+            const time = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+            return () => clearInterval(time);
+        }
+    }, [timer, emailConfirm])
+
+    const emailClick = (e) => {        
+        if(emailConfirm === 'false'){
+            setEmailConfirm('true');
+            // console.log('userInfo');
+            // console.log(userInfo);
+            // checkEmailAvailability(userInfo.email)
+            // .then(res => {
+            //     console.log('success');
+            // })
+            // .catch(e => {
+            //     console.log(e);
+            // })
+        }
     }
 
     return (
@@ -242,30 +225,30 @@ const SignUp = ({match}) => {
                             </div>
                         </div>
                     </div>
-                    <div style={{display:'flex'}}>
-                        <div style={{marginRight:'5%'}}>Code</div>
-                        <input
-                            // onChange={onChange} 불필요
-                            type='text'
-                            name='code'
-                            id='code'
-                            className='form-control'
-                            placeholder='123456'
-                        />
-                        <button style={{marginLeft:'5%'}}>Confirm</button>
-                    </div>
-
-                    <div className='signUpFormContainer'>
-                        <div className='signUpSubTitle'>Phone Number</div>
-                        <input
-                            onChange={e => {validatePhoneNumber(e.target.value)}}
-                            type='text'
-                            name='phonenumber'
-                            id='phonenumber'
-                            className={ `form-control ${inputClassNameHelper(userInfo.phonenumber && userInfo.validPhoneNumber)}` }
-                            placeholder='010-1234-1234'
-                        />
-                    </div>
+                    {
+                        emailConfirm === 'false' ?
+                        <div></div> :
+                        <div>
+                            <div style={{display: 'flex'}}>
+                                남은 시간: &nbsp;
+                                <div style={{color: 'red'}}>
+                                    {parseInt(timer / 60)} : {timer % 60}
+                                </div>
+                            </div>
+                            <div style={{display:'flex'}}>
+                                <div style={{marginRight:'5%'}}>Code</div>
+                                <input
+                                    // onChange={onChange} 불필요
+                                    type='text'
+                                    name='code'
+                                    id='code'
+                                    className='form-control'
+                                    placeholder='123456'
+                                />
+                                <button style={{marginLeft:'5%'}}>Confirm</button>
+                            </div>
+                        </div>
+                    }
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>Password (영문+숫자, 6~20자)</div>
                         <input
@@ -287,9 +270,34 @@ const SignUp = ({match}) => {
                         />
                     </div>                 
                     { /*<button type='submit' className='btn btn-success'>버튼</button>*/ }
-                    {renderSubmitBtn()}
+                    <div style={{width: '100%'}}>
+                        <div style={{display:'flex', justifyContent:'center'}}>
+                        {
+                            renderSubmitBtn() ?
+                            <button 
+                                className='btn btn-success'
+                                onClick={handleSubmit}>
+                                회원가입
+                            </button>:
+                            <DefaultButton/>
+                        }
+                        </div>
+                    </div>
             </div>
         </div>
+    )
+}
+
+const DefaultButton = () => {
+    return (
+        <button 
+            style={{
+                        pointerEvents:'none', 
+                        cursor: 'default'
+                    }} 
+            type="submit">
+            회원가입
+        </button>
     )
 }
 

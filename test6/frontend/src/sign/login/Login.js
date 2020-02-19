@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './Login.scss';
 import { login, getCurrentUser } from '../../util/APIUtils';
-
+import {Link} from 'react-router-dom';
 const Login = (props) => {
     const [userinfo, setUserInfo] = useState({
         email:'',     //username이랑 email나누기
@@ -18,8 +18,6 @@ const Login = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('userInfo');
-        console.log(userinfo);
         login(userinfo)
         .then(res => {
             localStorage.setItem('accessToken', res.accessToken);
@@ -51,14 +49,18 @@ const Login = (props) => {
                         <input name='password' onChange={onChange} type='password' className='form-control'/>
                     </div>
                     <div className='loginFindContainer'>
-                        <div className='loginFindInfo'>ID찾기 / 비밀번호 찾기</div>
+                        <Link to='/forgot'>
+                            <div className='loginFindInfo'>비밀번호 찾기</div>
+                        </Link>
                     </div>
                 <div className='loginButtonContainer'>
                     <button className='btn btn-secondary btn-lg btn-block'>LOGIN</button>
                 </div>
                 <div className='loginSignUpContainer'>
                     <div className='loginSignUpText'>아직 아이디가 없으신가요?</div>
-                    <div className='loginSignUp'>회원가입</div>
+                    <Link to='/signup'>
+                        <div className='loginSignUp'>회원가입</div>
+                    </Link>
                 </div>
                 </form>
             </div>

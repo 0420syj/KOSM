@@ -15,7 +15,7 @@ const SourceList = () => {
     }
     
     return ( 
-        <div style={{borderRight:'3px solid #000000', width: '350px'}}>
+        <div style={{borderRight:'3px solid #000000', width: '350px', overflowY: 'auto'}}>
             <h2>Open Source</h2>
             <div style={{width: '100%'}}>
                 <input 
