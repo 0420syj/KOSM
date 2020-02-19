@@ -1,4 +1,8 @@
+//import {getBoards} from '../util/APIUtils'
+
 // 게시글 테스트 데이터
+
+
 const data = [
     {
         id: 1,
@@ -25,6 +29,9 @@ const data = [
         time: '2020.02.03',
     },
 ];
+
+
+//const data = getBoards();
 
 for(var i = 5; i<=100; i++)
     data.push({
