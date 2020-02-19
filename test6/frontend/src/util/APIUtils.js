@@ -62,7 +62,7 @@ export function getBoards() {
 
 export function getBoardOnce(id) {
     return request({
-        url: API_BASE_URL + "/api/board/" + id,
+        url: API_BASE_URL + "/api/board/list/" + id,
         method: 'GET'
     });
 }

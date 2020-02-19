@@ -45,6 +45,10 @@ public class BoardController {
         return id;
     }
     
+    @GetMapping("/api/board/list/{id}")
+    public BoardListResponse getListOnce(@PathVariable Long id) {
+        return boardService.getListOnce(id);
+    }
 
     @GetMapping("/api/board/{id}")
     public BoardResponse findById(@PathVariable Long id) {

@@ -45,21 +45,18 @@ getBoardCount()
         console.log(count)
     });
 
-while(count--){
-    console.log(count)
-    getBoardOnce(count)
+    getBoardOnce(1)
         .then(response => {
-            console.log(count)
             localStorage.removeItem("articles"); // 초기화
             data.push({
                 id: response.id,
                 title: response.title,
                 author: response.author,
-                time: '2020.01.01'
+                time: response.createdDate
             })
             localStorage.articles = JSON.stringify(data); // localStorage에 저장
         });
-    }
+
 
 // localStorage 초기화 끝 
 
