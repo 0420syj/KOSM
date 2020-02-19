@@ -1,4 +1,4 @@
-/*package com.kosm.test6.payload;
+package com.kosm.test6.payload;
 
 import com.kosm.test6.model.Boards;
 
@@ -28,4 +28,3 @@ public class BoardSaveRequest {
                 .build();
     }
 }
-*/

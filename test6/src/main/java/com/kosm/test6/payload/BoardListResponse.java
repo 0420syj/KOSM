@@ -1,4 +1,4 @@
-/*package com.kosm.test6.payload;
+package com.kosm.test6.payload;
 
 import java.time.LocalDateTime;
 import com.kosm.test6.model.Boards;
@@ -17,4 +17,4 @@ public class BoardListResponse {
         this.author = entity.getAuthor();
         this.createdDate = entity.getCreatedDate();
     }
-}*/
+}

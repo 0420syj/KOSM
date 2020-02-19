@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Board.scss';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-
-import data from './ArticleData' // 게시글 테스트 데이터
+import {getBoardOnce, getBoards} from '../util/APIUtils'
+import Data from './ArticleData' // 게시글 테스트 데이터
+import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 
 const { SearchBar } = Search;
-const articles = data; // 게시글 변수
 
 const columns = [
     {
@@ -24,7 +24,7 @@ const columns = [
         text: '제목'
     },
     {
-        dataField: 'name',
+        dataField: 'author',
         text: '글쓴이',
         headerStyle: () => {
             return { width: '120px' };
@@ -33,7 +33,7 @@ const columns = [
     {
         dataField: 'time',
         text: '날짜',
-        type: 'date',
+        //type: 'date',
         headerStyle: () => {
             return { width: '100px' };
         },
@@ -41,6 +41,18 @@ const columns = [
 ];
   
 const Board = () => {
+    const [articles, setArticles] = useState(Data);
+    console.log(Data);
+    console.log(articles);
+    useEffect(() => {
+        getBoardOnce() 
+        .then(response => {
+            console.log(response);
+        });
+    }, [getBoardOnce, articles]);
+
+    localStorage.setItem(Data, articles);
+
     return (
         <div className='boardScreen'>
             <ToolkitProvider
