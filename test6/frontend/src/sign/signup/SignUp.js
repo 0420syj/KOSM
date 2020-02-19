@@ -11,6 +11,7 @@ const SignUp = ({match}) => {
     const history = useHistory();
     const [emailConfirm, setEmailConfirm] = useState('false');
     const [timer, setTimer] = useState(5);
+
     // const [success, setSuccess] = useState(false);
     
     const [userInfo, setUserInfo] = useState({
@@ -165,22 +166,16 @@ const SignUp = ({match}) => {
         });
     }
 
-    // useEffect(() => {
-    //     if(timer < 0){
-    //         console.log('stop');
-    //         clearInterval(interval());
-    //     }
-    // }, [timer])
+    useEffect(() => {
+        if(emailConfirm === 'true'){
+            const time = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+            return () => clearInterval(time);
+        }
+    }, [timer, emailConfirm])
 
     const emailClick = (e) => {        
         if(emailConfirm === 'false'){
             setEmailConfirm('true');
-            setInterval(() => {
-                setTimer(timer => timer - 1);
-                
-                console.log(timer);
-            }, 1000)
-
             // console.log('userInfo');
             // console.log(userInfo);
             // checkEmailAvailability(userInfo.email)
