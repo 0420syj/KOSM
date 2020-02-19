@@ -1,4 +1,4 @@
-/*package com.kosm.test6.service;
+package com.kosm.test6.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +20,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-   /* @Transactional
-    public Long save(BoardSaveRequest request) {
+    @Transactional
+    public Boards save(BoardSaveRequest request) {
 
         return boardRepository.save(request.toEntity());
     }
@@ -35,7 +35,23 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public List<BoardListResponse> findAllDesc() {
-        return boardRepository.findAllDesc().stream().map(posts -> new BoardListResponse(posts))
+        return boardRepository.findAllDesc().stream().map(boards -> new BoardListResponse(boards))
                 .collect(Collectors.toList());
     }
-}*/
+
+    @Transactional
+    public Long update(Long id, BoardResponse requestDto){
+        Boards boards = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
+
+        boards.update(requestDto.getTitle(), requestDto.getContent());
+
+        return id;
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Boards boards = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" +id));
+
+        boardRepository.delete(boards);
+    }
+}
