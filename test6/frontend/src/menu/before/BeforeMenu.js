@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import styled from 'styled-components';
+import './BeforeMenu.scss';
+
 const BeforeMenu = () => {
     const [isDropdown, setIsDropdown] = useState(false);
     const toggle = () => {
         setIsDropdown(prev => !prev);
-    }
-
-    const dropDownHover = () => {
-        
     }
     
     return ( 
@@ -23,38 +22,61 @@ const BeforeMenu = () => {
                 <div style={{
                     display: 'flex',
                     justifyContent:'space-between',
-                    padding: '0% 2% 0% 2%',
+                    padding: '0% 4% 0% 2%',
                     height: '100%',
                     alignItems: 'center'}}>
                     <div style={{width: '80%'}}>
                         <Link to='/' style={{
                             color: 'inherit', 
                             textDecoration: 'none'}}>
-                            <div style={{cursor: 'pointer'}}>KOSM</div>
+                            <div style={{
+                                cursor: 'pointer',
+                                fontSize:'200%'}}>KOSM</div>
                         </Link>
                     </div>
                     <div style={{width: '15%'}}>
                         <div style={{
                             display: 'flex', 
                             justifyContent:'space-between', 
-                            width: '100%',
-                            height: '80px'}}>
+                            alignItems:'center',
+                            width: '100%'}}>
                             <Link to='/board' style={{
                                 color: 'inherit', 
                                 textDecoration: 'none'}}>
                                 <div style={{cursor: 'pointer'}}>Board</div>
                             </Link>
 
-                            <Dropdown isOpen = {isDropdown} toggle={toggle}>
-                                <DropdownToggle style={{boxShadow: 'none', background: '#000000', border: 'none', height: '100%'}}>
+                            <Dropdown className='dropdown' isOpen = {isDropdown} toggle={toggle}>
+                                <DropdownToggle style={{
+                                    boxShadow: 'none', 
+                                    background: '#000000', 
+                                    border: 'none',
+                                    width: '100%', 
+                                    height: '100%'}}>
                                     Login                                    
                                 </DropdownToggle>
-                                <DropdownMenu onMouseOver={dropDownHover} style={{background: '#000000'}}>
-                                    <DropdownItem>
-                                        <Link to='/signup' style={{background: '#000000', color: '#FFFFFF'}}>회원가입</Link>
+                                <DropdownMenu className='dropdownMenu'>
+                                    <DropdownItem className='dropdownItem'>
+                                        <Link to='/login'
+                                            style={{
+                                                textDecorataion: 'none',
+                                                color: '#FFFFFF',
+                                                width: '100%',
+                                                textAlign:'center'}}>
+                                            Login
+                                        </Link>
                                     </DropdownItem>
                                     <DropdownItem divider/>
-                                    <DropdownItem style={{color: '#FFFFFF'}}>로그인</DropdownItem>
+                                    <DropdownItem className='dropdownItem'>
+                                        <Link to='/signup'
+                                            style={{
+                                                textDecorataion: 'none',
+                                                color: '#FFFFFF',
+                                                width: '100%',
+                                                textAlign:'center'}}>
+                                            Sign Up
+                                        </Link>
+                                    </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
                         </div>

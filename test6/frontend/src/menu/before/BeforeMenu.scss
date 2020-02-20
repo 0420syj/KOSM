@@ -1,0 +1,26 @@
+.dropdown{
+    .dropdownMenu{
+        background: #000000;
+        min-width: 30px;
+        width: 100px;
+        justify-content: center;
+        margin-top: 0%;
+        margin-right: 52%;
+        border-radius: 0px;
+        .dropdownItem{
+            padding: 0px 0px;
+            margin: 0px;
+            background: #000000;
+            color: #FFFFFF;
+            justify-content: center;
+            display: flex;
+            border-radius: 0px;
+            :hover{
+                background: #808080;
+                color: #FFFFFF;
+                text-decoration: none;
+                border-radius: 2px;
+            }
+        }
+    }
+}

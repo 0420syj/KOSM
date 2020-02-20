@@ -5,19 +5,22 @@ import Board from './board/Board';
 import Source from './source/Source';
 import MyPage from './mypage/MyPage';
 import ForgotPassword from './sign/login/ForgotPassword';
+import Login from './sign/login/Login';
+import DeleteUser from './mypage/DeleteUser';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
-
 function App() {
 
   return (
     <div>
       <Router>
         <Route exact path='/' component={Home}/>
+        <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route exact path='/board' component={Board}/>
         <Route exact path='/source/:item' component={Source}/>
         <Route exact path='/mypage' component={MyPage}/>
         <Route exact path='/forgot' component={ForgotPassword}/>
+        <Route exact path='/deleteuser' component={DeleteUser}/>
       </Router>
     </div>
   );
