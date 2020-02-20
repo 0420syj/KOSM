@@ -6,56 +6,37 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 // import Data from './ArticleData'
-import {getBoardOnce, getBoardCount} from '../util/APIUtils'
+import {getBoardOnce, getBoardCount, getBoards} from '../util/APIUtils'
 
 // localStorage 초기화 영역 시작 
 
-const data = [
-    {
-        id: 5,
-        title: '안녕하세요',
-        author: '강파고',
-        time: '2020.01.31',
-    },
-    {
-        id: 6,
-        title: '이럴수가',
-        author: '완파고',
-        time: '2020.02.04',
-    },
-    {
-        id: 7,
-        title: '정말',
-        author: '손파고',
-        time: '2020.01.29',
-    },
-    {
-        id: 8,
-        title: '멋져요',
-        author: '백파고',
-        time: '2020.02.03',
-    },
-];
+const data = [];
 
 var count = 0;
 
 getBoardCount()
     .then(res => {
         count= res
-        console.log(count)
     });
 
-    getBoardOnce(1)
-        .then(response => {
-            localStorage.removeItem("articles"); // 초기화
-            data.push({
-                id: response.id,
-                title: response.title,
-                author: response.author,
-                time: response.createdDate
-            })
-            localStorage.articles = JSON.stringify(data); // localStorage에 저장
-        });
+
+
+getBoards()
+    .then(response => {
+        localStorage.removeItem("articles"); // 초기화
+        
+    response.map(res => {
+        data.push({
+            id: res.id,
+            title: res.title,
+            author: res.author,
+            time: res.createdDate
+        })
+    })
+    console.log(data);
+        localStorage.articles = JSON.stringify(data); // localStorage에 저장
+    });
+
 
 
 // localStorage 초기화 끝 
@@ -84,7 +65,7 @@ const columns = [
     },
     {
         dataField: 'time',
-        text: '날짜',
+        text: '등록일',
         //type: 'date',
         headerStyle: () => {
             return { width: '100px' };
