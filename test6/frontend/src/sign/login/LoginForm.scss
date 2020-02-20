@@ -7,7 +7,6 @@
         width: 400px;
         height: 500px;
         border-width:thin;
-        border:1px solid black;
         .loginTitle {
             text-align:center;
             padding-top: 20px;
@@ -26,20 +25,6 @@
 
                 }
             }
-            .loginFindContainer{
-                padding: 10px;
-                display: flex;
-                justify-content:flex-end;
-                .loginFindInfo{
-                    font-size: 10px;
-                    display:block;
-                    color: blue;
-                    &:hover{
-                        cursor: pointer;
-                        color: skyblue;                        
-                    }
-                }
-            }
         }
         .loginButtonContainer{
             display: flex;
@@ -50,7 +35,6 @@
                 height: 40px;
                 font-size: 20px;
                 padding: 0px 10px 0px 10px;
-
                 &:hover{
                     background: rgb(100, 100, 100);
                     color:rgb(255, 255, 255);
@@ -58,18 +42,20 @@
             }
         }
         .loginSignUpContainer{
-            margin: 30px 20px;
             display:flex;
-            justify-content: flex-end;
+            .findPassword {
+                font-size: 10px;
+                color: #000000;
+                :hover{
+                    color: skyblue;
+                }
+            }
             .loginSignUpText{
-                display:inline;
                 font-size: 10px;
             }
             .loginSignUp{
                 font-size: 10px;
                 color: blue;
-                display:inline;
-                padding-left:3px;
                 &:hover{
                     color: skyblue;
                     cursor: pointer;
