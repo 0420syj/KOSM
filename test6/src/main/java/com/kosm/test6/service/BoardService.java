@@ -1,5 +1,6 @@
 package com.kosm.test6.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,10 +34,20 @@ public class BoardService {
         return new BoardResponse(entity);
     }
 
+    public BoardListResponse getListOnce(Long id){
+        Boards entity = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
+
+        return new BoardListResponse(entity);
+    }
+
     @Transactional(readOnly = true)
     public List<BoardListResponse> findAllDesc() {
         return boardRepository.findAllDesc().stream().map(boards -> new BoardListResponse(boards))
                 .collect(Collectors.toList());
+    }
+
+    public Long getCount(){
+        return boardRepository.getCount();
     }
 
     @Transactional
