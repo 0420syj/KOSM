@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import './LoginForm.scss';
 import { login, getCurrentUser } from '../../util/APIUtils';
 import {Link} from 'react-router-dom';
-import {ButtonToggle} from 'reactstrap';
+import {ButtonToggle, Button} from 'reactstrap';
 
 const Login = (props) => {
     const [userinfo, setUserInfo] = useState({
@@ -19,13 +19,15 @@ const Login = (props) => {
     }
 
     const onSubmit = (e) => {
+        console.log("login log1")
         e.preventDefault();
         login(userinfo)
         .then(res => {
             localStorage.setItem('accessToken', res.accessToken);
             getCurrentUser()
             .then(res => {
-                props.setUser(props.user.isLogin='true');
+                console.log("login log")
+               // props.setUser(props.user.isLogin='true');
                 localStorage.setItem('isLogin', 'true');
                 localStorage.setItem('email', res.email);
                 localStorage.setItem('username', res.username);
@@ -41,7 +43,7 @@ const Login = (props) => {
         <div className='loginScreen'>
             <div className='loginContainer'>
                 <div className='loginTitle'>welcome KOSM</div>
-                <div className='loginTitle'>Sing In</div>
+                <div className='loginTitle'>Sign In</div>
                 <form className='loginForm' onSubmit={onSubmit}>
                     <div className='loginFormContainer'>
                         <div className='loginSubTitle'>이메일</div>
@@ -52,13 +54,14 @@ const Login = (props) => {
                         <input name='password' onChange={onChange} type='password' className='form-control'/>
                     </div>
                 <div className='loginButtonContainer'>
-                    <ButtonToggle
+                    <Button
                         color='info'
                         style={{
                             width: '100%'
-                        }}>
+                        }}
+                        onSubmit={onSubmit}>
                         Sign in
-                    </ButtonToggle>
+                    </Button>
                 </div>
                 <div className='loginSignUpContainer'>
                     <div>
