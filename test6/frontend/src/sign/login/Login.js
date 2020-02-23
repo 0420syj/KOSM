@@ -6,14 +6,8 @@ const Login = () => {
     const [isLogin, setIsLogin] = useState(false);
     return ( 
         <div>
-            {
-                localStorage.isLogin === 'false' ?
-                <div>
-                    <BeforeMenu/>
-                    <LoginForm isLogin = {isLogin} setIsLogin = {setIsLogin}/>
-                </div> :
-                <Link to ='/'/>
-            }
+            <BeforeMenu/>
+            <LoginForm isLogin = {isLogin} setIsLogin = {setIsLogin}/>
         </div>
     )
 }
