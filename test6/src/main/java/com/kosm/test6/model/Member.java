@@ -45,7 +45,7 @@ public class Member extends DateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    private String favProjects;
+    //private String favProjects;
 
     public Member() {
 
@@ -99,7 +99,7 @@ public class Member extends DateAudit {
         this.roles = roles;
     }
 
-
+/*
     public String getFavProjects() {
         return favProjects;
     }
@@ -107,5 +107,5 @@ public class Member extends DateAudit {
     public void setFavProjects(String favProjects) {
         this.favProjects += "," + favProjects;
     }
-
+*/
 }
