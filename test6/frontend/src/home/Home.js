@@ -19,9 +19,9 @@ const Home = () => {
     return ( 
         <div>
             {
-                localStorage.getItem('isLogin') === 'false'?
-                <BeforeLogin user={user} setUser = {setUser}/>:
-                <AfterLogin user={user} setUser = {setUser}/>
+                localStorage.getItem('isLogin') === 'true'?
+                <AfterLogin user={user} setUser = {setUser}/> :
+                <BeforeLogin user={user} setUser = {setUser}/>
             }
         </div>
     )
