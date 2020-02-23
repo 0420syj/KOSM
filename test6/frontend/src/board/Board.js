@@ -7,7 +7,8 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 // import Data from './ArticleData'
 import {getBoardOnce, getBoardCount, getBoards} from '../util/APIUtils'
-
+import BeforeMenu from '../menu/before/BeforeMenu';
+import AfterMenu from '../menu/after/AfterMenu';
 // localStorage 초기화 영역 시작 
 
 const data = [];
@@ -80,33 +81,42 @@ const Board = () => {
     }, []);
 
     return (
-        <div className='boardScreen'>
-            <ToolkitProvider
-                keyField="id"
-                data={ JSON.parse(localStorage.articles) } // localStorgae값 불러오기
-                columns={ columns }
-                search>
+        <div>
+            <div>
                 {
-                    props => (
-                        <div>
-                            <h3>게시판</h3>
-                            <SearchBar
-                                { ...props.searchProps }
-                                className="custome-search-field"
-                                placeholder="검색"/>
-                            <hr />
-                            <BootstrapTable
-                                striped
-                                hover
-                                condensed
-                                { ...props.baseProps }
-                                pagination={ paginationFactory() } 
-                                noDataIndication="내용이 없습니다"
-                            />
-                        </div>
-                    )
+                    localStorage.getItem('isLogin') === 'false' ?
+                    <BeforeMenu/>:
+                    <AfterMenu/>
                 }
-            </ToolkitProvider>
+            </div>
+            <div className='boardScreen'>
+                <ToolkitProvider
+                    keyField="id"
+                    data={ JSON.parse(localStorage.articles) } // localStorgae값 불러오기
+                    columns={ columns }
+                    search>
+                    {
+                        props => (
+                            <div>
+                                <h3>게시판</h3>
+                                <SearchBar
+                                    { ...props.searchProps }
+                                    className="custome-search-field"
+                                    placeholder="검색"/>
+                                <hr />
+                                <BootstrapTable
+                                    striped
+                                    hover
+                                    condensed
+                                    { ...props.baseProps }
+                                    pagination={ paginationFactory() } 
+                                    noDataIndication="내용이 없습니다"
+                                />
+                            </div>
+                        )
+                    }
+                </ToolkitProvider>
+            </div>
         </div>
     )
 };
