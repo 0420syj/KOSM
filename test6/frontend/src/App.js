@@ -9,7 +9,9 @@ import Login from './sign/login/Login';
 import DeleteUser from './mypage/DeleteUser';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
-
+  if(localStorage.getItem('isLogin') === undefined)
+    localStorage.setItem('isLogin', 'false');
+  console.log(localStorage.getItem('isLogin'));
   return (
     <div>
       <Router>

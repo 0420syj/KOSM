@@ -1,16 +1,16 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './LoginForm.scss';
 import { login, getCurrentUser } from '../../util/APIUtils';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {ButtonToggle, Button} from 'reactstrap';
-
-const Login = (props) => {
+const LoginForm = (props) => {
     const [userinfo, setUserInfo] = useState({
         email:'',     //username이랑 email나누기
         username: '',
         password:'',
     })
 
+    const history = useHistory();
     const onChange= (e) => {
         setUserInfo({
             ...userinfo,
@@ -19,22 +19,24 @@ const Login = (props) => {
     }
 
     const onSubmit = (e) => {
-        console.log("login log1")
         e.preventDefault();
         login(userinfo)
         .then(res => {
             localStorage.setItem('accessToken', res.accessToken);
             getCurrentUser()
             .then(res => {
-                console.log("login log")
-               // props.setUser(props.user.isLogin='true');
                 localStorage.setItem('isLogin', 'true');
                 localStorage.setItem('email', res.email);
                 localStorage.setItem('username', res.username);
+                alert('로그인 완료');
+                history.goBack();
+                return ;
             }).catch(e => {
+                alert('아이디/비밀번호가 다릅니다.');
                 console.log(e);
             })
         }).catch(e => {
+            alert('아이디/비밀번호가 다릅니다.');
             console.log(e);
         })
     }
@@ -54,14 +56,12 @@ const Login = (props) => {
                         <input name='password' onChange={onChange} type='password' className='form-control'/>
                     </div>
                 <div className='loginButtonContainer'>
-                    <Button
+                    <button
                         color='info'
-                        style={{
-                            width: '100%'
-                        }}
+                        style={{width: '100%'}}
                         onSubmit={onSubmit}>
                         Sign in
-                    </Button>
+                    </button>
                 </div>
                 <div className='loginSignUpContainer'>
                     <div>
@@ -83,4 +83,4 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default LoginForm;
