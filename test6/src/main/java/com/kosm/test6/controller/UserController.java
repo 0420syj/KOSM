@@ -1,6 +1,15 @@
 package com.kosm.test6.controller;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.kosm.test6.model.Member;
+import com.kosm.test6.model.Project;
+import com.kosm.test6.payload.ProjectListResponse;
+import com.kosm.test6.payload.ProjectResponse;
 import com.kosm.test6.payload.UserIdentityAvailability;
+import com.kosm.test6.repository.ProjectRepository;
 //import com.kosm.test6.payload.UserSummary;
 import com.kosm.test6.repository.UserRepository;
 import com.kosm.test6.security.CurrentUser;
@@ -19,6 +28,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     
 
     //private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -31,6 +43,28 @@ public class UserController {
     }
 
 
+    @PostMapping("/user/addFavProject")
+    public Long addFav(@RequestBody ProjectResponse request) {
+        Member member = userRepository.getOne(request.getUser_id());
+        Project project = projectRepository.getOne(request.getProject_id());
+
+        Set<Member> members = project.getMembers();
+        members.add(member);
+
+        projectRepository.saveAndFlush(project);
+
+        return request.getProject_id();
+    }
+
+
+    @GetMapping("/user/getFavProject/{id}")
+    public List<ProjectListResponse> getFav(@PathVariable Long id) {
+        Member member = userRepository.getOne(id);
+
+        Set<Project> projects = member.getProjects();
+        return projects.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList());
+        //return projects;
+    }
 
     @GetMapping("/user/checkUsernameAvailability")
     public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {

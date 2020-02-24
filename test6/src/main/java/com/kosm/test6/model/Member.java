@@ -45,6 +45,13 @@ public class Member extends DateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_projects",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private Set<Project> projects = new HashSet<>();
+
     //private String favProjects;
 
     public Member() {
@@ -99,13 +106,9 @@ public class Member extends DateAudit {
         this.roles = roles;
     }
 
-/*
-    public String getFavProjects() {
-        return favProjects;
+    public Set<Project> getProjects() {
+        return projects;
     }
 
-    public void setFavProjects(String favProjects) {
-        this.favProjects += "," + favProjects;
-    }
-*/
+
 }
