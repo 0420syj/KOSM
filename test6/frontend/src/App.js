@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Home from './home/Home';
 import SignUp from './sign/signup/SignUp';
 import Board from './board/Board';
+import Write from './board/Write';
 import Source from './source/Source';
 import MyPage from './mypage/MyPage';
 import ForgotPassword from './sign/login/ForgotPassword';
@@ -19,6 +20,7 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route exact path='/board' component={Board}/>
+        <Route exact path='/write' component={Write}/>
         <Route exact path='/source/:item' component={Source}/>
         <Route exact path='/mypage' component={MyPage}/>
         <Route exact path='/forgot' component={ForgotPassword}/>

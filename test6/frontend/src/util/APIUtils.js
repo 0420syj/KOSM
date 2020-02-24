@@ -51,6 +51,13 @@ export function signup(signupRequest) {
     });
 }
 
+export function writeBoard(boardSaveRequest) {
+    return request({
+        url: API_BASE_URL + "/api/board/save",
+        method: 'POST',
+        body: JSON.stringify(boardSaveRequest)
+    });
+}
 
 export function getBoards() {
     return request({
