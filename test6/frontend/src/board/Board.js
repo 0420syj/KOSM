@@ -122,11 +122,12 @@ const Board = () => {
                                     pagination={ paginationFactory() } 
                                     noDataIndication="내용이 없습니다"
                                 />
+                                {
+                                localStorage.getItem('isLogin') === 'false' ? '' :
                                 <Link to='/write'>
                                     <Button>글쓰기</Button>
-                                </Link>
+                                </Link>}
                             </div>
-                            
                         )
                     }
                 </ToolkitProvider>
