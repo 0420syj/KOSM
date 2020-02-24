@@ -24,13 +24,12 @@ const AfterMenu = (props) => {
                             <div style={{cursor: 'pointer'}}>Board</div>
                         </Link>
                         <div>{localStorage.getItem('username')}</div>
-
-                        {/* <Link to='/' style={{color: 'inherit', textDecoration:'none'}}>
+                        <Link to='/' style={{color: 'inherit', textDecoration:'none'}}>
                             <div style={{cursor: 'pointer'}} onClick ={logoutClick}>Logout</div>
                         </Link>
                         <Link to='/mypage' style={{color: 'inherit', textDecoration:'none'}}>
                             <div style={{cursor: 'pointer'}}>My Page</div>
-                        </Link> */}
+                        </Link> 
                     </div>
                 </div>
             </div>

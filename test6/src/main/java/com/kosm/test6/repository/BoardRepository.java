@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 @Repository
 public interface BoardRepository extends JpaRepository<Boards,Long> {
 
-    @Query(value = "SELECT * FROM boards ORDER BY id DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM boards ORDER BY id ASC", nativeQuery = true)
     List<Boards> findAllDesc(); 
 
 
