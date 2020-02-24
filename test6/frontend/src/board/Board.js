@@ -18,16 +18,16 @@ const data = [];
 getBoards()
     .then(response => {
         localStorage.removeItem("articles"); // 초기화
-    response.map(res => {
-        data.push({
-            id: res.id,
-            title: res.title,
-            status: '처리중', // 임시 데이터
-            author: res.author,
-            time: res.createdDate
+        response.map(res => {
+            data.push({
+                id: res.id,
+                title: res.title,
+                status: res.status, // 임시 데이터
+                author: res.author,
+                time: res.createdDate
+            })
         })
-    })
-    // console.log(data);
+        // console.log(data);
         localStorage.articles = JSON.stringify(data); // localStorage에 저장
     });
 
