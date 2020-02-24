@@ -6,7 +6,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import renderEmpty from 'antd/lib/config-provider/renderEmpty';
-import {getBoardOnce, getBoardCount, getBoards} from '../util/APIUtils'
+import { getBoards } from '../util/APIUtils'
 import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
 import { Button } from 'reactstrap';
@@ -14,17 +14,10 @@ import { Button } from 'reactstrap';
 // localStorage 초기화 영역 시작 
 
 const data = [];
-var count = 0;
-
-getBoardCount()
-    .then(res => {
-        count= res
-    });
 
 getBoards()
     .then(response => {
         localStorage.removeItem("articles"); // 초기화
-        
     response.map(res => {
         data.push({
             id: res.id,
@@ -34,7 +27,7 @@ getBoards()
             time: res.createdDate
         })
     })
-    console.log(data);
+    // console.log(data);
         localStorage.articles = JSON.stringify(data); // localStorage에 저장
     });
 
@@ -81,7 +74,7 @@ const columns = [
             if (typeof cell !== 'object') {
               dateObj = new Date(cell);
             }
-            return `${dateObj.getUTCFullYear()}/${('0' + (dateObj.getUTCMonth() + 1)).slice(-2)}/${('0' + dateObj.getUTCDate()).slice(-2)}`;
+            return `${dateObj.getFullYear()}/${('0' + (dateObj.getMonth() + 1)).slice(-2)}/${('0' + dateObj.getDate()).slice(-2)}`;
           },
         headerStyle: () => {
             return { width: '100px' };
