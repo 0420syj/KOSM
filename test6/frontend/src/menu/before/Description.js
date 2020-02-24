@@ -1,8 +1,11 @@
 import React from 'react';
+// const express = require('express');
 const Description = () => {
     return ( 
         <div>
-            <h2>Description</h2>
+            <div>
+                <h2>Description</h2>
+            </div>
             <div>여기는 설명이 있는 자리입니다.</div>
         </div>
     )
