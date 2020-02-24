@@ -12,14 +12,20 @@ import AfterMenu from '../menu/after/AfterMenu';
 import { Button } from 'reactstrap';
 
 class Board extends Component {
+    
     constructor(props) {
         super(props)
         this.state = {
-            article: "",
+            id: "순번",
+            title: "제목",
+            status: "상태",
+            author: "작성자",
+            time: "날짜",
         }
     }
 
     componentDidMount() {
+        
         const data = [];
 
         getBoards()
@@ -34,12 +40,15 @@ class Board extends Component {
                         time: res.createdDate
                     })
                 })
+                console.log(data)
+                console.log(typeof(data))
+                console.log(this.state)
+                console.log(typeof(this.state))
                 localStorage.articles = JSON.stringify(data); // localStorage에 저장
-            });
+            })
     }
 
     render() {
-
         const { SearchBar } = Search;
 
         const columns = [
@@ -106,6 +115,7 @@ class Board extends Component {
                     <ToolkitProvider
                         keyField="id"
                         data={JSON.parse(localStorage.articles)} // localStorgae값 불러오기
+                        // data={this.state}
                         columns={columns}
                         search>
                         {
