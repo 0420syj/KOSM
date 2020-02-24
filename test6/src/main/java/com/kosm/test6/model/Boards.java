@@ -29,11 +29,14 @@ public class Boards extends BaseTimeEntity {
 
     private String author;
 
+    private String status;
+
     @Builder                // 해당 클래스의 빌더 패턴 클래스 생성
     public Boards(String title, String content, String author){
         this.title = title;
         this.content = content;
         this.author = author;
+        this.status = "처리중";
     }
 
     public void update(String title, String content) {
