@@ -50,6 +50,11 @@ const columns = [
         headerStyle: () => {
             return { width: '120px' };
         },
+        formatter: (cell, row) => {
+            return (
+                <Link to={`/article/${row.id}`}>{cell}</Link>
+            );
+        },
     },
     {
         dataField: 'status',
@@ -72,10 +77,10 @@ const columns = [
         formatter: (cell) => {
             let dateObj = cell;
             if (typeof cell !== 'object') {
-              dateObj = new Date(cell);
+                dateObj = new Date(cell);
             }
             return `${dateObj.getFullYear()}/${('0' + (dateObj.getMonth() + 1)).slice(-2)}/${('0' + dateObj.getDate()).slice(-2)}`;
-          },
+        },
         headerStyle: () => {
             return { width: '100px' };
         },

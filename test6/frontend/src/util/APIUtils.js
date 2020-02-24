@@ -66,6 +66,12 @@ export function getBoards() {
     });
 }
 
+export function getArticle(id) {
+    return request({
+        url: API_BASE_URL + "/api/board/" + id,
+        method: 'GET'
+    })
+}
 
 export function getBoardOnce(id) {
     return request({
