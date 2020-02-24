@@ -1,9 +1,12 @@
 package com.kosm.test6.controller;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.kosm.test6.model.Member;
 import com.kosm.test6.model.Project;
+import com.kosm.test6.payload.ProjectListResponse;
 import com.kosm.test6.payload.ProjectResponse;
 import com.kosm.test6.payload.UserIdentityAvailability;
 import com.kosm.test6.repository.ProjectRepository;
@@ -51,6 +54,16 @@ public class UserController {
         projectRepository.saveAndFlush(project);
 
         return request.getProject_id();
+    }
+
+
+    @GetMapping("/user/getFavProject/{id}")
+    public List<ProjectListResponse> getFav(@PathVariable Long id) {
+        Member member = userRepository.getOne(id);
+
+        Set<Project> projects = member.getProjects();
+        return projects.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList());
+        //return projects;
     }
 
     @GetMapping("/user/checkUsernameAvailability")

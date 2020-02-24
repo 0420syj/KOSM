@@ -106,13 +106,9 @@ public class Member extends DateAudit {
         this.roles = roles;
     }
 
-/*
-    public String getFavProjects() {
-        return favProjects;
+    public Set<Project> getProjects() {
+        return projects;
     }
 
-    public void setFavProjects(String favProjects) {
-        this.favProjects += "," + favProjects;
-    }
-*/
+
 }
