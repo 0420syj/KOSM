@@ -3,23 +3,6 @@ import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
 const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
-    // async function asyncOrder() {
-    //     return await Promise.resolve(
-    //         setIsFavorite(!isFavorite),
-    //         console.log(isFavorite)
-    //     )
-    // }
-    // async function favoriteClick() {
-    //     asyncOrder()
-    //     .then(() => {
-    //         console.log('success');
-    //         console.log(isFavorite);
-    //     }
-    //     )
-    //     .catch(e => {
-    //         console.log(e);
-    //     })
-    // }
 
     const favoriteClick = () => {
         setIsFavorite(!isFavorite);
