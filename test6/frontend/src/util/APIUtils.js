@@ -159,3 +159,12 @@ export function getAvgRate(id){
         method: 'GET'
     });
 }
+
+export function setFavorite(favoriteInfo){  
+    //즐겨찾기 library, 사용자 이름 전송
+    return request({
+        // url:  ,
+        // method: 'POST'       
+        // body: JSON.stringify(favoriteInfo)
+    })
+}
