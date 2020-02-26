@@ -21,19 +21,15 @@ const Board = (props) => {
         time: "날짜",
     })
     const [data, setData] = useState([]);
-    const [hi, setHi] = useState(1);
 
     useEffect(() => {
-        console.log('useEffect');
         getBoards()
         .then(response => {
             localStorage.removeItem("articles"); // 초기화
             setData(response);
-            console.log(response);
-            console.log(data);
         })
     }, []);
-    
+
     const { SearchBar } = Search;
     const columns = [
         {

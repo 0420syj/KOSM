@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Home from './home/Home';
 import SignUp from './sign/signup/SignUp';
 import Board from './board/Board';
@@ -11,8 +11,10 @@ import Login from './sign/login/Login';
 import DeleteUser from './mypage/DeleteUser';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
-  if(localStorage.getItem('isLogin') === undefined)
-    localStorage.setItem('isLogin', 'false');
+  
+    useEffect(() => {
+      localStorage.setItem('isLogin', 'false');
+    }, []);
   return (
     <div>
       <Router>
