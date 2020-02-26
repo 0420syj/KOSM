@@ -2,10 +2,6 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import OpenSourceData from '../data/OpenSourceData';
 import './SourceList.scss';
-// import styled from 'styled-components';
-// const ListStyle = styled.div`
-
-// `;
 const SourceList = () => {
     const [Data, setData] = useState([]);
     const onChange = (e) => {
@@ -24,18 +20,25 @@ const SourceList = () => {
                     </label>
                 </div>
             </div>
-            <ul>
+            <ul style={{overflowY: 'scroll', height: '100vh', maxHeight: '100%'}}>
                 {
                     Data.length === 0 ?
                     OpenSourceData.map(item => {
                         return  <li key={item.id}>
-                            <Link to={`/source/${item.value}`}>{item.value}</Link>
+                            <Link to={`/source/${item.value}`}
+                                className='sourceList'>
+                                {item.value}
+                            </Link>
                         </li>
                     }):
                     
                     Data.map(item => {
                         return <li key={item.id}>
-                            <Link to = {`/source/${item.value}`}>{item.value}</Link>
+                            <Link 
+                                to = {`/source/${item.value}`}
+                                className='sourceList'>
+                                {item.value}
+                            </Link>
                         </li>
                     })
                 }

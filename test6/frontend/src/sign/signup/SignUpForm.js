@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './SignUpForm.scss';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-import { signup, checkUsernameAvailability, checkEmailAvailability } from '../../util/APIUtils';
+import { checkEmailAvailability } from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
 import {ButtonToggle} from 'reactstrap';
 
 const SignUp = ({match}) => {
     const history = useHistory();
     const [emailConfirm, setEmailConfirm] = useState('false');
-    const [timer, setTimer] = useState(5);
 
     // const [success, setSuccess] = useState(false);
     
@@ -158,6 +157,8 @@ const SignUp = ({match}) => {
         }
         axios.post('http://localhost:5000/api/auth/signup', signupRequest)        
         .then(res => {
+            console.log('res');
+            console.log(res);
             history.goBack();
         },(error) => {
             console.log(error);
@@ -174,8 +175,6 @@ const SignUp = ({match}) => {
     const emailClick = (e) => {        
         if(emailConfirm === 'false'){
             setEmailConfirm('true');
-            console.log('userInfo');
-            console.log(userInfo);
             checkEmailAvailability(userInfo.email)
             .then(res => {
                 console.log('success');

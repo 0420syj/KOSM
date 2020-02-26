@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState} from 'react';
 import './LoginForm.scss';
 import { login, getCurrentUser } from '../../util/APIUtils';
 import {Link, useHistory} from 'react-router-dom';
-import {ButtonToggle, Button} from 'reactstrap';
 const LoginForm = (props) => {
     const [userinfo, setUserInfo] = useState({
         email:'',     //username이랑 email나누기

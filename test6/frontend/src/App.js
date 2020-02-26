@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Home from './home/Home';
 import SignUp from './sign/signup/SignUp';
 import Board from './board/Board';
@@ -13,7 +13,6 @@ import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   if(localStorage.getItem('isLogin') === undefined)
     localStorage.setItem('isLogin', 'false');
-  console.log(localStorage.getItem('isLogin'));
   return (
     <div>
       <Router>

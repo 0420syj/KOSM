@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import SourceList from '../SourceList';
 import Description from './Description';
-import Login from '../../sign/login/Login'
 import BeforeMenu from './BeforeMenu';
 
 const BeforeLogin = (props) => {
@@ -11,7 +10,9 @@ const BeforeLogin = (props) => {
                 <BeforeMenu/>
             </div>
             <div style={{display: 'flex'}}>
-                <div><SourceList/></div>
+                <div>
+                    <SourceList/>
+                </div>
                 <div><Description/></div>
                 {/* <div><Login user={props.user} setUser={props.setUser}/></div> */}
             </div>
