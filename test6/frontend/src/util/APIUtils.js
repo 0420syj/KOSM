@@ -6,6 +6,7 @@ const request = (options) => {
     if(localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
     }
+
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
     return fetch(options.url, options)
@@ -160,11 +161,11 @@ export function getAvgRate(id){
     });
 }
 
-export function setFavorite(favoriteInfo){  
-    //즐겨찾기 library, 사용자 이름 전송
-    return request({
-        // url:  ,
-        // method: 'POST'       
-        // body: JSON.stringify(favoriteInfo)
-    })
-}
+// export function setFavorite(favoriteInfo){  
+//     //즐겨찾기 library, 사용자 이름 전송
+//     return request({
+//         // url:  ,
+//         // method: 'POST'       
+//         // body: JSON.stringify(favoriteInfo)
+//     })
+// }
