@@ -1,19 +1,86 @@
 import React, {useState, useEffect} from 'react';
-import { Crawl } from '../util/APIUtils';
+import { Crawl, getFavProject } from '../util/APIUtils';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
 import axios from 'axios';
+import {addFavProject, deleteFavProject} from '../util/APIUtils';
+import OpenSourceData from '../data/OpenSourceData';
+
 const MainSource = (props) => {
     const [message, setMessage] = useState('');
     const [isFavorite, setIsFavorite] = useState(false);
-
+    const [idKey, setIdKey] = useState(0);
     const favoriteClick = () => {
+        if(isFavorite === false){
+
+            alert('즐겨찾기가 추가 되었습니다');
+        }
+        else{
+
+            alert('즐겨찾기를 삭제하였습니다.');
+        }
         setIsFavorite(!isFavorite);
     }
+
+    const addFavorite = () => {
+        const obj = {
+            project_id: idKey,
+            user_id: localStorage.getItem('userId')
+        }
+        addFavProject(obj)
+    }
+
+    const deleteFavorite = () => {
+        if(idKey == 0)
+            return ;
+        const obj = {
+            project_id: idKey,
+            user_id: localStorage.getItem('userId')
+        }
+        // console.log('obj');
+        // console.log(obj);
+        deleteFavProject(obj)
+        .then(() => {
+            console.log('erased');
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    }
+
     useEffect(() => {
-        if(isFavorite === true)
-            alert('즐겨찾기가 추가되었습니다.');
+        setIsFavorite(false);
+        getFavProject(localStorage.getItem('userId'))
+        .then(res => {
+            res.map((items) => {
+                if(items.name === props.name){
+                    console.log('here');
+                    setIsFavorite(true);
+                }
+            })
+        })
+        .catch(e => {
+            console.log(e);
+        })
+
+        OpenSourceData.map((res) => {
+            if(res.value === props.name){
+                setIdKey(res.id);
+                return ;
+            }
+        })
+    }, [props.name]);
+
+
+    useEffect(() => {
+        if(isFavorite === true){
+            addFavorite();      //즐겨찾기 추가 버튼을 눌렀을 때 실행
+        }
+        else {
+            deleteFavorite();       //즐겨찾기 해제 버튼을 눌렀을 때 실행
+        }
     }, [isFavorite])
+
     const handleSubmit = (e) => {
         // console.log("handleSubmit: " + success);
         e.preventDefault();
@@ -29,6 +96,7 @@ const MainSource = (props) => {
             console.log(error);
         });
     }
+
     const onSubmit = (e) => {
         const signupRequest = {
             url:"https://www.w3schools.com"
@@ -43,6 +111,7 @@ const MainSource = (props) => {
                 console.log(error);
             });
     }
+
     return ( 
         <div>
             <div style={{display: 'flex'}}>
@@ -52,10 +121,10 @@ const MainSource = (props) => {
                         {
                             isFavorite === true ?
                             <IconContext.Provider
-                                value={{color: 'yellow'}}>
+                                value={{color: 'yellow', size: '30px'}}>
                                 <MdStar onClick = {favoriteClick}/> 
                             </IconContext.Provider> :
-                            <MdStarBorder onClick = {favoriteClick}/>
+                            <MdStarBorder size='30px' onClick = {favoriteClick}/>
                         }
                     </div>:
                     null

@@ -11,10 +11,10 @@ import Login from './sign/login/Login';
 import DeleteUser from './mypage/DeleteUser';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
-  useEffect(() => {
-    localStorage.setItem('isLogin', 'false');
-  }, []);
-
+  // useEffect(() => {
+  //   console.log('start');
+  //   localStorage.setItem('isLogin', 'false');
+  // }, []);
   return (
     <div style={{background: '#393939', height: '990px'}}>
       <Router>

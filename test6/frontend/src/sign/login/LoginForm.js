@@ -27,6 +27,8 @@ const LoginForm = (props) => {
                 localStorage.setItem('isLogin', 'true');
                 localStorage.setItem('email', res.email);
                 localStorage.setItem('username', res.username);
+                localStorage.setItem('userId', res.id);
+                console.log(localStorage.getItem('userId'));
                 alert('로그인 완료');
                 history.goBack();
                 return ;
@@ -43,8 +45,11 @@ const LoginForm = (props) => {
     return ( 
         <div className='loginScreen'>
             <div className='loginContainer'>
-                <div className='loginTitle'>welcome KOSM</div>
-                <div className='loginTitle'>Sign In</div>
+                <div className='loginTitle'>
+                    <div className='loginTitle2'>
+                        Welcome KOSM
+                    </div>
+                </div>
                 <form className='loginForm' onSubmit={onSubmit}>
                     <div className='loginFormContainer'>
                         <div className='loginSubTitle'>이메일</div>

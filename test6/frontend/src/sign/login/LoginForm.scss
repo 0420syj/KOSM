@@ -4,12 +4,26 @@
     display:flex;
     justify-content: center;
     .loginContainer{
-        width: 400px;
-        height: 500px;
-        border-width:thin;
+        width: 500px;
+        height: 800px;
+        margin-top: 40.5px;
         .loginTitle {
-            text-align:center;
-            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            font-family: NotoSans;
+            .loginTitle2{
+                width: 184px;
+                height: 38px;               
+                font-size: 23px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 0.89;
+                align-items: center;
+                letter-spacing: normal;
+                vertical-align: center;
+                color: #eaeaea;
+            }
         }
         .loginForm{
             padding: 30px 20px;
