@@ -4,9 +4,7 @@ import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
 import axios from 'axios';
 const MainSource = (props) => {
-    const state = {
-        message: ""
-      }
+    const [message, setMessage] = useState('');
     const [isFavorite, setIsFavorite] = useState(false);
 
     const favoriteClick = () => {
@@ -39,8 +37,7 @@ const MainSource = (props) => {
         Crawl(signupRequest)
         .then(res => {
                 alert("Success"); 
-                console.log(res.message); 
-                state.message=res.message;              
+                setMessage(res.message);
             },(error) => {
                 alert("fail");
                 console.log(error);
@@ -64,7 +61,7 @@ const MainSource = (props) => {
                     null
                 }
                 <h2>{props.name}</h2>
-                {state.message}
+                {message}
                 <button 
                         className='btn btn-success'
                         onClick={onSubmit}>
