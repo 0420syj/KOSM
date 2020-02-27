@@ -16,3 +16,15 @@ export const EMAIL_MAX_LENGTH = 40;
 
 export const PASSWORD_MIN_LENGTH = 6;
 export const PASSWORD_MAX_LENGTH = 20;
+
+function getWindowDimensions(){
+    return {
+        width, 
+        height
+    }
+}
+const {innerWidth: width, innerHeight: height} = window;
+
+
+export const WIDTH =  window.innerWidth / 1920; 
+export const HEIGHT = window.innerHeight / 990;
