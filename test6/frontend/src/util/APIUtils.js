@@ -42,7 +42,13 @@ export function login(loginRequest) {
         body: JSON.stringify(loginRequest)
     });
 }
-
+export function Crawl(CrawlRequest) {
+    return request({        
+        url: API_BASE_URL + "/api/webcrawler/main",
+        method: 'POST',
+        body: JSON.stringify(CrawlRequest)
+    });
+}
 
 export function signup(signupRequest) {
     return request({
