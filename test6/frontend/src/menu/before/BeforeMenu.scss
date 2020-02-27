@@ -1,15 +1,23 @@
+.container{
+    background: #414141;
+    max-width: 100%;
+    width: 100%;
+    height: 80px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+        
+}
+
+
 .dropdown{
     .dropdownMenu{
         background: #000000;
         min-width: 30px;
         width: 100px;
         justify-content: center;
-        margin-top: 0%;
-        margin-right: 52%;
         border-radius: 0px;
         .dropdownItem{
             padding: 0px 0px;
-            margin: 0px;
             background: #000000;
             color: #FFFFFF;
             justify-content: center;
