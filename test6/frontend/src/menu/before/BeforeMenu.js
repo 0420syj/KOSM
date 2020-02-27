@@ -74,7 +74,7 @@ const BeforeMenu = () => {
                                 <Link to='/login'
                                     style={{
                                         textDecorataion: 'none',
-                                        color: '#FFFFFF',
+                                        color: '#e4e4e4',
                                         width: '100%',
                                         textAlign:'center'}}>
                                     Login
@@ -85,7 +85,7 @@ const BeforeMenu = () => {
                                 <Link to='/signup'
                                     style={{
                                         textDecorataion: 'none',
-                                        color: '#FFFFFF',
+                                        color: '#e4e4e4',
                                         width: '100%',
                                         textAlign:'center'}}>
                                     Sign Up

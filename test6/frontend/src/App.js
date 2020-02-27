@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div style={{background: '#393939', height: '990px'}}>
       <Router>
         <Route exact path='/' component={Home}/>
         <Route exact path='/login' component={Login}/>
