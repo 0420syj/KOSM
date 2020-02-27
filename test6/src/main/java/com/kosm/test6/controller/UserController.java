@@ -77,4 +77,20 @@ public class UserController {
         Boolean isAvailable = !userRepository.existsByEmail(email);
         return new UserIdentityAvailability(isAvailable);
     }
+
+    @DeleteMapping("/user/deleteFavProject")
+    public Long deleteFav(@RequestBody ProjectResponse request) {
+        Member member = userRepository.getOne(request.getUser_id());
+        Project project = projectRepository.getOne(request.getProject_id());
+
+        Set<Member> members = project.getMembers();
+        Set<Project> projects = member.getProjects();
+        members.remove(member);
+        projects.remove(project);
+
+        projectRepository.saveAndFlush(project);
+        userRepository.saveAndFlush(member);
+
+        return request.getProject_id();
+    }
 }

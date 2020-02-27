@@ -1,12 +1,11 @@
 const app = [
     {id: 1, value: 'Achievo'},
     {id: 2, value: 'Ajax File, Image Manager'},
-    {id: 3, value: ' AngularJS'},
+    {id: 3, value: 'AngularJS'},
     {id: 4, value: 'Apache Ant'},
     {id: 5, value: 'Apache Batik'},
     {id: 6, value: 'Apache Camel'},
     {id: 7, value: 'Apache Commons Codec'},
-    {id: 8, value: 'Apache Commons Codec'},
     {id: 9, value: 'Apache Commons Collections'},
     {id: 10, value: 'Apache Commons Compress'},
     {id: 11, value: 'Apache Commons Digester'},

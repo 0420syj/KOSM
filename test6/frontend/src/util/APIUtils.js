@@ -167,11 +167,33 @@ export function getAvgRate(id){
     });
 }
 
-// export function setFavorite(favoriteInfo){  
-//     //즐겨찾기 library, 사용자 이름 전송
-//     return request({
-//         // url:  ,
-//         // method: 'POST'       
-//         // body: JSON.stringify(favoriteInfo)
-//     })
-// }
+export function getProjectAll(){  //DB에서 프로젝트 가져오기
+    return request({
+        url:  API_BASE_URL + "/project/list",
+        method: 'GET'            
+    });
+}
+
+export function getFavProject(id) {     //사용자 아이디를 보내면 즐겨찾기 한 이름을 가져 옴
+    return request({
+        url: API_BASE_URL + "/api/user/getFavProject/"+ id,
+        method : 'GET'
+    });
+}
+
+export function addFavProject(favRequest) {     //즐겨찾기 추가
+    //사용자 아이디, 프로젝트 아이디
+    return request({
+        url: API_BASE_URL + "/api/user/addFavProject",
+        method : 'POST',
+        body : JSON.stringify(favRequest)
+    });
+}
+
+export function deleteFavProject(favRequest) {
+    return request({
+        url: API_BASE_URL + "/api/user/deleteFavProject",
+        method : 'DELETE',
+        body : JSON.stringify(favRequest)
+    });
+}
