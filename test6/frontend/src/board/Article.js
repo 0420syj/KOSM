@@ -26,7 +26,6 @@ class Article extends Component {
                     date : res.createdDate,
                 })
             })
-            console.log(this.state)
     }
 
     render() {

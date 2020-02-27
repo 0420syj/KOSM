@@ -25,7 +25,6 @@ const Board = (props) => {
     useEffect(() => {
         getBoards()
         .then(response => {
-            localStorage.removeItem("articles"); // 초기화
             setData(response);
         })
     }, []);
@@ -70,13 +69,13 @@ const Board = (props) => {
             dataField: 'time',
             text: '등록일',
             type: 'date',
-            formatter: (cell) => {
-                let dateObj = cell;
-                if (typeof cell !== 'object') {
-                    dateObj = new Date(cell);
-                }
-                return `${dateObj.getFullYear()}/${('0' + (dateObj.getMonth() + 1)).slice(-2)}/${('0' + dateObj.getDate()).slice(-2)}`;
-            },
+            // formatter: (cell) => {
+            //     let dateObj = cell;
+            //     if (typeof cell !== 'object') {
+            //         dateObj = new Date(cell);
+            //     }
+            //     return `${dateObj.getFullYear()}/${('0' + (dateObj.getMonth() + 1)).slice(-2)}/${('0' + dateObj.getDate()).slice(-2)}`;
+            // },
             headerStyle: () => {
                 return { width: '100px' };
             },
@@ -94,8 +93,7 @@ const Board = (props) => {
             <div className='boardScreen'>
                 <ToolkitProvider
                     keyField="id"
-                    data={data} // localStorgae값 불러오기
-                    // data={data}
+                    data={data}
                     columns={columns}
                     search>
                     {
