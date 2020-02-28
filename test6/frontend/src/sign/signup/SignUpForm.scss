@@ -3,27 +3,59 @@
     height: 100%;
     display:flex;
     justify-content: center;
-    
+    margin-top: 40.5px;
     .signUpContainer{
-        width: 400px;
-        height: 600px;
-        border-color:black;
-        .signUpTitle {
-            text-align:center;
+        width: 606px;
+        height: 990px;
+        .signUpTitle{
+            height: 38px;
+            font-family: NotoSans;
+            font-size: 28px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 0.89;
+            letter-spacing: normal;
+            text-align: center;
+            color: #eaeaea;
+            display: flex;
+            justify-content: center;
         }
-        .signUpForm{
-            .signUpFormContainer{
-                padding: 10px 10px;
-                width: 100%;
-                .signUpSubTitle{
-                    padding: 0px 0px 10px 0px;
-                }
-                .signUpSubInput{
-                    width: 300px;
-                    height: 25px;
-                    margin: 0px 10px 0px 10px;
-                }
+        .signUpTitle2 {
+            text-align:center;
+            height: 82px;
+            font-family: NotoSans;
+            font-size: 60px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.28;
+            letter-spacing: normal;
+            text-align: center;
+            color: #eaeaea;
+        }
+        .signUpFormContainer{
+            .signUpSubTitle{
+                height: 27px;
+                font-family: NotoSans;
+                font-size: 20px;
+                font-weight: 600;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.35;
+                letter-spacing: normal;
+                text-align: left;
+                color: #e4e4e4;
+                margin-bottom: 5px;
             }
+            .signUpSubInput{
+                width: 606px;
+                height: 60px;
+                border-radius: 10px;
+                border: solid 1px #707070;
+                background-color: #eaeaea; 
+                margin-bottom: 10px;
+           }
         }
         .signUpButtonContainer{
             display: flex;
