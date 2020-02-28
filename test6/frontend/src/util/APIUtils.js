@@ -19,23 +19,6 @@ const request = (options) => {
         })
     );
 };
-const String_Request = (options) => {
-    const headers = new Headers({
-        'Content-Type' : 'application/json',
-    })
-    if(localStorage.getItem(ACCESS_TOKEN)) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
-    }
-
-    const defaults = {headers: headers};
-    options = Object.assign({}, defaults, options);
-    return fetch(options.url, options)
-     .then(response=>
-         response.text().then(text=>{
-         return text;
-     })
-     );
-};
 
 
 const deleteRequest = (options) => {
@@ -60,10 +43,10 @@ export function login(loginRequest) {
     });
 }
 export function Crawl(CrawlRequest) {
-    return String_Request({        
+    return request({        
         url: API_BASE_URL + "/api/webcrawler/main",
         method: 'POST',
-        body:JSON.stringify(CrawlRequest)
+        body: JSON.stringify(CrawlRequest)
     });
 }
 

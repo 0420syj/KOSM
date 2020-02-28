@@ -35,7 +35,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collections;
-import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/api/webcrawler")
 public class WebCrawler {
@@ -48,8 +48,7 @@ public class WebCrawler {
         */       
         //String url = "https://www.w3schools.com";
         String url =CrawlRequest.getUrl();
-        String selector = "div#TableWithRules tbody td";
-        String example="";
+        String selector = "div.w3-container h4";
         Document doc = null;            
         try {
             doc = Jsoup.connect(url).get(); // -- 1. get방식의 URL에 연결해서 가져온 값을 doc에 담는다.
@@ -58,12 +57,10 @@ public class WebCrawler {
         }        
         Elements titles = doc.select(selector); // -- 2. doc에서 selector의 내용을 가져와 Elemntes 클래스에 담는다.
         for(Element element: titles) { // -- 3. Elemntes 길이만큼 반복한다.
-            example+=element.text()+'?'; // -- 4. 원하는 요소가 출력된다.
+            System.out.println(element.text()); // -- 4. 원하는 요소가 출력된다.
         }
-             
-        return new ResponseEntity<String>(example, HttpStatus.OK);
-      // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
-
+        //return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+       return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
     }
 
 }

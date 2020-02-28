@@ -6,11 +6,11 @@ import axios from 'axios';
 import {addFavProject, deleteFavProject} from '../util/APIUtils';
 import OpenSourceData from '../data/OpenSourceData';
 import './MainSource.scss'
+
 const MainSource = (props) => {
     const [message, setMessage] = useState('');
     const [isFavorite, setIsFavorite] = useState(false);
     const [idKey, setIdKey] = useState(0);
-    const [listname, setListName]=useState([]);
     const favoriteClick = () => {
         if(isFavorite === false){
             alert('즐겨찾기가 추가 되었습니다');
@@ -97,23 +97,14 @@ const MainSource = (props) => {
     }
 
     const onSubmit = (e) => {
-        var url="https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword="+props.name;
         const signupRequest = {
-            url:url
+            url:"https://www.w3schools.com"
         }
         e.preventDefault();
         Crawl(signupRequest)
         .then(res => {
-           var namelist;
-           var list = res.split("?");
-           alert(props.name);
-          //  alert(str); 
-            setMessage(list);    	
-            namelist= list.map( 
-                (name) => ( <hi>{name}</hi>
-                     ) 
-            ); 
-            setListName(namelist)        
+                alert("Success"); 
+                setMessage(res.message);
             },(error) => {
                 alert("fail");
                 console.log(error);
@@ -122,7 +113,9 @@ const MainSource = (props) => {
 
     return ( 
         <div className="source-container">
-            <div style={{display: 'flex'}}>
+            <div 
+                style={{display: 'flex'}}
+                >
                 {
                     localStorage.getItem('isLogin') === 'true' ?
                     <div>
@@ -138,14 +131,13 @@ const MainSource = (props) => {
                     null
                 }
                 <h2>{props.name}</h2>
-                {listname}
+                {message}
                 <button 
                         className='btn btn-success'
                         onClick={onSubmit}>
                         hi~~
                 </button>:
             </div>
-            
         </div>
     )
 }
