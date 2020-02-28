@@ -1,0 +1,118 @@
+.dataContainer{
+    width: 606px;
+    .dataTitle{
+        margin-top: 41px;
+        height: 38px;
+        font-family: NotoSans;
+        font-size: 28px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.89;
+        letter-spacing: normal;
+        text-align: center;
+        color: #eaeaea;
+    }
+
+    .dataTitle2{
+        height: 82px;
+        font-family: NotoSans;
+        font-size: 60px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.28;
+        letter-spacing: normal;
+        text-align: center;
+        color: #eaeaea;
+        display: 'flex'; 
+        justify-content:'center';
+    }
+
+    .sub{
+        .subTitle{
+            height: 27px;
+            font-family: NotoSans;
+            font-size: 20px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.35;
+            letter-spacing: normal;
+            text-align: left;
+            color: #e4e4e4;
+            margin-bottom: 5px;
+            .newPassword{
+
+            }
+            .changePassword{
+                height: 25px;
+                font-family: NotoSans;
+                font-size: 18px;
+                font-weight: 600;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.33;
+                letter-spacing: normal;
+                text-align: left;
+                color: #3aada8;
+            }
+        }
+
+        .input{
+            width: 606px;
+            height: 60px;
+            border-radius: 10px;
+            border: solid 1px #707070;
+            margin-bottom: 10px;
+        }
+    }
+
+    .buttonContainer{
+        margin-top: 32px;
+        .button {
+            width: 606px;
+            height: 75px;
+            border-radius: 10px;
+            background-color: #3aada8;
+            font-family: NotoSans;
+            font-size: 30px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: -1.5px;
+            text-align: center;
+            color: #eaeaea;
+        }
+    }
+
+    .bottomText{
+        display: flex;
+        margin-top: 20px;
+        justify-content: center;
+        .text1{
+            height: 28px;
+            font-family: NotoSans;
+            font-size: 20px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.35;
+            letter-spacing: normal;
+            text-align: left;
+            color: #e4e4e4;
+        }
+        .text2{
+            height: 28px;
+            font-family: NotoSans;
+            font-size: 20px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.25;
+            letter-spacing: normal;
+            text-align: left;
+            color: #3aada8;
+        }
+    }
+}
