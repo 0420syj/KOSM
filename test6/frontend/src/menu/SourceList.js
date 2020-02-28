@@ -13,7 +13,6 @@ const SourceList = () => {
     return (
         <div
             style={{
-                // height: '915px',
                 width: `444px`,
                 background: '#414141',
                 paddingLeft: `${WIDTH * 48}px`,
