@@ -15,7 +15,7 @@ const Source = ({match}) => {
                     <AfterMenu/>
                 }
             </div>
-            <div clasName="left">
+            <div className="left">
                 <SourceList />
             </div>
             <div className="source">
