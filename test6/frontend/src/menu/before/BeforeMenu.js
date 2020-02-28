@@ -12,7 +12,6 @@ const BeforeMenu = () => {
     }
     
     return ( 
-        <div className='container'>
             <div style={{display: 'flex', height: '80px', justifyContent: 'space-between'}}>
                 <div 
                     style={{
@@ -95,7 +94,6 @@ const BeforeMenu = () => {
                     </Dropdown>
                     </div>
                 </div>
-        </div>
         </div>
     )
 }
