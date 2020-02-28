@@ -49,38 +49,38 @@ const LoginForm = (props) => {
                     <div className='loginTitle2'>
                         Welcome KOSM
                     </div>
+                    <div className='loginTitle3'>
+                        Sign In
+                    </div>
                 </div>
                 <form className='loginForm' onSubmit={onSubmit}>
                     <div className='loginFormContainer'>
                         <div className='loginSubTitle'>이메일</div>
-                        <input onChange={onChange} name='email' className='form-control'/>
+                        <input onChange={onChange} name='email' className='loginSubInput'/>
                     </div>
-                    <div className='loginFormContainer'>
+                    <div style={{marginTop: '22px'}} className='loginFormContainer'>
                         <div className='loginSubTitle'>비밀번호</div>
-                        <input name='password' onChange={onChange} type='password' className='form-control'/>
+                        <input name='password' onChange={onChange} type='password' className='loginSubInput'/>
                     </div>
-                <div className='loginButtonContainer'>
-                    <button
-                        color='info'
-                        style={{width: '100%'}}
-                        onSubmit={onSubmit}>
-                        Sign in
-                    </button>
-                </div>
-                <div className='loginSignUpContainer'>
-                    <div>
-                        <Link to='/forgot'>
-                            <div className='findPassword'>
-                                비밀번호 찾기
-                            </div>
+                    <div style={{marginTop: '64px'}} className='loginButtonContainer'>
+                        <button className='loginButton' onSubmit={onSubmit}>
+                            Sign in
+                        </button>
+                    </div>
+                    <div className='loginSignUpContainer'>
+                        <div>
+                            <Link to='/forgot'>
+                                <div className='findPassword'>
+                                    비밀번호 찾기
+                                </div>
+                            </Link>
+                        </div>
+                        <div style={{fontSize: '20px', color: '#bfbfbf'}}>&nbsp; | &nbsp;</div>
+                        <div className='loginSignUpText'>아직 회원이 아니라면?</div>
+                        <Link to='/signup'>
+                            <div className='loginSignUp'>> 회원가입</div>
                         </Link>
                     </div>
-                    <div style={{fontSize: '10px'}}>&nbsp; | &nbsp;</div>
-                    <div className='loginSignUpText'>아직 회원이 아니라면?</div>
-                    <Link to='/signup'>
-                        <div className='loginSignUp'>> 회원가입</div>
-                    </Link>
-                </div>
                 </form>
             </div>
         </div>
