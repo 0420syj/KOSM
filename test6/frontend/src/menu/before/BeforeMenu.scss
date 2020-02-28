@@ -1,13 +1,50 @@
-.container{
-    background: #414141;
-    max-width: 100%;
-    width: 100%;
-    height: 80px;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
-        
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
 }
 
+.top-container {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.logo {
+    // padding-left: 48px;
+    // padding-top: 14px;
+    width: 86px;
+    height: 53px;
+    // font-family: 'FranklinGothic'; 설치를 해야 적용될듯
+    font-size: 47px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: left;
+    a {
+        color: #3aada8;
+    }
+}
+
+.menu {
+    width: 60px;
+    height: 27px;
+    font-family: 'NotoSans';
+    font-size: 20px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-align: center;
+
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    a {
+        color: #e4e4e4;
+    }
+}
 
 .dropdown{
     .dropdownMenu{

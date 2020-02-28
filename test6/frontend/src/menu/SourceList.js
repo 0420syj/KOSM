@@ -13,7 +13,6 @@ const SourceList = () => {
     return (
         <div
             style={{
-                height: '915px',
                 width: `444px`,
                 background: '#414141',
                 paddingLeft: `${WIDTH * 48}px`,
@@ -61,7 +60,7 @@ const SourceList = () => {
             <div
                 style={{
                     overflowY: 'scroll',
-                    height: '701px' // 추가 계산 필요
+                    height: '702px' // 추가 계산 필요
                 }}>
                 <ul
                     style={{

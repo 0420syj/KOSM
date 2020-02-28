@@ -1,0 +1,33 @@
+.content-container {
+    width: 100%;
+}
+
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 80px;
+    line-height: 0.96;
+    font-family: 'NotoSans';
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #eaeaea;
+}
+
+.description {
+    margin-top: 50px;
+    height: 353px;
+    font-family: 'NotoSans';
+    font-size: 30px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #eaeaea;
+}
+
+.bold-font {
+    font-weight: bold;
+}
