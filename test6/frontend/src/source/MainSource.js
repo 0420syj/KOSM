@@ -5,6 +5,7 @@ import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {addFavProject, deleteFavProject} from '../util/APIUtils';
 import OpenSourceData from '../data/OpenSourceData';
+import './MainSource.scss'
 
 const MainSource = (props) => {
     const [message, setMessage] = useState('');
@@ -111,8 +112,10 @@ const MainSource = (props) => {
     }
 
     return ( 
-        <div>
-            <div style={{display: 'flex'}}>
+        <div className="source-container">
+            <div 
+                style={{display: 'flex'}}
+                >
                 {
                     localStorage.getItem('isLogin') === 'true' ?
                     <div>
@@ -135,7 +138,6 @@ const MainSource = (props) => {
                         hi~~
                 </button>:
             </div>
-            
         </div>
     )
 }
