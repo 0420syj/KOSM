@@ -1,0 +1,113 @@
+.container {
+  position:relative;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.top {
+  background: #414141;
+  // max-width: 100%;
+  width: 100%;
+  height: 80px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.write-container {
+  width: calc(100% - 175px);
+  height: calc(100% - 80px);
+  position:absolute;
+  top:80px;
+  background: #393939;
+  overflow: hidden;
+  padding-left: 175px;
+  padding-top:101px;
+}
+
+.write-title {
+    font-family: NotoSansCJKkr;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.63;
+    letter-spacing: normal;
+    text-align: left;
+    color: #eaeaea;
+    margin-bottom: 38px;
+}
+
+.input-title, .input-title:focus {
+  height: 60px;
+  border-radius: 10px;
+  border: solid 4px #707070;
+  background-color: #393939;
+  font-family: NotoSansCJKkr;
+  font-size: 23px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  text-align: left;
+  color: #bfbfbf;
+  margin-bottom: 26px;
+
+}
+
+
+.input-content, .input-content:focus {
+  height: 431px;
+  border-radius: 10px;
+  border: solid 4px #707070;
+  background-color: #393939;
+  font-family: NotoSansCJKkr;
+  font-size: 23px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  text-align: left;
+  color: #bfbfbf;
+  resize:none;
+  margin-bottom: 65px;
+  padding-top: 15px;
+}
+
+.input-title::placeholder, .input-content::placeholder {
+  font-family: NotoSansCJKkr;
+  font-size: 23px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  text-align: left;
+  color: #bfbfbf;
+}
+
+
+.okay-button {
+
+  width: 150px;
+  height: 52px;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  background-color: #3aada8;
+
+  font-family: NotoSans;
+  font-size: 23px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.09;
+  letter-spacing: -1.15px;
+  text-align: center;
+  color: #eaeaea;
+
+}

@@ -14,6 +14,7 @@ const SourceList = () => {
         <div
             style={{
                 width: `444px`,
+                height: `915px`,
                 background: '#414141',
                 paddingLeft: `${WIDTH * 48}px`,
                 paddingTop: `${HEIGHT * 38}px`,
@@ -31,7 +32,7 @@ const SourceList = () => {
                     lineHeight: '1.37',
                     letterSpacing: 'normal',
                     textAlign: 'left',
-                    marginBottom: '33px'
+                    marginBottom: '33px' // 41 + 33 = 74
                 }}>
                 Projects
                 </div>
@@ -52,7 +53,7 @@ const SourceList = () => {
                             borderRadius: '9px',
                             backgroundColor: '#f5f5f5',
                             padding: '2px 8px',
-                            marginBottom: '52px'
+                            marginBottom: '52px' // 44 + 52 = 96
                         }}
                         onChange={onChange} />
                 </label>

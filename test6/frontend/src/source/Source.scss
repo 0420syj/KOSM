@@ -25,15 +25,12 @@
 
 .source {
     width: calc(100%  - 444px); // left 너비만큼 빼기
-    height: calc(100% - 80px); // top 높이만큼 빼기
+    height: calc(100% - 75px); // top 높이만큼 빼기 왜 80px 빼는건데 75여야 꽉차는걸까
     // padding-left: 170px;
     // padding-top: 189px;
     position:absolute;
     top:80px;
     left:444px;
     background: #393939;
-    // background-image: url("/bg.png");
-    background-size: cover;
-
-    overflow:hidden;
+    // overflow:hidden;
 }

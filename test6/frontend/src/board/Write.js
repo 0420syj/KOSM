@@ -6,6 +6,7 @@ import AfterMenu from '../menu/after/AfterMenu';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {writeBoard} from '../util/APIUtils'
 import { useHistory } from "react-router-dom";
+import './Write.scss'
 
 const Write = () => {
 
@@ -53,35 +54,40 @@ const Write = () => {
     }
 
     return (
-        <>
-            <div>
+        <div className="container">
+            <div className="top">
                 {
                     localStorage.getItem('isLogin') === 'false' ?
                     <BeforeMenu/>:
                     <AfterMenu/>
                 }
             </div>
-            <div className='container'>
-                <h1>게시판 작성</h1>
+            <div className='write-container'>
+                <h3 className="write-title">게시판 작성</h3>
                 <Form>
                     <Input
-                    type="text"
-                    name="title"
-                    id="articleTitle"
-                    placeholder="제목을 입력해주세요."
-                    onChange={e => {validateTitle(e.target.value)}}>
+                        type="text"
+                        name="title"
+                        id="articleTitle"
+                        className="input-title"
+                        placeholder="제목을 입력해주세요."
+                        onChange={e => {validateTitle(e.target.value)}}>
                     </Input>
                     <Input
-                    type="textarea"
-                    name="content"
-                    id="articleContent"
-                    placeholder="내용을 입력해주세요."
-                    onChange={e => {validateContent(e.target.value)}}>
+                        type="textarea"
+                        name="content"
+                        id="articleContent"
+                        className="input-content"
+                        style={{height:'431px'}}
+                        placeholder="내용을 입력해주세요."
+                        onChange={e => {validateContent(e.target.value)}}>
                     </Input>
-                    <Button onClick={handleSubmit}>확인</Button>
+                    <div style={{textAlign:'center'}}>
+                        <Button className="okay-button" onClick={handleSubmit}>확인</Button>
+                    </div>
                 </Form>
             </div>
-        </>
+        </div>
     )
 };
 
