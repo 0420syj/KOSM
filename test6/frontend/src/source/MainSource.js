@@ -5,7 +5,8 @@ import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {addFavProject, deleteFavProject} from '../util/APIUtils';
 import OpenSourceData from '../data/OpenSourceData';
-import './MainSource.scss'
+import './MainSource.scss';
+
 const MainSource = (props) => {
     const [message, setMessage] = useState('');
     const [isFavorite, setIsFavorite] = useState(false);

@@ -3,7 +3,7 @@ import SourceList from '../menu/SourceList';
 import BeforeMenu from '../menu/before/BeforeMenu';
 import MainSource from './MainSource';
 import AfterMenu from '../menu/after/AfterMenu';
-import './Source.scss'
+import './Source.scss';
 
 const Source = ({match}) => {
     return (
