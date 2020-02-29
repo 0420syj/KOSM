@@ -24,6 +24,7 @@ const Board = (props) => {
         getBoards()
         .then(response => {
             setData(response);
+            console.log(response);
         })
     }, []);
 
@@ -73,16 +74,16 @@ const Board = (props) => {
             },
         },
         {
-            dataField: 'time',
+            dataField: 'createdDate',
             text: '등록일',
             type: 'date',
-            // formatter: (cell) => {
-            //     let dateObj = cell;
-            //     if (typeof cell !== 'object') {
-            //         dateObj = new Date(cell);
-            //     }
-            //     return `${dateObj.getFullYear()}-${('0' + (dateObj.getMonth() + 1)).slice(-2)}-${('0' + dateObj.getDate()).slice(-2)}`;
-            // },
+             formatter: (cell) => {
+                 let dateObj = cell;
+                 if (typeof cell !== 'object') {
+                     dateObj = new Date(cell);
+                 }
+                return `${dateObj.getFullYear()}-${('0' + (dateObj.getMonth() + 1)).slice(-2)}-${('0' + dateObj.getDate()).slice(-2)}`;
+             },
             headerStyle: () => {
                 return { width: '121px' };
             },
