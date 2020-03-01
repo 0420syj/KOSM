@@ -1,41 +1,20 @@
 package com.kosm.test6.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.validation.Valid;
 
-import com.kosm.test6.exception.AppException;
-import com.kosm.test6.model.Member;
-import com.kosm.test6.model.Role;
-import com.kosm.test6.model.RoleName;
-import com.kosm.test6.payload.ApiResponse;
 import com.kosm.test6.payload.Crawling;
-import com.kosm.test6.payload.JwtAuthenticationResponse;
-import com.kosm.test6.payload.LoginRequest;
-import com.kosm.test6.payload.SignUpRequest;
-import com.kosm.test6.repository.RoleRepository;
-import com.kosm.test6.repository.UserRepository;
-import com.kosm.test6.security.JwtTokenProvider;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
-import java.net.URI;
-import java.util.Collections;
-import java.util.ArrayList;
 @RestController
 @RequestMapping("/api/webcrawler")
 public class WebCrawler {

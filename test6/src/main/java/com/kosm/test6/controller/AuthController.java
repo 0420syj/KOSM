@@ -24,7 +24,6 @@ import com.kosm.test6.model.Member;
 import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
 import com.kosm.test6.payload.ApiResponse;
-import com.kosm.test6.payload.EmailResponse;
 import com.kosm.test6.payload.JwtAuthenticationResponse;
 import com.kosm.test6.payload.LoginRequest;
 import com.kosm.test6.payload.SignUpRequest;
