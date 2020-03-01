@@ -10,13 +10,15 @@ const BeforeLogin = (props) => {
             <div className="top">
                 <BeforeMenu />
             </div>
-            <div clasName="left">
+            <div className="left">
                 <SourceList />
             </div>
             <div className="content">
                 <Description />
             </div>
-            {/* <div><Login user={props.user} setUser={props.setUser}/></div> */}
+            <div className="bottom">
+                Footer
+            </div>
         </div>
     )
 }
