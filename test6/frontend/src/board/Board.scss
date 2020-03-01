@@ -1,12 +1,69 @@
+html, body {
+  height: 100%;
+}
+
+.container {
+  position:relative;
+  width: 100%;
+  min-width: 1280px; // 창 최소 사이즈
+  height: 100%;
+}
+
+.top {
+  width: 100%;
+  height: 80px;
+
+  background: #414141;
+}
+
+.left {
+  position:absolute;
+  top:80px;
+  left:0;
+  bottom: 50px;
+
+  width: 444px;
+  height: 915px;
+}
+
+.board {
+  position:absolute;
+  top:80px;
+  bottom: 50px;
+  left:444px;
+
+  width: calc(100%  - 444px); // left 너비만큼 빼기
+  height: 915px;
+
+  background: #393939;
+    overflow: hidden;
+}
+
+.bottom {
+  position:absolute;
+  top:995px;
+
+  width: 100%;
+  height: 50px;
+  
+  // 임시 디자인
+  background: #3aada8;
+  color: #eaeaea;
+  text-align: center;
+  font-size: 30px;
+}
+
 .board-container{
     width: 100%;
-    margin: 80px auto;
+    min-width: 750px;
+    margin: 60px auto;
     padding-left: 40px;
     padding-right: 40px;
     display:flex;
     justify-content: center;
     align-items: center;
     background-color: #393939;
+    overflow-x: auto;
 }
 
 .board-title {

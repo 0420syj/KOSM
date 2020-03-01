@@ -4,10 +4,10 @@ html, body {
 
 .container {
     position:relative;
-
     width: 100%;
+    min-width: 1280px; // 창 최소 사이즈
     height: 100%;
-}
+  }
 
 .top {
     // position: absolute;

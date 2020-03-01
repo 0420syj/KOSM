@@ -7,6 +7,7 @@ import paginationFactory, { PaginationProvider, PaginationTotalStandalone, Pagin
 import { getBoards } from '../util/APIUtils'
 import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
+import SourceList from '../menu/SourceList';
 import { Button } from 'reactstrap';
 import './Board.scss';
 
@@ -41,18 +42,44 @@ const Board = (props) => {
         }
     };
 
+    const renderTopMenu = () => {
+        
+        if(localStorage.getItem('isLogin') !== 'false')
+            return <AfterMenu />
+        else
+            return <BeforeMenu />
+    };
+
     const columns = [
         {
             dataField: 'id',
             text: '번호',
             type: 'number',
+            style: {
+                padding: '0px',
+            },
             headerStyle: () => {
-                return { width: '70px' };
+                return { 
+                    width: '70px' 
+                };
             },
         },
         {
             dataField: 'title',
             text: '제목',
+            style: {
+                textAlign: 'left',
+                
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                // paddingRight: '50px',
+                // paddingLeft: '50px',
+            },
+            headerStyle: () => {
+                return { 
+                    width: '200px', 
+                };
+            },
             formatter: (cell, row) => {
                 return (
                     <Link to={`/article/${row.id}`} className="column-title">{cell}</Link>
@@ -62,15 +89,25 @@ const Board = (props) => {
         {
             dataField: 'status',
             text: '상태',
+            style: {
+                padding: '0px',
+            },
             headerStyle: () => {
-                return { width: '90px' };
+                return {
+                    width: '90px',
+             };
             },
         },
         {
             dataField: 'author',
             text: '글쓴이',
+            style: {
+                padding: '0px',
+            },
             headerStyle: () => {
-                return { width: '120px' };
+                return { 
+                    width: '160px' 
+                };
             },
         },
         {
@@ -84,8 +121,13 @@ const Board = (props) => {
                  }
                 return `${dateObj.getFullYear()}-${('0' + (dateObj.getMonth() + 1)).slice(-2)}-${('0' + dateObj.getDate()).slice(-2)}`;
              },
+             style: {
+                padding: '0px',
+            },
             headerStyle: () => {
-                return { width: '121px' };
+                return { 
+                    width: '160px' 
+                };
             },
         }
     ];
@@ -121,46 +163,50 @@ const Board = (props) => {
       };
       
     return (
-        <div>
-            <div>
-                {
-                    localStorage.getItem('isLogin') === 'false' ?
-                        <BeforeMenu /> :
-                        <AfterMenu />
-                }
+        <div className="container">
+            <div className="top">
+                {renderTopMenu()}
             </div>
-            <div className='board-container'>
-                <ToolkitProvider
-                    keyField="id"
-                    data={data}
-                    columns={columns}
-                    search>
-                    {
-                        props => (
-                            <div>
-                                <h3 className="board-title">게시판</h3>
-                                <div style={{float:'right', clear:'both'}}>
-                                    <SearchBar
-                                    {...props.searchProps}
-                                    className="search-field"
-                                    placeholder="Search..."
+            <div className="left">
+                <SourceList />
+            </div>
+            <div className="board">
+                <div className='board-container'>
+                    <ToolkitProvider
+                        keyField="id"
+                        data={data}
+                        columns={columns}
+                        search>
+                        {
+                            props => (
+                                <div>
+                                    <h3 className="board-title">게시판</h3>
+                                    <div style={{float:'right', clear:'both'}}>
+                                        <SearchBar
+                                        {...props.searchProps}
+                                        className="search-field"
+                                        placeholder="Search..."
+                                        />
+                                    </div>
+                                    <BootstrapTable
+                                        bordered={ false }
+                                        classes="table-borderless table-wrap"
+                                        headerWrapperClasses="table-head"
+                                        bodyClasses="table-body"
+                                        {...props.baseProps}
+                                        //pagination={paginationFactory()}
+                                        pagination={paginationFactory(options)}
+                                        noDataIndication="내용이 없습니다"
                                     />
+                                    {renderButton()}
                                 </div>
-                                <BootstrapTable
-                                    bordered={ false }
-                                    classes="table-borderless table-wrap"
-                                    headerWrapperClasses="table-head"
-                                    bodyClasses="table-body"
-                                    {...props.baseProps}
-                                    //pagination={paginationFactory()}
-                                    pagination={paginationFactory(options)}
-                                    noDataIndication="내용이 없습니다"
-                                />
-                                {renderButton()}
-                            </div>
-                        )
-                    }
-                </ToolkitProvider>
+                            )
+                        }
+                    </ToolkitProvider>
+                </div>
+            </div>
+            <div className="bottom">
+                Footer
             </div>
         </div>
     )
