@@ -3,13 +3,21 @@ import { Link } from 'react-router-dom';
 import OpenSourceData from '../data/OpenSourceData';
 import './SourceList.scss';
 import { WIDTH, HEIGHT } from '../constants';
+import { useEffect } from 'react';
 const SourceList = () => {
     const [Data, setData] = useState([]);
+    const [inputText, setInputText] = useState('');
     const onChange = (e) => {
+        setInputText(e.target.value.toLowerCase());
         setData(OpenSourceData.filter(item => {
-            return item.value.indexOf(e.target.value) !== -1
+            return item.value.toLowerCase().indexOf(e.target.value) !== -1
         }));
+
     }
+
+    useEffect(() => {
+    }, [inputText.length])
+
     return (
         <div
             style={{
@@ -73,25 +81,24 @@ const SourceList = () => {
                         letterSpacing: '2px',
                     }}>
                     {
-                        Data.length === 0 ?
-                            OpenSourceData.map(item => {
-                                return <li key={item.id}>
-                                    <Link to={`/source/${item.value}`}
-                                        className='sourceList'>
-                                        {item.value}
-                                    </Link>
-                                </li>
-                            }) :
-
-                            Data.map(item => {
-                                return <li key={item.id} >
-                                    <Link
-                                        to={`/source/${item.value}`}
-                                        className='sourceList'>
-                                        {item.value}
-                                    </Link>
-                                </li>
-                            })
+                        inputText.length === 0 ?
+                        OpenSourceData.map(item => {
+                            return <li key={item.id}>
+                                <Link to={`/source/${item.value}`}
+                                    className='sourceList'>
+                                    {item.value}
+                                </Link>
+                            </li>
+                        }) :
+                        Data.map(item => {
+                            return <li key={item.id} >
+                                <Link
+                                    to={`/source/${item.value}`}
+                                    className='sourceList'>
+                                    {item.value}
+                                </Link>
+                            </li>
+                        })
                     }
                 </ul>
             </div>
