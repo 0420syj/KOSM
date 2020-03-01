@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-import { checkEmailAvailability } from '../../util/APIUtils';
+import { Mail,checkEmailAvailability } from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
 import {ButtonToggle} from 'reactstrap';
+import Home from '../../home/Home';
+import { MdGolfCourse } from 'react-icons/md';
 
 const SignUp = ({match}) => {
     const history = useHistory();
@@ -157,14 +159,30 @@ const SignUp = ({match}) => {
         }
         axios.post('http://localhost:5000/api/auth/signup', signupRequest)        
         .then(res => {
-            console.log('res');
-            console.log(res);
-            history.goBack();
+            console.log('success');
+            localStorage.setItem("auth_email",signupRequest.email);
+            console.log(localStorage.getItem("auth_email"));
+            localStorage.setItem("auth_password",signupRequest.password);
+            localStorage.setItem("username",signupRequest.name);
         },(error) => {
             console.log(error);
+            console.log(signupRequest.email);
         });
     }
+    const onSubmit = (e) => {
 
+        const signupRequest = {
+            email:"minsogoing@naver.com"
+        }
+        e.preventDefault();
+        Mail(signupRequest)
+        .then(res => {         
+         alert(res); 
+            },(error) => {
+                alert("fail");
+                console.log(error);
+            });
+    }
     // useEffect(() => {
     //     if(emailConfirm === 'true'){
     //         const time = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
@@ -188,16 +206,16 @@ const SignUp = ({match}) => {
     return (
         <div className='signUpScreen'>
             <div className='signUpContainer'>
-                <div className='signUpTitle'>Join KOSM</div>
-                <div className='signUpTitle2'>Create your account</div>
-                    <div style={{marginTop: '41px'}} className='signUpFormContainer'>
+                <div style={{display: 'flex', justifyContent:'center'}}>join KOSM</div>
+                <div className='signUpTitle'>Create your account</div>
+                    <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>닉네임</div>
                         <input
                             onChange={e => {validateNickName(e.target.value)}}
                             type='text'
                             name='nickname'
                             id='nickname'
-                            className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)} input-nickname` }   
+                            className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)}` }
                             placeholder='닉네임'/>
                     </div>
                     <div>
@@ -209,49 +227,71 @@ const SignUp = ({match}) => {
                                     type='text'
                                     name='email'
                                     id='email'
-                                    style={{width: '475px'}}
-                                    className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)} input-email` }
+                                    style={{
+                                        width: '100%',
+                                        marginRight: '0px'
+                                    }}
+                                    className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)}` }
                                     placeholder='example@example.com'
                                     aria-describedby="emailHelp"/>
                                 <ButtonToggle 
                                     color='info'
-                                    className="button-email"
+                                    style={{ 
+                                        marginLeft: '2%',
+                                        width: '70px', 
+                                        fontSize: '13px',
+                                        display:'inline-box'}}
                                     onClick={emailClick}>
                                         확인
                                 </ButtonToggle>
                             </div>
                         </div>
                     </div>
-                    <div 
-                        style={{
-                            display: 'flex', 
-                            justifyContent: 'flex-end',
-                            marginTop: '8px'}}>
-                        <div style={{display: 'flex'}}>
-                            <div className="label-code">
+                    <div  style={{display: 'flex', justifyContent: 'flex-end'}}>
+                        {/* <div  style={{display: 'flex'}}>
+                            남은 시간: &nbsp;
+                            <div style={{color: 'red'}}>
+                                {parseInt(timer / 60)} : {timer % 60}
+                            </div>
+                        </div> */}
+                        <div style={{display:'flex'}}>
+                            <div style={{
+                                fontSize: '13px',
+                                width: '100px',
+                                verticalAlign:'bottom'}}>
                                 인증코드 입력
                             </div>
                             <input
                                 type='text'
                                 name='code'
                                 id='code'
-                                className='form-control input-code'
+                                className='form-control'
+                                style={{width: '120px'}}
                                 placeholder='123456'/>
                             <ButtonToggle              
                                 color='info'
-                                className="button-code">
+                                style={{ 
+                                    marginLeft: '2%',
+                                    fontSize: '13px',
+                                    width: '70px', 
+                                    display:'inline-box'}}>
                                     인증
                             </ButtonToggle>
+                            <button 
+                        className='btn btn-success'
+                        onClick={onSubmit}>
+                        hi~~
+                        </button>:
                         </div>
                     </div>
-                    <div style={{marginTop: '14px'}} className='signUpFormContainer'>
+                    <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>비밀번호 (영문+숫자, 6~20자)</div>
                         <input
                             onChange={e => {validatePassWord(e.target.value)}}
                             type='password'
                             name='password'
                             id='password'
-                            className={ `form-control ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)} input-password`}/>
+                            className={ `form-control ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)}`}/>
                     </div>                 
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>비밀번호 확인</div>
@@ -260,10 +300,10 @@ const SignUp = ({match}) => {
                             type='password'
                             name='confirm-password'
                             id='confirm-password'
-                            className={ `form-control ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)} input-confirm-password` }/>
+                            className={ `form-control ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)}` }/>
                     </div>                 
                     { /*<button type='submit' className='btn btn-success'>버튼</button>*/ }
-                    <div style={{width: '100%', marginTop: '73px'}}>
+                    <div style={{width: '100%'}}>
                         <div style={{display:'flex', justifyContent:'center'}}>
                         {
                             renderSubmitBtn() ?
