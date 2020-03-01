@@ -19,21 +19,6 @@ const request = (options) => {
         })
     );
 };
-
-
-const deleteRequest = (options) => {
-    const headers = new Headers()
-
-    if(localStorage.getItem(ACCESS_TOKEN)) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
-    }
-
-    const defaults = {headers: headers};
-    options = Object.assign({}, defaults, options);
-
-    return fetch(options.url, options)
-}
-
 const String_Request = (options) => {
     const headers = new Headers({
         'Content-Type' : 'application/json',
@@ -52,6 +37,21 @@ const String_Request = (options) => {
      );
 };
 
+const deleteRequest = (options) => {
+    const headers = new Headers()
+
+    if(localStorage.getItem(ACCESS_TOKEN)) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
+    }
+
+    const defaults = {headers: headers};
+    options = Object.assign({}, defaults, options);
+
+    return fetch(options.url, options)
+}
+
+
+
 export function login(loginRequest) {
     return request({
         url: API_BASE_URL + "/api/auth/signin",
@@ -66,7 +66,13 @@ export function Crawl(CrawlRequest) {
         body:JSON.stringify(CrawlRequest)
     });
 }
-
+export function Mail(CrawlRequest) {
+    return String_Request({
+        url: API_BASE_URL + "/api/Email/main",
+        method: 'POST',
+        body:JSON.stringify(CrawlRequest)
+    });
+}
 export function signup(signupRequest) {
     return request({
         url: API_BASE_URL + "/api/auth/signup",
