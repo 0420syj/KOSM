@@ -16,8 +16,8 @@ const MyData = () => {
                     type='text' 
                     style={{width: '100%'}}
                     className='input'
-                    style={{background: '#414141'}}
-                    placeholder={localStorage.getItem('email')}/>
+                    style={{background: '#414141', fontSize: '25px'}}
+                    placeholder={`  ${localStorage.getItem('email')}`}/>
             </div>
             <div className='sub'>
                 <div className='subTitle'>닉네임</div>
@@ -39,7 +39,9 @@ const MyData = () => {
                     style={{display: 'flex', marginTop: '21px'}}>
                     <div className='newPassword'>새 비밀번호</div>
                     <div>&nbsp;</div>
-                    <div className='changePassword'>비밀번호 변경</div>
+                    <Link to='/changepwd'>
+                        <div className='changePassword'>비밀번호 변경</div>
+                    </Link>
                 </div>
                 <input 
                     type='password'

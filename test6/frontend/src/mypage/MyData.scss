@@ -43,7 +43,16 @@
             color: #e4e4e4;
             margin-bottom: 5px;
             .newPassword{
-
+                height: 28px;
+                font-family: NotoSans;
+                font-size: 20px;
+                font-weight: 600;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.35;
+                letter-spacing: normal;
+                text-align: left;
+                color: #e4e4e4;
             }
             .changePassword{
                 height: 25px;
@@ -56,6 +65,10 @@
                 letter-spacing: normal;
                 text-align: left;
                 color: #3aada8;
+                cursor: pointer;
+                &:hover{
+                    color: #438a86;
+                }
             }
         }
 
