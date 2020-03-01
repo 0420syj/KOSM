@@ -197,8 +197,7 @@ const SignUp = ({match}) => {
                             type='text'
                             name='nickname'
                             id='nickname'
-                            className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)}` }   
-                            //원래 것 나머지 input은 디자인대로 바꿨음
+                            className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)} input-nickname` }   
                             placeholder='닉네임'/>
                     </div>
                     <div>
@@ -211,24 +210,12 @@ const SignUp = ({match}) => {
                                     name='email'
                                     id='email'
                                     style={{width: '475px'}}
-                                    className={ `signUpSubInput ${inputClassNameHelper(userInfo.email && userInfo.validEmail)}` }
+                                    className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)} input-email` }
                                     placeholder='example@example.com'
                                     aria-describedby="emailHelp"/>
                                 <ButtonToggle 
                                     color='info'
-                                    style={{ 
-                                        marginLeft: '13px',
-                                        width: '118px', 
-                                        height: '60px',
-                                        fontSize: '20px',
-                                        fontFamily: 'NotoSans',
-                                        fontWeight: '500',
-                                        fontStretch: 'normal',
-                                        fontStyle: 'normal',
-                                        lineHeight: '1.35',
-                                        letterSpacing: 'normal',
-                                        textAlign: 'center',
-                                        display:'inline-box'}}
+                                    className="button-email"
                                     onClick={emailClick}>
                                         확인
                                 </ButtonToggle>
@@ -241,49 +228,18 @@ const SignUp = ({match}) => {
                             justifyContent: 'flex-end',
                             marginTop: '8px'}}>
                         <div style={{display: 'flex'}}>
-                            <div style={{
-                                display: 'flex',
-                                width: '137px',
-                                height: '50px',
-                                alignItems:'center',
-                                verticalAlign:'center',
-                                fontFamily: 'NotoSans',
-                                fontSize: '20px',
-                                fontWeight: '500',
-                                fontStretch: 'normal',
-                                fontStyle: 'normal',
-                                lineHeight: '1.35',
-                                letterSpacing: 'normal',
-                                color: '#eaeaea'}}>
+                            <div className="label-code">
                                 인증코드 입력
                             </div>
                             <input
                                 type='text'
                                 name='code'
                                 id='code'
-                                className='form-control'
-                                style={{
-                                    width: '270px', 
-                                    height: '50px',
-                                    background: '#eaeaea',
-                                    marginLeft:'15px'}}
+                                className='form-control input-code'
                                 placeholder='123456'/>
                             <ButtonToggle              
                                 color='info'
-                                style={{ 
-                                    marginLeft:'13px',
-                                    fontSize: '13px',
-                                    width: '118px',
-                                    height: '50px', 
-                                    fontFamily: 'NotoSans',
-                                    fontSize: '20px',
-                                    fontWeight: '500',
-                                    fontStretch: 'normal',
-                                    fontStyle: 'normal',
-                                    lineHeight: '1.35',
-                                    letterSpacing: 'normal',
-                                    color: '#ffffff',
-                                    display:'inline-box'}}>
+                                className="button-code">
                                     인증
                             </ButtonToggle>
                         </div>
@@ -295,7 +251,7 @@ const SignUp = ({match}) => {
                             type='password'
                             name='password'
                             id='password'
-                            className={ `signUpSubInput ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)}`}/>
+                            className={ `form-control ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)} input-password`}/>
                     </div>                 
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>비밀번호 확인</div>
@@ -304,7 +260,7 @@ const SignUp = ({match}) => {
                             type='password'
                             name='confirm-password'
                             id='confirm-password'
-                            className={ `signUpSubInput ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)}` }/>
+                            className={ `form-control ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)} input-confirm-password` }/>
                     </div>                 
                     { /*<button type='submit' className='btn btn-success'>버튼</button>*/ }
                     <div style={{width: '100%', marginTop: '73px'}}>
