@@ -163,7 +163,7 @@ const SignUp = ({match}) => {
             localStorage.setItem("auth_email",signupRequest.email);
             console.log(localStorage.getItem("auth_email"));
             localStorage.setItem("auth_password",signupRequest.password);
-            localStorage.setItem("username",signupRequest.name);
+            localStorage.setItem("username",signupRequest.username);
         },(error) => {
             console.log(error);
             console.log(signupRequest.email);
