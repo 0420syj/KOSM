@@ -24,7 +24,7 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route exact path='/board' component={Board}/>
-        <Route exact path='/success/:id' component={success}/>
+        <Route exact path='/success' component={success}/>
         <Route exact path='/write' component={Write}/>
         <Route exact path='/article/:email' component={Article}/>
         <Route exact path='/source/:item' component={Source}/>
