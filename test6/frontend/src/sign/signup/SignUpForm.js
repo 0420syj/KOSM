@@ -215,15 +215,16 @@ const SignUp = ({match}) => {
                             type='text'
                             name='nickname'
                             id='nickname'
-                            style={{
-                                width: '606px',
-                                height: '60px',
-                                borderRadius: '10px',
-                                border: 'solid 1px #707070',
-                                background: '#eaeaea',
-                                marginBottom: '10px',
-                            }}
-                            className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)}` }
+                            // input-nickname에 이미 있음
+                            // style={{ 
+                            //     width: '606px',
+                            //     height: '60px',
+                            //     borderRadius: '10px',
+                            //     border: 'solid 1px #707070',
+                            //     background: '#eaeaea',
+                            //     marginBottom: '10px',
+                            // }}
+                            className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)} input-nickname` }
                             placeholder='닉네임'/>
                     </div>
                     <div>
@@ -235,15 +236,16 @@ const SignUp = ({match}) => {
                                     type='text'
                                     name='email'
                                     id='email'
-                                    style={{
-                                        width: '606px',
-                                        height: '60px',
-                                        maxHeight: '60px',
-                                        borderRadius: '10px',
-                                        border: 'solid 1px #707070',
-                                        background: '#eaeaea',
-                                    }}
-                                    className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)}` }
+                                    // input-email에 이미 있음
+                                    // style={{
+                                    //     width: '606px',
+                                    //     height: '60px',
+                                    //     maxHeight: '60px',
+                                    //     borderRadius: '10px',
+                                    //     border: 'solid 1px #707070',
+                                    //     background: '#eaeaea',
+                                    // }}
+                                    className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)} input-email` }
                                     placeholder='example@example.com'
                                     aria-describedby="emailHelp"/>
                                 <ButtonToggle 
@@ -274,16 +276,17 @@ const SignUp = ({match}) => {
                             type='password'
                             name='password'
                             id='password'
-                            style={{
-                                width: '606px',
-                                height: '60px',
-                                maxHeight: '60px',
-                                borderRadius: '10px',
-                                border: 'solid 1px #707070',
-                                background: '#eaeaea',
-                                marginBottom: '10px',
-                            }}
-                            className={ `form-control ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)}`}/>
+                            // input-password에 이미 있음
+                            // style={{
+                            //     width: '606px',
+                            //     height: '60px',
+                            //     maxHeight: '60px',
+                            //     borderRadius: '10px',
+                            //     border: 'solid 1px #707070',
+                            //     background: '#eaeaea',
+                            //     marginBottom: '10px',
+                            // }}
+                            className={ `form-control ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)} input-password`}/>
                     </div>                 
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>비밀번호 확인</div>
@@ -292,16 +295,17 @@ const SignUp = ({match}) => {
                             type='password'
                             name='confirm-password'
                             id='confirm-password'
-                            style={{
-                                width: '606px',
-                                height: '60px',
-                                maxHeight: '60px',
-                                borderRadius: '10px',
-                                border: 'solid 1px #707070',
-                                background: '#eaeaea',
-                                marginBottom: '10px',
-                            }}
-                            className={ `form-control ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)}` }/>
+                            // input-confirm-password에 이미 있음
+                            // style={{
+                            //     width: '606px',
+                            //     height: '60px',
+                            //     maxHeight: '60px',
+                            //     borderRadius: '10px',
+                            //     border: 'solid 1px #707070',
+                            //     background: '#eaeaea',
+                            //     marginBottom: '10px',
+                            // }}
+                            className={ `form-control ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)} input-confirm-password` }/>
                     </div>                 
                     { /*<button type='submit' className='btn btn-success'>버튼</button>*/ }
                     <div style={{width: '100%'}}>
