@@ -14,7 +14,7 @@ const LoginForm = (props) => {
         setUserInfo({
             ...userinfo,
             [e.target.name]:e.target.value
-        });        
+        });
     }
 
     const onSubmit = (e) => {

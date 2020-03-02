@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import javax.validation.Valid;
 
 import com.kosm.test6.exception.AppException;
 import com.kosm.test6.model.Member;
+import com.kosm.test6.model.Project;
 import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
 import com.kosm.test6.payload.ApiResponse;
@@ -33,6 +35,8 @@ import com.kosm.test6.security.JwtTokenProvider;
 import org.springframework.context.annotation.PropertySource;
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @PropertySource("application.properties")
@@ -106,39 +110,70 @@ public class AuthController {
                         System.out.println(e);
                         return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);
-                    }  
+                }  
            
         }
-           @PostMapping("/signok")
-           public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+
+    @PostMapping("/signok")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         // Creating user's account
         System.out.println(signUpRequest.getEmail()+"FUck1");
         System.out.println(signUpRequest.getPassword()+"FUck2");
         try{
-        Member user = new Member(signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+                Member user = new Member(signUpRequest.getUsername(),
+                        signUpRequest.getEmail(), signUpRequest.getPassword());
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+                Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+                        .orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+                user.setRoles(Collections.singleton(userRole));
 
-        Member result = userRepository.save(user);
+                Member result = userRepository.save(user);
 
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
+                URI location = ServletUriComponentsBuilder
+                        .fromCurrentContextPath().path("/api/users/{username}")
+                        .buildAndExpand(result.getUsername()).toUri();
 
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+                return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
         }
         catch (Exception e)
         {
-        System.out.println(signUpRequest.getEmail()+"error1");
-        System.out.println(signUpRequest.getPassword()+"error2");
-        return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
-                  HttpStatus.BAD_REQUEST);
+                System.out.println(signUpRequest.getEmail()+"error1");
+                System.out.println(signUpRequest.getPassword()+"error2");
+                return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
+                        HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @DeleteMapping("/deleteUser")
+    public  ResponseEntity<?> deleteUser(@RequestBody LoginRequest request){
+        try{
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+
+        //SecurityContextHolder.getContext().setAuthentication(authentication);
+        Member member = userRepository.findByEmail(request.getEmail());
+
+        userRepository.delete(member);
+
+        
+        URI location = ServletUriComponentsBuilder
+                        .fromCurrentContextPath()
+                        .buildAndExpand(member.getUsername()).toUri();
+
+        return ResponseEntity.created(location).body(new ApiResponse(true, "User Deleted successfully"));
+       
+        } catch (Exception e)
+        {
+                return new ResponseEntity<>(new ApiResponse(false, "Password not correct"),
+                        HttpStatus.BAD_REQUEST);
+        }
+       }
 }
