@@ -1,15 +1,12 @@
 import React from 'react';
-import Home from '../home/Home';
 import axios from 'axios';
-
-const success = () => {
+import BeforeMenu from '../menu/before/BeforeMenu';
+const success = ({match}) => {
     const signupRequest = {
         username: localStorage.getItem("username"),
         email:     localStorage.getItem("auth_email"),
         password: localStorage.getItem("auth_password"),
     }
-    alert((localStorage.getItem("auth_email")));
-    alert((localStorage.getItem("auth_password")));
     axios.post('http://localhost:5000/api/auth/signok', signupRequest)        
 .then(res => {
     console.log('success');
@@ -19,12 +16,16 @@ const success = () => {
     localStorage.setItem("username","");
 },(error) => {
     console.log(error);
-    alert("fuck");
 });
     return (  
-        <div>            
-            onClick={success}>
-            <Home/>
+        <div>       
+            <BeforeMenu/>
+            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                <h1 style={{color: '#e4e4e4', marginTop: '50px'}}>
+                    회원가입 해주셔서 감사합니다.
+                </h1>
+                
+            </div>
         </div>
     )
 }
