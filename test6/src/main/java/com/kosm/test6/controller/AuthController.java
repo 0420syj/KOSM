@@ -176,5 +176,4 @@ public class AuthController {
                         HttpStatus.BAD_REQUEST);
         }
        }
-
 }
