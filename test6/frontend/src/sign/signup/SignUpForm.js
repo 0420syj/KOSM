@@ -160,10 +160,10 @@ const SignUp = ({match}) => {
         axios.post('http://localhost:5000/api/auth/signup', signupRequest)        
         .then(res => {
             console.log('success');
-            localStorage.setItem("auth_email",signupRequest.email);
+            localStorage.setItem("auth_email", signupRequest.email);
             console.log(localStorage.getItem("auth_email"));
-            localStorage.setItem("auth_password",signupRequest.password);
-            localStorage.setItem("username",signupRequest.username);
+            localStorage.setItem("auth_password", signupRequest.password);
+            localStorage.setItem("username", signupRequest.username);
         },(error) => {
             console.log(error);
             console.log(signupRequest.email);
@@ -261,13 +261,7 @@ const SignUp = ({match}) => {
                             </div>
                         </div>
                     </div>
-                    <div  style={{display: 'flex', justifyContent: 'flex-end'}}>
-                        {/* <div  style={{display: 'flex'}}>
-                            남은 시간: &nbsp;
-                            <div style={{color: 'red'}}>
-                                {parseInt(timer / 60)} : {timer % 60}
-                            </div>
-                        </div> */}
+                        <div  style={{display: 'flex', justifyContent: 'flex-end'}}>
                     </div>
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>비밀번호 (영문+숫자, 6~20자)</div>
