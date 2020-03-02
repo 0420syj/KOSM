@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { deleteUser } from '../util/APIUtils';
 
 const DeleteUser = () => {
     
@@ -44,8 +45,16 @@ const DeleteUser = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         alert('email : ' + userInfo.email + '\npassword : ' + userInfo.password);
-        // window.location.href = '/'; // 탈퇴 완료되면, 홈으로 이동
-    }
+        deleteUser(userInfo)
+        .then(res => {
+            console.log(res);
+            alert('삭제완료');
+            // window.location.href = '/'; // 탈퇴 완료되면, 홈으로 이동
+        }).catch(e => {
+            alert('삭제실패');
+            console.log(e);
+    })};
+
     
     return ( 
         <div
