@@ -20,8 +20,6 @@ async function returnsPromise() {
 returnsPromise().then(() => {});
 
 Promise.reject('value').catch();
-
-Promise.reject('value').finally();
 ```
 
 Examples of **correct** code for this rule:
@@ -39,8 +37,6 @@ returnsPromise().then(
 );
 
 Promise.reject('value').catch(() => {});
-
-Promise.reject('value').finally(() => {});
 ```
 
 ## Options

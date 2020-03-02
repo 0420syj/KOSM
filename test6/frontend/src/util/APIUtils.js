@@ -220,3 +220,11 @@ export function deleteFavProject(favRequest) {
         body : JSON.stringify(favRequest)
     });
 }
+
+export function deleteUser(deleteUserRequest) {
+    return request({
+        url: API_BASE_URL + "/api/auth/deleteUser",
+        method: 'DELETE',
+        body: JSON.stringify(deleteUserRequest)
+    })
+}
