@@ -1,8 +1,8 @@
 import React from 'react';
 import './ChangePassword.scss';
-const ForgotPassword = () => {
+const ChangePassword = () => {
     return ( 
-        <div className='forgotContainer'>
+        <div className='changeContainer'>
             <div className='title'>
                 <div className='title1'>Join KOSM</div>
                 <div className='title2'>Change Password</div>
@@ -34,4 +34,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword;
+export default ChangePassword;

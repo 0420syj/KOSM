@@ -206,8 +206,8 @@ const SignUp = ({match}) => {
     return (
         <div className='signUpScreen'>
             <div className='signUpContainer'>
-                <div style={{display: 'flex', justifyContent:'center'}}>join KOSM</div>
-                <div className='signUpTitle'>Create your account</div>
+                <div className='signUpTitle'>join KOSM</div>
+                <div className='signUpTitle2'>Create your account</div>
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>닉네임</div>
                         <input
@@ -215,11 +215,19 @@ const SignUp = ({match}) => {
                             type='text'
                             name='nickname'
                             id='nickname'
+                            style={{
+                                width: '606px',
+                                height: '60px',
+                                borderRadius: '10px',
+                                border: 'solid 1px #707070',
+                                background: '#eaeaea',
+                                marginBottom: '10px',
+                            }}
                             className={ `form-control ${inputClassNameHelper(userInfo.nickname && userInfo.validNickName)}` }
                             placeholder='닉네임'/>
                     </div>
                     <div>
-                        <div className='signUpFormContainer'>
+                        <div style={{marginBottom: '20px'}} className='signUpFormContainer'>
                             <div className='signUpSubTitle'>이메일</div>
                             <div style={{display:'flex'}}>
                                 <input
@@ -228,8 +236,12 @@ const SignUp = ({match}) => {
                                     name='email'
                                     id='email'
                                     style={{
-                                        width: '100%',
-                                        marginRight: '0px'
+                                        width: '606px',
+                                        height: '60px',
+                                        maxHeight: '60px',
+                                        borderRadius: '10px',
+                                        border: 'solid 1px #707070',
+                                        background: '#eaeaea',
                                     }}
                                     className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)}` }
                                     placeholder='example@example.com'
@@ -254,35 +266,6 @@ const SignUp = ({match}) => {
                                 {parseInt(timer / 60)} : {timer % 60}
                             </div>
                         </div> */}
-                        <div style={{display:'flex'}}>
-                            <div style={{
-                                fontSize: '13px',
-                                width: '100px',
-                                verticalAlign:'bottom'}}>
-                                인증코드 입력
-                            </div>
-                            <input
-                                type='text'
-                                name='code'
-                                id='code'
-                                className='form-control'
-                                style={{width: '120px'}}
-                                placeholder='123456'/>
-                            <ButtonToggle              
-                                color='info'
-                                style={{ 
-                                    marginLeft: '2%',
-                                    fontSize: '13px',
-                                    width: '70px', 
-                                    display:'inline-box'}}>
-                                    인증
-                            </ButtonToggle>
-                            <button 
-                        className='btn btn-success'
-                        onClick={onSubmit}>
-                        hi~~
-                        </button>:
-                        </div>
                     </div>
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>비밀번호 (영문+숫자, 6~20자)</div>
@@ -291,6 +274,15 @@ const SignUp = ({match}) => {
                             type='password'
                             name='password'
                             id='password'
+                            style={{
+                                width: '606px',
+                                height: '60px',
+                                maxHeight: '60px',
+                                borderRadius: '10px',
+                                border: 'solid 1px #707070',
+                                background: '#eaeaea',
+                                marginBottom: '10px',
+                            }}
                             className={ `form-control ${inputClassNameHelper(userInfo.password && userInfo.validPassWord)}`}/>
                     </div>                 
                     <div className='signUpFormContainer'>
@@ -300,19 +292,29 @@ const SignUp = ({match}) => {
                             type='password'
                             name='confirm-password'
                             id='confirm-password'
+                            style={{
+                                width: '606px',
+                                height: '60px',
+                                maxHeight: '60px',
+                                borderRadius: '10px',
+                                border: 'solid 1px #707070',
+                                background: '#eaeaea',
+                                marginBottom: '10px',
+                            }}
                             className={ `form-control ${inputClassNameHelper(userInfo.confirmpassword && userInfo.validConfirmPassWord)}` }/>
                     </div>                 
                     { /*<button type='submit' className='btn btn-success'>버튼</button>*/ }
                     <div style={{width: '100%'}}>
-                        <div style={{display:'flex', justifyContent:'center'}}>
+                        <div style={{marginTop: '70px', display:'flex', justifyContent:'center'}}>
                         {
                             renderSubmitBtn() ?
-                            <button 
-                                className='btn btn-success'
-                                onClick={handleSubmit}>
-                                회원가입
+                            <button
+                                type='submit'
+                                onClick={handleSubmit}
+                                className='successButton'>
+                                Sign up
                             </button>:
-                            <DefaultButton/>
+                            <DefaultButton className='defaultButton'>회원가입</DefaultButton>
                         }
                         </div>
                     </div>
@@ -323,16 +325,10 @@ const SignUp = ({match}) => {
 
 const DefaultButton = () => {
     return (
-        <ButtonToggle 
-            color='info'
-            style={{
-                pointerEvents:'none', 
-                cursor: 'default',
-                width: '100%',
-            }} 
-            type="submit">
-            회원가입
-        </ButtonToggle>
+        <button 
+            className='defaultButton'>
+            Sign up
+        </button>
     )
 }
 

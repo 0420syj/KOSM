@@ -7,7 +7,8 @@ import Write from './board/Write';
 import Article from './board/Article'
 import Source from './source/Source';
 import MyPage from './mypage/MyPage';
-import ForgotPassword from './sign/login/ForgotPassword';
+import Forgot from './sign/login/forgot/Forgot';
+import Change from './sign/login/change/Change';
 import Login from './sign/login/Login';
 import DeleteUser from './mypage/DeleteUser';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
@@ -28,7 +29,8 @@ function App() {
         <Route exact path='/article/:id' component={Article}/>
         <Route exact path='/source/:item' component={Source}/>
         <Route exact path='/mypage' component={MyPage}/>
-        <Route exact path='/forgot' component={ForgotPassword}/>
+        <Route exact path='/forgot' component={Forgot}/>
+        <Route exact path='/changepwd' component={Change}/>
         <Route exact path='/deleteuser' component={DeleteUser}/>
       </Router>
     </div>
