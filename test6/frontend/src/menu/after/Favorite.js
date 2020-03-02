@@ -13,13 +13,22 @@ const Favorite = () => {
     }, [favItems.length]);
 
     return ( 
-        <div>
+        // 이쪽도 SCSS 추가해야 함
+        <div
+            // style={{width:'100%'}}
+            >
             {
                 favItems.length != 0 ?
                 favItems.map((items) => {
                     return <div key={items.id} style={{color: '#FFFFFF'}}>{items.name}</div>
-                }) :
-                <div></div>
+                }) : 
+                <div
+                    // 임시 스타일 
+                    style={{color:'white',
+                    fontSize:'50px'}}
+                    >
+                    AfterLogin 메인페이지
+                </div>
             }
         </div>
     )

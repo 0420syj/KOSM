@@ -1,6 +1,5 @@
 package com.kosm.test6.security;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kosm.test6.model.Member;
 
 import org.springframework.security.core.GrantedAuthority;
