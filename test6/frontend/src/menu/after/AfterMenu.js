@@ -17,14 +17,14 @@ const AfterMenu = (props) => {
     return ( 
         <div>
             <div className='menuContainer'>
-                <div className='container'>
+                <div className='also-menu-container'>
                     <div className='leftContainer'>
                         <Link to='/' style={{color: 'inherit', textDecoration: 'none'}}>
                             <div 
                                 style={{
                                         cursor: 'pointer',
                                         height: '53px',
-                                        fontFamily: 'FranklinGothic',
+                                        fontFamily: 'Libre Franklin',
                                         fontSize: '47px',
                                         fontWeight: '500',
                                         fontStretch: 'normal',

@@ -13,7 +13,7 @@ const BeforeLogin = (props) => {
             <div className="left">
                 <SourceList />
             </div>
-            <div className="content">
+            <div className="description-content">
                 <Description />
             </div>
             <div className="bottom">
