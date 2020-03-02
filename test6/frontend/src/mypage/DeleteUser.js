@@ -2,35 +2,9 @@ import React, {useState} from 'react';
 import { deleteUser } from '../util/APIUtils';
 
 const DeleteUser = () => {
-    
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    //     login(userinfo)
-    //     .then(res => {
-    //         localStorage.setItem('accessToken', res.accessToken);
-    //         getCurrentUser()
-    //         .then(res => {
-    //             localStorage.setItem('isLogin', 'true');
-    //             localStorage.setItem('email', res.email);
-    //             localStorage.setItem('username', res.username);
-    //             localStorage.setItem('userId', res.id);
-    //             console.log(localStorage.getItem('userId'));
-    //             alert('로그인 완료');
-    //             history.goBack();
-    //             return ;
-    //         }).catch(e => {
-    //             alert('아이디/비밀번호가 다릅니다.');
-    //             console.log(e);
-    //         })
-    //     }).catch(e => {
-    //         alert('아이디/비밀번호가 다릅니다.');
-    //         console.log(e);
-    //     })
-    // }
 
     const [userInfo, setUserInfo] = useState({
         email:localStorage.getItem('email'),
-        // email: '',
         password:'',
     })
 
@@ -39,21 +13,20 @@ const DeleteUser = () => {
             ...userInfo,
             [e.target.name]:e.target.value
         });
-        console.log(userInfo);
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        alert('email : ' + userInfo.email + '\npassword : ' + userInfo.password);
+        // alert('email : ' + userInfo.email + '\npassword : ' + userInfo.password);
         deleteUser(userInfo)
-        .then(res => {
-            console.log(res);
-            alert('삭제완료');
-            // window.location.href = '/'; // 탈퇴 완료되면, 홈으로 이동
-        }).catch(e => {
-            alert('삭제실패');
-            console.log(e);
-    })};
+        .then(() => {
+            alert("삭제 성공")
+            window.location.href = '/';
+            }).catch((error) => {
+                alert("삭제 실패")
+                console.log(error)
+            });
+        };
 
     
     return ( 

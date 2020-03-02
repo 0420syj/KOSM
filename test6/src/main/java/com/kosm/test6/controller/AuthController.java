@@ -149,8 +149,8 @@ public class AuthController {
 
 
     @DeleteMapping("/deleteUser")
-    public String deleteUser(@RequestBody LoginRequest request){
-
+    public  ResponseEntity<?> deleteUser(@RequestBody LoginRequest request){
+        try{
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -162,8 +162,19 @@ public class AuthController {
         Member member = userRepository.findByEmail(request.getEmail());
 
         userRepository.delete(member);
+
+        
+        URI location = ServletUriComponentsBuilder
+                        .fromCurrentContextPath()
+                        .buildAndExpand(member.getUsername()).toUri();
+
+        return ResponseEntity.created(location).body(new ApiResponse(true, "User Deleted successfully"));
        
-        return request.getEmail();
-    }
+        } catch (Exception e)
+        {
+                return new ResponseEntity<>(new ApiResponse(false, "Password not correct"),
+                        HttpStatus.BAD_REQUEST);
+        }
+       }
 
 }
