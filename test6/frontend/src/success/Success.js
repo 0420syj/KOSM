@@ -11,11 +11,8 @@ const Success = ({match}) => {
 
     signok(signupRequest)
     .then(res => {
-        console.log('success');
+        console.log(res.body);
         alert((localStorage.getItem("auth_email")));
-        localStorage.setItem("auth_email","");
-        localStorage.setItem("auth_password","");
-        localStorage.setItem("username","");
 },(error) => {
     console.log(error);
 });

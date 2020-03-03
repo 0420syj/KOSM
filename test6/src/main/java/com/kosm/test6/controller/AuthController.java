@@ -150,7 +150,7 @@ public class AuthController {
                TempMember tempuser =TempRepository.findByHash(hashRequest.getHash());
                 Member user = new Member(tempuser.getUsername(),
                 tempuser.getEmail(), tempuser.getPassword());
-
+                TempRepository.delete(tempuser);
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
 
                 Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
@@ -159,12 +159,12 @@ public class AuthController {
                 user.setRoles(Collections.singleton(userRole));
 
                 Member result = userRepository.save(user);
-
+                
                 URI location = ServletUriComponentsBuilder
                         .fromCurrentContextPath().path("/api/users/{username}")
                         .buildAndExpand(result.getUsername()).toUri();
 
-                return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+                return ResponseEntity.created(location).body(new ApiResponse(true, result.getUsername()));
         }
         catch (Exception e)
         {
