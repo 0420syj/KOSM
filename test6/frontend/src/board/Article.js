@@ -14,6 +14,7 @@ class Article extends Component {
         }
     }
 
+    
     componentDidMount() {
         getArticle(this.props.match.params.id)
             .then(res => {
