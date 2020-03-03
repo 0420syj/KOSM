@@ -29,16 +29,13 @@ const LoginForm = (props) => {
                 localStorage.setItem('username', res.username);
                 localStorage.setItem('userId', res.id);
                 console.log(localStorage.getItem('userId'));
-                alert('로그인 완료');
                 history.goBack();
                 return ;
             }).catch(e => {
                 alert('아이디/비밀번호가 다릅니다.');
-                console.log(e);
             })
         }).catch(e => {
             alert('아이디/비밀번호가 다릅니다.');
-            console.log(e);
         })
     }
 
