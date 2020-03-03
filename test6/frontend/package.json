@@ -10,6 +10,7 @@
     "antd": "^3.26.8",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "bytes": "^3.1.0",
     "express": "^4.17.1",
     "node-sass": "^4.13.1",
     "nodemailer": "^6.4.2",

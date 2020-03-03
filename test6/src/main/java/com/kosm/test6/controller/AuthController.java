@@ -1,6 +1,8 @@
 package com.kosm.test6.controller;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,9 +22,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
+import com.kosm.test6.service.JsonCompponent;
+import com.kosm.test6.config.JsonConfig;
 import com.kosm.test6.exception.AppException;
 import com.kosm.test6.model.Member;
-import com.kosm.test6.model.Project;
 import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
 import com.kosm.test6.payload.ApiResponse;
@@ -35,8 +38,8 @@ import com.kosm.test6.security.JwtTokenProvider;
 import org.springframework.context.annotation.PropertySource;
 import java.net.URI;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 @PropertySource("application.properties")
@@ -61,9 +64,12 @@ public class AuthController {
     @Autowired
     JavaMailSender javaMailSender;
     
+    
+    @Autowired
+    JsonCompponent JsonObject;
+    
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
@@ -78,7 +84,8 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> Sendlink(@Valid @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> Sendlink(@Valid @RequestBody SignUpRequest signUpRequest) {  
+    //    JSONObject JsonObject =new JSONObject();
         System.out.println(signUpRequest.getEmail());
         System.out.println(signUpRequest.getPassword());  
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -93,21 +100,30 @@ public class AuthController {
                     HttpStatus.BAD_REQUEST);
         }
         //System.out.println(signUpRequest.getPassword());  
-                try {   
+                try {    
+                        
                         MimeMessage msg = javaMailSender.createMimeMessage();
                         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
                         helper.setTo(signUpRequest.getEmail());
                         System.out.println(signUpRequest.getEmail()+"FUck");
                         helper.setSubject("Testing from Spring Boot");
+                        String secret=passwordEncoder.encode(signUpRequest.getEmail());
+                        String url= "http://localhost:3000/success/"+secret;
+                        JsonObject.put("key",signUpRequest.getEmail());
+                        JsonObject.put("value",secret);
+                        String jsonInfo = JsonObject.toJsonString();
+                       //  String content = "please Enter this Link for signup.!" + 
+                      //   "<a href='http://localhost:3000/success'>Sign Up</a>";
                          String content = "please Enter this Link for signup.!" + 
-                         "<a href='http://localhost:3000/success'>Sign Up</a>";
+                         "<a href="+url+">Sign Up</a>";
                         helper.setText("<h1>Thank you for Login!</h1>" +content, true);
                         javaMailSender.send(msg);
-                        return new ResponseEntity<String>(signUpRequest.getEmail(), HttpStatus.OK);
+                        System.out.println(jsonInfo);
+                        return new ResponseEntity<>( jsonInfo, HttpStatus.OK);
                  }
                  catch (Exception e) {
-                        System.out.println("Fuck!!");
-                        System.out.println(e);
+                        System.out.println("Fuck!!@@@@@@@@@@@@@@@@@@@@@@@");
+                       //System.out.println(e);
                         return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);
                 }  

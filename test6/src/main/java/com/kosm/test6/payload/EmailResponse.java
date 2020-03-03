@@ -4,14 +4,14 @@ import javax.validation.constraints.NotBlank;
 
 public class EmailResponse {
     @NotBlank
-    private String Email;
+    private String email;
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
    

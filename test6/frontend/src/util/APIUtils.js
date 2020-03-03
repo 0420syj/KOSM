@@ -66,6 +66,14 @@ export function Crawl(CrawlRequest) {
         body:JSON.stringify(CrawlRequest)
     });
 }
+export function forgot(CrawlRequest) {
+    console.log(CrawlRequest);
+    return String_Request({
+        url: API_BASE_URL + "/api/Email/forgot",
+        method: 'POST',
+        body:JSON.stringify(CrawlRequest)
+    });
+}
 export function Mail(CrawlRequest) {
     return String_Request({
         url: API_BASE_URL + "/api/Email/main",
@@ -74,6 +82,7 @@ export function Mail(CrawlRequest) {
     });
 }
 export function signup(signupRequest) {
+    console.log(signupRequest);
     return request({
         url: API_BASE_URL + "/api/auth/signup",
         method: 'POST',
