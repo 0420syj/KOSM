@@ -22,20 +22,20 @@ function App() {
   return (
     <div style={{background: '#393939', height: '990px'}}>
         <Router>
-        <ScrollToTop>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={Login}/>
-          <Route exact path='/signup' component={SignUp}/>
-          <Route exact path='/board' component={Board}/>
-          <Route path='/success' component={Success}/>
-          <Route exact path='/write' component={Write}/>
-          <Route exact path='/article/:email' component={Article}/>
-          <Route exact path='/source/:item' component={Source}/>
-          <Route exact path='/mypage' component={MyPage}/>
-          <Route exact path='/forgot' component={Forgot}/>
-          <Route exact path='/changepwd' component={Change}/>
-          <Route exact path='/deleteuser' component={DeleteUser}/>
-      </ScrollToTop>
+          <ScrollToTop>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/signup' component={SignUp}/>
+            <Route exact path='/board' component={Board}/>
+            <Route path='/success' component={Success}/>
+            <Route exact path='/write' component={Write}/>
+            <Route exact path='/article/:id' component={Article}/>
+            <Route exact path='/source/:item' component={Source}/>
+            <Route exact path='/mypage' component={MyPage}/>
+            <Route exact path='/forgot' component={Forgot}/>
+            <Route exact path='/changepwd' component={Change}/>
+            <Route exact path='/deleteuser' component={DeleteUser}/>
+          </ScrollToTop>
         </Router>
     </div>
   );
