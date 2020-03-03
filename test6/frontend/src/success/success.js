@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import BeforeMenu from '../menu/before/BeforeMenu';
-const success = ({match}) => {
+const Success = ({match}) => {
+    console.log('asd');
     const signupRequest = {
         username: localStorage.getItem("username"),
         email:     localStorage.getItem("auth_email"),
@@ -30,4 +31,4 @@ const success = ({match}) => {
     )
 }
 
-export default success;
+export default Success;

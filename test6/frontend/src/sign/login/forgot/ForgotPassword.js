@@ -76,7 +76,7 @@ const ForgotPassword = () => {
                             </div>
                             <div style={{marginTop: '73px'}}>
                                 {
-                                    isConfirm && (data.password != '') && (data.password === data.confirmPassword) ?
+                                    isConfirm && (data.password !== '') && (data.password === data.confirmPassword) ?
                                     <Link to ='/'>
                                         <button onClick = {changeSuccess} className='changeSuccess'>비밀번호 변경</button>
                                     </Link> :

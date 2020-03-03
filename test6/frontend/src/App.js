@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Home from './home/Home';
 import SignUp from './sign/signup/SignUp';
 import Board from './board/Board';
-import success from './success/success';
+import Success from './success/Success';
 import Write from './board/Write';
 import Article from './board/Article'
 import Source from './source/Source';
@@ -15,6 +15,7 @@ import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {
     localStorage.setItem('isLogin', 'false');
+    localStorage.setItem('userArray', []);
   }, []);
 
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route exact path='/board' component={Board}/>
-        <Route exact path='/success' component={success}/>
+        <Route path='/success' component={Success}/>
         <Route exact path='/write' component={Write}/>
         <Route exact path='/article/:email' component={Article}/>
         <Route exact path='/source/:item' component={Source}/>

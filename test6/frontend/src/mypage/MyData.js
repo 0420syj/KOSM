@@ -17,44 +17,22 @@ const MyData = () => {
                     style={{width: '100%'}}
                     className='input'
                     style={{background: '#414141', fontSize: '25px'}}
-                    placeholder={`  ${localStorage.getItem('email')}`}/>
-            </div>
-            <div className='sub'>
-                <div className='subTitle'>닉네임</div>
-                <input 
-                    type='text'
-                    className='input'
-                    style={{width: '100%'}}/>
-            </div>
-            <div className='sub'>
-                <div className='subTitle'>기존 비밀번호</div>
-                <input 
-                    type='password'
-                    className='input'
-                    style={{width: '100%'}}/>
+                    placeholder={`${localStorage.getItem('email')}`}/>
             </div>
             <div className='sub'>
                 <div
                     className='subTitle' 
                     style={{display: 'flex', marginTop: '21px'}}>
-                    <div className='newPassword'>새 비밀번호</div>
+                    <div className='newPassword'>닉네임</div>
                     <div>&nbsp;</div>
                     <Link to='/changepwd'>
                         <div className='changePassword'>비밀번호 변경</div>
                     </Link>
                 </div>
                 <input 
-                    type='password'
                     className='input'
                     style={{width: '100%'}}/>
             </div>            
-            <div className='sub'>
-                <div className='subTitle'>비밀번호 확인</div>
-                <input 
-                    className='input'
-                    type='password'
-                    style={{width: '100%'}}/>
-            </div>
             <div className='buttonContainer'>
                 <ButtonToggle className='button'>
                     정보변경
