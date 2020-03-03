@@ -89,6 +89,14 @@ export function signup(signupRequest) {
         body: JSON.stringify(signupRequest)
     });
 }
+export function signok(HashRequest) {
+    console.log(HashRequest);
+    return request({
+        url: API_BASE_URL + "/api/auth/signok",
+        method: 'POST',
+        body: JSON.stringify(HashRequest)
+    });
+}
 
 export function writeBoard(boardSaveRequest) {
     return request({
