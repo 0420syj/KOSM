@@ -1,6 +1,8 @@
 package com.kosm.test6.controller;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,34 +22,42 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
+import com.kosm.test6.service.JsonCompponent;
+import com.kosm.test6.config.JsonConfig;
 import com.kosm.test6.exception.AppException;
 import com.kosm.test6.model.Member;
-import com.kosm.test6.model.Project;
 import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
+import com.kosm.test6.model.TempMember;
 import com.kosm.test6.payload.ApiResponse;
+import com.kosm.test6.payload.HashRequest;
 import com.kosm.test6.payload.JwtAuthenticationResponse;
 import com.kosm.test6.payload.LoginRequest;
 import com.kosm.test6.payload.SignUpRequest;
 import com.kosm.test6.repository.RoleRepository;
+import com.kosm.test6.repository.TempRepository;
 import com.kosm.test6.repository.UserRepository;
 import com.kosm.test6.security.JwtTokenProvider;
 import org.springframework.context.annotation.PropertySource;
 import java.net.URI;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 @PropertySource("application.properties")
 @RequestMapping("/api/auth")
 public class AuthController {
+        
 
     @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    TempRepository TempRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -61,9 +71,12 @@ public class AuthController {
     @Autowired
     JavaMailSender javaMailSender;
     
+    
+    @Autowired
+    JsonCompponent JsonObject;
+    
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
@@ -78,7 +91,8 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> Sendlink(@Valid @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> Sendlink(@Valid @RequestBody SignUpRequest signUpRequest) {  
+    //    JSONObject JsonObject =new JSONObject();
         System.out.println(signUpRequest.getEmail());
         System.out.println(signUpRequest.getPassword());  
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -94,20 +108,34 @@ public class AuthController {
         }
         //System.out.println(signUpRequest.getPassword());  
                 try {   
+                        String secret=passwordEncoder.encode(signUpRequest.getEmail());
+                          //////temp memory
+                          TempMember user = new TempMember(signUpRequest.getUsername(),
+                          signUpRequest.getEmail(), signUpRequest.getPassword(),secret);
+                          TempRepository.save(user);
+                       // message
+                        /////////////////
                         MimeMessage msg = javaMailSender.createMimeMessage();
                         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
                         helper.setTo(signUpRequest.getEmail());
                         System.out.println(signUpRequest.getEmail()+"FUck");
                         helper.setSubject("Testing from Spring Boot");
+                      
+                        String url= "http://localhost:3000/success/"+secret;
+                        JsonObject.put("key",secret);
+                        String jsonInfo = JsonObject.toJsonString();
+                       //  String content = "please Enter this Link for signup.!" + 
+                      //   "<a href='http://localhost:3000/success'>Sign Up</a>";
                          String content = "please Enter this Link for signup.!" + 
-                         "<a href='http://localhost:3000/success'>Sign Up</a>";
+                         "<a href="+url+">Sign Up</a>";
                         helper.setText("<h1>Thank you for Login!</h1>" +content, true);
                         javaMailSender.send(msg);
-                        return new ResponseEntity<String>(signUpRequest.getEmail(), HttpStatus.OK);
+                        System.out.println(jsonInfo);
+                        return new ResponseEntity<>( jsonInfo, HttpStatus.OK);
                  }
                  catch (Exception e) {
-                        System.out.println("Fuck!!");
-                        System.out.println(e);
+                        System.out.println("Fuck!!@@@@@@@@@@@@@@@@@@@@@@@");
+                       //System.out.println(e);
                         return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);
                 }  
@@ -115,14 +143,14 @@ public class AuthController {
         }
 
     @PostMapping("/signok")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody HashRequest hashRequest) {
         // Creating user's account
-        System.out.println(signUpRequest.getEmail()+"FUck1");
-        System.out.println(signUpRequest.getPassword()+"FUck2");
-        try{
-                Member user = new Member(signUpRequest.getUsername(),
-                        signUpRequest.getEmail(), signUpRequest.getPassword());
-
+        System.out.println(hashRequest.getHash()+"FUck1");
+        try{    //TempRepository
+               TempMember tempuser =TempRepository.findByHash(hashRequest.getHash());
+                Member user = new Member(tempuser.getUsername(),
+                tempuser.getEmail(), tempuser.getPassword());
+                TempRepository.delete(tempuser);
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
 
                 Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
@@ -131,17 +159,17 @@ public class AuthController {
                 user.setRoles(Collections.singleton(userRole));
 
                 Member result = userRepository.save(user);
-
+                
                 URI location = ServletUriComponentsBuilder
                         .fromCurrentContextPath().path("/api/users/{username}")
                         .buildAndExpand(result.getUsername()).toUri();
 
-                return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+                return ResponseEntity.created(location).body(new ApiResponse(true, result.getUsername()));
         }
         catch (Exception e)
         {
-                System.out.println(signUpRequest.getEmail()+"error1");
-                System.out.println(signUpRequest.getPassword()+"error2");
+                //System.out.println(tempuser.getEmail()+"error1");
+              //  System.out.println(tempuser.getPassword()+"error2");
                 return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);
         }

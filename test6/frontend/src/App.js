@@ -16,7 +16,9 @@ import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {
     localStorage.setItem('isLogin', 'false');
-    localStorage.setItem('userArray', []);
+    localStorage.setItem('userArray', JSON.stringify([]));
+    console.log('start');
+    console.log(localStorage.getItem('userArray'));
   }, []);
 
   return (
@@ -27,7 +29,7 @@ function App() {
             <Route exact path='/login' component={Login}/>
             <Route exact path='/signup' component={SignUp}/>
             <Route exact path='/board' component={Board}/>
-            <Route path='/success' component={Success}/>
+            <Route path='/success/:id' component={Success}/>
             <Route exact path='/write' component={Write}/>
             <Route exact path='/article/:id' component={Article}/>
             <Route exact path='/source/:item' component={Source}/>

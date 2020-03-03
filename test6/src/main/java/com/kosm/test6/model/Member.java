@@ -52,7 +52,11 @@ public class Member extends DateAudit {
             inverseJoinColumns = @JoinColumn(name = "project_id"))
     private Set<Project> projects = new HashSet<>();
 
-    //private String favProjects;
+    
+    //@ManyToMany(fetch = FetchType.LAZY)
+    //@JoinTable(name = "users")
+    //private Set<Member> members = new HashSet<>();
+   // private String favProjects;
 
     public Member() {
 
@@ -109,6 +113,9 @@ public class Member extends DateAudit {
     public Set<Project> getProjects() {
         return projects;
     }
-
+    
+   // public Set<Member> getMembers() {
+   //     return members;
+  //  }
 
 }

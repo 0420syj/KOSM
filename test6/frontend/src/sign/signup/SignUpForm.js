@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-import { Mail,checkEmailAvailability } from '../../util/APIUtils';
+import { Mail,checkEmailAvailability,signup} from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
 import {ButtonToggle} from 'reactstrap';
 import Home from '../../home/Home';
@@ -156,16 +156,15 @@ const SignUp = ({match}) => {
             phonenumber: userInfo.phonenumber,
             password: userInfo.password,
         }
-        axios.post('http://localhost:5000/api/auth/signup', signupRequest)        
+        signup(signupRequest)       
         .then(res => {
-            console.log('success');
-            localStorage.setItem("auth_email", signupRequest.email);
-            console.log(localStorage.getItem("auth_email"));
-            localStorage.setItem("auth_password", signupRequest.password);
-            localStorage.setItem("username", signupRequest.username);
+            alert("success");
+     
+           
         },(error) => {
             console.log(error);
             console.log(signupRequest.email);
+            alert("fail");
         });
     }
     const onSubmit = (e) => {
