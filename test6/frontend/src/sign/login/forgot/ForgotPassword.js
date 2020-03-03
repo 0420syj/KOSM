@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './ForgotPassword.scss';
+import { forgot } from '../../../util/APIUtils';
+import axios from 'axios';
 const ForgotPassword = () => {
     const [isConfirm, setIsConfirm] = useState(false);
     const [data, setData] = useState({
@@ -9,10 +11,19 @@ const ForgotPassword = () => {
         password: '',            //새 비밀번호 
         confirmPassword: '',    //비밀번호 확인
     })
-    const confirm = () => {     //여기서 confirm을 바꿔주면 됨
-
+    const confirm = (e) => {
+        e.preventDefault();
+         const userinfo = { 
+             email:data.email
+         }    
+         forgot(userinfo)        
+         .then(res => {
+             alert(res);       
+    }).catch(e => {
+        alert('Fuck');
+        console.log(e);
+    })
     }
-
     const onChange = (e) => {
         setData({
             ...data,
@@ -35,7 +46,7 @@ const ForgotPassword = () => {
                             <div style={{marginBottom: '20px'}} className='inContents'>
                                 <div className='subTitle'>이메일</div>
                                 <div className='email'>
-                                    <input type='password' name='email' value={data.email} onChange = {onChange} className='subInput'/>
+                                    <input type='email' name='email' value={data.email} onChange = {onChange} className='subInput'/>
                                     {
                                         isConfirm === true ?
                                         <button style={{
@@ -62,27 +73,8 @@ const ForgotPassword = () => {
                                     }
                                 </div>
                             </div>
-                            <div className='inContents'>
-                                <div className='subTitle'>기존 비밀번호</div>
-                                <input type='password' className='passwordInput' name='originPassword' onChange={onChange} value={data.originPassword}/>
-                            </div>
-                            <div className='inContents'>
-                                <div className='subTitle'>새로운 비밀번호 입력</div>
-                                <input type='password' name='password' value={data.password} onChange = {onChange} className='passwordInput'/>
-                            </div>
-                            <div className='inContents'>
-                                <div className='subTitle'>비밀번호 확인</div>
-                                <input type='password' name='confirmPassword' value={data.confirmPassword} onChange = {onChange} className='passwordInput'/>
-                            </div>
-                            <div style={{marginTop: '73px'}}>
-                                {
-                                    isConfirm && (data.password != '') && (data.password === data.confirmPassword) ?
-                                    <Link to ='/'>
-                                        <button onClick = {changeSuccess} className='changeSuccess'>비밀번호 변경</button>
-                                    </Link> :
-                                    <button className='changeFail'>비밀번호 변경</button>      
-                                }
-                            </div>
+                          
+                           
                         </div>
                     </div>
                 </form>
