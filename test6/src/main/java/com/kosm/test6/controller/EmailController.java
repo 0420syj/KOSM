@@ -35,7 +35,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.context.annotation.PropertySource;
 @RestController
-@RequestMapping("/api/Email")
+@RequestMapping("/api/auth")
 @PropertySource("application.properties")
 public class EmailController {
 @Autowired

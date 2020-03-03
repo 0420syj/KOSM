@@ -159,11 +159,13 @@ const SignUp = ({match}) => {
         signup(signupRequest)       
         .then(res => {
             alert("success");
-            console.log(res);
-            console.log(res.value);
-            //localStorage.setItem("auth_email", signupRequest.email);
-            //localStorage.setItem("auth_password", signupRequest.password);
-            //localStorage.setItem("username", signupRequest.username);
+            console.log(res.key);
+            console.log(JSON.parse(localStorage.getItem('userArray')));
+            localStorage.setItem('userArray',JSON.stringify([
+                ...JSON.parse(localStorage.getItem('userArray')),
+                res
+            ]));
+            console.log(JSON.parse(localStorage.getItem('userArray')));
         },(error) => {
             console.log(error);
             console.log(signupRequest.email);

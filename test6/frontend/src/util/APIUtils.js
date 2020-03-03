@@ -69,14 +69,14 @@ export function Crawl(CrawlRequest) {
 export function forgot(CrawlRequest) {
     console.log(CrawlRequest);
     return String_Request({
-        url: API_BASE_URL + "/api/Email/forgot",
+        url: API_BASE_URL + "/api/auth/forgot",
         method: 'POST',
         body:JSON.stringify(CrawlRequest)
     });
 }
 export function Mail(CrawlRequest) {
     return String_Request({
-        url: API_BASE_URL + "/api/Email/main",
+        url: API_BASE_URL + "/api/auth/main",
         method: 'POST',
         body:JSON.stringify(CrawlRequest)
     });

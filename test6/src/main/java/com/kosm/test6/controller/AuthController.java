@@ -28,11 +28,14 @@ import com.kosm.test6.exception.AppException;
 import com.kosm.test6.model.Member;
 import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
+import com.kosm.test6.model.TempMember;
 import com.kosm.test6.payload.ApiResponse;
+import com.kosm.test6.payload.HashRequest;
 import com.kosm.test6.payload.JwtAuthenticationResponse;
 import com.kosm.test6.payload.LoginRequest;
 import com.kosm.test6.payload.SignUpRequest;
 import com.kosm.test6.repository.RoleRepository;
+import com.kosm.test6.repository.TempRepository;
 import com.kosm.test6.repository.UserRepository;
 import com.kosm.test6.security.JwtTokenProvider;
 import org.springframework.context.annotation.PropertySource;
@@ -45,12 +48,16 @@ import java.util.HashMap;
 @PropertySource("application.properties")
 @RequestMapping("/api/auth")
 public class AuthController {
+        
 
     @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    TempRepository TempRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -100,17 +107,22 @@ public class AuthController {
                     HttpStatus.BAD_REQUEST);
         }
         //System.out.println(signUpRequest.getPassword());  
-                try {    
-                        
+                try {   
+                        String secret=passwordEncoder.encode(signUpRequest.getEmail());
+                          //////temp memory
+                          TempMember user = new TempMember(signUpRequest.getUsername(),
+                          signUpRequest.getEmail(), signUpRequest.getPassword(),secret);
+                          TempRepository.save(user);
+                       // message
+                        /////////////////
                         MimeMessage msg = javaMailSender.createMimeMessage();
                         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
                         helper.setTo(signUpRequest.getEmail());
                         System.out.println(signUpRequest.getEmail()+"FUck");
                         helper.setSubject("Testing from Spring Boot");
-                        String secret=passwordEncoder.encode(signUpRequest.getEmail());
+                      
                         String url= "http://localhost:3000/success/"+secret;
-                        JsonObject.put("key",signUpRequest.getEmail());
-                        JsonObject.put("value",secret);
+                        JsonObject.put("key",secret);
                         String jsonInfo = JsonObject.toJsonString();
                        //  String content = "please Enter this Link for signup.!" + 
                       //   "<a href='http://localhost:3000/success'>Sign Up</a>";
@@ -131,13 +143,13 @@ public class AuthController {
         }
 
     @PostMapping("/signok")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody HashRequest hashRequest) {
         // Creating user's account
-        System.out.println(signUpRequest.getEmail()+"FUck1");
-        System.out.println(signUpRequest.getPassword()+"FUck2");
-        try{
-                Member user = new Member(signUpRequest.getUsername(),
-                        signUpRequest.getEmail(), signUpRequest.getPassword());
+        System.out.println(hashRequest.getHash()+"FUck1");
+        try{    //TempRepository
+               TempMember tempuser =TempRepository.findByHash(hashRequest.getHash());
+                Member user = new Member(tempuser.getUsername(),
+                tempuser.getEmail(), tempuser.getPassword());
 
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -156,8 +168,8 @@ public class AuthController {
         }
         catch (Exception e)
         {
-                System.out.println(signUpRequest.getEmail()+"error1");
-                System.out.println(signUpRequest.getPassword()+"error2");
+                //System.out.println(tempuser.getEmail()+"error1");
+              //  System.out.println(tempuser.getPassword()+"error2");
                 return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);
         }
