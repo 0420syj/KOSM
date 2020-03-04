@@ -99,13 +99,13 @@ height: 50px;
 
 .article-author{
     margin-top: 10px;
-    padding-left: 15px;
-    text-align: left;
+    padding-right: 15px;
+    text-align: right;
 }
 
 .article-content-area {
-margin-top: 15px;
-
+    margin-top: 15px;
+    height:400px;
   border-radius: 10px;
   border: solid 2px #bfbfbf;
   background-color: #393939;
@@ -120,6 +120,7 @@ margin-top: 15px;
 }
 
 .go-board-button {
+    margin-top: 15px;
     border-radius: 10px;
     background-color: #3aada8;
 }

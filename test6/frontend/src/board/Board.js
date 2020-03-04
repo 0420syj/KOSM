@@ -139,6 +139,7 @@ const Board = (props) => {
         // title,
         onPageChange
       }) => {
+        // console.log("page : " + page)
         const handleClick = (e) => {
           e.preventDefault();
           onPageChange(page);

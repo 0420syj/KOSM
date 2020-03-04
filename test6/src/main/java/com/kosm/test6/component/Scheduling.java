@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Scheduling {
     private int i=0;
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 20000) // 20초
     public void simplePrintln(){
         i++;
-        System.out.println("Scheduleing"+i);
+        System.out.println("Scheduleing : "+i);
     } 
 }

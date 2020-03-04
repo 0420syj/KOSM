@@ -15,10 +15,10 @@ import ScrollToTop from './ScrollToTop';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {
-    localStorage.setItem('isLogin', 'false');
-    localStorage.setItem('userArray', JSON.stringify([]));
-    console.log('start');
-    console.log(localStorage.getItem('userArray'));
+    // localStorage.setItem('isLogin', 'false');
+    // localStorage.setItem('userArray', JSON.stringify([]));
+    // console.log('start');
+    // console.log(localStorage.getItem('userArray'));
   }, []);
 
   return (
