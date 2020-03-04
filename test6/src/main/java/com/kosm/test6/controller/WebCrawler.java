@@ -62,7 +62,8 @@ public class WebCrawler {
            // System.out.println(JsonObject.toJsonString());
         }
         String jsonInfo = JsonObject.ArraytoJsonString();
-       // System.out.println(jsonInfo);
+      System.out.println(JsonObject.Size());
+      JsonObject.newinit();
     //    System.out.println(i);
         return new ResponseEntity<String>(jsonInfo, HttpStatus.OK);
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));

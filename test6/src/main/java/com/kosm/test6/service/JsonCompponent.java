@@ -13,9 +13,16 @@ private JSONArray jsonArrayList=new JSONArray();
         public JSONObject deepclone() throws CloneNotSupportedException {
                 return (JSONObject)jsonObeject.clone();
         }
+        public void newinit(){
+                jsonArrayList=new JSONArray();
+        }
         public void put(String A,String B)
         {
          jsonObeject.put(A,B); 
+        }
+        public int Size()
+        {
+         return jsonArrayList.size();
         }
         public String toJsonString()
         {
