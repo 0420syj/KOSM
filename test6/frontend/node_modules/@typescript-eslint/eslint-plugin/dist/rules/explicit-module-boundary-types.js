@@ -65,9 +65,6 @@ exports.default = util.createRule({
                     node.type === experimental_utils_1.AST_NODE_TYPES.ExportSpecifier) {
                     return false;
                 }
-                if (node.type === experimental_utils_1.AST_NODE_TYPES.JSXExpressionContainer) {
-                    return true;
-                }
                 if (node.type === experimental_utils_1.AST_NODE_TYPES.ReturnStatement) {
                     isReturnedValue = true;
                 }

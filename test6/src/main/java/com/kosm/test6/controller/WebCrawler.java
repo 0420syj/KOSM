@@ -1,5 +1,6 @@
 package com.kosm.test6.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -8,18 +9,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
-
+import com.kosm.test6.service.JsonCompponent;
 import com.kosm.test6.payload.Crawling;
+
+import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 @RestController
-@RequestMapping("/api/webcrawler")
+@RequestMapping("/api/auth")
+
+
 public class WebCrawler {
-    @PostMapping("/main")
-    public  ResponseEntity<?> sayHello(@Valid @RequestBody Crawling CrawlRequest){
+    @Autowired
+    JsonCompponent JsonObject;
+    
+    @PostMapping("/webcrawler")
+    public  ResponseEntity<?> sayHello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
  /*
             Document 클래스 : 연결해서 얻어온 HTML 전체 문서
             Element 클래스  : Documnet의 HTML 요소
@@ -27,7 +35,11 @@ public class WebCrawler {
         */       
         //String url = "https://www.w3schools.com";
         String url =CrawlRequest.getUrl();
-        String selector = "div#TableWithRules tbody td";
+
+        String title = "div#row tbody tr th strong";
+        String summary = "div#row tbody tr td p";
+        String date = "div#row tbody tr td span[data-testid]";
+        String score = "div#row tbody tr td[nowrap=nowrap]";
         String example="";
         Document doc = null;            
         try {
@@ -35,12 +47,24 @@ public class WebCrawler {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }        
-        Elements titles = doc.select(selector); // -- 2. doc에서 selector의 내용을 가져와 Elemntes 클래스에 담는다.
-        for(Element element: titles) { // -- 3. Elemntes 길이만큼 반복한다.
-            example+=element.text()+'?'; // -- 4. 원하는 요소가 출력된다.
+        Elements titles = doc.select(title); // -- 2. doc에서 selector의 내용을 가져와 Elemntes 클래스에 담는다.
+        Elements summaries = doc.select(summary);
+        Elements dates = doc.select(date);
+        Elements scores = doc.select(score);
+        
+        for(int i=0;i<titles.size();i++) {
+             // -- 3. Elemntes 길이만큼 반복한다.
+            JsonObject.put("title",titles.get(i).text()); 
+            JsonObject.put("date",dates.get(i).text()); 
+            JsonObject.put("summary",summaries.get(i).text()); 
+            JsonObject.put("score",scores.get(i).text()); 
+            JsonObject.add(JsonObject.deepclone());
+           // System.out.println(JsonObject.toJsonString());
         }
-             
-        return new ResponseEntity<String>(example, HttpStatus.OK);
+        String jsonInfo = JsonObject.ArraytoJsonString();
+       // System.out.println(jsonInfo);
+    //    System.out.println(i);
+        return new ResponseEntity<String>(jsonInfo, HttpStatus.OK);
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
 
     }
