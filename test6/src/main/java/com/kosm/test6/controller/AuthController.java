@@ -117,6 +117,7 @@ public class AuthController {
                         /////////////////
                         MimeMessage msg = javaMailSender.createMimeMessage();
                         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+                        // helper.setFrom("kosm.manager@gmail.com"); 완 : 전 이거없인 회원가입이 되지않아요ㅠ
                         helper.setTo(signUpRequest.getEmail());
                         System.out.println(signUpRequest.getEmail()+"FUck");
                         helper.setSubject("Testing from Spring Boot");
@@ -135,7 +136,7 @@ public class AuthController {
                  }
                  catch (Exception e) {
                         System.out.println("Fuck!!@@@@@@@@@@@@@@@@@@@@@@@");
-                       //System.out.println(e);
+                        System.out.println(e);
                         return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);
                 }  
