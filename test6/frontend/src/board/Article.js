@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import { Button } from 'reactstrap';
+
 import { getArticle } from '../util/APIUtils'
+import BeforeMenu from '../menu/before/BeforeMenu';
+import AfterMenu from '../menu/after/AfterMenu';
+import SourceList from '../menu/SourceList';
+import './Article.scss';
 
 class Article extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -10,7 +17,7 @@ class Article extends Component {
             content: "내용",
             author: "작성자",
             status: "상태",
-            date: "날짜",
+            date: "날짜 : 이게 출력된다는 건 게시글 load 실패했다는 뜻",
         }
     }
 
@@ -30,15 +37,70 @@ class Article extends Component {
     }
 
     render() {
+
+        // 게시글 정보
         const { title, content, author, status, date } = this.state;
 
+        // 상단메뉴 출력 함수
+        const renderTopMenu = () => {
+            if (localStorage.getItem('isLogin') !== 'false')
+                return <AfterMenu />
+            else
+                return <BeforeMenu />
+        };
+
+        // 날짜 정보 가공 함수
+        const printDate = (date) => {
+            let dateObj = date;
+            if (typeof date !== 'object') {
+                dateObj = new Date(date);
+            }
+            return `${dateObj.getFullYear()}-${('0' + (dateObj.getMonth() + 1)).slice(-2)}-${('0' + dateObj.getDate()).slice(-2)}`;
+        }
+
+        const goBoard = () => {
+            window.location.href = '/board';
+        }
+
         return (
-            <div>
-                <h2>제목 : {title}</h2>
-                <h2>내용 : {content}</h2>
-                <h4>작성자 : {author}</h4>
-                <h4>상태 : {status}</h4>
-                <h4>날짜 : {date}</h4>
+            <div className="container">
+                <div className="top">
+                    {renderTopMenu()}
+                </div>
+                <div className="left">
+                    <SourceList/>
+                </div>
+                <div className="article">
+                    <div className="article-container">
+                        <div className="article-back-button-area">
+                            <Button
+                                className="go-board-button"
+                                onClick={goBoard}
+                                >
+                                ≡ 목록
+                            </Button>
+                        </div>
+                        <div className="article-header">
+                            <div className="left-article-header">
+                                <div>제목 : {title}({status})</div>
+                            </div>
+                            <div className="right-article-header">
+                                <div>{printDate(date)}</div>
+                            </div>
+                        </div>
+                        <div className="article-body">
+                            <div className="article-author">
+                                작성자 : {author}
+                            </div>
+                            <div className="article-content-area">
+                                {content}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="bottom">
+                    Footer
+                </div>
             </div>
         );
     }
