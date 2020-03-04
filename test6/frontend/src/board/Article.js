@@ -72,17 +72,9 @@ class Article extends Component {
                 </div>
                 <div className="article">
                     <div className="article-container">
-                        <div className="article-back-button-area">
-                            <Button
-                                className="go-board-button"
-                                onClick={goBoard}
-                                >
-                                ≡ 목록
-                            </Button>
-                        </div>
                         <div className="article-header">
                             <div className="left-article-header">
-                                <div>제목 : {title}({status})</div>
+                                <div>제목 : {title} ({status})</div>
                             </div>
                             <div className="right-article-header">
                                 <div>{printDate(date)}</div>
@@ -95,6 +87,14 @@ class Article extends Component {
                             <div className="article-content-area">
                                 {content}
                             </div>
+                        </div>
+                        <div className="article-back-button-area">
+                            <Button
+                                className="go-board-button"
+                                onClick={goBoard}
+                                >
+                                ≡ 목록
+                            </Button>
                         </div>
                     </div>
                 </div>
