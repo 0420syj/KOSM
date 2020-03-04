@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import { deleteUser } from '../util/APIUtils';
+import { Button } from 'reactstrap';
+
+import './DeleteUser.scss'
 
 const DeleteUser = () => {
 
@@ -30,20 +33,22 @@ const DeleteUser = () => {
 
     
     return ( 
-        <div
-            style={{color:'white', fontSize:'50px'}}
-            >
-            회원탈퇴 하시겠습니까?<br/>비밀번호를 입력주세요.
-            <form onSubmit={onSubmit}>
-                <input
-                    name="password"
-                    onChange={onChange}
-                    type="password"
-                    />
-                <button>
-                    탈퇴
-                </button>
-            </form>
+        <div className="delete-user-container">
+            <div className="delete-user-title">회원탈퇴 하시겠습니까?</div>
+            <div className="delete-user-content">비밀번호를 입력해주세요</div>
+            <div className="delete-user-form">
+                <form onSubmit={onSubmit}>
+                    <input
+                        name="password"
+                        onChange={onChange}
+                        type="password"
+                        className="input-delete-user-password"
+                        />
+                    <Button className="delete-user-button">
+                        확인
+                    </Button>
+                </form>
+            </div>
         </div>
     )
 }
