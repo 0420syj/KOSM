@@ -31,6 +31,7 @@ import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
 import com.kosm.test6.model.TempMember;
 import com.kosm.test6.payload.ApiResponse;
+import com.kosm.test6.payload.ChangePasswordRequest;
 import com.kosm.test6.payload.HashRequest;
 import com.kosm.test6.payload.JwtAuthenticationResponse;
 import com.kosm.test6.payload.LoginRequest;
@@ -217,5 +218,28 @@ public class AuthController {
                 userRepository.saveAndFlush(member);
 
                 return new ResponseEntity<>(new ApiResponse(true, "Username Changed successfully") ,HttpStatus.OK);
+       }
+
+       @PutMapping("/changePassword")
+       public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request){
+        try{
+                Authentication authentication = authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(
+                                request.getEmail(),
+                                request.getBeforePassword()
+                        )
+                );
+
+                Member member = userRepository.findByEmail(request.getEmail());
+
+                member.setPassword(passwordEncoder.encode(request.getNewPassword()));
+                userRepository.saveAndFlush(member);
+
+                return new ResponseEntity<>(new ApiResponse(true, "Password Changed successfully") ,HttpStatus.OK);
+        } catch (Exception e)
+        {
+                return new ResponseEntity<>(new ApiResponse(false, "Password not correct"),
+                        HttpStatus.BAD_REQUEST);
+        }
        }
 }

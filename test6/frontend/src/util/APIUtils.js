@@ -253,3 +253,11 @@ export function changeName(changeRequest) {
         body: JSON.stringify(changeRequest)
     });
 }
+
+export function changePassword(changeRequest) {
+    return request({
+        url: API_BASE_URL + "/api/auth/changePassword",
+        method: "PUT",
+        body: JSON.stringify(changeRequest)
+    });
+}
