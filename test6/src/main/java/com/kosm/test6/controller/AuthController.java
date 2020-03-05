@@ -210,6 +210,9 @@ public class AuthController {
         }
        }
 
+
+
+
        @PutMapping("/changeName")
        public  ResponseEntity<?> changeName(@RequestBody NameChangeRequest request){
                 Member member = userRepository.findByEmail(request.getEmail());
@@ -219,6 +222,7 @@ public class AuthController {
 
                 return new ResponseEntity<>(new ApiResponse(true, "Username Changed successfully") ,HttpStatus.OK);
        }
+
 
        @PutMapping("/changePassword")
        public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request){

@@ -25,6 +25,7 @@ const MyData = () => {
         changeName(userInfo)
         .then(() => {
             alert("변경 완료")
+            console.log(userInfo.username);
             localStorage.setItem('username', userInfo.username); // localStorage 값 수정
             window.location.href = '/';
             }).catch((error) => {
@@ -60,6 +61,8 @@ const MyData = () => {
                 </div>
                 <input 
                     className='input'
+                    onChange={onChange}
+                    name="username"
                     style={{width: '100%'}}/>
             </div>            
             <div className='buttonContainer'>
