@@ -1,21 +1,50 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {ButtonToggle, Button} from 'reactstrap';
 import './MyData.scss';
+import {Button} from 'reactstrap';
+import { changeName } from '../util/APIUtils';
 const MyData = () => {
-    const [changePassword, setPassword] = useState(false);
-    console.log(sessionStorage.getItem('email'));
+    const [userInfo, setUserInfo] = useState({
+        email:localStorage.getItem('email'),
+        username:'',
+    })
+
+    // console.log('id : ' + localStorage.getItem('userId'))
+
+    const onChange= (e) => {
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]:e.target.value
+        });
+        console.log(userInfo)
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // alert('email : ' + userInfo.email + '\nusername : ' + userInfo.username);
+        changeName(userInfo)
+        .then(() => {
+            alert("변경 완료")
+            localStorage.setItem('username', userInfo.username); // localStorage 값 수정
+            window.location.href = '/';
+            }).catch((error) => {
+                alert("변경 실패")
+                console.log(error)
+            });
+        };
     return ( 
         <div className='dataContainer'>
             <div className='dataTitle'>Join KOSM</div>
             <div className='dataTitle2'>Personal setting</div>
+            <form onSubmit={onSubmit}>
             <div className='sub' style={{marginTop: '28px'}}>
                 <div className='subTitle'>이메일</div>
                 <input 
-                    readOnly 
                     type='text' 
                     style={{width: '100%'}}
                     className='input'
+                    onChange={onChange}
+                    name='username'
                     style={{background: '#414141', fontSize: '25px'}}
                     placeholder={`${sessionStorage.getItem('email')}`}/>
             </div>
@@ -34,9 +63,9 @@ const MyData = () => {
                     style={{width: '100%'}}/>
             </div>            
             <div className='buttonContainer'>
-                <ButtonToggle className='button'>
+                <Button className='button'>
                     정보변경
-                </ButtonToggle>
+                </Button>
             </div>
             <div className='bottomText'>
                 <div className='text1'>KOSM을 더 이상 이용하지 않는다면?</div>
@@ -44,6 +73,7 @@ const MyData = () => {
                     <div className='text2'> &nbsp; &nbsp;>KOSM탈퇴 바로가기</div>
                 </Link>
             </div>
+            </form>
         </div>
     )
 }

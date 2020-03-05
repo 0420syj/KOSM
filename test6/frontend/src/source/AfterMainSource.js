@@ -80,29 +80,27 @@ const AfterMainSource = (props) => {
 
 
     const onSubmit = (e) => {
-        var url="https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
+        var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
         const signupRequest = {
             url:url
         }
         e.preventDefault();
+        alert(props.name);
         Crawl(signupRequest)
         .then(res => {
            var namelist;
-           var list = res.split("?"); //이때 0,2,4,6...짝수는 타이틀이고 1,3,5,7...홀수는 디스크립션임
-           alert(props.name);  
-          //  alert(str); 
-            setMessage(list);       
-            namelist= list.map(  //이거는 그 dom에출력할려고 흐음..여튼저장한거임ㅇㅋ?
-                (name) => ( <hi>{name}</hi>
-                     ) 
-            ); 
-            setListName(namelist)//이것도 setlist한거고 맨마지막에쓰임
+           var list = res[0].title; //이때 0,2,4,6...짝수는 타이틀이고 1,3,5,7...홀수는 디스크립션임
+           alert(res[0].title);//<--이것처럼 접근하면됨 ㅇㅋ?
+           //ㅇㅋㅇㅋ 감사감사 ㅇㅋ수고해ㅠㅠ 미안합니다ㅠㅠㄴㄴㄴㄴ
+          //첫번째 cve뜨게함 alert
+          //아까는 왜 안됐던거지;; 없는것도있음 목록에서 아마그래서 그런듯...
+          //없는거는 에러 뜨는건강ㅇㅇㅇㅇㅇ다행이다 한번해봐
+          // title은 목록 date날짜 summary 내용 score점수임. 
             },(error) => {
                 alert("fail");
                 console.log(error);
             });
     }
-
     return ( 
          <div className="source-container">
             <div style={{display: 'flex'}}>
