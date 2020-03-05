@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,9 @@ import com.kosm.test6.payload.ApiResponse;
 import com.kosm.test6.payload.HashRequest;
 import com.kosm.test6.payload.JwtAuthenticationResponse;
 import com.kosm.test6.payload.LoginRequest;
+import com.kosm.test6.payload.NameChangeRequest;
 import com.kosm.test6.payload.SignUpRequest;
+import com.kosm.test6.payload.UserSummary;
 import com.kosm.test6.repository.RoleRepository;
 import com.kosm.test6.repository.TempRepository;
 import com.kosm.test6.repository.UserRepository;
@@ -204,5 +207,15 @@ public class AuthController {
                 return new ResponseEntity<>(new ApiResponse(false, "Password not correct"),
                         HttpStatus.BAD_REQUEST);
         }
+       }
+
+       @PutMapping("/changeName")
+       public  ResponseEntity<?> changeName(@RequestBody NameChangeRequest request){
+                Member member = userRepository.findByEmail(request.getEmail());
+                member.setUsername(request.getUsername());
+
+                userRepository.saveAndFlush(member);
+
+                return new ResponseEntity<>(new ApiResponse(true, "Username Changed successfully") ,HttpStatus.OK);
        }
 }
