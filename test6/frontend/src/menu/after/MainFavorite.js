@@ -50,7 +50,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
                     favItems.length != 0 ?
                     favItems.map((items) => {
                         index++;
-                        if(index > (page - 1) * 5 && index <= 5 * page) {
+                        if(index >= (page - 1) * 5 && index < 5 * page) {
                         return (
                             <div key={items.id} style={{color: '#FFFFFF'}}>
                                 <FavoriteList 
@@ -85,7 +85,7 @@ const ListButton = (props) => {
     const [list, setList] = useState([]);
     useEffect(() => {
         const arr = [];
-        for(let i = 1; i <= props.len; i++)
+        for(let i = 1; i <= props.len + 1; i++)
             arr.push(i);
         setList(arr);
     }, [])

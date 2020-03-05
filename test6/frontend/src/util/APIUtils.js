@@ -60,8 +60,8 @@ export function login(loginRequest) {
     });
 }
 export function Crawl(CrawlRequest) {
-    return String_Request({        
-        url: API_BASE_URL + "/api/webcrawler/main",
+    return request({        
+        url: API_BASE_URL + "/api/auth/webcrawler",
         method: 'POST',
         body:JSON.stringify(CrawlRequest)
     });
