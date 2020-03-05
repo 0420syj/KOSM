@@ -1,0 +1,53 @@
+.favListContainers{
+    height: 67px;
+
+    .favList{
+        display: flex;
+        margin-left: 120.8px;
+        .star{
+            margin-right: 21.1px;
+        }
+        
+        .name{
+            width: 550px;
+            height: 38px;
+            font-family: NotoSans;
+            font-size: 28px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 0.89;
+            letter-spacing: normal;
+            text-align: left;
+            color: #eaeaea;
+        }
+        
+        .patchDate{
+            margin-left: 130px;
+            height: 34px;
+            font-family: NotoSans;
+            font-size: 25px;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1;
+            letter-spacing: normal;
+            text-align: left;
+            color: #eaeaea;
+        }
+
+        .vulDate{
+            margin-left: 331px;
+            height: 34px;
+            font-family: NotoSans;
+            font-size: 25px;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1;
+            letter-spacing: normal;
+            text-align: left;
+            color: #eaeaea;
+        }
+    }
+}

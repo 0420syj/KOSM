@@ -1,0 +1,48 @@
+.favoriteContainer{
+    .favTitle{
+        margin-top: 107px;
+        margin-left: 156px;
+        height: 69px;
+        font-family: NotoSans;
+        font-size: 50px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+        margin-bottom: 36px;
+    }
+
+    .favTitle2{
+        margin-left: 840px;   
+        margin-bottom: 65px;
+        display: flex;     
+
+        .favTitle3{
+            height: 32px;
+            font-family: NotoSans;
+            font-size: 23px;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.09;
+            letter-spacing: normal;
+            text-align: center;
+            color: #bfbfbf;
+        }
+    }
+    .favContents{
+        margin-bottom: 62px;
+    }
+
+    .bottomButton{
+        margin-top: 62.5px;
+        justify-content: center;
+        display: flex;
+        .bot{
+
+        }
+    }
+}

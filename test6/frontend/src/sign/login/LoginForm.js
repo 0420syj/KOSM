@@ -18,23 +18,28 @@ const LoginForm = (props) => {
     }
 
     const onSubmit = (e) => {
+        console.log('submit');
         e.preventDefault();
         login(userinfo)
         .then(res => {
-            localStorage.setItem('accessToken', res.accessToken);
+            console.log(res);
+            sessionStorage.setItem('accessToken', res.accessToken);
             getCurrentUser()
             .then(res => {
-                localStorage.setItem('isLogin', 'true');
-                localStorage.setItem('email', res.email);
-                localStorage.setItem('username', res.username);
-                localStorage.setItem('userId', res.id);
-                console.log(localStorage.getItem('userId'));
+                console.log('inin');
+                console.log(res);
+                sessionStorage.setItem('isLogin', 'true');
+                sessionStorage.setItem('email', res.email);
+                sessionStorage.setItem('username', res.username);
+                sessionStorage.setItem('userId', res.id);
                 history.goBack();
                 return ;
             }).catch(e => {
+                console.log(e);
                 alert('아이디/비밀번호가 다릅니다.');
             })
         }).catch(e => {
+            console.log(e);
             alert('아이디/비밀번호가 다릅니다.');
         })
     }

@@ -1,16 +1,17 @@
 import React from 'react';
 import SourceList from '../menu/SourceList';
 import BeforeMenu from '../menu/before/BeforeMenu';
-import MainSource from './MainSource';
+import AfterMainSource from './AfterMainSource';
 import AfterMenu from '../menu/after/AfterMenu';
 import './Source.scss';
-
 const Source = ({match}) => {
+    console.log('asds');
+    console.log(sessionStorage.getItem('isLogin'));
     return (
         <div className="container">
             <div className="top">
                 {
-                    localStorage.getItem('isLogin') === 'false' ? 
+                    sessionStorage.getItem('isLogin') === 'false' ? 
                     <BeforeMenu/> :
                     <AfterMenu/>
                 }
@@ -19,8 +20,8 @@ const Source = ({match}) => {
                 <SourceList />
             </div>
             <div className="source">
-                <MainSource name={match.params.item}/>
-            </div>
+                <AfterMainSource name={match.params.item}/>
+                </div>
             <div className="bottom">
                 Footer
             </div>

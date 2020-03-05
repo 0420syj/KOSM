@@ -15,6 +15,8 @@ import ScrollToTop from './ScrollToTop';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {
+    if(sessionStorage.getItem('isLogin') === null)
+      sessionStorage.setItem('isLogin', 'false');
     // localStorage.setItem('isLogin', 'false');
     // localStorage.setItem('userArray', JSON.stringify([]));
     // console.log('start');
