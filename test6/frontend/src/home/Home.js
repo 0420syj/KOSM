@@ -19,7 +19,7 @@ const Home = () => {
     return ( 
         <div>
             {
-                localStorage.getItem('isLogin') === 'true'?
+                sessionStorage.getItem('isLogin') === 'true'?
                 <AfterLogin user={user} setUser = {setUser}/> :
                 <BeforeLogin user={user} setUser = {setUser}/>
             }

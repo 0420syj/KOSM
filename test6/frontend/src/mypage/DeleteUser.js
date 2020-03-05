@@ -7,7 +7,7 @@ import './DeleteUser.scss'
 const DeleteUser = () => {
 
     const [userInfo, setUserInfo] = useState({
-        email:localStorage.getItem('email'),
+        email:sessionStorage.getItem('email'),
         password:'',
     })
 

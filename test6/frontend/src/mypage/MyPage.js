@@ -8,7 +8,7 @@ const MyPage = () => {
         <div>
             <div>
                 {
-                    localStorage.getItem('isLogin') === 'false' ?
+                    sessionStorage.getItem('isLogin') === 'false' ?
                     <BeforeMenu/> :
                     <AfterMenu/>
                 }

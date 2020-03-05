@@ -5,11 +5,11 @@ import './AfterMenu.scss';
 const AfterMenu = (props) => {
     const [isDropdown, setIsDropdown] = useState(false);
     const logoutClick = () => {
-        localStorage.setItem('isLogin', 'false');
-        localStorage.setItem('email', '');
-        localStorage.setItem('username', '');
-        localStorage.setItem('password', '');
-        localStorage.setItem('phonenumber', '');
+        sessionStorage.setItem('isLogin', 'false');
+        sessionStorage.setItem('email', '');
+        sessionStorage.setItem('username', '');
+        sessionStorage.setItem('password', '');
+        sessionStorage.setItem('phonenumber', '');
     }
     
     const toggle = () => {setIsDropdown(!isDropdown);}
@@ -42,7 +42,7 @@ const AfterMenu = (props) => {
                         <div>
                             <Dropdown isOpen = {isDropdown} toggle={toggle}>
                                 <DropdownToggle style={{background: '#414141', border: 'none'}}>
-                                    {localStorage.getItem('username')}
+                                    {sessionStorage.getItem('username')}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                     <DropdownItem>

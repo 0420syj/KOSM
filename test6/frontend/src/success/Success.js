@@ -3,10 +3,8 @@ import axios from 'axios';
 import BeforeMenu from '../menu/before/BeforeMenu';
 import {signok} from '../util/APIUtils';
 const Success = ({match}) => {
-    console.log('asd');
     const signupRequest = {
         hash: match.params.id
-
     }
 
     signok(signupRequest)

@@ -1,37 +1,34 @@
 import React, {useState, useEffect} from 'react';
 import {getFavProject} from '../../util/APIUtils';
+import MainFavorite from './MainFavorite';
 const Favorite = () => {
     const [favItems, setFavItems] = useState([]);
+    const [ready, setReady] = useState(false);
     useEffect(() => {
-        getFavProject(localStorage.getItem('userId'))
+        getFavProject(sessionStorage.getItem('userId'))
         .then((res) => {
             setFavItems(res);
+            setTimeout(() => {
+                setReady(true);
+            }, 500);
         })
         .catch(e => {
             console.log(e);
         })
     }, [favItems.length]);
 
-    return ( 
+    return (
         // 이쪽도 SCSS 추가해야 함
-        <div
-            // style={{width:'100%'}}
-            >
+        // 오픈소스 클릭했다가 메인 화면으로 들어왔을 때 화면 겹치는 문제 해결을 위해 MainFavorite.js파일 생성함
+        <div>
             {
-                favItems.length != 0 ?
-                favItems.map((items) => {
-                    return <div key={items.id} style={{color: '#FFFFFF'}}>{items.name}</div>
-                }) : 
-                <div
-                    // 임시 스타일 
-                    style={{color:'white',
-                    fontSize:'50px'}}
-                    >
-                    AfterLogin 메인페이지
-                </div>
+                ready === false ?
+                <div style={{color: '#FFFFFF', fontSize: '50px'}}>Loading....</div> :
+                <MainFavorite favItems={favItems} setFavItems={setFavItems}/>
             }
         </div>
     )
 }
+
 //최신 업데이트 날짜, 최신 취약점 날짜, 
 export default Favorite;
