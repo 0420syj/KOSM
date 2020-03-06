@@ -5,7 +5,7 @@ import {Button} from 'reactstrap';
 import { changeName } from '../util/APIUtils';
 const MyData = () => {
     const [userInfo, setUserInfo] = useState({
-        email:localStorage.getItem('email'),
+        email:sessionStorage.getItem('email'),
         username:'',
     })
 
@@ -26,7 +26,7 @@ const MyData = () => {
         .then(() => {
             alert("변경 완료")
             console.log(userInfo.username);
-            localStorage.setItem('username', userInfo.username); // localStorage 값 수정
+            sessionStorage.setItem('username', userInfo.username); // localStorage 값 수정
             window.location.href = '/';
             }).catch((error) => {
                 alert("변경 실패")
