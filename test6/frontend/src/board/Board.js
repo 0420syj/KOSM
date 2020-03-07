@@ -32,7 +32,7 @@ const Board = (props) => {
     const { SearchBar } = Search;
 
     const renderButton = () => {
-        if (localStorage.getItem('isLogin') !== 'false') {
+        if (sessionStorage.getItem('isLogin') !== 'false') {
             return (<div 
                 align="right"
                 >
@@ -44,7 +44,7 @@ const Board = (props) => {
     };
 
     const renderTopMenu = () => {
-        if (localStorage.getItem('isLogin') !== 'false')
+        if (sessionStorage.getItem('isLogin') !== 'false')
             return <AfterMenu />
         else
             return <BeforeMenu />
