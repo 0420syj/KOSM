@@ -3,6 +3,7 @@ import FavoriteList from './FavoriteList';
 import './MainFavorite.scss';
 import {deleteFavProject} from '../../util/APIUtils';
 import { WIDTH, HEIGHT } from '../../constants';
+import {getFavProject} from '../../util/APIUtils';
 
 const MainFavorite = ({favItems, setFavItems}) => {
     const [idx, setIdx] = useState(1);
@@ -23,8 +24,16 @@ const MainFavorite = ({favItems, setFavItems}) => {
         })
         //객체로 전달할 수 있는 delete함수 하나 더 만들고 구현하기
         //temp에 내가 삭제해야 할 값들이 들어있음.
-        console.log(temp);
-        deleteFavProject(temp);
+        deleteFavProject(temp)
+        .then(() => {
+            getFavProject(sessionStorage.getItem('userId'))
+            .then(res => {
+                setFavItems(res);
+            })
+
+        }).catch(e => {
+            console.log(e);
+        })
     }
 
     useEffect(() => {
