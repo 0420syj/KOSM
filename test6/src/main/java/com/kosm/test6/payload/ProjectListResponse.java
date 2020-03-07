@@ -14,4 +14,9 @@ public class ProjectListResponse {
         this.id = entity.getId();
         this.name = entity.getName();
     }
+
+    public ProjectListResponse(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

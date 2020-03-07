@@ -79,18 +79,28 @@ public class UserController {
     }
 
     @DeleteMapping("/user/deleteFavProject")
-    public Long deleteFav(@RequestBody ProjectResponse request) {
-        Member member = userRepository.getOne(request.getUser_id());
-        Project project = projectRepository.getOne(request.getProject_id());
+    public Long deleteFav(@RequestBody List<ProjectListResponse> request) {
+        Member member = null;
+        for(ProjectListResponse res : request){
+            System.out.println(res.getId());
+            
+            if(member == null){
+                member = userRepository.findByEmail(res.getName());
+                continue;
+            }
 
-        Set<Member> members = project.getMembers();
-        Set<Project> projects = member.getProjects();
-        members.remove(member);
-        projects.remove(project);
+            System.out.println("success");
+            Project project = projectRepository.getOne(res.getId());
 
-        projectRepository.saveAndFlush(project);
-        userRepository.saveAndFlush(member);
+            Set<Member> members = project.getMembers();
+            Set<Project> projects = member.getProjects();
+            members.remove(member);
+            projects.remove(project);
 
-        return request.getProject_id();
+            projectRepository.saveAndFlush(project);
+            userRepository.saveAndFlush(member);
+
+        }
+       return (long) 1;
     }
 }

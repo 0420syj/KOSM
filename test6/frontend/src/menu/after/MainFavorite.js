@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import FavoriteList from './FavoriteList';
 import './MainFavorite.scss';
+import {deleteFavProject} from '../../util/APIUtils';
 import { WIDTH, HEIGHT } from '../../constants';
 
 const MainFavorite = ({favItems, setFavItems}) => {
@@ -10,6 +11,10 @@ const MainFavorite = ({favItems, setFavItems}) => {
     let index = -1;
     const buttonClick = () => {
         const temp = [];
+        temp.push({
+            id: 0,
+            name: sessionStorage.getItem('email')
+        });
         let i = 0;
         favItem.map((item) => {
             if(item === false)
@@ -18,6 +23,8 @@ const MainFavorite = ({favItems, setFavItems}) => {
         })
         //객체로 전달할 수 있는 delete함수 하나 더 만들고 구현하기
         //temp에 내가 삭제해야 할 값들이 들어있음.
+        console.log(temp);
+        deleteFavProject(temp);
     }
 
     useEffect(() => {
