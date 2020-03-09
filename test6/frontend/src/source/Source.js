@@ -1,7 +1,7 @@
 import React from 'react';
 import SourceList from '../menu/SourceList';
 import BeforeMenu from '../menu/before/BeforeMenu';
-import AfterMainSource from './AfterMainSource';
+import MainSource from './MainSource';
 import AfterMenu from '../menu/after/AfterMenu';
 import './Source.scss';
 const Source = ({match}) => {
@@ -20,7 +20,7 @@ const Source = ({match}) => {
                 <SourceList />
             </div>
             <div className="source">
-                <AfterMainSource name={match.params.item}/>
+                <MainSource name={match.params.item}/>
                 </div>
             <div className="bottom">
                 Footer

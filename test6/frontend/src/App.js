@@ -12,6 +12,7 @@ import Change from './sign/login/change/Change';
 import Login from './sign/login/Login';
 import DeleteUser from './mypage/DeleteUser';
 import ScrollToTop from './ScrollToTop';
+import DetailMain from './source/detail/DetailMain';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {
@@ -35,6 +36,7 @@ function App() {
             <Route exact path='/write' component={Write}/>
             <Route exact path='/article/:id' component={Article}/>
             <Route exact path='/source/:item' component={Source}/>
+            <Route exact path='/source/:item/:source' component={DetailMain}/>
             <Route exact path='/mypage' component={MyPage}/>
             <Route exact path='/forgot' component={Forgot}/>
             <Route exact path='/changepwd' component={Change}/>

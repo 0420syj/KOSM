@@ -4,7 +4,6 @@ import './MainFavorite.scss';
 import {deleteFavProject} from '../../util/APIUtils';
 import { WIDTH, HEIGHT } from '../../constants';
 import {getFavProject} from '../../util/APIUtils';
-
 const MainFavorite = ({favItems, setFavItems}) => {
     const [idx, setIdx] = useState(1);
     const [favItem, setFavItem] = useState([]);
