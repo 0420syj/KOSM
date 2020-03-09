@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-//import {Button} from 'reactstrap';
+import {Button} from 'reactstrap';
 import { changePassword } from '../../../util/APIUtils';
 import './ChangePassword.scss';
 const ChangePassword = () => {
@@ -17,7 +17,7 @@ const ChangePassword = () => {
             ...userInfo,
             [e.target.name]:e.target.value
         });
-        console.log(userInfo)
+        //console.log(userInfo)
     }
 
     const validatePassWord = password =>
@@ -28,11 +28,25 @@ const ChangePassword = () => {
         
         if(password.match(passWordRegExp))
         {
-            setUserInfo({
-                ...userInfo,
-                validPassWord: true,
-                password
-            });
+            if(password !== userInfo.confirmpassword)
+            {
+                setUserInfo({
+                    ...userInfo,
+                    validPassWord: true,
+                    validConfirmPassWord: false,
+                    password
+                });
+            }
+
+            else
+            {
+                setUserInfo({
+                    ...userInfo,
+                    validPassWord: true,
+                    validConfirmPassWord: true,
+                    password
+                });
+            }
         }
 
         else
@@ -40,11 +54,12 @@ const ChangePassword = () => {
             setUserInfo({
                 ...userInfo,
                 validPassWord: false,
+                validConfirmPassWord: false,
                 password
             });
         }
 
-        console.log(userInfo)
+        // console.log(userInfo)
     }
 
     const validateConfirmPassWord = confirmpassword => {
@@ -69,7 +84,16 @@ const ChangePassword = () => {
             }
         }
 
-        console.log(userInfo)
+        else
+        {
+            setUserInfo({
+                ...userInfo,
+                validConfirmPassWord: false,
+                confirmpassword
+            });
+        }
+
+        // console.log(userInfo)
     }
 
     const inputClassNameHelper = boolean => { 
@@ -112,10 +136,10 @@ const ChangePassword = () => {
             beforePassword : userInfo.prevpassword,
             newPassword : userInfo.password
         }
-        alert('email : ' + request.email + '\nbeforPassword : ' + request.beforePassword + '\nnewPassword : ' + request.newPassword)
+        // alert('email : ' + request.email + '\nbeforPassword : ' + request.beforePassword + '\nnewPassword : ' + request.newPassword)
         changePassword(request)       
         .then(() => {
-            alert("변경 성공");
+            alert("비밀번호가 변경되었습니다.");
             window.location.href = '/';
         },(error) => {
             console.log(error);
@@ -131,7 +155,7 @@ const ChangePassword = () => {
             </div>
             <div className='mainContents'>
                 <form onSubmit={onSubmit}>
-                <div className='contents'>
+                <div className='chagepwd-contents'>
                     <div className='subContents'>
                         <div className='subTitles'>기존 비밀번호</div>
                         <div className='inputContents'>
@@ -163,11 +187,11 @@ const ChangePassword = () => {
                         </div>
                     </div>
                     {renderSubmitBtn() ? 
-                        <button 
+                        <Button 
                             className='changeButton'>
                             비밀번호 변경
-                        </button>
-                        : <div className='changeButton'>네이노오오옴!</div>}
+                        </Button>
+                        : <Button className='changeButton-disable' disabled="disabled">비밀번호 변경</Button>}
                 </div>
                 </form>
             </div>
