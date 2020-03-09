@@ -1,0 +1,45 @@
+.contents{
+    margin-left: 130px;
+    height: 100px;
+    display:flex;
+    .contentTitle{
+        height: 100px;
+        width: 200px;
+        font-family: NotoSans;
+        font-size: 24px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        color: #eaeaea;
+    }
+
+    .contentSummary{
+        width: 70%;
+        height: 33px;
+        font-family: NotoSans;
+        font-size: 15px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.04;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
+    
+    .contentScore{
+        margin-left: 30px;
+        width: 100px;
+        height: 33px;
+        font-family: NotoSans;
+        font-size: 15px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.04;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
+}
