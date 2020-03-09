@@ -9,14 +9,12 @@ const MyData = () => {
         username:'',
     })
 
-    // console.log('id : ' + localStorage.getItem('userId'))
-
     const onChange= (e) => {
         setUserInfo({
             ...userInfo,
             [e.target.name]:e.target.value
         });
-        console.log(userInfo)
+        //console.log(userInfo)
     }
 
     const onSubmit = (e) => {
@@ -24,9 +22,9 @@ const MyData = () => {
         // alert('email : ' + userInfo.email + '\nusername : ' + userInfo.username);
         changeName(userInfo)
         .then(() => {
-            alert("변경 완료")
-            console.log(userInfo.username);
-            sessionStorage.setItem('username', userInfo.username); // localStorage 값 수정
+            alert("닉네임이 변경되었습니다 : " + userInfo.username)
+            // console.log(userInfo.username);
+            sessionStorage.setItem('username', userInfo.username); // sessionStorage 값 수정
             window.location.href = '/';
             }).catch((error) => {
                 alert("변경 실패")

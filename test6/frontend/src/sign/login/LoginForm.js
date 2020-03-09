@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './LoginForm.scss';
 import { login, getCurrentUser } from '../../util/APIUtils';
 import {Link, useHistory} from 'react-router-dom';
+import {Button} from 'reactstrap';
+
 const LoginForm = (props) => {
     const [userinfo, setUserInfo] = useState({
         email:'',     //username이랑 email나누기
@@ -65,9 +67,9 @@ const LoginForm = (props) => {
                         <input name='password' onChange={onChange} type='password' className='loginSubInput'/>
                     </div>
                     <div style={{marginTop: '64px'}} className='loginButtonContainer'>
-                        <button className='loginButton' onSubmit={onSubmit}>
+                        <Button className='loginButton' onSubmit={onSubmit}>
                             Sign in
-                        </button>
+                        </Button>
                     </div>
                     <div className='loginSignUpContainer'>
                         <div>

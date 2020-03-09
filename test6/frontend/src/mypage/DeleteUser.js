@@ -23,10 +23,10 @@ const DeleteUser = () => {
         // alert('email : ' + userInfo.email + '\npassword : ' + userInfo.password);
         deleteUser(userInfo)
         .then(() => {
-            alert("삭제 성공")
+            alert("정상적으로 탈퇴처리 되었습니다.")
             window.location.href = '/';
             }).catch((error) => {
-                alert("삭제 실패")
+                alert("삭제 실패!" + "\nCheck console log, or your server status.")
                 console.log(error)
             });
         };

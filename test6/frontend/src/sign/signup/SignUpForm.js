@@ -4,7 +4,7 @@ import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 import { Mail,checkEmailAvailability,signup} from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
-import {ButtonToggle} from 'reactstrap';
+import {ButtonToggle, Button} from 'reactstrap';
 import Home from '../../home/Home';
 import { MdGolfCourse } from 'react-icons/md';
 
@@ -27,6 +27,8 @@ const SignUp = ({match}) => {
 
     const validateNickName = nickname => {
         // 글자수 : 3~8
+
+        // 글자수 제한 조건 true 일때
         if(nickname.length >= 3 && nickname.length <= 8) 
         {
             setUserInfo({
@@ -34,8 +36,11 @@ const SignUp = ({match}) => {
                 validNickName: true,
                 nickname
             });
+
+            // 근우님 여기에요!
         }
 
+        // 글자수 제한 조건 false 일때
         else
         {
             setUserInfo({
@@ -50,6 +55,7 @@ const SignUp = ({match}) => {
         // 이메일 형식 유효성 검사
         const emailRegExp = /^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$/;
         
+        // 이메일 형식 조건 true 일 때
         if(email.match(emailRegExp))
         {
             setUserInfo({
@@ -57,8 +63,11 @@ const SignUp = ({match}) => {
                 validEmail: true,
                 email
             });
+
+            // 근우님 여기에요!
         }
 
+        // 이메일 형식 조건 false 일때
         else
         {
             setUserInfo({
@@ -74,14 +83,28 @@ const SignUp = ({match}) => {
         // 영문숫자 조합 6~20자
         // 참고 : https://www.w3resource.com/javascript/form/password-validation.php
         const passWordRegExp = /^.*(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z]).*$/;
-        
+       
         if(password.match(passWordRegExp))
         {
-            setUserInfo({
-                ...userInfo,
-                validPassWord: true,
-                password
-            });
+            if(password !== userInfo.confirmpassword)
+            {
+                setUserInfo({
+                    ...userInfo,
+                    validPassWord: true,
+                    validConfirmPassWord: false,
+                    password
+                });
+            }
+
+            else
+            {
+                setUserInfo({
+                    ...userInfo,
+                    validPassWord: true,
+                    validConfirmPassWord: true,
+                    password
+                });
+            }
         }
 
         else
@@ -89,6 +112,7 @@ const SignUp = ({match}) => {
             setUserInfo({
                 ...userInfo,
                 validPassWord: false,
+                validConfirmPassWord: false,
                 password
             });
         }
@@ -114,6 +138,15 @@ const SignUp = ({match}) => {
                     confirmpassword
                 });
             }
+        }
+
+        else
+        {
+            setUserInfo({
+                ...userInfo,
+                validConfirmPassWord: false,
+                confirmpassword
+            })
         }
     }
 
@@ -209,7 +242,7 @@ const SignUp = ({match}) => {
                     <div className='signUpFormContainer'>
                         <div className='signUpSubTitle'>닉네임</div>
                         <input
-                            onChange={e => {validateNickName(e.target.value)}}
+                            onBlur={e => {validateNickName(e.target.value)}}
                             type='text'
                             name='nickname'
                             id='nickname'
@@ -221,14 +254,14 @@ const SignUp = ({match}) => {
                             <div className='signUpSubTitle'>이메일</div>
                             <div style={{display:'flex'}}>
                                 <input
-                                    onChange={e => {validateEmail(e.target.value)}}
+                                    onBlur={e => {validateEmail(e.target.value)}}
                                     type='text'
                                     name='email'
                                     id='email'
                                     className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)} input-email` }
                                     placeholder='example@example.com'
                                     aria-describedby="emailHelp"/>
-                                <ButtonToggle 
+                                {/* <ButtonToggle 
                                     color='info'
                                     style={{ 
                                         marginLeft: '2%',
@@ -237,7 +270,7 @@ const SignUp = ({match}) => {
                                         display:'inline-box'}}
                                     onClick={emailClick}>
                                         확인
-                                </ButtonToggle>
+                                </ButtonToggle> */}
                             </div>
                         </div>
                     </div>
@@ -265,13 +298,13 @@ const SignUp = ({match}) => {
                         <div style={{marginTop: '70px', display:'flex', justifyContent:'center'}}>
                         {
                             renderSubmitBtn() ?
-                            <button
+                            <Button
                                 type='submit'
                                 onClick={handleSubmit}
                                 className='successButton'>
-                                Sign up
-                            </button>:
-                            <DefaultButton className='defaultButton'>회원가입</DefaultButton>
+                                회원가입
+                            </Button>:
+                            <Button className='failButton' disabled="disabled">회원가입</Button>
                         }
                         </div>
                     </div>

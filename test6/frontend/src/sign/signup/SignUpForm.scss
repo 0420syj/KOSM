@@ -170,3 +170,22 @@
         background: #287571;
     }  
 }
+
+.failButton{
+    width: 606px;
+    height: 75px;
+    border-radius: 10px;
+    background: #3aada8;
+    font-family: NotoSans;
+    font-size: 30px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    cursor: default;
+    color: #eaeaea;
+    // &:hover{
+    //     background: #287571;
+    // }  
+}
