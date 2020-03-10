@@ -3,7 +3,24 @@ import './DetailContents.scss';
 const DetailContents = ({location}) => {
     return ( 
         <div className='detailContents'>
-            {location}
+            <div className='detailTitle'>
+                {location}
+            </div>
+            <div className='detailDescription'>
+                Description
+            </div>
+            <hr className='hr'/>
+            <div>
+
+            </div>
+            <div className='detailVulnerability'>
+                Vulnerability type
+            </div>
+            <hr className='hr'/>
+            <div className='detailReference'>
+                Reference
+            </div>
+            <hr className='hr'/>
         </div>
     )
 }

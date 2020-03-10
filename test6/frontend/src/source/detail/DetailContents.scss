@@ -1,4 +1,65 @@
 .detailContents{
-    font-size: 50px;
-    color: #e4e4e4;
+    margin-left:138px;
+    .detailTitle{
+        font-size: 50px;
+        margin-top:54px;
+        color: #e4e4e4;
+        height: 68px;
+        font-family: NotoSans;
+        font-size: 50px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
+
+    .detailDescription{
+        margin-top:54px;
+        height: 38px;
+        font-family: NotoSans;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.89;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
+
+    .hr{
+        border: 1px solid #e4e4e4;
+        width: 1200px;
+        margin: 20.5px 0px 0px 0px;
+    }
+
+    .detailVulnerability{
+        margin-top: 171px;
+        height: 38px;
+        font-family: NotoSans;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.89;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
+
+    .detailReference{
+        margin-top: 134px;
+        height: 38px;
+        font-family: NotoSans;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.89;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
 }

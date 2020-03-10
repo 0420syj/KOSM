@@ -114,7 +114,10 @@ const MainSource = (props) => {
                                 date={data[0].date}/>:
                             <AfterMainSource
                                 isFavorite = {isFavorite}
-                                favoriteClick = {favoriteClick}/>
+                                favoriteClick = {favoriteClick}
+                                name={props.name}
+                                title={data[0].title}
+                                date={data[0].date}/>
                         }
                         <div className='vul'>
                             Vulnerability

@@ -1,13 +1,12 @@
 import React from 'react';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
-
-const AfterMainSource = ({isFavorite, favoriteClick}) => {
+import './AfterMainSource.scss';
+const AfterMainSource = ({isFavorite, favoriteClick, name, title, date}) => {
     return ( 
-        <div>
-                {
-                    sessionStorage.getItem('isLogin') === 'true' ?
-                    <div>
+            <div className='beforeMainSource'>
+                <div className='topStar'>
+                    <div className='star'>
                         {
                             isFavorite === true ?
                             <IconContext.Provider
@@ -16,12 +15,20 @@ const AfterMainSource = ({isFavorite, favoriteClick}) => {
                             </IconContext.Provider> :
                             <MdStarBorder size='30px' onClick = {favoriteClick}/>
                         }
-                    </div>:
-                    null
-                }
-                {/* <h2>{props.name}</h2>
-                {listname} */}
-
+                    </div>
+                    <div className='topName'>
+                        {name}
+                    </div>
+                </div>
+                <span className='topLicense'>
+                    {title}
+                </span>
+                <span className='topPage'>
+                    www.page.com
+                </span>
+                <span className='topDate'>
+                    {date}
+                </span>
         </div>
     )
 }
