@@ -137,7 +137,7 @@ export function getBoardCount() {
 
 export function checkUsernameAvailability(username) {
     return request({
-        url: API_BASE_URL + "/user/checkUsernameAvailability?username=" + username,
+        url: API_BASE_URL + "/api/user/checkUsernameAvailability?username=" + username,
         method: 'GET'
     });
 }
@@ -145,7 +145,7 @@ export function checkUsernameAvailability(username) {
 export function checkEmailAvailability(email) {
     return request({
         // http://localhost:5000
-        url: API_BASE_URL + "/user/checkEmailAvailability?email=" + email,
+        url: API_BASE_URL + "/api/user/checkEmailAvailability?email=" + email,
         method: 'GET'
     });
 }

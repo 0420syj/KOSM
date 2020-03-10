@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-import { Mail,checkEmailAvailability,signup} from '../../util/APIUtils';
+import { Mail,checkEmailAvailability,checkUsernameAvailability,signup} from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
 import {ButtonToggle, Button} from 'reactstrap';
 import Home from '../../home/Home';
@@ -31,13 +31,40 @@ const SignUp = ({match}) => {
         // 글자수 제한 조건 true 일때
         if(nickname.length >= 3 && nickname.length <= 8) 
         {
-            setUserInfo({
-                ...userInfo,
-                validNickName: true,
-                nickname
-            });
+           // setUserInfo({
+           //     ...userInfo,
+            //    validNickName: true,
+           //     nickname
+           // });
 
             // 근우님 여기에요!
+            checkUsernameAvailability(nickname)  
+            .then(res => {
+                if(res.available==true)
+                    {
+                        setUserInfo({
+                            ...userInfo,
+                            validNickName: true,
+                            nickname
+                        });
+                    }
+                else
+                    {
+                        setUserInfo({
+                            ...userInfo,
+                            validNickName: false,
+                            nickname
+                        });
+                        alert("이미 있는 닉네임입니다.");
+                    }
+               
+            },(error) => {
+                console.log(error);
+                //onsole.log(signupRequest.email);
+                alert("fail");
+            });
+        
+        
         }
 
         // 글자수 제한 조건 false 일때
@@ -64,7 +91,31 @@ const SignUp = ({match}) => {
                 email
             });
 
-            // 근우님 여기에요!
+            checkEmailAvailability(email)  
+            .then(res => {
+                if(res.available==true)
+                    {
+                        setUserInfo({
+                            ...userInfo,
+                            validEmail: true,
+                            email
+                        });
+                    }
+                else
+                    {
+                        setUserInfo({
+                            ...userInfo,
+                            validEmail: false,
+                            email
+                        });
+                        alert("이미 등록된 아이디입니다.");
+                    }
+               
+            },(error) => {
+                console.log(error);
+                //onsole.log(signupRequest.email);
+                alert("fail");
+            });
         }
 
         // 이메일 형식 조건 false 일때
