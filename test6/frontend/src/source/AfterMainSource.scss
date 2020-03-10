@@ -1,0 +1,67 @@
+.beforeMainSource{
+    margin-left: 100px;
+    margin-top: 59px;
+    margin-bottom: 72px;
+    .topStar{
+        display: flex;     
+        .star{
+            align-items: center;
+            vertical-align: center;
+        }   
+        .topName{
+            margin-left: 10px;
+            height: 68px;
+            font-family: NotoSans;
+            font-size: 50px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1;
+            letter-spacing: normal;
+            text-align: left;
+            color: #eaeaea;
+        }
+    }
+
+    .topLicense{
+        height: 28px;
+        font-family: NotoSans;
+        font-size: 20px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.5;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+        margin-left:18px;
+    }
+
+    .topPage{
+        height: 20px;
+        font-family: NotoSans;
+        font-size: 15px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 3.33;
+        letter-spacing: normal;
+        text-align: left;
+        color: #bfbfbf;
+        margin-left: 31px;
+    }
+
+    .topDate{
+        height: 20px;
+        font-family: NotoSans;
+        font-size: 15px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 3.33;
+        letter-spacing: normal;
+        text-align: left;
+        color: #bfbfbf;
+        margin-left: 65px;
+    }
+}
