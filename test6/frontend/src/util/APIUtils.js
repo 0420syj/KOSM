@@ -66,6 +66,13 @@ export function Crawl(CrawlRequest) {
         body:JSON.stringify(CrawlRequest)
     });
 }
+export function detailCrawl(CrawlRequest) {
+    return request({        
+        url: API_BASE_URL + "/api/auth/detailcrawler",
+        method: 'POST',
+        body:JSON.stringify(CrawlRequest)
+    });
+}
 export function forgot(CrawlRequest) {
     console.log(CrawlRequest);
     return String_Request({

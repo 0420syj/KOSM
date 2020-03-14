@@ -69,5 +69,49 @@ public class WebCrawler {
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
 
     }
+    @PostMapping("/detailcrawler")
+    public  ResponseEntity<?> Hello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
+ /*
+            Document 클래스 : 연결해서 얻어온 HTML 전체 문서
+            Element 클래스  : Documnet의 HTML 요소
+            Elements 클래스 : Element가 모인 자료형
+        */       
+        //String url = "https://www.w3schools.com";
+        String url =CrawlRequest.getUrl();
+
+        String title = "div p[data-testid=vuln-description]";
+        String type="div.col-lg-6 input[value]";
+        String link="tbody > tr > td > [href]";
+        String info="div.bs-callout.bs-callout-info";
+        String score="span.severityDetail";
+        Document doc = null;            
+        try {
+            doc = Jsoup.connect(url).get(); // -- 1. get방식의 URL에 연결해서 가져온 값을 doc에 담는다.
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }        
+        Elements titles = doc.select(title); // -- 2. doc에서 selector의 내용을 가져와 Elemntes 클래스에 담는다.
+        Elements types = doc.select(type);
+        Elements links = doc.select(link);
+        Elements infos = doc.select(info);
+        Elements scores = doc.select(score);
+        JsonObject.put("type",types.text()); 
+        for(int i=0;i<titles.size();i++) {
+             // -- 3. Elemntes 길이만큼 반복한다.
+            JsonObject.put("title",titles.get(i).text()); 
+            JsonObject.put("links",links.get(i).attr("href")); 
+            JsonObject.put("score",scores.get(i).text()); 
+            JsonObject.put("info",infos.get(i).text()); 
+            JsonObject.add(JsonObject.deepclone());
+           // System.out.println(JsonObject.toJsonString());
+        }
+        String jsonInfo = JsonObject.ArraytoJsonString();
+      System.out.println(JsonObject.Size());
+      JsonObject.newinit();
+    //    System.out.println(i);
+        return new ResponseEntity<String>(jsonInfo, HttpStatus.OK);
+      // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
+
+    }
 
 }
