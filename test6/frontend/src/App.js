@@ -11,8 +11,8 @@ import Forgot from './sign/login/forgot/Forgot';
 import Change from './sign/login/change/Change';
 import Login from './sign/login/Login';
 import DeleteUser from './mypage/DeleteUser';
-import ScrollToTop from './ScrollToTop';
 import DetailMain from './source/detail/DetailMain';
+import ScrollToTop from './ScrollToTop';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import './FavoriteList.scss';
 import {IconContext} from 'react-icons';
+import {Link} from 'react-router-dom';
 import { useEffect } from 'react';
 
 const FavoriteList = ({name, type, idx, favItem, setFavItem}) => {
@@ -25,7 +26,11 @@ const FavoriteList = ({name, type, idx, favItem, setFavItem}) => {
                     }
                 </span>
                 <span className='name'>
-                    {name}
+                    <Link 
+                        to={`/source/${name}`}
+                        className='link'>
+                        {name}
+                    </Link>
                 </span>
                 <span className='patchDate'>
                     2020.03.05

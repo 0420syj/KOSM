@@ -1,12 +1,14 @@
+/*
+    왼쪽 리스트를 눌렀을 때 나오는 페이지 첫 화면
+*/
+
 import React from 'react';
 import SourceList from '../menu/SourceList';
 import BeforeMenu from '../menu/before/BeforeMenu';
-import MainSource from './MainSource';
+import MainSource from './main_code/MainSource';
 import AfterMenu from '../menu/after/AfterMenu';
 import './Source.scss';
 const Source = ({match}) => {
-    console.log('asds');
-    console.log(sessionStorage.getItem('isLogin'));
     return (
         <div className="container">
             <div className="top">

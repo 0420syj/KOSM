@@ -1,3 +1,7 @@
+/*
+    로그인 하기 전 상단 메뉴(즐겨찾기 버튼이 없음)
+*/
+
 import React from 'react';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';

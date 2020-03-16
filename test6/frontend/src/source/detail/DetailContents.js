@@ -1,3 +1,6 @@
+/*
+    버전별 세부사항 주 내용
+*/
 import React from 'react';
 import './DetailContents.scss';
 const DetailContents = ({location}) => {
