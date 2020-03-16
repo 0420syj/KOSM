@@ -1,5 +1,7 @@
 package com.kosm.test6.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,7 +63,9 @@ public class UserController {
     public List<ProjectListResponse> getFav(@PathVariable Long id) {
         Member member = userRepository.getOne(id);
 
-        Set<Project> projects = member.getProjects();
+        List<Project> projects = member.getProjects();
+        
+        
         return projects.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList());
         //return projects;
     }
@@ -93,7 +97,7 @@ public class UserController {
             Project project = projectRepository.getOne(res.getId());
 
             Set<Member> members = project.getMembers();
-            Set<Project> projects = member.getProjects();
+            List<Project> projects = member.getProjects();
             members.remove(member);
             projects.remove(project);
 

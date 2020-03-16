@@ -10,7 +10,9 @@ import javax.validation.constraints.Size;
 
 import com.kosm.test6.model.audit.DateAudit;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,7 +52,7 @@ public class Member extends DateAudit {
     @JoinTable(name = "user_projects",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "project_id"))
-    private Set<Project> projects = new HashSet<>();
+    private List<Project> projects = new ArrayList<>();
 
     
     //@ManyToMany(fetch = FetchType.LAZY)
@@ -110,7 +112,7 @@ public class Member extends DateAudit {
         this.roles = roles;
     }
 
-    public Set<Project> getProjects() {
+    public List<Project> getProjects() {
         return projects;
     }
     
