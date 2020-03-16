@@ -1,5 +1,5 @@
 import React from 'react';
-import Favorite from './Favorite';
+import Favorite from './favorite_main_page/Favorite';
 import SourceList from '../SourceList';
 import AfterMenu from './AfterMenu';
 import './AfterLogin.scss'

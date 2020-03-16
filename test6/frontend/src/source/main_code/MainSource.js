@@ -1,12 +1,16 @@
+/*
+    즐겨찾기, 취약점을 버전별로 보여주는 페이지
+*/
+
 import React, {useState, useEffect} from 'react';
-import { Crawl, getFavProject } from '../util/APIUtils';
+import { Crawl, getFavProject } from '../../util/APIUtils';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
-import {addFavProject, deleteFavProject} from '../util/APIUtils';
-import OpenSourceData from '../data/OpenSourceData';
-import AfterMainSource from './AfterMainSource';
-import BeforeMainSource from './BeforeMainSource';
-import MainContent from './MainContent';
+import {addFavProject, deleteFavProject} from '../../util/APIUtils';
+import OpenSourceData from '../../data/OpenSourceData';
+import AfterMainSource from './versions_after_login_title/AfterMainSource';
+import BeforeMainSource from './versions__before_login_title/BeforeMainSource';
+import MainContent from './versions_content/MainContent';
 import './MainSource.scss';
 const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
@@ -16,21 +20,11 @@ const MainSource = (props) => {
     const [isReady, setIsReady] = useState(false);
     const [data, setData] = useState([]);
     useEffect(() => {
-        if(isFavorite === true){
-            addFavorite();      //즐겨찾기 추가 버튼을 눌렀을 때 실행
-        }
-        else {
-            deleteFavorite();       //즐겨찾기 해제 버튼을 눌렀을 때 실행
-        }
+        isFavorite === true ? addFavorite() : deleteFavorite();
     }, [isFavorite])
 
     const favoriteClick = () => {
-        if(isFavorite === false){
-            alert('즐겨찾기가 추가 되었습니다');
-        }
-        else{
-            alert('즐겨찾기를 삭제하였습니다.');
-        }
+        isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
         setIsFavorite(!isFavorite);
     }
 
@@ -45,14 +39,16 @@ const MainSource = (props) => {
     const deleteFavorite = () => {
         if(idKey == 0)
             return ;
-        const obj = {
-            project_id: idKey,
-            user_id: sessionStorage.getItem('userId')
+        const obj = [];
+        obj[0] = {
+            id: 0,
+            name: sessionStorage.getItem('email')
         }
-        deleteFavProject(obj)
-        .then(() => {
-            console.log('erased');
+        obj.push({
+            id: idKey,
+            name: props.name
         })
+        deleteFavProject(obj)
         .catch(e => {
             console.log(e);
         })
@@ -64,7 +60,6 @@ const MainSource = (props) => {
         .then(res => {
             res.map((items) => {
                 if(items.name === props.name){
-                    console.log('here');
                     setIsFavorite(true);
                 }
             })
@@ -73,16 +68,6 @@ const MainSource = (props) => {
             console.log(e);
         })
 
-        OpenSourceData.map((res) => {
-            if(res.value === props.name) {
-                setIdKey(res.id);
-                return ;
-            }
-        })
-    }, [props.name]);
-
-
-    useEffect(() => {
         setData([]);
         var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
         const signupRequest = {
@@ -96,7 +81,14 @@ const MainSource = (props) => {
             },(error) => {
                 alert("fail");
                 console.log(error);
-            });
+        });
+
+        OpenSourceData.map((res) => {
+            if(res.value === props.name) {
+                setIdKey(res.id);
+                return ;
+            }
+        })
     }, [props.name]);
 
     return ( 

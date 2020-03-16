@@ -1,9 +1,11 @@
+/*
+    로그인하고 난 후의 첫 화면
+*/
 import React, {useState, useEffect} from 'react';
 import FavoriteList from './FavoriteList';
 import './MainFavorite.scss';
-import {deleteFavProject} from '../../util/APIUtils';
-import { WIDTH, HEIGHT } from '../../constants';
-import {getFavProject} from '../../util/APIUtils';
+import {deleteFavProject} from '../../../util/APIUtils';
+import {getFavProject} from '../../../util/APIUtils';
 const MainFavorite = ({favItems, setFavItems}) => {
     const [idx, setIdx] = useState(1);
     const [favItem, setFavItem] = useState([]);
@@ -23,6 +25,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
         })
         //객체로 전달할 수 있는 delete함수 하나 더 만들고 구현하기
         //temp에 내가 삭제해야 할 값들이 들어있음.
+        console.log(temp);
         deleteFavProject(temp)
         .then(() => {
             getFavProject(sessionStorage.getItem('userId'))
@@ -36,7 +39,6 @@ const MainFavorite = ({favItems, setFavItems}) => {
     }
 
     useEffect(() => {
-        console.log('start');
         const obj = [];
         let i = 0;
         favItems.map((items) => {
@@ -44,15 +46,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
         })
         setFavItem(obj);
     }, [favItems])
-
-    useEffect(() => {
-        console.log(favItem);
-    }, [favItem])
-    
-    useEffect(() => {
-        console.log('page');
-        console.log(page);
-    }, [page])
+        
     return ( 
         <div className='favoriteContainer'>
             <div className='favTitle'>내 즐겨찾기</div>

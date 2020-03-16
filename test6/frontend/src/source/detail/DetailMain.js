@@ -1,3 +1,6 @@
+/*
+    버전별 세부사항 메인 페이지
+*/
 import React from 'react';
 import SourceList from '../../menu/SourceList';
 import DetailTitle from './DetailTitle';

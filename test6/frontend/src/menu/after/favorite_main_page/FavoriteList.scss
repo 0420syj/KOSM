@@ -20,6 +20,13 @@
             letter-spacing: normal;
             text-align: left;
             color: #eaeaea;
+            .link{
+                text-decoration: none;
+                color: #e4e4e4;
+                &:hover{
+                    color: #e9e9e99d;
+                }
+            }            
         }
         
         .patchDate{

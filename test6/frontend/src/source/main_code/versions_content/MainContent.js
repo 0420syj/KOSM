@@ -1,9 +1,11 @@
+/*
+    취약점 리스트를 그리는 컴포넌트
+*/
 import React, {useState, useEffect} from 'react';
-import ContentList from './ContentList';
+import ContentList from './content_list/ContentList';
 import './MainContent.scss';
 const MainContent = ({data, name}) => {
     const [d, setD] = useState(data);
-    console.log(data);
     let idx = 0;
     return ( 
         <div >

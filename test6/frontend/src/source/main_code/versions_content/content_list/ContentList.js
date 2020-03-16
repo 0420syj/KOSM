@@ -1,3 +1,7 @@
+/*
+    취약점 버전별로 나오는 부분 리스트 하나하나
+*/
+
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import './ContentList.scss';

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {getFavProject} from '../../util/APIUtils';
+import {getFavProject} from '../../../util/APIUtils';
 import MainFavorite from './MainFavorite';
 const Favorite = () => {
     const [favItems, setFavItems] = useState([]);
@@ -10,7 +10,7 @@ const Favorite = () => {
             setFavItems(res);
             setTimeout(() => {
                 setReady(true);
-            }, 500);
+            }, 0);
         })
         .catch(e => {
             console.log(e);
