@@ -9,11 +9,10 @@ const Success = ({match}) => {
     signok(signupRequest)
     .then(res => {
         console.log(res.body);
-        alert((localStorage.getItem("auth_email")));
-},(error) => {
-    console.log(error);
-    console.log(signupRequest.hash);
-});
+    },(error) => {
+        console.log(error);
+        console.log(signupRequest.hash);
+    });
     return (  
         <div>       
             <BeforeMenu/>

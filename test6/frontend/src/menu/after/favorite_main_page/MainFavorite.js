@@ -9,44 +9,41 @@ import {getFavProject} from '../../../util/APIUtils';
 import styled from 'styled-components'
 
 const MainFavorite = ({favItems, setFavItems}) => {
-    const [idx, setIdx] = useState(1);
-    const [favItem, setFavItem] = useState([]);
-    const [page, setPage] = useState(1);
+    const [favItem, setFavItem] = useState([]); //true로만 구성
+    const [page, setPage] = useState(1);        
     let index = -1;
-    const buttonClick = () => {
+
+    const redraw = () => {
+    }
+
+    const buttonClick = (e) => {
         const temp = [];
+        let i = 0;
         temp.push({
             id: 0,
             name: sessionStorage.getItem('email')
         });
-        let i = 0;
-        favItem.map((item) => {
-            if(item === false)
-                temp.push(favItems[i]);
-            i++;
-        })
-        //객체로 전달할 수 있는 delete함수 하나 더 만들고 구현하기
-        //temp에 내가 삭제해야 할 값들이 들어있음.
+        favItem.map((item) => {if(item === false) temp.push(favItems[i++])})
         deleteFavProject(temp)
         .then(() => {
             getFavProject(sessionStorage.getItem('userId'))
             .then(res => {
-                setFavItems(res);
+                setFavItems(res)
             })
-
-        }).catch(e => {
-            console.log(e);
-        })
+        }).catch(e => {console.log(e)})
     }
+
+
 
     useEffect(() => {
         const obj = [];
         let i = 0;
+        console.log('start');
         favItems.map((items) => {
             obj.push(true);            
         })
         setFavItem(obj);
-    }, [favItems, favItems.length])
+    }, [favItems])
         
     return ( 
         <div className='favoriteContainer'>
@@ -114,16 +111,12 @@ const ListButton = (props) => {
     const Button = styled.button`
         background: #6c757d;
         color: #ffffff;
-
         :hover{
             background: #6a7f7f;
         }
-
         :active{
             background: #000000;
         }
-
-
     `    
     return (
         <div className='btn-toolbar' role='toolbar' aria-label="Toolbar with button groups">

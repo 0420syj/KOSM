@@ -25,6 +25,7 @@ const DeleteUser = () => {
         .then(() => {
             alert("정상적으로 탈퇴처리 되었습니다.")
             window.location.href = '/';
+            sessionStorage.setItem('isLogin', 'false');
             }).catch((error) => {
                 alert("삭제 실패!" + "\nCheck console log, or your server status.")
                 console.log(error)
