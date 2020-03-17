@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './SignUpForm.scss';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import { Mail,checkEmailAvailability,checkUsernameAvailability,signup} from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
 import {ButtonToggle, Button} from 'reactstrap';
@@ -224,15 +224,11 @@ const SignUp = ({match}) => {
                 && userInfo.validConfirmPassWord;
         }
 
-        if(validateForm())
-        {
-            return(
-                true
-            )
-        }
+        if(validateForm()){return(true)}
     }
 
     const handleSubmit = (e) => {
+        alert('이메일을 확인해주세요');
         e.preventDefault();
         const signupRequest = {
             username: userInfo.nickname,
@@ -241,48 +237,9 @@ const SignUp = ({match}) => {
             password: userInfo.password,
         }
         signup(signupRequest)       
-        .then(res => {
-            alert("success");
-     
-           
-        },(error) => {
-            console.log(error);
-            console.log(signupRequest.email);
+        .catch((error) => {
             alert("fail");
         });
-    }
-    const onSubmit = (e) => {
-
-        const signupRequest = {
-            email:"minsogoing@naver.com"
-        }
-        e.preventDefault();
-        Mail(signupRequest)
-        .then(res => {         
-         alert(res); 
-            },(error) => {
-                alert("fail");
-                console.log(error);
-            });
-    }
-    // useEffect(() => {
-    //     if(emailConfirm === 'true'){
-    //         const time = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
-    //         return () => clearInterval(time);
-    //     }
-    // }, [timer, emailConfirm])
-
-    const emailClick = (e) => {        
-        if(emailConfirm === 'false'){
-            setEmailConfirm('true');
-            checkEmailAvailability(userInfo.email)
-            .then(res => {
-                console.log('success');
-            })
-            .catch(e => {
-                console.log(e);
-            })
-        }
     }
 
     return (
@@ -312,16 +269,6 @@ const SignUp = ({match}) => {
                                     className={ `form-control ${inputClassNameHelper(userInfo.email && userInfo.validEmail)} input-email` }
                                     placeholder='example@example.com'
                                     aria-describedby="emailHelp"/>
-                                {/* <ButtonToggle 
-                                    color='info'
-                                    style={{ 
-                                        marginLeft: '2%',
-                                        width: '70px', 
-                                        fontSize: '13px',
-                                        display:'inline-box'}}
-                                    onClick={emailClick}>
-                                        확인
-                                </ButtonToggle> */}
                             </div>
                         </div>
                     </div>
@@ -353,7 +300,10 @@ const SignUp = ({match}) => {
                                 type='submit'
                                 onClick={handleSubmit}
                                 className='successButton'>
-                                회원가입
+                                <Link to='/'
+                                    style={{color: 'inherit'}}>
+                                    회원가입
+                                </Link>
                             </Button>:
                             <Button className='failButton' disabled="disabled">회원가입</Button>
                         }
@@ -361,15 +311,6 @@ const SignUp = ({match}) => {
                     </div>
             </div>
         </div>
-    )
-}
-
-const DefaultButton = () => {
-    return (
-        <button 
-            className='defaultButton'>
-            Sign up
-        </button>
     )
 }
 
