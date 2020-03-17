@@ -6,6 +6,8 @@ import FavoriteList from './FavoriteList';
 import './MainFavorite.scss';
 import {deleteFavProject} from '../../../util/APIUtils';
 import {getFavProject} from '../../../util/APIUtils';
+import styled from 'styled-components'
+
 const MainFavorite = ({favItems, setFavItems}) => {
     const [idx, setIdx] = useState(1);
     const [favItem, setFavItem] = useState([]);
@@ -25,7 +27,6 @@ const MainFavorite = ({favItems, setFavItems}) => {
         })
         //객체로 전달할 수 있는 delete함수 하나 더 만들고 구현하기
         //temp에 내가 삭제해야 할 값들이 들어있음.
-        console.log(temp);
         deleteFavProject(temp)
         .then(() => {
             getFavProject(sessionStorage.getItem('userId'))
@@ -45,7 +46,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
             obj.push(true);            
         })
         setFavItem(obj);
-    }, [favItems])
+    }, [favItems, favItems.length])
         
     return ( 
         <div className='favoriteContainer'>
@@ -57,34 +58,44 @@ const MainFavorite = ({favItems, setFavItems}) => {
             <div className='favContents'>
                 {
                     favItems.length != 0 ?
-                    favItems.map((items) => {
-                        index++;
-                        if(index >= (page - 1) * 5 && index < 5 * page) {
-                        return (
-                            <div key={items.id} style={{color: '#FFFFFF'}}>
-                                <FavoriteList 
-                                    name={items.name} 
-                                    type={favItem[index]}
-                                    idx={index}
-                                    favItem={favItem}
-                                    setFavItem={setFavItem}/>
-                            </div>)}
+                    <div>
+                        {
+                            favItems.map((items) => {
+                                index++;
+                                if(index >= (page - 1) * 5 && index < 5 * page) {
+                                return (
+                                    <div key={items.id} style={{color: '#FFFFFF'}}>
+                                        <FavoriteList 
+                                            name={items.name} 
+                                            type={favItem[index]}
+                                            idx={index}
+                                            favItem={favItem}
+                                            setFavItem={setFavItem}/>
+                                    </div>)}
 
-                    }) : 
-                    <div style={{color:'white', fontSize:'50px'}}>
+                            }) 
+                        }
+                        <div className='bottomButton'>
+                            <div className='bot'>
+                                <ListButton len={favItems.length / 5} setPage={setPage}/>
+                            </div>
+                        </div>
+                        <div className='bottomButton'>
+                            <div className='bot'>
+                                <button 
+                                    onClick={buttonClick} 
+                                    style={{width: '100px', background: '#3aada8'}} 
+                                    type="button" 
+                                    className="btn btn-success">
+                                    수정
+                                </button>
+                            </div>
+                        </div>
+                    </div>: 
+                    <div style={{color:'white', fontSize:'30px', marginLeft: '156px'}}>
                         즐겨찾기 목록이 없습니다.
                     </div>
                 }
-                <div className='bottomButton'>
-                    <div className='bot'>
-                        <ListButton len={favItems.length / 5} setPage={setPage}/>
-                    </div>
-                </div>
-                <div className='bottomButton'>
-                    <div className='bot'>
-                        <button onClick={buttonClick} style={{width: '100px', background: '#3aada8'}} type="button" className="btn btn-success">확인</button>
-                    </div>
-                </div>
             </div>
         </div>
     )
@@ -92,25 +103,40 @@ const MainFavorite = ({favItems, setFavItems}) => {
 
 const ListButton = (props) => {
     const [list, setList] = useState([]);
+
     useEffect(() => {
         const arr = [];
-        for(let i = 1; i <= props.len + 1; i++)
+        for(let i = 1; i <= Math.ceil(props.len); i++)
             arr.push(i);
         setList(arr);
-    }, [])
+    }, [props.len])
 
+    const Button = styled.button`
+        background: #6c757d;
+        color: #ffffff;
+
+        :hover{
+            background: #6a7f7f;
+        }
+
+        :active{
+            background: #000000;
+        }
+
+
+    `    
     return (
         <div className='btn-toolbar' role='toolbar' aria-label="Toolbar with button groups">
             {
                 list.map((items) => {
                     return (
-                        <button 
+                        <Button 
                             key={items} 
                             onClick={() => {props.setPage(items)}} 
                             type="button" 
                             className="btn btn-secondary">
                             {items}
-                        </button>
+                        </Button>
                 )})
             }
         </div>
