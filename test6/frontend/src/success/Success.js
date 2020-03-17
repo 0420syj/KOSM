@@ -6,13 +6,13 @@ const Success = ({match}) => {
     const signupRequest = {
         hash: match.params.id
     }
-
     signok(signupRequest)
     .then(res => {
         console.log(res.body);
         alert((localStorage.getItem("auth_email")));
 },(error) => {
     console.log(error);
+    console.log(signupRequest.hash);
 });
     return (  
         <div>       

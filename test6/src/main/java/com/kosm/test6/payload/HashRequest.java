@@ -5,7 +5,7 @@ import javax.validation.constraints.*;
 public class HashRequest {
 
     @NotBlank
-    @Size(min = 6, max = 100)
+    @Size(min = 6, max = 200)
     private String hash;
 
    

@@ -114,6 +114,7 @@ public class AuthController {
                 try {   
                         String secret=passwordEncoder.encode(signUpRequest.getEmail());
                           //////temp memory
+                          secret = secret.replace("/", "");
                           TempMember user = new TempMember(signUpRequest.getUsername(),
                           signUpRequest.getEmail(), signUpRequest.getPassword(),secret);
                           TempRepository.save(user);
