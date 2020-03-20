@@ -50,13 +50,13 @@ const AfterMenu = memo((props) => {
                             })
                         }
                     </div>
-                    <div style={{display: 'flex', justifyContent:'space-between', width: '100%'}}>
+                    <div style={{display: 'flex', justifyContent:'space-between', width: '219.2px', height: '100%'}}>
                         <Link to='/board' style={{color: 'inherit', textDecoration: 'none'}}>
                             <div style={{cursor: 'pointer'}}>Board</div>
                         </Link>
                         <div>
                             <Dropdown isOpen = {isDropdown} toggle={toggle}>
-                                <DropdownToggle style={{background: '#414141', border: 'none'}}>
+                                <DropdownToggle style={{padding: '0px', background: '#414141', border: 'none'}}>
                                     {sessionStorage.getItem('username')}
                                 </DropdownToggle>
                                 <DropdownMenu>

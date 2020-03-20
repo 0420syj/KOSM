@@ -66,8 +66,8 @@ const MainFavorite = ({favItems, setFavItems}) => {
                                             idx={index}
                                             favItem={favItem}
                                             setFavItem={setFavItem}/>
-                                    </div>)}
-
+                                    </div>
+                                )}
                             }) 
                         }
                         <div className='bottomButton'>
