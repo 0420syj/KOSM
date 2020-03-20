@@ -2,7 +2,7 @@
     즐겨찾기, 취약점을 버전별로 보여주는 페이지
 */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { Crawl, getFavProject } from '../../util/APIUtils';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
@@ -23,20 +23,20 @@ const MainSource = (props) => {
         isFavorite === true ? addFavorite() : deleteFavorite();
     }, [isFavorite])
 
-    const favoriteClick = () => {
+    const favoriteClick = useCallback(() => {
         isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
         setIsFavorite(!isFavorite);
-    }
+    });
 
-    const addFavorite = () => {
+    const addFavorite = useCallback(() => {
         const obj = {
             project_id: idKey,
             user_id: sessionStorage.getItem('userId')
         }
         addFavProject(obj)
-    }
+    });
 
-    const deleteFavorite = () => {
+    const deleteFavorite = useCallback(() => {
         if(idKey == 0)
             return ;
         const obj = [];
@@ -52,7 +52,7 @@ const MainSource = (props) => {
         .catch(e => {
             console.log(e);
         })
-    }
+    });
 
     useEffect(() => {        
         setIsFavorite(false);
@@ -70,9 +70,7 @@ const MainSource = (props) => {
 
         setData([]);
         var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
-        const signupRequest = {
-            url:url
-        }
+        const signupRequest = {url:url}
         Crawl(signupRequest)
         .then(res => {
             setIsReady(true);

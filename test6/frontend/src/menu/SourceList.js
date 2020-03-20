@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import OpenSourceData from '../data/OpenSourceData';
 import './SourceList.scss';
 import { WIDTH, HEIGHT } from '../constants';
 import { useEffect } from 'react';
-const SourceList = () => {
+const SourceList = memo(() => {
     const [Data, setData] = useState([]);
     const [inputText, setInputText] = useState('');
-    const onChange = (e) => {
+    const onChange = useCallback((e) => {
         setInputText(e.target.value.toLowerCase());
         setData(OpenSourceData.filter(item => {
             return item.value.toLowerCase().indexOf(e.target.value) !== -1
         }));
-
-    }
+    });
 
     useEffect(() => {
     }, [inputText.length])
@@ -83,15 +82,16 @@ const SourceList = () => {
                     {
                         inputText.length === 0 ?
                         OpenSourceData.map(item => {
-                            return <li key={item.id}>
+                            return (
+                            <li key={item.id}>
                                 <Link to={`/source/${item.value}`}
                                     className='sourceList'>
                                     {item.value}
                                 </Link>
-                            </li>
+                            </li>)
                         }) :
                         Data.map(item => {
-                            return <li key={item.id} >
+                            return <li key={item.id}>
                                 <Link
                                     to={`/source/${item.value}`}
                                     className='sourceList'>
@@ -104,6 +104,6 @@ const SourceList = () => {
             </div>
         </div>
     )
-}
+});
 
 export default SourceList;

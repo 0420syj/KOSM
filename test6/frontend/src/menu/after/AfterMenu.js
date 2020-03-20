@@ -1,8 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, memo, useMemo} from 'react';
 import {Link} from 'react-router-dom';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import './AfterMenu.scss';
-const AfterMenu = (props) => {
+
+const Title = memo(() => {
+    return (
+    <div 
+        style={{
+            cursor: 'pointer',
+            height: '53px',
+            fontFamily: 'Libre Franklin',
+            fontSize: '47px',
+            fontWeight: '500',
+            fontStretch: 'normal',
+            fontStyle: 'normal',
+            lineHeight: '1.13',
+            letterSpacing: 'normal',
+            textAlign: 'left',
+            color: '#3aada8',}}>
+        KOSM
+    </div>
+    )
+});
+
+const AfterMenu = memo((props) => {
     const [isDropdown, setIsDropdown] = useState(false);
     const logoutClick = () => {
         sessionStorage.setItem('isLogin', 'false');
@@ -19,21 +40,15 @@ const AfterMenu = (props) => {
             <div className='menuContainer'>
                 <div className='also-menu-container'>
                     <div className='leftContainer'>
-                        <Link to='/' style={{color: 'inherit', textDecoration: 'none'}}>
-                            <div 
-                                style={{
-                                        cursor: 'pointer',
-                                        height: '53px',
-                                        fontFamily: 'Libre Franklin',
-                                        fontSize: '47px',
-                                        fontWeight: '500',
-                                        fontStretch: 'normal',
-                                        fontStyle: 'normal',
-                                        lineHeight: '1.13',
-                                        letterSpacing: 'normal',
-                                        textAlign: 'left',
-                                        color: '#3aada8',}}>KOSM</div>
-                        </Link>
+                        {
+                            useMemo(() => {
+                                return (
+                                    <Link to='/' style={{color: 'inherit', textDecoration: 'none'}}>
+                                        <Title/>
+                                    </Link>
+                                )
+                            })
+                        }
                     </div>
                     <div style={{display: 'flex', justifyContent:'space-between', width: '100%'}}>
                         <Link to='/board' style={{color: 'inherit', textDecoration: 'none'}}>
@@ -63,6 +78,6 @@ const AfterMenu = (props) => {
             </div>
         </div>
     )
-}
+});
 
 export default AfterMenu;

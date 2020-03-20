@@ -1,11 +1,10 @@
 /*
     취약점 리스트를 그리는 컴포넌트
 */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import ContentList from './content_list/ContentList';
 import './MainContent.scss';
-const MainContent = ({data, name}) => {
-    const [d, setD] = useState(data);
+const MainContent = memo(({data, name}) => {
     let idx = 0;
     return ( 
         <div >
@@ -28,6 +27,6 @@ const MainContent = ({data, name}) => {
             </div>
         </div>
     )
-}
+});
 
 export default MainContent;
