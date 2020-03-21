@@ -10,8 +10,8 @@ const LoginForm = (props) => {
         username: '',
         password:'',
     })
-
     const history = useHistory();
+
     const onChange= (e) => {
         setUserInfo({
             ...userinfo,
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
                 sessionStorage.setItem('email', res.email);
                 sessionStorage.setItem('username', res.username);
                 sessionStorage.setItem('userId', res.id);
-                history.goBack();
+                history.push('./');
                 return ;
             }).catch(e => {
                 console.log(e);

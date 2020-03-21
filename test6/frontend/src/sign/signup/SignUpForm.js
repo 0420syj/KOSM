@@ -11,7 +11,6 @@ import { MdGolfCourse } from 'react-icons/md';
 const SignUp = ({match}) => {
     const history = useHistory();
     const [emailConfirm, setEmailConfirm] = useState('false');
-
     // const [success, setSuccess] = useState(false);
     
     const [userInfo, setUserInfo] = useState({
@@ -228,8 +227,8 @@ const SignUp = ({match}) => {
     }
 
     const handleSubmit = (e) => {
-        alert('이메일을 확인해주세요');
         e.preventDefault();
+        alert('이메일에 도착한 링크를 확인해주세요.');
         const signupRequest = {
             username: userInfo.nickname,
             email:userInfo.email,

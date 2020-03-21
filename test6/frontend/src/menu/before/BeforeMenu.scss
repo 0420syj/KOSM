@@ -8,6 +8,7 @@ a:hover, a:visited, a:link, a:active {
 .top-container {
     display: flex;
     height: 80px;
+    padding: 25px 30px 30px;
     justify-content: space-between;
     background: #414141;
 }
@@ -35,13 +36,12 @@ a:hover, a:visited, a:link, a:active {
     height: 27px;
     font-family: 'NotoSans';
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 700;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.35;
     letter-spacing: normal;
     text-align: center;
-
     align-items: center;
     justify-content: space-between;
     display: flex;
@@ -50,25 +50,22 @@ a:hover, a:visited, a:link, a:active {
     }
 }
 
-.dropdown{
-    .dropdownMenu{
-        background: #000000;
-        min-width: 30px;
+.dropdown {
+    .dropdownMenu {
         width: 100px;
-        justify-content: center;
-        border-radius: 0px;
-        .dropdownItem{
-            padding: 0px 0px;
-            background: #000000;
+        min-width: 100px;
+        background: #414141;
+        .dropdownItem {
             color: #FFFFFF;
             justify-content: center;
             display: flex;
-            border-radius: 0px;
-            :hover{
-                background: #808080;
-                color: #FFFFFF;
-                text-decoration: none;
-                border-radius: 2px;
+            .link{
+
+                &:hover{
+                    color: #000000;
+                    text-decoration: none;
+                    border-radius: 2px;
+                }
             }
         }
     }
