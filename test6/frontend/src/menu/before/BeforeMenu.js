@@ -13,59 +13,35 @@ const BeforeMenu = () => {
 
     return (
         <div className="top-container">
-            <div className="logo"
-                style={{
-                    paddingLeft: `${WIDTH * 48}px`,
-                    paddingTop: `${WIDTH * 14}px`,
-                }}>
+            <div className="logo">
                 <Link to='/'>
                     KOSM
                 </Link>
             </div>
             <div className="menu"
                 style={{
-                    width: `${WIDTH * 124 + 120}px`,
-                    marginRight: `${WIDTH * 87.2}px`,
-                    marginTop: `${WIDTH * 35.5}px`,
-                }}>
+                    marginRight: '50px',
+                    width: '190px',
+                    minWidth: '190px',}}>
                 <Link to='/board'>
-                    게시판
+                    <span>게시판</span>
                 </Link>
                 <Dropdown 
                     className='dropdown'
                     isOpen={isDropdown}
-                    toggle={toggle}
-                    >
-                    <DropdownToggle style={{
-                        boxShadow: 'none',
-                        background: '#414141',
-                        border: 'none',
-                        width: '100%',
-                        height: '100%'
-                    }}>
+                    toggle={toggle}>
+                    <DropdownToggle right style={{padding: '0px', background: '#414141', border: 'none'}}>
                     로그인
                     </DropdownToggle>
-                    <DropdownMenu className='dropdownMenu'>
+                    <DropdownMenu className='dropdownMenu' style={{transform: 'translate(-35px, 0px)'}}>
                         <DropdownItem className='dropdownItem'>
-                            <Link to='/login'
-                                style={{
-                                    textDecorataion: 'none',
-                                    color: '#e4e4e4',
-                                    width: '100%',
-                                    textAlign: 'center'
-                                }}>
+                            <Link to='/login' className='link'>
                                 Login
                             </Link>
                         </DropdownItem>
-                        <DropdownItem divider />
+                        {/* <DropdownItem divider /> */}
                         <DropdownItem className='dropdownItem'>
-                            <Link to='/signup'
-                                style={{
-                                    textDecorataion: 'none',
-                                    color: '#e4e4e4',
-                                    width: '100%',
-                                    textAlign: 'center'
-                                }}>
+                            <Link to='/signup' className='link'>
                                 Sign Up
                             </Link>
                         </DropdownItem>
