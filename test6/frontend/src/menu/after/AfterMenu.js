@@ -23,6 +23,8 @@ const Title = memo(() => {
     )
 });
 
+
+
 const AfterMenu = memo((props) => {
     const [isDropdown, setIsDropdown] = useState(false);
     const logoutClick = () => {
@@ -50,23 +52,23 @@ const AfterMenu = memo((props) => {
                             })
                         }
                     </div>
-                    <div style={{display: 'flex', justifyContent:'space-between', width: '219.2px', height: '100%'}}>
+                    <div style={{display: 'flex', justifyContent:'space-between', width: '219.2px', marginRight: '50px', height: '100%'}}>
                         <Link to='/board' style={{color: 'inherit', textDecoration: 'none'}}>
                             <div style={{cursor: 'pointer'}}>Board</div>
                         </Link>
                         <div>
                             <Dropdown isOpen = {isDropdown} toggle={toggle}>
-                                <DropdownToggle style={{padding: '0px', background: '#414141', border: 'none'}}>
+                                <DropdownToggle right style={{padding: '0px', background: '#414141', border: 'none'}}>
                                     {sessionStorage.getItem('username')}
                                 </DropdownToggle>
-                                <DropdownMenu>
+                                <DropdownMenu className='dropdown-menu' style={{transform: 'translate(-35px, 0px)'}}>
                                     <DropdownItem>
-                                        <Link to='/' style={{color: 'inherit', textDecoration:'none'}}>
+                                        <Link to='/' className='dropdown-link'>
                                             <div style={{cursor: 'pointer'}} onClick ={logoutClick}>Logout</div>
                                         </Link>
                                     </DropdownItem>
                                     <DropdownItem>
-                                        <Link to='/mypage' style={{color: 'inherit', textDecoration:'none'}}>
+                                        <Link to='/mypage' className='dropdown-link'>
                                             <div style={{cursor: 'pointer'}}>My Page</div>
                                         </Link> 
                                     </DropdownItem>

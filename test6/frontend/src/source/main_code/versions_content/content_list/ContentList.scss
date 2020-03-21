@@ -1,10 +1,10 @@
 .contents{
-    margin-left: 130px;
+    padding-left: 130px;
     height: 100px;
     display:flex;
     .contentTitle{
         height: 100px;
-        width: 200px;
+        width: 220px;
         font-family: NotoSans;
         font-size: 24px;
         font-weight: 500;
@@ -12,11 +12,21 @@
         font-style: normal;
         letter-spacing: normal;
         color: #eaeaea;
+        align-items: center;
+        .title-link{
+            color: inherit;
+            align-self: center;
+            &:hover{
+                color: #3aada8;
+            }
+        }
     }
 
     .contentSummary{
         width: 70%;
-        height: 33px;
+        height: 80px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         font-family: NotoSans;
         font-size: 15px;
         font-weight: 300;
@@ -26,12 +36,15 @@
         letter-spacing: normal;
         text-align: left;
         color: #eaeaea;
+        overflow-y: hidden;
+        line-height: 1.5;
     }
     
     .contentScore{
+        display: flex;
         margin-left: 30px;
-        width: 100px;
-        height: 33px;
+        width: 200px;
+        height: 100%;
         font-family: NotoSans;
         font-size: 15px;
         font-weight: 300;
@@ -40,6 +53,8 @@
         line-height: 1.04;
         letter-spacing: normal;
         text-align: left;
+        align-items: center;
+        vertical-align: center;
         color: #eaeaea;
     }
 }
