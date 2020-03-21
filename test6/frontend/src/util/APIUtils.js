@@ -268,3 +268,11 @@ export function changePassword(changeRequest) {
         body: JSON.stringify(changeRequest)
     });
 }
+
+export function checkAdmin(password) {
+    return request({
+        url: API_BASE_URL + "/api/auth/admin",
+        method: "POST",
+        body: JSON.stringify(password)
+    });
+}

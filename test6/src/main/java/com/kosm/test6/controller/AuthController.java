@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,7 @@ import com.kosm.test6.model.Member;
 import com.kosm.test6.model.Role;
 import com.kosm.test6.model.RoleName;
 import com.kosm.test6.model.TempMember;
+import com.kosm.test6.payload.AdminRequest;
 import com.kosm.test6.payload.ApiResponse;
 import com.kosm.test6.payload.ChangePasswordRequest;
 import com.kosm.test6.payload.HashRequest;
@@ -247,4 +249,14 @@ public class AuthController {
                         HttpStatus.BAD_REQUEST);
         }
        }
+
+       @PostMapping("/admin")
+        public ResponseEntity<?> checkAdmin(@RequestBody AdminRequest request) {
+        if(request.getPassword().equals("1111")){
+                return new ResponseEntity<>(new ApiResponse(true, "Login Success") ,HttpStatus.OK);
+        }else{
+                return new ResponseEntity<>(new ApiResponse(false, "Password not correct"),
+                        HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -1,0 +1,49 @@
+.admin-container {
+    
+    font-family: NotoSans;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.28;
+  letter-spacing: normal;
+  text-align: center;
+  color: #eaeaea;
+}
+
+.admin-title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.admin-content {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.admin-form {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    vertical-align:top;
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.input-admin-password {
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid 1px #707070;
+    background-color: #eaeaea;
+    margin-right: 15px;
+}
+
+.admin-button {
+  height: 50px;
+  border-radius: 10px;
+  background-color: #3aada8;
+}
