@@ -25,7 +25,21 @@
             // @media screen and (max-width: 768px){
             //     background-color: green;
             // }
-
+        }
+        .dropdown-menu{
+            width: 100px;
+            min-width: 100px;
+            background: #414141;
+            .dropdown-link{
+                width: 80px;
+                text-align:center;
+                color: #e4e4e4;
+                justify-content: center;
+                text-decoration: none;
+                &:hover{
+                    color: #000000;
+                }
+            }
         }
     }
 
