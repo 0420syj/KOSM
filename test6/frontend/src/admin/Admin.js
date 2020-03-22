@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { checkAdmin, getBoards } from '../util/APIUtils';
-import { Button } from 'reactstrap';
+import { Button, Badge } from 'reactstrap';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
@@ -138,9 +138,23 @@ const Admin = () => {
                         width: '90px',
                     };
                 },
+                // https://reactstrap.github.io/components/badge/ 참고
+                formatter: (str) => {
+                    let status = str;
+    
+                    if(status === "접수")
+                        return <Badge color="danger">접수</Badge>
+                    else if(status === "처리중")
+                        return <Badge color="warning">처리중</Badge>
+                    else if(status === "완료")
+                        return <Badge color="success">완료</Badge>
+                },
                 editor: {
                     type: Type.SELECT,
                     options: [{
+                        value: '접수',
+                        label: '접수'
+                      },{
                       value: '처리중',
                       label: '처리중'
                     }, {
