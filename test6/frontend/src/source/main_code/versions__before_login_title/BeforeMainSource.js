@@ -9,9 +9,6 @@ import './BeforeMainSource.scss';
 const BeforeMainSource = ({name, title, date}) => {
     return ( 
         <div className='beforeMainSource'>
-            <div className='topName'>
-                {name}
-            </div>
             <span className='topLicense'>
                 {title}
             </span>

@@ -73,6 +73,7 @@ export function detailCrawl(CrawlRequest) {
         body:JSON.stringify(CrawlRequest)
     });
 }
+
 export function forgot(CrawlRequest) {
     console.log(CrawlRequest);
     return String_Request({
