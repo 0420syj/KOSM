@@ -70,3 +70,44 @@ html, body {
     color: #eaeaea;
     margin-left: 118px;
 }
+
+.star{
+    align-items: center;
+    vertical-align: center;
+}   
+
+.before{
+    margin-left: 100px;
+    margin-top: 59px;
+    height: 68px;
+    font-family: NotoSans;
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #eaeaea;
+}
+
+.after{
+    display: flex;
+    margin-left: 100px;
+    margin-top: 59px;
+    margin-bottom: 10px;
+
+    .name{
+        margin-left: 10px;
+        height: 68px;
+        font-family: NotoSans;
+        font-size: 50px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-align: left;
+        color: #eaeaea;
+    }
+}
