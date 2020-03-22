@@ -8,7 +8,7 @@ import { getBoards } from '../util/APIUtils'
 import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
 import SourceList from '../menu/SourceList';
-import { Button } from 'reactstrap';
+import { Button, Badge } from 'reactstrap';
 import './Board.scss';
 
 const Board = (props) => {
@@ -99,6 +99,19 @@ const Board = (props) => {
                     width: '90px',
                 };
             },
+            // https://reactstrap.github.io/components/badge/ 참고
+            formatter: (str) => {
+                let status = str;
+
+                if(status === "접수")
+                    return <Badge color="danger">접수</Badge>
+                else if(status === "처리중")
+                    return <Badge color="warning">처리중</Badge>
+                else if(status === "완료")
+                    return <Badge color="success">완료</Badge>
+                else
+                    return <Badge color="primary">오류! 카톡바람!</Badge>
+            },
         },
         {
             dataField: 'author',
@@ -160,7 +173,7 @@ const Board = (props) => {
 
         return (
           <li>
-              <a href="#" onClick={ handleClick } style={ activeStyle } className="page-button">{ page }</a>
+              <a href="#board-title" onClick={ handleClick } style={ activeStyle } className="page-button">{ page }</a>
           </li>
         );
       };
@@ -191,7 +204,7 @@ const Board = (props) => {
                         {
                             props => (
                                 <div>
-                                    <h3 className="board-title">게시판</h3>
+                                    <h3 className="board-title" id="board-title">게시판</h3>
                                     <div style={{ float: 'right', clear: 'both' }}>
                                         <SearchBar
                                             {...props.searchProps}
