@@ -30,7 +30,8 @@ const BeforeMenu = () => {
                     className='dropdown'
                     isOpen={isDropdown}
                     toggle={toggle}>
-                    <DropdownToggle right style={{padding: '0px', background: '#414141', border: 'none'}}>
+                    <DropdownToggle
+                        className="login-button">
                     로그인
                     </DropdownToggle>
                     <DropdownMenu className='dropdownMenu' style={{transform: 'translate(-35px, 0px)'}}>

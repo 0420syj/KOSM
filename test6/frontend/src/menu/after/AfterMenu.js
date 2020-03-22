@@ -58,7 +58,7 @@ const AfterMenu = memo((props) => {
                         </Link>
                         <div>
                             <Dropdown isOpen = {isDropdown} toggle={toggle}>
-                                <DropdownToggle right style={{padding: '0px', background: '#414141', border: 'none'}}>
+                                <DropdownToggle style={{padding: '0px', background: '#414141', border: 'none'}}>
                                     {sessionStorage.getItem('username')}
                                 </DropdownToggle>
                                 <DropdownMenu className='dropdown-menu' style={{transform: 'translate(-35px, 0px)'}}>

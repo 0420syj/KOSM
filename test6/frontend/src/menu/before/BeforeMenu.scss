@@ -51,21 +51,41 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .dropdown {
+
+    .login-button{
+        padding:0px;
+        background:#414141;
+        border:none;
+        color:#e4e4e4;
+        
+        width: 60px;
+        height: 27px;
+        font-family: 'NotoSans';
+        font-size: 20px;
+        font-weight: 700;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.35;
+        letter-spacing: normal;
+        text-align: center;
+        align-items: center;
+        justify-content: space-between;
+        display: flex;
+    }
+
     .dropdownMenu {
         width: 100px;
         min-width: 100px;
         background: #414141;
+        color: #FFFFFF;
+
         .dropdownItem {
-            color: #FFFFFF;
             justify-content: center;
             display: flex;
-            .link{
-
-                &:hover{
-                    color: #000000;
-                    text-decoration: none;
-                    border-radius: 2px;
-                }
+            &:hover > .link {
+                color: #000000;
+                text-decoration: none;
+                border-radius: 2px;
             }
         }
     }

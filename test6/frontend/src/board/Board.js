@@ -12,20 +12,22 @@ import { Button } from 'reactstrap';
 import './Board.scss';
 
 const Board = (props) => {
-    const [use, setUse] = useState({
-        id: "순번",
-        title: "제목",
-        status: "상태",
-        author: "작성자",
-        time: "날짜",
-    })
+    
+    // const [use, setUse] = useState({
+    //     id: "순번",
+    //     title: "제목",
+    //     status: "상태",
+    //     author: "작성자",
+    //     time: "날짜",
+    // })
+
     const [data, setData] = useState([]);
 
     useEffect(() => {
         getBoards()
             .then(response => {
                 setData(response);
-                console.log(response);
+                //console.log(response);
             })
     }, []);
 
@@ -162,8 +164,6 @@ const Board = (props) => {
           </li>
         );
       };
-      
-      
 
     const options = {
         custom: true,
