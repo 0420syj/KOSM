@@ -13,7 +13,7 @@ const Write = () => {
     const history = useHistory();
 
     const [article, setArticle] = useState({
-        'username': localStorage.getItem('username'),
+        'username': sessionStorage.getItem('username'),
         'title': '',
         validTitle: false,
         'content': '',
@@ -57,7 +57,7 @@ const Write = () => {
         <div className="container">
             <div className="top">
                 {
-                    localStorage.getItem('isLogin') === 'false' ?
+                    sessionStorage.getItem('isLogin') === 'false' ?
                     <BeforeMenu/>:
                     <AfterMenu/>
                 }
