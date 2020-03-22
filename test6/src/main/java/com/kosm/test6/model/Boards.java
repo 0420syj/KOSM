@@ -36,7 +36,7 @@ public class Boards extends BaseTimeEntity {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.status = "처리중";
+        this.status = "접수";
     }
 
     public void update(String title, String content) {
