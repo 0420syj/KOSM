@@ -95,19 +95,27 @@ public class WebCrawler {
         Elements links = doc.select(link);
         Elements infos = doc.select(info);
         Elements scores = doc.select(score);
-        JsonObject.put("type",types.text()); 
+        ////
+        String A="";
+        String B="";
+        String C="";
+        String D="";
+        //
         for(int i=0;i<titles.size();i++) 
-        { JsonObject.put("title",titles.get(i).text());
-        JsonObject.add(JsonObject.deepclone());}
+        {  A+=(titles.get(i).text()+',');}
      for(int i=0;i<links.size();i++)
-        { JsonObject.put("links",links.get(i).attr("href")); 
-         JsonObject.add(JsonObject.deepclone());}
+        {  B+=(links.get(i).text()+','); }
      for(int i=0;i<scores.size();i++)    
-        { JsonObject.put("score",scores.get(i).text());
-        JsonObject.add(JsonObject.deepclone());}
+        {  C+=(scores.get(i).text()+',');}
      for(int i=0;i<infos.size();i++)        
-       {  JsonObject.put("info",infos.get(i).text());
-         JsonObject.add(JsonObject.deepclone());}
+       {   D+=(infos.get(i).text()+',');}
+       JsonObject.put("type",types.toString()); 
+      System.out.println(A);
+       JsonObject.put("title",A);
+       JsonObject.put("links",B);
+       JsonObject.put("scores",C);
+       JsonObject.put("infos",D);
+       JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
       System.out.println(JsonObject.Size());
       JsonObject.newinit();
