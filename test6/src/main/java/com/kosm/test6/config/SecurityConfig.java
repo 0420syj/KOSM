@@ -87,6 +87,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .antMatchers("/api/board/**") // 게시판 권한 문제로 추가
                         .permitAll()
+                    .antMatchers("/api/project/**") // 프로젝트 권한 문제로 추가
+                        .permitAll()    
                     .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")
