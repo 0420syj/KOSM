@@ -71,6 +71,7 @@ public class WebCrawler {
     }
     @PostMapping("/detailcrawler")
     public  ResponseEntity<?> Hello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
+      JsonObject.newinit();
  /*
             Document 클래스 : 연결해서 얻어온 HTML 전체 문서
             Element 클래스  : Documnet의 HTML 요소
@@ -81,6 +82,7 @@ public class WebCrawler {
 
         String title = "div p[data-testid=vuln-description]";
         String type="div.col-lg-6 input[value]";
+        String date = "div#row tbody tr td span[data-testid]";
         String link="tbody > tr > td > [href]";
         String info="div.bs-callout.bs-callout-info";
         String score="span.severityDetail";
@@ -115,6 +117,7 @@ public class WebCrawler {
        JsonObject.put("links",B);
        JsonObject.put("scores",C);
        JsonObject.put("infos",D);
+       JsonObject.put("date",date);
        JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
       System.out.println(JsonObject.Size());
