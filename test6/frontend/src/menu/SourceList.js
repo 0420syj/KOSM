@@ -21,19 +21,17 @@ const SourceList = memo(() => {
     }, [inputText.length])
 
     useEffect(() => {
-        // if(render === false){
-            setRender(true);
-            getProjectAll()
-            .then(res => {
-                res.map(item => {
-                    setOpenSource(items => [
-                        ...items,
-                        item
-                    ])                
-                })
+        setRender(true);
+        getProjectAll()
+        .then(res => {
+            res.map(item => {
+                setOpenSource(items => [
+                    ...items,
+                    item
+                ])                
             })
-            .catch(e => console.log(e));
-        // }
+        })
+        .catch(e => console.log(e));
     }, [])
 
     return (
@@ -42,8 +40,8 @@ const SourceList = memo(() => {
                 width: `444px`,
                 height: `915px`,
                 background: '#414141',
-                paddingLeft: `${WIDTH * 48}px`,
-                paddingTop: `${HEIGHT * 38}px`,
+                paddingLeft: `48px`,
+                paddingTop: `38}px`,
             }}>
             <div
                 style={{

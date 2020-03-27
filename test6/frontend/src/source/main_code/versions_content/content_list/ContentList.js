@@ -9,6 +9,7 @@ import './ContentList.scss';
 
 
 const Score = (props) => {
+    let index = 0;
     const colorRender = useCallback((data) => {
         const v = data[0] + data[1];
         if(data != null){
@@ -18,16 +19,16 @@ const Score = (props) => {
                 case '2.':
                 case '3.':
                 case '4.':
-                    return <span style={{marginLeft: '25px', height: '30px', background: '#F2CC0C'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#F2CC0C'}}>{data}<br/><br/></span>
                 case '5.':
                 case '6.':
-                    return <span style={{marginLeft: '25px', height: '30px', background: '#EC971F'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#EC971F'}}>{data}<br/><br/></span>
                 case '7.':
                 case '8.':
                 case '10':
-                    return <span style={{marginLeft: '25px', height: '30px', background: '#D9534F'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#D9534F'}}>{data}<br/><br/></span>
                 case '9.': 
-                    return <span style={{marginLeft: '25px', height: '30px', background: '#000000'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000'}}>{data}<br/><br/></span>
             }
         }
     })
@@ -38,7 +39,7 @@ const Score = (props) => {
                 props.newScore.map(item => {
                     return (
                     item[0] === 'V' ? 
-                    <span style={{display: 'inline-block', width: '25px'}}>{item}</span>: 
+                    <span key={index++} style={{display: 'inline-block', width: '25px'}}>{item}</span>: 
                     colorRender(item)
                 )})
             }
@@ -52,7 +53,6 @@ const ContentList = ({date, summary, score, title, name}) => {
 
     const settingScore = useCallback(() => {
         const arr = score.split(' ');
-        console.log(arr);
         let str = '';
         for(let i = 0; i < arr.length; i++){
             if(i % 3 === 0)
