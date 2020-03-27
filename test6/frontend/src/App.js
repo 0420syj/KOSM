@@ -19,10 +19,6 @@ function App() {
   useEffect(() => {
     if(sessionStorage.getItem('isLogin') === null)
       sessionStorage.setItem('isLogin', 'false');
-    // localStorage.setItem('isLogin', 'false');
-    // localStorage.setItem('userArray', JSON.stringify([]));
-    // console.log('start');
-    // console.log(localStorage.getItem('userArray'));
   }, []);
 
   return (

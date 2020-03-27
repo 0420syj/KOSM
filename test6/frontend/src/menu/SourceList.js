@@ -4,18 +4,37 @@ import OpenSourceData from '../data/OpenSourceData';
 import './SourceList.scss';
 import { WIDTH, HEIGHT } from '../constants';
 import { useEffect } from 'react';
+import {getProjectAll} from '../util/APIUtils'
 const SourceList = memo(() => {
+    const [render, setRender] = useState(false);
     const [Data, setData] = useState([]);
     const [inputText, setInputText] = useState('');
+    const [openSourceData, setOpenSource] = useState([]);
     const onChange = useCallback((e) => {
         setInputText(e.target.value.toLowerCase());
-        setData(OpenSourceData.filter(item => {
-            return item.value.toLowerCase().indexOf(e.target.value) !== -1
+        setData(openSourceData.filter(item => {
+            return item.name.toLowerCase().indexOf(e.target.value) !== -1
         }));
     });
 
     useEffect(() => {
     }, [inputText.length])
+
+    useEffect(() => {
+        // if(render === false){
+            setRender(true);
+            getProjectAll()
+            .then(res => {
+                res.map(item => {
+                    setOpenSource(items => [
+                        ...items,
+                        item
+                    ])                
+                })
+            })
+            .catch(e => console.log(e));
+        // }
+    }, [])
 
     return (
         <div
@@ -81,19 +100,19 @@ const SourceList = memo(() => {
                     }}>
                     {
                         inputText.length === 0 ?
-                        OpenSourceData.map(item => {
+                        openSourceData.map(item => {
                             return (
                             <li key={item.id}>
-                                <Link to={`/source/${item.value}`}
+                                <Link to={`/source/${item.name}`}
                                     className='sourceList'>
-                                    {item.value}
+                                    {item.name}
                                 </Link>
                             </li>)
                         }) :
                         Data.map(item => {
                             return <li key={item.id}>
                                 <Link
-                                    to={`/source/${item.value}`}
+                                    to={`/source/${item.name}`}
                                     className='sourceList'>
                                     {item.value}
                                 </Link>
