@@ -11,8 +11,8 @@ import OpenSourceData from '../../data/OpenSourceData';
 import AfterMainSource from './versions_after_login_title/AfterMainSource';
 import BeforeMainSource from './versions__before_login_title/BeforeMainSource';
 import MainContent from './versions_content/MainContent';
-
 import './MainSource.scss';
+
 const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [message, setMessage] = useState('');
@@ -25,19 +25,20 @@ const MainSource = (props) => {
     }, [isFavorite])
 
     useEffect(() => {        
-        setIsFavorite(false);
-        getFavProject(sessionStorage.getItem('userId'))
-        .then(res => {
-            res.map((items) => {
-                if(items.name === props.name){
-                    setIsFavorite(true);
-                }
+        if(sessionStorage.getItem('isLogin') === 'true'){
+            setIsFavorite(false);
+            getFavProject(sessionStorage.getItem('userId'))
+            .then(res => {
+                res.map((items) => {
+                    if(items.name === props.name){
+                        setIsFavorite(true);
+                    }
+                })
             })
-        })
-        .catch(e => {
-            console.log(e);
-        })
-
+            .catch(e => {
+                console.log(e);
+            })
+        }
         setData([]);
         var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
         const signupRequest = {url:url}
@@ -106,9 +107,9 @@ const MainSource = (props) => {
                 {
                     data.length === 0 ?    //데이터가 없다면
                     <div style={{width: '100%', justifyContent:'center'}}> 
-                        <div style={{marginTop: '80px'}}class="text-center">
-                            <div style={{color: '#e4e4e4'}} class="spinner-border" role="status">
-                                <span class="sr-only">Loading...</span>
+                        <div style={{marginTop: '80px'}}className="text-center">
+                            <div style={{color: '#e4e4e4'}} className="spinner-border" role="status">
+                                <span className="sr-only">Loading...</span>
                             </div>
                         </div>
                     </div> :
