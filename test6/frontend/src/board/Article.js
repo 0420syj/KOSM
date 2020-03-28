@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'reactstrap';
+import { Button, Badge } from 'reactstrap';
 
 import { getArticle } from '../util/APIUtils'
 import BeforeMenu from '../menu/before/BeforeMenu';
@@ -43,7 +43,7 @@ class Article extends Component {
 
         // 상단메뉴 출력 함수
         const renderTopMenu = () => {
-            if (localStorage.getItem('isLogin') !== 'false')
+            if (sessionStorage.getItem('isLogin') !== 'false')
                 return <AfterMenu />
             else
                 return <BeforeMenu />
@@ -62,6 +62,15 @@ class Article extends Component {
             window.location.href = '/board';
         }
 
+        const statusLabel = () => {
+            if(status === "접수")
+                return <Badge color="danger">접수</Badge>
+            else if(status === "처리중")
+                return <Badge color="warning">처리중</Badge>
+            else if(status === "완료")
+                return <Badge color="success">완료</Badge>
+        }
+
         return (
             <div className="container">
                 <div className="top">
@@ -74,7 +83,7 @@ class Article extends Component {
                     <div className="article-container">
                         <div className="article-header">
                             <div className="left-article-header">
-                                <div>제목 : {title} ({status})</div>
+                                <div>제목 : {title} {statusLabel()}</div>
                             </div>
                             <div className="right-article-header">
                                 <div>{printDate(date)}</div>

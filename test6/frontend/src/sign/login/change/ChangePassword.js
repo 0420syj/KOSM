@@ -132,7 +132,7 @@ const ChangePassword = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         const request = {
-            email : localStorage.getItem('email'),
+            email : sessionStorage.getItem('email'),
             beforePassword : userInfo.prevpassword,
             newPassword : userInfo.password
         }

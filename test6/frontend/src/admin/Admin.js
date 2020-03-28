@@ -382,9 +382,6 @@ const Admin = () => {
                                 </ToolkitProvider>
                             </div>
                         </div>
-                        <div className="bottom">
-                            Footer
-                        </div>
                     </div>
                 )
             }

@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import './ForgotPassword.scss';
 import { forgot } from '../../../util/APIUtils';
+import { Button } from 'reactstrap';
 import axios from 'axios';
 const ForgotPassword = () => {
     const [isConfirm, setIsConfirm] = useState(false);
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
          }    
          forgot(userinfo)        
          .then(res => {
-             alert(res);       
+            alert(res);
     }).catch(e => {
         alert('Fuck');
         console.log(e);
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
                                     <input type='email' name='email' value={data.email} onChange = {onChange} className='subInput'/>
                                     {
                                         isConfirm === true ?
-                                        <button style={{
+                                        <Button style={{
                                             background: '#00ff00',
                                             width: '80px',
                                             marginLeft: '10px',
@@ -59,8 +60,8 @@ const ForgotPassword = () => {
                                             fontSize: '20px',
                                         }}>
                                             확인
-                                        </button>:
-                                        <button 
+                                        </Button>:
+                                        <Button 
                                             style={{
                                                 background: '#3aada8',
                                                 width: '80px',
@@ -69,7 +70,7 @@ const ForgotPassword = () => {
                                                 color: '#ffffff',
                                                 fontWeight: '500',
                                                 fontSize: '20px',
-                                            }} onClick={confirm}>인증</button>
+                                            }} onClick={confirm}>인증</Button>
                                     }
                                 </div>
                             </div>

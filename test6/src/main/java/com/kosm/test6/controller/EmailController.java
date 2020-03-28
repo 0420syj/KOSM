@@ -90,6 +90,7 @@ public  ResponseEntity<?> PasswordSend(@Valid @RequestBody EmailResponse EmailRe
         MimeMessage msg = javaMailSender.createMimeMessage();
          //true = multipart message
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+        helper.setFrom("KOSM <kosm.manager@gmail.com>");
         helper.setTo(EmailRequest.getEmail());
         helper.setSubject("Kosm password has Changed");
         helper.setText("<h1>This is your temp password!</h1>" +pass, true);

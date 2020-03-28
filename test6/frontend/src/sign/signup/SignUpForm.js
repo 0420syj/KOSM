@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './SignUpForm.scss';
 import axios from 'axios';
-import {useHistory, Link} from 'react-router-dom';
+import {useHistory, Link, Redirect} from 'react-router-dom';
 import { Mail,checkEmailAvailability,checkUsernameAvailability,signup} from '../../util/APIUtils';
 // import { Form, Input, Button, Icon, notification } from 'antd';
 import {ButtonToggle, Button} from 'reactstrap';
@@ -235,7 +235,7 @@ const SignUp = ({match}) => {
             phonenumber: userInfo.phonenumber,
             password: userInfo.password,
         }
-        signup(signupRequest)       
+        signup(signupRequest).then(() => <Redirect to="/"/>)
         .catch((error) => {
             alert("fail");
         });
