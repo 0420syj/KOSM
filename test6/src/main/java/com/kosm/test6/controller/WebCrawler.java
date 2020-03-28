@@ -106,17 +106,18 @@ public class WebCrawler {
         for(int i=0;i<titles.size();i++) 
         {  A+=(titles.get(i).text()+',');}
      for(int i=0;i<links.size();i++)
-        {  B+=(links.get(i).text()+','); }
+        {  B+=(links.get(i).attr("href")+','); }
      for(int i=0;i<scores.size();i++)    
         {  C+=(scores.get(i).text()+',');}
      for(int i=0;i<infos.size();i++)        
        {   D+=(infos.get(i).text()+',');}
        JsonObject.put("type",types.toString()); 
+      
       System.out.println(A);
        JsonObject.put("title",A);
        JsonObject.put("links",B);
        JsonObject.put("scores",C);
-       JsonObject.put("infos",D);
+       JsonObject.put("infos",D.substring(8));
        JsonObject.put("date",date);
        JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
