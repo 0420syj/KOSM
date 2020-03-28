@@ -7,9 +7,6 @@
 
 .manage-.board {
     position:absolute;
-    //top:80px;
-    bottom: 50px;
-    //left:444px;
 
     width: 100%; // left 너비만큼 빼기
     height: 915px;
@@ -17,20 +14,6 @@
     background: #393939;
     overflow: hidden;
 }
-
-.bottom {
-    position:absolute;
-    top:1165px;
-    
-    width: 100%;
-    height: 50px;
-    
-    // 임시 디자인
-    background: #3aada8;
-    color: #eaeaea;
-    text-align: center;
-    font-size: 30px;
-    }
 
 .admin-container {
     

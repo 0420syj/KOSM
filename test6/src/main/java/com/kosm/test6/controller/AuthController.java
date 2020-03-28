@@ -124,19 +124,23 @@ public class AuthController {
                         /////////////////
                         MimeMessage msg = javaMailSender.createMimeMessage();
                         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-                        helper.setFrom("kosm.manager@gmail.com"); // 완 : 전 이거없인 회원가입이 되지않아요ㅠ
+                        helper.setFrom("KOSM <kosm.manager@gmail.com>"); // 완 : 전 이거없인 회원가입이 되지않아요ㅠ
                         helper.setTo(signUpRequest.getEmail());
                         System.out.println(signUpRequest.getEmail()+"FUck");
-                        helper.setSubject("Testing from Spring Boot");
+                        helper.setSubject("KOSM 회원가입을 환영합니다.");
                       
                         String url= "http://localhost:3000/success/"+secret;
                         JsonObject.put("key",secret);
                         String jsonInfo = JsonObject.toJsonString();
-                       //  String content = "please Enter this Link for signup.!" + 
-                      //   "<a href='http://localhost:3000/success'>Sign Up</a>";
-                         String content = "please Enter this Link for signup.!" + 
-                         "<a href="+url+">Sign Up</a>";
-                        helper.setText("<h1>Thank you for Login!</h1>" +content, true);
+                        //  String content = "please Enter this Link for signup.!" + 
+                        //   "<a href='http://localhost:3000/success'>Sign Up</a>";
+                        String content = "please Enter this Link for signup.!" + 
+                        "<a href="+url+">Sign Up</a>";
+
+                        String emailContent = "<div style='width:700px;border:1px solid #cecece;border-top:1px solid #3aada8;font-size:20px;'><img src='https://kwangwoon-syllabus.s3.ap-northeast-2.amazonaws.com/kosm_bg.gif'><div style='width:100%;border-bottom:1px solid #cecece;'><div style='width:600px;margin:0 auto;margin-bottom:64px;margin-top:40px;'><span style='color:#363636;font-size:16px;line-height:22px;'>KOSM 회원가입을 진심으로 환영합니다.<br><br>아래 버튼을 클릭하여 회원가입을 완료해주세요.<br></span><br><br><span style='font-size:16px;color:#808080;'>KOSM Team</span><center><a class='mail_btn' href='" + url + "' target='_blank'style='display:block;:50px;padding-left:30px;padding-right:30px;font-size:20px;color:white;line-:48px;margin:0 auto;text-align:center;display:inline-block;border-radius:10px;text-decoration:none;margin-top:35px;border:1px solid #f7870f;background:#fe931f;background-position:95% center;'rel='noreferrer noopener'>회원가입<img src='http://earthtory.com/res/img/mail/common/arrow_yellow.gif'style='float:right;margin-top:18px;margin-left:5px;' alt=''></a></center></div></div><!-- <div style='width:700px;height:56px;'><a class='app_button' href='https://play.google.com/store/apps/details?id=com.earthtory' target='_blank' style='margin-left:20px;float:left;border:1px solid #c9c9c9;:80px;:29px;border-radius:3px;font-size:13px;font-weight:bold;color:#363c48;text-align:center;display:block;margin-right:5px;text-decoration:none;line-:28px;margin-top:13px;' rel='noreferrer noopener'>Android</a><a class='app_button' href='https://itunes.apple.com/kr/app/eoseutoli-earthtory-juyo-gwangwangji/id919377935?mt=8' target='_blank' style='float:left;border:1px solid #c9c9c9;:80px;:29px;border-radius:3px;font-size:13px;font-weight:bold;color:#363c48;text-align:center;display:block;margin-right:5px;text-decoration:none;line-:28px;margin-top:13px;' rel='noreferrer noopener'>iOS</a><a class='ss_btn' href='http://blog.earthtory.com/' target='_blank' style='float:right;margin-left:10px;margin-right:20px;margin-top:12px;border:0px;' rel='noreferrer noopener'><img src='http://earthtory.com/res/img/mail/common/ss_bl.gif' alt='' border='0'></a><a class='ss_btn' href='https://www.facebook.com/Earthtory' target='_blank' style='float:right;margin-left:10px;margin-top:12px;border:0px;' rel='noreferrer noopener'><img src='http://earthtory.com/res/img/mail/common/ss_fb.gif' alt='' border='0'></a></div> --></div>";
+
+                        //helper.setText("<h1>Thank you for Login!</h1>" +content, true);
+                        helper.setText(emailContent, true);
                         javaMailSender.send(msg);
                         System.out.println(jsonInfo);
                         return new ResponseEntity<>( jsonInfo, HttpStatus.OK);
