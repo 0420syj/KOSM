@@ -97,7 +97,6 @@ public  ResponseEntity<?> PasswordSend(@Valid @RequestBody EmailResponse EmailRe
         javaMailSender.send(msg);
         
     } catch (Exception e) {
-        System.out.println("Fuck!!");
         System.out.println(e);
         
     }  

@@ -146,7 +146,6 @@ public class AuthController {
                         return new ResponseEntity<>( jsonInfo, HttpStatus.OK);
                  }
                  catch (Exception e) {
-                        System.out.println("Fuck!!@@@@@@@@@@@@@@@@@@@@@@@");
                         System.out.println(e);
                         return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);

@@ -2,6 +2,7 @@ package com.kosm.test6.component;
 import java.util.Random;
 
 import org.springframework.stereotype.Component;
+
 @Component
 public class authpassword{
     private int pwdLength = 8;
