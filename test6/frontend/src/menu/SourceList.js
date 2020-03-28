@@ -41,7 +41,7 @@ const SourceList = memo(() => {
                 height: `915px`,
                 background: '#414141',
                 paddingLeft: `48px`,
-                paddingTop: `38}px`,
+                paddingTop: `38px`,
             }}>
             <div
                 style={{
