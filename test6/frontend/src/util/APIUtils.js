@@ -277,3 +277,19 @@ export function checkAdmin(password) {
         body: JSON.stringify(password)
     });
 }
+
+export function deleteBoard(deleteBoardRequest) {
+    return request({
+        url: API_BASE_URL + "/api/board/delete",
+        method: 'DELETE',
+        body: JSON.stringify(deleteBoardRequest)
+    })
+}
+
+export function modifyBoard(modifyBoardRequest) {
+    return request({
+        url: API_BASE_URL + "/api/board/modify",
+        method: 'PUT',
+        body: JSON.stringify(modifyBoardRequest)
+    })
+}

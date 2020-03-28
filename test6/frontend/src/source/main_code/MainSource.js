@@ -96,7 +96,8 @@ const MainSource = (props) => {
                 <div>
                     {
                         sessionStorage.getItem('isLogin') === 'true' ?
-                        <After isFavorite={isFavorite} favoriteClcik={favoriteClick} name={props.name}/>:
+                        <After isFavorite={isFavorite} 
+                        favoriteClick={favoriteClick} name={props.name}/>:
                         <div className='before'>
                             {props.name}
                         </div>

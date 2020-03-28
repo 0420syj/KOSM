@@ -3,7 +3,9 @@ package com.kosm.test6.controller;
 import java.util.List;
 
 import com.kosm.test6.model.Boards;
+import com.kosm.test6.payload.BoardDeleteRequest;
 import com.kosm.test6.payload.BoardListResponse;
+import com.kosm.test6.payload.BoardModifyRequest;
 import com.kosm.test6.payload.BoardResponse;
 import com.kosm.test6.payload.BoardSaveRequest;
 import com.kosm.test6.service.BoardService;
@@ -34,15 +36,23 @@ public class BoardController {
         return boardService.save(request);
     }
     
-    @PutMapping("/api/v1/posts/{id}")
-    public Long update(@PathVariable Long id, @RequestBody BoardResponse requestDto) {
-        return boardService.update(id, requestDto);
+    @PutMapping("/api/board/modify")
+    public Long update(@RequestBody List<BoardModifyRequest> request) {
+        for(BoardModifyRequest res : request) {
+            boardService.update(res);
+        }
+
+        return (long) 1;
     }
 
-    @DeleteMapping("/api/v1/posts/{id}")
-    public Long delete(@PathVariable Long id) {
-        boardService.delete(id);
-        return id;
+    @DeleteMapping("/api/board/delete")
+    public Long delete(@RequestBody List<Long> request) {
+       
+        for(Long res : request){
+            System.out.println(res);
+            boardService.delete(res);
+        }
+        return (long)1;
     }
     
     @GetMapping("/api/board/list/{id}")

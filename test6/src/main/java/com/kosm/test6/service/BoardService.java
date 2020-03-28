@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kosm.test6.model.Boards;
 import com.kosm.test6.payload.BoardListResponse;
+import com.kosm.test6.payload.BoardModifyRequest;
 import com.kosm.test6.payload.BoardResponse;
 import com.kosm.test6.payload.BoardSaveRequest;
 import com.kosm.test6.repository.BoardRepository;
@@ -50,12 +51,13 @@ public class BoardService {
     }
 
     @Transactional
-    public Long update(Long id, BoardResponse requestDto){
-        Boards boards = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
+    public Long update(BoardModifyRequest requestDto){
+        Boards boards = boardRepository.findById(requestDto.getId()).orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id="+ requestDto.getId()));
 
-        boards.update(requestDto.getTitle(), requestDto.getContent());
+        boards.updateStatus(requestDto.getStatus());
+        boardRepository.saveAndFlush(boards);
 
-        return id;
+        return requestDto.getId();
     }
 
     @Transactional
