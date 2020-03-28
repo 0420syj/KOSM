@@ -9,7 +9,6 @@ import {IconContext} from 'react-icons';
 import {addFavProject, deleteFavProject} from '../../util/APIUtils';
 import OpenSourceData from '../../data/OpenSourceData';
 import AfterMainSource from './versions_after_login_title/AfterMainSource';
-import BeforeMainSource from './versions__before_login_title/BeforeMainSource';
 import MainContent from './versions_content/MainContent';
 import './MainSource.scss';
 
@@ -114,19 +113,12 @@ const MainSource = (props) => {
                         </div>
                     </div> :
                     <div>
-                       {
-                            sessionStorage.getItem('isLogin') === 'false' ?
-                            <BeforeMainSource
-                                name={props.name}
-                                title={data[0].title}
-                                date={data[0].date}/>:
                             <AfterMainSource
                                 isFavorite = {isFavorite}
                                 favoriteClick = {favoriteClick}
                                 name={props.name}
                                 title={data[0].title}
                                 date={data[0].date}/>
-                        }
                         <div className='vul'>
                             Vulnerability
                         </div>
