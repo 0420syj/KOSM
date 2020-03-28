@@ -44,6 +44,8 @@ public class Boards extends BaseTimeEntity {
         this.content = content;
     }
 
-
+    public void updateStatus(String status) {
+        this.status = status;
+    }
 
 }

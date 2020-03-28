@@ -24,6 +24,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
             name: sessionStorage.getItem('email')
         });
         favItem.map((item) => {if(item === false) temp.push(favItems[i++])})
+        console.log(temp);
         deleteFavProject(temp)
         .then(() => {
             getFavProject(sessionStorage.getItem('userId'))
