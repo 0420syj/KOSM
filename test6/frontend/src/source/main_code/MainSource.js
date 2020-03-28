@@ -113,12 +113,11 @@ const MainSource = (props) => {
                         </div>
                     </div> :
                     <div>
+                        <div className='minititle'>
                             <AfterMainSource
-                                isFavorite = {isFavorite}
-                                favoriteClick = {favoriteClick}
-                                name={props.name}
                                 title={data[0].title}
                                 date={data[0].date}/>
+                        </div>
                         <div className='vul'>
                             Vulnerability
                         </div>

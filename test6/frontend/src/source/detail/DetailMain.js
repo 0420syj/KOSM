@@ -26,8 +26,23 @@ const DetailMain = ({match}) => {
             <DetailTitle/>
             <div className='detailMainContainer'>
                 <SourceList/>
-                <DetailContents
-                    location={match.params.source}/>
+                {
+                    data.length === 0 ? 
+                    <div 
+                        style={{marginTop: '80px', width: '100%'}}
+                        className="text-center">
+                        <span 
+                            style={{color: '#e4e4e4', marginTop: '200px'}} 
+                            className="spinner-border" 
+                            role="status">
+                        </span>
+                    </div> :
+                    <DetailContents
+                        infos={data[0].infos}
+                        link={data[0].links}
+                        title={data[0].title}
+                        location={match.params.source}/>
+                }
             </div>            
         </div>
     )
