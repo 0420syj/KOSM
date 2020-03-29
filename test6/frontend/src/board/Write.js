@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Board.scss';
-import {getBoardOnce, getBoardCount, getBoards} from '../util/APIUtils'
 import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
@@ -10,7 +9,7 @@ import './Write.scss'
 
 const Write = () => {
 
-    const history = useHistory();
+    let history = useHistory();
 
     const [article, setArticle] = useState({
         'username': sessionStorage.getItem('username'),
@@ -38,8 +37,36 @@ const Write = () => {
         // console.log(article)
     }
 
+    const validateCondition = () => {
+
+        var flag = true
+
+        var temp_title = article.title
+        var temp_content = article.content
+
+        if(!temp_title.trim().length || !temp_content.trim().length) {
+            alert("공백 문자만으로 입력할 수 없습니다.")
+            flag = false
+        }
+
+        else if(temp_title.trim().length < 5) {
+            alert("제목이 너무 짧습니다. (공백 문자 제외, 5자 이상)")
+            flag = false
+        }
+
+        else if(temp_content.trim().length < 10) {
+            alert("내용이 너무 짧습니다. (공백 문자 제외, 10자 이상)")
+            flag = false
+        }
+
+        return flag
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!validateCondition())
+            return
+
         const boardSaveRequest = {
             author: article.username,
             title: article.title,
@@ -47,7 +74,7 @@ const Write = () => {
         }
         writeBoard(boardSaveRequest)
         .then(() => {
-            history.goBack()
+            history.push('/board')
         }).catch((error) => {
             console.log(error)
         });
