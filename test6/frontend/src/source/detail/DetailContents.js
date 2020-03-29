@@ -5,14 +5,9 @@ import React, {memo, useEffect, useState} from 'react';
 import {Link, Route} from 'react-router-dom';
 import './DetailContents.scss';
 const DetailContents = ({infos, link, title, location}) => {
-    console.log(infos);
-    console.log(link);
-    console.log(title);
     const [linkArray, setLink] = useState([]);
     let idx = 0;
-    useEffect(() => {
-        setLink(link.split(','));
-    }, [])
+    useEffect(() => {setLink(link.split(','));}, [])
 
     return ( 
         <div className='detailContents'>
@@ -35,7 +30,7 @@ const DetailContents = ({infos, link, title, location}) => {
                 <div className='content'>
                 {
                     linkArray.length !== 0 && 
-                    <div>
+                    <div style={{overflow: 'hidden'}}>
                         {
                             linkArray.map(item => 
                                 <a 
@@ -49,7 +44,6 @@ const DetailContents = ({infos, link, title, location}) => {
                     </div>
                 }
                 </div>
-                <hr className='hr'/>
             </div>
         </div>
     )
