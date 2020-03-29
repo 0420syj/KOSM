@@ -53,3 +53,43 @@
         float:left;
     }
 }
+
+.menu {
+    width: 60px;
+    height: 27px;
+    font-family: 'NotoSans';
+    font-size: 20px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    a {
+        color: #e4e4e4;
+    }
+}
+
+.username-button{
+    padding:0px;
+    background:#414141;
+    border:none;
+    color:#e4e4e4;
+    
+    width: 60px;
+    height: 27px;
+    font-family: 'NotoSans';
+    font-size: 20px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
