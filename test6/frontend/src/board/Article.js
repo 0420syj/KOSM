@@ -59,7 +59,7 @@ class Article extends Component {
         }
 
         const goBoard = () => {
-            window.location.href = '/board';
+            this.props.history.push('/board')
         }
 
         const statusLabel = () => {

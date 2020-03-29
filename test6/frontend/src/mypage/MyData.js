@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import './MyData.scss';
 import {Button} from 'reactstrap';
 import { changeName } from '../util/APIUtils';
 const MyData = () => {
+
+    let history = useHistory();
+
     const [userInfo, setUserInfo] = useState({
         email:sessionStorage.getItem('email'),
         username:'',
@@ -19,15 +22,21 @@ const MyData = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // alert('email : ' + userInfo.email + '\nusername : ' + userInfo.username);
+
+        if(userInfo.username.length < 3 || userInfo.username.length > 8)
+        {
+            alert("닉네임 글자 수는 3~8자 입니다.")
+            return
+        }
+
         changeName(userInfo)
         .then(() => {
-            alert("닉네임이 변경되었습니다 : " + userInfo.username)
+            alert("닉네임이 변경되었습니다.")
             // console.log(userInfo.username);
-            sessionStorage.setItem('username', userInfo.username); // sessionStorage 값 수정
-            window.location.href = '/';
+            sessionStorage.setItem('username', userInfo.username);
+            history.push('/')
             }).catch((error) => {
-                alert("변경 실패")
+                alert("변경 실패!")
                 console.log(error)
             });
         };
@@ -45,7 +54,8 @@ const MyData = () => {
                     onChange={onChange}
                     name='username'
                     style={{background: '#414141', fontSize: '25px'}}
-                    placeholder={`${sessionStorage.getItem('email')}`}/>
+                    placeholder={`${sessionStorage.getItem('email')}`}
+                    readOnly/>
             </div>
             <div className='sub'>
                 <div
@@ -61,7 +71,8 @@ const MyData = () => {
                     className='input'
                     onChange={onChange}
                     name="username"
-                    style={{width: '100%'}}/>
+                    style={{width: '100%'}}
+                    placeholder={`${sessionStorage.getItem('username')}`}/>
             </div>            
             <div className='buttonContainer'>
                 <Button className='button'>
