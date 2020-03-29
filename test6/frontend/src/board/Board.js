@@ -172,7 +172,7 @@ const Board = (props) => {
         }
 
         return (
-          <li>
+          <li key={page.toString()}>
               <a href="#board-title" onClick={ handleClick } style={ activeStyle } className="page-button">{ page }</a>
           </li>
         );

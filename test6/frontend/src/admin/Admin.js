@@ -297,7 +297,7 @@ const Admin = () => {
             }
     
             return (
-              <li>
+              <li key={page.toString()}>
                   <a href="#" onClick={ handleClick } style={ activeStyle } className="page-button">{ page }</a>
               </li>
             );
