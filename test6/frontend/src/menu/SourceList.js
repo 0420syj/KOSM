@@ -85,7 +85,7 @@ const SourceList = memo(() => {
             <div
                 style={{
                     overflowY: 'scroll',
-                    height: '702px' // ì¶”ê°€ ê³„ì‚° í•„ìš”
+                    height: '702px' // ì¶”ê?? ê³„ì‚° ?•„?š”
                 }}>
                 <ul
                     style={{

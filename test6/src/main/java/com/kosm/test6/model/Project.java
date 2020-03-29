@@ -18,6 +18,8 @@ public class Project{
 
     private String name;
 
+    private String link;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_projects",
             joinColumns = @JoinColumn(name = "project_id"),
