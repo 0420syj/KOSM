@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {Button} from 'reactstrap';
 import { changePassword } from '../../../util/APIUtils';
 import './ChangePassword.scss';
+import { useHistory } from "react-router-dom";
+
 const ChangePassword = () => {
+
+    let history = useHistory();
     
     const [userInfo, setUserInfo] = useState({
         'prevpassword': '',
@@ -140,7 +144,7 @@ const ChangePassword = () => {
         changePassword(request)       
         .then(() => {
             alert("비밀번호가 변경되었습니다.");
-            window.location.href = '/';
+            history.push('/')
         },(error) => {
             console.log(error);
             alert("변경 실패");

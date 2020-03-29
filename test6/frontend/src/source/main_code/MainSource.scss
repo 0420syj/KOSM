@@ -79,6 +79,9 @@ html, body {
 .star{
     align-items: center;
     vertical-align: center;
+    svg {
+        cursor: pointer;
+    }
 }   
 
 .before{

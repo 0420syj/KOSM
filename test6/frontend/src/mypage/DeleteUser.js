@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { deleteUser } from '../util/APIUtils';
 import { Button } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
 import './DeleteUser.scss'
 
 const DeleteUser = () => {
+
+    let history = useHistory();
 
     const [userInfo, setUserInfo] = useState({
         email:sessionStorage.getItem('email'),
@@ -24,7 +27,7 @@ const DeleteUser = () => {
         deleteUser(userInfo)
         .then(() => {
             alert("정상적으로 탈퇴처리 되었습니다.")
-            window.location.href = '/';
+            history.push('/')
             sessionStorage.setItem('isLogin', 'false');
             }).catch((error) => {
                 alert("삭제 실패!" + "\nCheck console log, or your server status.")

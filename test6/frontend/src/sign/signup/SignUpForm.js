@@ -1,18 +1,10 @@
 import React, {useState} from 'react';
 import './SignUpForm.scss';
-import axios from 'axios';
-import {useHistory, Link, Redirect} from 'react-router-dom';
-import { Mail,checkEmailAvailability,checkUsernameAvailability,signup} from '../../util/APIUtils';
-// import { Form, Input, Button, Icon, notification } from 'antd';
-import {ButtonToggle, Button} from 'reactstrap';
-import Home from '../../home/Home';
-import { MdGolfCourse } from 'react-icons/md';
+import {Link, Redirect} from 'react-router-dom';
+import { checkEmailAvailability,checkUsernameAvailability,signup} from '../../util/APIUtils';
+import {Button} from 'reactstrap';
 
-const SignUp = ({match}) => {
-    const history = useHistory();
-    const [emailConfirm, setEmailConfirm] = useState('false');
-    // const [success, setSuccess] = useState(false);
-    
+const SignUp = () => {    
     const [userInfo, setUserInfo] = useState({
             'nickname': '',
             validNickName: false,
@@ -30,13 +22,6 @@ const SignUp = ({match}) => {
         // 글자수 제한 조건 true 일때
         if(nickname.length >= 3 && nickname.length <= 8) 
         {
-           // setUserInfo({
-           //     ...userInfo,
-            //    validNickName: true,
-           //     nickname
-           // });
-
-            // 근우님 여기에요!
             checkUsernameAvailability(nickname)  
             .then(res => {
                 if(res.available==true)
@@ -304,7 +289,7 @@ const SignUp = ({match}) => {
                                     회원가입
                                 </Link>
                             </Button>:
-                            <Button className='failButton' disabled="disabled">회원가입</Button>
+                            <Button className='failButton' disabled>회원가입</Button>
                         }
                         </div>
                     </div>
