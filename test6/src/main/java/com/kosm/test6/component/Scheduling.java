@@ -42,7 +42,7 @@ public class Scheduling {
     @Autowired
     private UserProjectRepository userProjectRepository;// UserProject
 
-    @Scheduled(fixedDelay = 100000) // 20珥?
+    //@Scheduled(fixedDelay = 100000000) // 20珥?
     public void simplePrintln() throws MessagingException {
         List<UserProject> projects = userProjectRepository.findAll();
        // List<Member> members = userRepository.findAll();
@@ -63,7 +63,7 @@ public class Scheduling {
             System.out.println("success");
        }
     }
-    @Scheduled(fixedDelay = 100000) // 100초 //link들어가서 날짜 크롤링 모든프로젝트 날짜 크롤링조회;
+   // @Scheduled(fixedDelay = 100000000) // 100초 //link들어가서 날짜 크롤링 모든프로젝트 날짜 크롤링조회;
     public void Monitoring_Project() throws MessagingException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";

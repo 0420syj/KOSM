@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import com.kosm.test6.service.JsonCompponent;
 import com.kosm.test6.payload.Crawling;
+import com.kosm.test6.repository.ProjectRepository;
 
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import com.kosm.test6.model.Project;
 import java.io.IOException;
+import java.util.Optional;
 @RestController
 @RequestMapping("/api/auth")
 
@@ -26,16 +29,19 @@ public class WebCrawler {
     @Autowired
     JsonCompponent JsonObject;
     
+    @Autowired
+    private ProjectRepository projectRepository;
+    
     @PostMapping("/webcrawler")
     public  ResponseEntity<?> sayHello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
- /*
-            Document 클래스 : 연결해서 얻어온 HTML 전체 문서
-            Element 클래스  : Documnet의 HTML 요소
-            Elements 클래스 : Element가 모인 자료형
-        */       
-        //String url = "https://www.w3schools.com";
-        String url =CrawlRequest.getUrl();
 
+        //String url = "https://www.w3schools.com";
+        Project prj;
+        Optional<Project> op=projectRepository.findByName(CrawlRequest.getName());
+        prj=op.get();
+       
+        String url =CrawlRequest.getUrl();
+        String Link=prj.getLink();
         String title = "div#row tbody tr th strong";
         String summary = "div#row tbody tr td p";
         String date = "div#row tbody tr td span[data-testid]";
@@ -43,24 +49,25 @@ public class WebCrawler {
         String example="";
         Document doc = null;            
         try {
-            doc = Jsoup.connect(url).get(); // -- 1. get방식의 URL에 연결해서 가져온 값을 doc에 담는다.
+            doc = Jsoup.connect(url).get(); // -- 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }        
-        Elements titles = doc.select(title); // -- 2. doc에서 selector의 내용을 가져와 Elemntes 클래스에 담는다.
+        Elements titles = doc.select(title); // -- 
         Elements summaries = doc.select(summary);
         Elements dates = doc.select(date);
         Elements scores = doc.select(score);
-        
+        JsonObject.put("Link",Link); 
         for(int i=0;i<titles.size();i++) {
-             // -- 3. Elemntes 길이만큼 반복한다.
+             // -- 3. Elemntes 길이만큼 반복?��?��.
             JsonObject.put("title",titles.get(i).text()); 
             JsonObject.put("date",dates.get(i).text()); 
             JsonObject.put("summary",summaries.get(i).text()); 
             JsonObject.put("score",scores.get(i).text()); 
             JsonObject.add(JsonObject.deepclone());
-           // System.out.println(JsonObject.toJsonString());
+            System.out.println(JsonObject.toJsonString());
         }
+        JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
       System.out.println(JsonObject.Size());
       JsonObject.newinit();
@@ -73,9 +80,9 @@ public class WebCrawler {
     public  ResponseEntity<?> Hello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
       JsonObject.newinit();
  /*
-            Document 클래스 : 연결해서 얻어온 HTML 전체 문서
-            Element 클래스  : Documnet의 HTML 요소
-            Elements 클래스 : Element가 모인 자료형
+            Document ?��?��?�� : ?��결해?�� ?��?��?�� HTML ?���? 문서
+            Element ?��?��?��  : Documnet?�� HTML ?��?��
+            Elements ?��?��?�� : Element�? 모인 ?��료형
         */       
         //String url = "https://www.w3schools.com";
         String url =CrawlRequest.getUrl();
@@ -88,11 +95,11 @@ public class WebCrawler {
         String score="span.severityDetail";
         Document doc = null;            
         try {
-            doc = Jsoup.connect(url).get(); // -- 1. get방식의 URL에 연결해서 가져온 값을 doc에 담는다.
+            doc = Jsoup.connect(url).get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }        
-        Elements titles = doc.select(title); // -- 2. doc에서 selector의 내용을 가져와 Elemntes 클래스에 담는다.
+        Elements titles = doc.select(title); // -- 2. doc?��?�� selector?�� ?��?��?�� �??��??? Elemntes ?��?��?��?�� ?��?��?��.
         Elements types = doc.select(type);
         Elements links = doc.select(link);
         Elements infos = doc.select(info);

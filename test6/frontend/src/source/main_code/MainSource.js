@@ -40,9 +40,11 @@ const MainSource = (props) => {
         }
         setData([]);
         var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
-        const signupRequest = {url:url}
+        const signupRequest = {url:url,
+                               name: props.name }
         Crawl(signupRequest)
         .then(res => {
+            console.log(res);
             setIsReady(true);
             setData(res);
           // title은 목록 date날짜 summary 내용 score점수임. 
