@@ -115,7 +115,7 @@ const MainSource = (props) => {
                     <div 
                         style={{
                             //backgroundColor:'red',
-                            // overflowY: 'auto', // 여기를 스크롤 걸어도 될듯?
+                            //overflowY: 'auto', // 여기를 스크롤 걸어도 될듯?
                         }}>
                         <div className='minititle'>
                             <AfterMainSource
