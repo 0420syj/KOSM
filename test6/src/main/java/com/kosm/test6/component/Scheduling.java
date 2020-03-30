@@ -22,6 +22,11 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 //import com.kosm.test6.payload.UserSummary;
 import java.util.List;
 import java.util.Optional;
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+import org.jsoup.nodes.Document;
 
 @Component
 public class Scheduling {
@@ -31,30 +36,14 @@ public class Scheduling {
 
     @Autowired
     private ProjectRepository projectRepository;
+
     @Autowired
     JavaMailSender javaMailSender;
     @Autowired
     private UserProjectRepository userProjectRepository;// UserProject
-    private int i = 0;
 
-    @Scheduled(fixedDelay = 50000) // 20ì´ˆ
+    @Scheduled(fixedDelay = 100000) // 20ì´?
     public void simplePrintln() throws MessagingException {
-        i++;
-        //
-
-        // Member member = userRepository.getOne(request.getUser_id());
-        // Project project = projectRepository.getOne(request.getProject_id());
-
-        // Set<Member> members = project.getMembers();
-        // members.add(member);
-
-        // projectRepository.saveAndFlush(project);
-
-        // List<ProjectListResponse>
-        // respon=projectRepository.findAll().stream().map(project -> new
-        // ProjectListResponse(project))
-        // .collect(Collectors.toList());
-        // System.out.println(respon.get(0).getId());
         List<UserProject> projects = userProjectRepository.findAll();
        // List<Member> members = userRepository.findAll();
         Member member;
@@ -73,5 +62,31 @@ public class Scheduling {
             javaMailSender.send(msg);
             System.out.println("success");
        }
+    }
+    @Scheduled(fixedDelay = 100000) // 100ÃÊ //linkµé¾î°¡¼­ ³¯Â¥ Å©·Ñ¸µ ¸ðµçÇÁ·ÎÁ§Æ® ³¯Â¥ Å©·Ñ¸µÁ¶È¸;
+    public void Monitoring_Project() throws MessagingException {
+        List<Project> projects = projectRepository.findAll();
+        String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
+        Member member;
+        Optional<Member> optional;
+        MimeMessage msg = javaMailSender.createMimeMessage();
+         //true = multipart message
+        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+        Document doc = null;  
+        String date="div#row tbody tr td span[data-testid]";
+        for (int i= 0; i < projects.size(); i++) {
+             Project prj=projects.get(i);
+             try {
+                 doc = Jsoup.connect(url+prj.getName()).get(); // -- 1. getë°©ì‹?˜ URL?— ?—°ê²°í•´?„œ ê°?? ¸?˜¨ ê°’ì„ doc?— ?‹´?Š”?‹¤.
+             } catch (IOException e) {
+                 System.out.println(e.getMessage());
+                 System.out.println("fail");
+             }  
+             Elements examples = doc.select(date);
+             prj.setCveDate(examples.get(0).text());
+             projectRepository.saveAndFlush(prj);
+            System.out.println(prj.getName());
+        }
+            System.out.println("success");
     }
     } 

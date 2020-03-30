@@ -19,6 +19,11 @@ public class Project{
     private String name;
 
     private String link;
+    
+    private String releaseDate;
+
+    private String cveDate;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_projects",
