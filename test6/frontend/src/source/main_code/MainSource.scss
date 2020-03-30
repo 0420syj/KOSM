@@ -74,6 +74,19 @@ html, body {
     text-align: left;
     color: #eaeaea;
     margin-left: 118px;
+    span {
+        color:#bfbfbf;
+        font-size : 18px;
+    }
+}
+
+.vul-content {
+    //background-color: red;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .star{
