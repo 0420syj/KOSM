@@ -73,7 +73,9 @@ public class Scheduling {
          //true = multipart message
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
         Document doc = null;  
+        Document doc2 = null; 
         String date="div#row tbody tr td span[data-testid]";
+        String date2="div.no-wrap span .no-wrap";
         for (int i= 0; i < projects.size(); i++) {
              Project prj=projects.get(i);
              try {
@@ -82,11 +84,22 @@ public class Scheduling {
                  System.out.println(e.getMessage());
                  System.out.println("fail");
              }  
+             if(prj.getLink()!=null) 
+             {
+                try {
+                    doc2 = Jsoup.connect(prj.getLink()).get(); // -- 1. getë°©ì‹?˜ URL?— ?—°ê²°í•´?„œ ê°?? ¸?˜¨ ê°’ì„ doc?— ?‹´?Š”?‹¤.
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                    System.out.println("fail");
+                }  
+                Elements example2 = doc2.select(date2);
+                prj.setReleaseDate(example2.text());
+             }
              Elements examples = doc.select(date);
              prj.setCveDate(examples.get(0).text());
              projectRepository.saveAndFlush(prj);
             System.out.println(prj.getName());
         }
             System.out.println("success");
-    }
+        }
     } 
