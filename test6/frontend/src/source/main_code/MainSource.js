@@ -112,7 +112,11 @@ const MainSource = (props) => {
                             </div>
                         </div>
                     </div> :
-                    <div>
+                    <div 
+                        style={{
+                            //backgroundColor:'red',
+                            // overflowY: 'auto', // 여기를 스크롤 걸어도 될듯?
+                        }}>
                         <div className='minititle'>
                             <AfterMainSource
                                 title={data[0].title}
@@ -121,7 +125,11 @@ const MainSource = (props) => {
                         <div className='vul'>
                             Vulnerability
                         </div>
-                        <div>
+                        <div
+                            style={{
+                                //backgroundColor:'red',
+                                overflowY: 'auto',
+                            }}>
                             <MainContent data={data} name={props.name}/>
                         </div>
                     </div>
