@@ -112,24 +112,16 @@ const MainSource = (props) => {
                             </div>
                         </div>
                     </div> :
-                    <div 
-                        style={{
-                            //backgroundColor:'red',
-                            //overflowY: 'auto', // 여기를 스크롤 걸어도 될듯?
-                        }}>
+                    <div>
                         <div className='minititle'>
                             <AfterMainSource
                                 title={data[0].title}
                                 date={data[0].date}/>
                         </div>
                         <div className='vul'>
-                            Vulnerability
+                            Vulnerability <span>검색결과 : {data.length}건</span>
                         </div>
-                        <div
-                            style={{
-                                //backgroundColor:'red',
-                                overflowY: 'auto',
-                            }}>
+                        <div className="vul-content">
                             <MainContent data={data} name={props.name}/>
                         </div>
                     </div>
