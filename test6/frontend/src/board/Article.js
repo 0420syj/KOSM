@@ -5,6 +5,7 @@ import { getArticle } from '../util/APIUtils'
 import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
 import SourceList from '../menu/SourceList';
+import Footer from '../menu/Footer'
 import './Article.scss';
 
 class Article extends Component {
@@ -108,7 +109,7 @@ class Article extends Component {
                     </div>
                 </div>
                 <div className="bottom">
-                    Footer
+                    <Footer/>
                 </div>
             </div>
         );
