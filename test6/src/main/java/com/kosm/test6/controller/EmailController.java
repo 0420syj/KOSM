@@ -54,7 +54,6 @@ public ResponseEntity<?> EmailSend(@Valid @RequestBody EmailResponse EmailReques
          //true = multipart message
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
         helper.setTo(EmailRequest.getEmail());
-        System.out.println(EmailRequest.getEmail()+"FUck");
         helper.setSubject("Testing from Spring Boot");
       
          String content = "please Enter this Link for signup.!" +
@@ -64,7 +63,6 @@ public ResponseEntity<?> EmailSend(@Valid @RequestBody EmailResponse EmailReques
 
          return new ResponseEntity<String>("SendOk", HttpStatus.OK);
     } catch (Exception e) {
-        System.out.println("Fuck!!");
         return new ResponseEntity<String>("SendOk", HttpStatus.OK);
     }  
 }

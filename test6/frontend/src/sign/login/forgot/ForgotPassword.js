@@ -21,7 +21,6 @@ const ForgotPassword = () => {
          .then(res => {
             alert(res);
     }).catch(e => {
-        alert('Fuck');
         console.log(e);
     })
     }
