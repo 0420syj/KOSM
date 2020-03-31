@@ -5,7 +5,7 @@ html, body {
 .container {
     position:relative;
     width: 100%;
-    min-width: 740px; // 창 최소 사이즈
+    min-width: 600px; // 창 최소 사이즈
     height: 100%;
 }
 
@@ -26,7 +26,7 @@ html, body {
     height: 915px;
 }
 
-.signup-content {
+.login-content {
     position:absolute;
     top:80px;
     bottom: 50px;
@@ -44,7 +44,7 @@ html, body {
     overflow: hidden;
 }
 
-.signup-bottom {
+.login-bottom {
     position:absolute;
     top:945px;
 

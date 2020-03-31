@@ -3,6 +3,7 @@ import Favorite from './favorite_main_page/Favorite';
 import SourceList from '../SourceList';
 import AfterMenu from './AfterMenu';
 import './AfterLogin.scss'
+import Footer from '../Footer';
 
 const AfterLogin = (props) => {
     return ( 
@@ -17,7 +18,7 @@ const AfterLogin = (props) => {
                 <Favorite/>
             </div>
             <div className="bottom">
-                Footer
+                <Footer/>
             </div>
         </div>
     )
