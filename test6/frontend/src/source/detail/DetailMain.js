@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import SourceList from '../../menu/SourceList';
 import DetailTitle from './DetailTitle';
 import DetailContents from './DetailContents';
+import Footer from '../../menu/Footer'
 import './DetailMain.scss';
 import {detailCrawl} from '../../util/APIUtils';
 const DetailMain = ({match}) => {
@@ -22,10 +23,14 @@ const DetailMain = ({match}) => {
     }, []);
 
     return ( 
-        <div>
-            <DetailTitle/>
-            <div className='detailMainContainer'>
-                <SourceList/>
+        <div className="container">
+            <div className="top">
+                <DetailTitle/>
+            </div>
+            <div className="left">
+                <SourceList />
+            </div>
+            <div className="detail-main-content">
                 {
                     data.length === 0 ? 
                     <div 
@@ -43,7 +48,10 @@ const DetailMain = ({match}) => {
                         title={data[0].title}
                         location={match.params.source}/>
                 }
-            </div>            
+            </div>
+            <div className="bottom">
+                <Footer/>
+            </div>
         </div>
     )
 }

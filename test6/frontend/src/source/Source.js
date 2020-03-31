@@ -8,6 +8,8 @@ import BeforeMenu from '../menu/before/BeforeMenu';
 import MainSource from './main_code/MainSource';
 import AfterMenu from '../menu/after/AfterMenu';
 import './Source.scss';
+import Footer from '../menu/Footer'
+
 const Source = ({match}) => {
     return (
         <div className="container">
@@ -25,7 +27,7 @@ const Source = ({match}) => {
                 <MainSource name={match.params.item}/>
                 </div>
             <div className="bottom">
-                Footer
+                <Footer/>
             </div>
         </div>
     )
