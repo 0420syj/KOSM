@@ -14,9 +14,7 @@ import './MainSource.scss';
 
 const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
-    const [message, setMessage] = useState('');
     const [idKey, setIdKey] = useState(0);
-    const [listname, setListName]=useState([]);
     const [isReady, setIsReady] = useState(false);
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -40,14 +38,16 @@ const MainSource = (props) => {
         }
         setData([]);
         var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
-        const signupRequest = {url:url,
-                               name: props.name }
+        const signupRequest = {
+            url:url,
+            name: props.name 
+        }
+
         Crawl(signupRequest)
         .then(res => {
             console.log(res);
             setIsReady(true);
             setData(res);
-          // title은 목록 date날짜 summary 내용 score점수임. 
             },(error) => {
                 alert("fail");
                 console.log(error);
@@ -118,6 +118,7 @@ const MainSource = (props) => {
                         <div className='minititle'>
                             <AfterMainSource
                                 title={data[0].title}
+                                github={data[0].Link}
                                 date={data[0].date}/>
                         </div>
                         <div className='vul'>

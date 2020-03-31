@@ -10,10 +10,10 @@ import {detailCrawl} from '../../util/APIUtils';
 const DetailMain = ({match}) => {
     const url = "https://nvd.nist.gov/vuln/detail/" + match.params.source;
     const [data, setData] = useState([]);
-    console.log(match.params.source);
+    console.log(url);
+
     useEffect(() => {
-        const signupRequest = {url:url}
-        detailCrawl(signupRequest)      
+        detailCrawl({url: url})      
             .then(res => {
                 setData(res);
                 console.log(res);       //여기서 데이터 불러 옴
