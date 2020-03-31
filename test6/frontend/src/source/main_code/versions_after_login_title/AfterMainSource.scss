@@ -26,6 +26,12 @@
         text-align: left;
         color: #bfbfbf;
         margin-left: 31px;
+        .link{
+            color: #e4e4e4;
+            &:hover{
+                color: #3aada8
+            }
+        }
     }
 
     .topDate{
