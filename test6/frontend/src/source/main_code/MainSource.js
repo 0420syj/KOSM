@@ -119,6 +119,7 @@ const MainSource = (props) => {
                             <AfterMainSource
                                 title={data[0].title}
                                 github={data[0].Link}
+                                graph={data[0].graph}
                                 date={data[0].date}/>
                         </div>
                         <div className='vul'>
