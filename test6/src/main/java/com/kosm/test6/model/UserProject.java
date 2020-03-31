@@ -17,4 +17,6 @@ public class UserProject{
     private Long project_id;
 
     private Long user_id;
+
+    //private Set<Member> members = new HashSet<>();
 }

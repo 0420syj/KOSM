@@ -41,7 +41,10 @@ public class WebCrawler {
         prj=op.get();
        
         String url =CrawlRequest.getUrl();
+        String graph=prj.getGraph();
         String Link=prj.getLink();
+        String Release=prj.getVersion();
+        String ReleaseDate=prj.getReleaseDate();
         String title = "div#row tbody tr th strong";
         String summary = "div#row tbody tr td p";
         String date = "div#row tbody tr td span[data-testid]";
@@ -57,7 +60,10 @@ public class WebCrawler {
         Elements summaries = doc.select(summary);
         Elements dates = doc.select(date);
         Elements scores = doc.select(score);
+        JsonObject.put("graph",graph); 
         JsonObject.put("Link",Link); 
+        JsonObject.put("Release",Release); 
+        JsonObject.put("ReleaseDate",ReleaseDate); 
         for(int i=0;i<titles.size();i++) {
              // -- 3. Elemntes 길이만큼 반복?��?��.
             JsonObject.put("title",titles.get(i).text()); 
@@ -65,7 +71,7 @@ public class WebCrawler {
             JsonObject.put("summary",summaries.get(i).text()); 
             JsonObject.put("score",scores.get(i).text()); 
             JsonObject.add(JsonObject.deepclone());
-            System.out.println(JsonObject.toJsonString());
+           // System.out.println(JsonObject.toJsonString());
         }
         JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();

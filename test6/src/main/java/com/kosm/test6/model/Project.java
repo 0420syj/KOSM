@@ -19,15 +19,20 @@ public class Project{
     private String name;
 
     private String link;
-    
-    private String releaseDate;
 
     private String cveDate;
+    
+    private String version;
+
+    private String releaseDate;
+
+    private String Graph;
+
 
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_projects",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<Member> members = new HashSet<>();
+            private Set<Member> members = new HashSet<>();
 }

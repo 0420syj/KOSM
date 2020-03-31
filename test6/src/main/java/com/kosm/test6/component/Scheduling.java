@@ -42,7 +42,7 @@ public class Scheduling {
     @Autowired
     private UserProjectRepository userProjectRepository;// UserProject
 
-    //@Scheduled(fixedDelay = 100000000) // 20ì´?
+    //@Scheduled(fixedDelay = 100000000) // 20ï¿½?
     public void simplePrintln() throws MessagingException {
         List<UserProject> projects = userProjectRepository.findAll();
        // List<Member> members = userRepository.findAll();
@@ -63,7 +63,7 @@ public class Scheduling {
             System.out.println("success");
        }
     }
-   // @Scheduled(fixedDelay = 100000000) // 100ÃÊ //linkµé¾î°¡¼­ ³¯Â¥ Å©·Ñ¸µ ¸ðµçÇÁ·ÎÁ§Æ® ³¯Â¥ Å©·Ñ¸µÁ¶È¸;
+    @Scheduled(fixedDelay = 100000000) // 100ï¿½ï¿½ //linkï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½Â¥ Å©ï¿½Ñ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Â¥ Å©ï¿½Ñ¸ï¿½ï¿½ï¿½È¸;
     public void Monitoring_Project() throws MessagingException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
@@ -75,11 +75,12 @@ public class Scheduling {
         Document doc = null;  
         Document doc2 = null; 
         String date="div#row tbody tr td span[data-testid]";
-        String date2="div.no-wrap span .no-wrap";
+        String release="div div h4 a";
+        String time="relative-time";
         for (int i= 0; i < projects.size(); i++) {
              Project prj=projects.get(i);
              try {
-                 doc = Jsoup.connect(url+prj.getName()).get(); // -- 1. getë°©ì‹?˜ URL?— ?—°ê²°í•´?„œ ê°?? ¸?˜¨ ê°’ì„ doc?— ?‹´?Š”?‹¤.
+                 doc = Jsoup.connect(url+prj.getName()).get(); // -- 1. getë°©ì‹?ï¿½ï¿½ URL?ï¿½ï¿½ ?ï¿½ï¿½ê²°í•´?ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½ ê°’ì„ doc?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
              } catch (IOException e) {
                  System.out.println(e.getMessage());
                  System.out.println("fail");
@@ -87,14 +88,19 @@ public class Scheduling {
              if(prj.getLink()!=null) 
              {
                 try {
-                    doc2 = Jsoup.connect(prj.getLink()).get(); // -- 1. getë°©ì‹?˜ URL?— ?—°ê²°í•´?„œ ê°?? ¸?˜¨ ê°’ì„ doc?— ?‹´?Š”?‹¤.
+                    doc2 = Jsoup.connect(prj.getLink()).get(); // -- 1. getë°©ì‹?ï¿½ï¿½ URL?ï¿½ï¿½ ?ï¿½ï¿½ê²°í•´?ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½ ê°’ì„ doc?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
+                    Elements example2 = doc2.select(release);
+                    Elements example3 = doc2.select(time);
+                    if(!example2.isEmpty())
+                    {prj.setVersion(example2.get(0).text());
+                    prj.setReleaseDate(example3.get(0).text());
+                    }
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                     System.out.println("fail");
                 }  
-                Elements example2 = doc2.select(date2);
-                prj.setReleaseDate(example2.text());
-             }
+            }
+             
              Elements examples = doc.select(date);
              prj.setCveDate(examples.get(0).text());
              projectRepository.saveAndFlush(prj);
