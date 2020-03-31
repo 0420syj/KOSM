@@ -117,10 +117,12 @@ const MainSource = (props) => {
                     <div>
                         <div className='minititle'>
                             <AfterMainSource
-                                title={data[0].title}
-                                github={data[0].Link}
-                                graph={data[0].graph}
-                                date={data[0].date}/>
+                                github={data[0].Link}   //github 사이트
+                                graph={data[0].graph}   //graph url
+                                release={data[0].Release}   //깃허브의 release 버전
+                                releaseDate={data[0].ReleaseDate}   //깃허브 release된 날짜
+                                date={data[0].date}     //취약점 시간
+                            />   
                         </div>
                         <div className='vul'>
                             Vulnerability <span>검색결과 : {data.length}건</span>

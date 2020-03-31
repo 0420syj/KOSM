@@ -1,5 +1,5 @@
-.beforeMainSource{
-
+.afterMainSource{
+    height: 100px;
     .topLicense{
         height: 28px;
         font-family: NotoSans;
@@ -13,25 +13,43 @@
         color: #eaeaea;
         margin-left:18px;
     }
-
-    .topPage{
-        height: 20px;
-        font-family: NotoSans;
-        font-size: 15px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 3.33;
-        letter-spacing: normal;
-        text-align: left;
-        color: #bfbfbf;
-        margin-left: 31px;
-        .link{
-            color: #e4e4e4;
-            margin-right: 30px;
-            &:hover{
-                color: #3aada8
+    .div{
+        height: 40px;
+        margin-left: 0px;
+        .topPage{
+            height: 20px;
+            font-family: NotoSans;
+            font-size: 15px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 3.33;
+            letter-spacing: normal;
+            text-align: left;
+            color: #bfbfbf;
+            .link{
+                display: inline-block;
+                width: 300px;
+                height: 30px;
+                min-height: 30px;
+                .link-text{
+                    align-self: center;
+                    color: #e4e4e4;
+                    font-style: bold;
+                    &:hover{
+                        color: #3aada8
+                    }
+                }
             }
+        }
+    }
+    .text{
+        display: inline-block;
+        color: #e4e4e4;
+        width: 300px;
+        .title{
+            font-size: 15px;
+            font-style: bold;
         }
     }
 
