@@ -63,7 +63,7 @@ public class Scheduling {
             System.out.println("success");
        }
     }
-   // @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
+    @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
     public void Monitoring_Project() throws MessagingException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
@@ -75,6 +75,7 @@ public class Scheduling {
         Document doc = null;  
         Document doc2 = null; 
         String date="div#row tbody tr td span[data-testid]";
+        String other_date2="div>div>div>div>ul>li>a>span ";
         String release="div div h4 a";
         String time="relative-time";
         for (int i= 0; i < projects.size(); i++) {
@@ -85,14 +86,20 @@ public class Scheduling {
                  System.out.println(e.getMessage());
                  System.out.println("fail");
              }  
-             if(prj.getLink()!=null) 
+             if(prj.getLink()!=null&&!prj.getLink().isEmpty()) 
              {
                 try {
                     doc2 = Jsoup.connect(prj.getLink()+"/releases").get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
                     Elements example2 = doc2.select(release);
+                    Elements EEEE=doc2.select(other_date2);
                     Elements example3 = doc2.select(time);
                     if(!example2.isEmpty())
                     {prj.setVersion(example2.get(0).text());
+                    prj.setReleaseDate(example3.get(0).text());
+                    }
+                    else if(!EEEE.isEmpty())
+                    {
+                    prj.setVersion(EEEE.get(0).text());
                     prj.setReleaseDate(example3.get(0).text());
                     }
                 } catch (IOException e) {
