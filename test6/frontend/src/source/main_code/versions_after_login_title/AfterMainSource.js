@@ -3,8 +3,9 @@
 */
 import React, {useState, useEffect} from 'react';
 import './AfterMainSource.scss';
-const AfterMainSource = ({title, github, date}) => {
+const AfterMainSource = ({title, github, date, graph}) => {
     const [newDate, setNewDate] = useState([]);
+    console.log(github);
     useEffect(() => {
         setNewDate(date.split(';'))
     }, [])
@@ -14,11 +15,22 @@ const AfterMainSource = ({title, github, date}) => {
                 {title}
             </span>
             <span className='topPage'>
-                <a
-                    className='link' 
-                    href={github}>
-                    Github
-                </a>
+                {
+                    github !== null &&
+                    <a
+                        className='link' 
+                        href={github}>
+                        Github
+                    </a>
+                }
+                {
+                    graph !== null&&
+                    <a
+                        className='link'
+                        href={graph}>
+                        graph
+                    </a>
+                }
             </span>
             <span className='topDate'>
                 {newDate[0]}
