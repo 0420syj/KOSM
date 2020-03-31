@@ -88,7 +88,7 @@ public class Scheduling {
              if(prj.getLink()!=null) 
              {
                 try {
-                    doc2 = Jsoup.connect(prj.getLink()).get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
+                    doc2 = Jsoup.connect(prj.getLink()+"/releases").get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
                     Elements example2 = doc2.select(release);
                     Elements example3 = doc2.select(time);
                     if(!example2.isEmpty())
