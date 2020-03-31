@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 public class Crawling {
     @NotBlank
     private String Url;
-    @NotBlank
+    
     private String Name;
 
     public String getUrl() {
