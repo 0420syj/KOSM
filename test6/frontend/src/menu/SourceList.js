@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import {getProjectAll} from '../util/APIUtils'
 const SourceList = memo(() => {
     const [render, setRender] = useState(false);
-    const [Data, setData] = useState([]);
+    const [data, setData] = useState([]);
     const [inputText, setInputText] = useState('');
     const [openSourceData, setOpenSource] = useState([]);
     const onChange = useCallback((e) => {
@@ -23,15 +23,8 @@ const SourceList = memo(() => {
     useEffect(() => {
         setRender(true);
         getProjectAll()
-        .then(res => {
-            res.map(item => {
-                setOpenSource(items => [
-                    ...items,
-                    item
-                ])                
-            })
-        })
-        .catch(e => console.log(e));
+            .then(res => {setOpenSource(res)})
+            .catch(e => console.log(e));
     }, [])
 
     return (
@@ -107,12 +100,12 @@ const SourceList = memo(() => {
                                 </Link>
                             </li>)
                         }) :
-                        Data.map(item => {
+                        data.map(item => {
                             return <li key={item.id}>
                                 <Link
                                     to={`/source/${item.name}`}
                                     className='sourceList'>
-                                    {item.value}
+                                    {item.name}
                                 </Link>
                             </li>
                         })
