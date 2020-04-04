@@ -6,24 +6,24 @@ import { WIDTH, HEIGHT } from '../constants';
 import { useEffect } from 'react';
 import {getProjectAll} from '../util/APIUtils'
 const SourceList = memo(() => {
-    const [render, setRender] = useState(false);
-    const [data, setData] = useState([]);
-    const [inputText, setInputText] = useState('');
-    const [openSourceData, setOpenSource] = useState([]);
+    const [data, setData] = useState([]);                       //검색했을 때 나오는 리스트를 담은 배열
+    const [inputText, setInputText] = useState('');             //검색창에 들어가는 데이터
+    const [openSourceData, setOpenSource] = useState([]);       //검색하기 전 오픈소스 리스트
     const onChange = useCallback((e) => {
-        setInputText(e.target.value.toLowerCase());
+        setInputText(e.target.value);     //검색하는 문자들을 소문자로 변환해준다.
         setData(openSourceData.filter(item => {
             return item.name.toLowerCase().indexOf(e.target.value) !== -1
         }));
     });
 
-    useEffect(() => {
-    }, [inputText.length])
+    useEffect(() => {       //모든 프로젝트 리스트를 받아오면 OpenSourceData에 해당 데이터를 push해준다.
+        if(OpenSourceData.length === 0)
+            openSourceData.map(item => OpenSourceData.push(item))
+    }, [openSourceData.length])
 
-    useEffect(() => {
-        setRender(true);
+    useEffect(() => {       //화면이 렌더링 되기 전에 getProjectAll()를 이용해서 서버에서 오픈소스 리스트들을 받아온다.
         getProjectAll()
-            .then(res => {setOpenSource(res)})
+            .then(res => setOpenSource(res))
             .catch(e => console.log(e));
     }, [])
 

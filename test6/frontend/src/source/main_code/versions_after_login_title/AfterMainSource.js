@@ -5,7 +5,6 @@ import React, {useState, useEffect} from 'react';
 import './AfterMainSource.scss';
 const AfterMainSource = ({release, releaseDate, github, date, graph}) => {
     const [newDate, setNewDate] = useState([]);
-    console.log(github);
     useEffect(() => {
         setNewDate(date.split(';'))
     }, [])
