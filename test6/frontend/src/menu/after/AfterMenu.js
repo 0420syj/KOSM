@@ -1,9 +1,10 @@
 import React, {useState, memo, useMemo} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import './AfterMenu.scss';
 
 const Title = memo(() => {
+   
     return (
     <div 
         style={{
@@ -27,15 +28,19 @@ const Title = memo(() => {
 
 const AfterMenu = memo((props) => {
     const [isDropdown, setIsDropdown] = useState(false);
+    const history = useHistory();
+
     const logoutClick = () => {
         sessionStorage.setItem('isLogin', 'false');
         sessionStorage.setItem('email', '');
         sessionStorage.setItem('username', '');
         sessionStorage.setItem('password', '');
         sessionStorage.setItem('phonenumber', '');
+        history.push('/');
     }
     
     const toggle = () => {setIsDropdown(!isDropdown);}
+    
 
     return ( 
         <div>
@@ -62,15 +67,11 @@ const AfterMenu = memo((props) => {
                                     {sessionStorage.getItem('username')}
                                 </DropdownToggle>
                                 <DropdownMenu className='dropdown-menu' style={{transform: 'translate(-35px, 0px)'}}>
-                                    <DropdownItem>
-                                        <Link to='/' className='dropdown-link'>
-                                            <div style={{cursor: 'pointer'}} onClick ={logoutClick}>Logout</div>
-                                        </Link>
+                                    <DropdownItem className="dropdown-item" onClick={logoutClick}>
+                                        Logout
                                     </DropdownItem>
-                                    <DropdownItem>
-                                        <Link to='/mypage' className='dropdown-link'>
-                                            <div style={{cursor: 'pointer'}}>My Page</div>
-                                        </Link> 
+                                    <DropdownItem className="dropdown-item" onClick={() => {history.push('/mypage')}}>
+                                        My Page
                                     </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>

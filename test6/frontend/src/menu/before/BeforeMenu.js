@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import styled from 'styled-components';
 import './BeforeMenu.scss';
-import { WIDTH, HEIGHT } from '../../constants';
+// import { WIDTH, HEIGHT } from '../../constants';
 
 const BeforeMenu = () => {
     const [isDropdown, setIsDropdown] = useState(false);
     const toggle = () => {
         setIsDropdown(prev => !prev);
     }
+
+    const history = useHistory();
 
     return (
         <div className="top-container">
@@ -35,16 +36,11 @@ const BeforeMenu = () => {
                     로그인
                     </DropdownToggle>
                     <DropdownMenu className='dropdownMenu' style={{transform: 'translate(-35px, 0px)'}}>
-                        <DropdownItem className='dropdownItem'>
-                            <Link to='/login' className='link'>
-                                Login
-                            </Link>
+                        <DropdownItem className='dropdownItem' onClick={() => {history.push('/login')}}>
+                            Login
                         </DropdownItem>
-                        {/* <DropdownItem divider /> */}
-                        <DropdownItem className='dropdownItem'>
-                            <Link to='/signup' className='link'>
-                                Sign Up
-                            </Link>
+                        <DropdownItem className='dropdownItem' onClick={() => {history.push('/signup')}}>
+                            Sign Up
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
