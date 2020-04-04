@@ -85,7 +85,7 @@ const MainSource = (props) => {
             <div>
                 <div>
                     {
-                        sessionStorage.getItem('isLogin') === 'true' ?
+                        sessionStorage.getItem('isLogin') === 'true' && data.length !== 0 ?
                         <After 
                             isFavorite={isFavorite} 
                             favoriteClick={favoriteClick} 
