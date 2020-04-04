@@ -18,7 +18,7 @@ const AfterMainSource = ({release, releaseDate, github, date, graph}) => {
                             <a      //그래프 사이트로 가는 링크
                                 className='link-text' 
                                 href={graph}>
-                                link to Vulnerability statistics
+                                <img src="/icons/graph.png" alt="Graph" width="32px" height="32px"/>
                             </a>
                         </span>
                     }
@@ -28,7 +28,7 @@ const AfterMainSource = ({release, releaseDate, github, date, graph}) => {
                             <a      //깃허브 사이트로 가는 링크
                                 className='link-text'
                                 href={github}>
-                                link to Github site
+                                <img src="/icons/github.png" alt="GitHub" width="32px" height="32px"/>
                             </a>
                         </span>
                     }
