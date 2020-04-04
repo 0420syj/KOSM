@@ -30,20 +30,17 @@
             width: 100px;
             min-width: 100px;
             background: #414141;
+            color: #FFFFFF;
 
-            .dropdown-link{
-                width: 80px;
-                text-align:center;
-                color: #e4e4e4;
+            .dropdown-item{
                 justify-content: center;
-                text-decoration: none;
-                // &:hover{
-                //     color: #000000;
-                // }
-            }
-
-            .dropdown-item:hover > .dropdown-link {
-                color: #000000;
+                display: flex;
+                color: #e4e4e4;
+                &:hover {
+                    color: #000000;
+                    text-decoration: none;
+                    border-radius: 2px;
+                }
             }
         }
     }

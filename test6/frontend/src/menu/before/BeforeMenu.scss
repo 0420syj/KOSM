@@ -82,7 +82,8 @@ a:hover, a:visited, a:link, a:active {
         .dropdownItem {
             justify-content: center;
             display: flex;
-            &:hover > .link {
+            color: #e4e4e4;
+            &:hover {
                 color: #000000;
                 text-decoration: none;
                 border-radius: 2px;
