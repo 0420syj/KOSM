@@ -1,7 +1,7 @@
 /*
     로그인하고 난 후의 첫 화면
 */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import FavoriteList from './FavoriteList';
 import './MainFavorite.scss';
 import {deleteFavProject} from '../../../util/APIUtils';
@@ -11,35 +11,36 @@ import styled from 'styled-components'
 const MainFavorite = ({favItems, setFavItems}) => {
     const [favItem, setFavItem] = useState([]); //true로만 구성
     const [page, setPage] = useState(1);        
+    const temp = useRef([]);
     let index = -1;
 
-    const redraw = () => {
-    }
-
     const buttonClick = (e) => {
-        const temp = [];
         let i = 0;
-        temp.push({
+        
+        temp.current.push({
             id: 0,
             name: sessionStorage.getItem('email')
         });
-        favItem.map((item) => {if(item === false) temp.push(favItems[i++])})
-        console.log(temp);
-        deleteFavProject(temp)
-        .then(() => {
-            getFavProject(sessionStorage.getItem('userId'))
-            .then(res => {
-                setFavItems(res)
-            })
-        }).catch(e => {console.log(e)})
+
+        favItem.map((item) => {
+            item === false && temp.current.push(favItems[i])
+            i++;
+        });
+        deleteFavProject(temp.current)
+            .then(() => {
+                getFavProject(sessionStorage.getItem('userId'))
+                    .then(res => {
+                        console.log(res);
+                        setFavItems(res)
+                        temp.current=[];
+                    })
+            }).catch(e => {console.log(e)})
     }
     
     useEffect(() => {
         const obj = [];
         let i = 0;
-        favItems.map((items) => {
-            obj.push(true);            
-        })
+        favItems.map((items) => obj.push(true))
         setFavItem(obj);
     }, [favItems])
         

@@ -15,51 +15,42 @@ import './MainSource.scss';
 const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [idKey, setIdKey] = useState(0);
-    const [isReady, setIsReady] = useState(false);
     const [data, setData] = useState([]);
     useEffect(() => {
         isFavorite === true ? addFavorite() : deleteFavorite();
     }, [isFavorite])
 
-    useEffect(() => {        
-        if(sessionStorage.getItem('isLogin') === 'true'){
+    useEffect(() => {               //즐겨찾기 버튼에 색 추가
+        if(sessionStorage.getItem('isLogin') === 'true'){   //로그인 된 상태라면
             setIsFavorite(false);
             getFavProject(sessionStorage.getItem('userId'))
-            .then(res => {
+            .then(res => {  //내가 즐겨찾기 한 목록과 이름이 일치하면 즐겨찾기 버튼 추가
                 res.map((items) => {
-                    if(items.name === props.name){
-                        setIsFavorite(true);
-                    }
+                    items.name === props.name && setIsFavorite(true);
                 })
             })
-            .catch(e => {
-                console.log(e);
-            })
+            .catch(e => {console.log(e)})
         }
+    }, [props.name]);
+
+
+    useEffect(() => {       //크롤링하는 부분
         setData([]);
-        var url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
+        const url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
         const signupRequest = {
             url:url,
             name: props.name 
         }
 
         Crawl(signupRequest)
-        .then(res => {
-            console.log(res);
-            setIsReady(true);
-            setData(res);
-            },(error) => {
-                alert("fail");
-                console.log(error);
-        });
-
-        OpenSourceData.map((res) => {
-            if(res.value === props.name) {
-                setIdKey(res.id);
-                return ;
-            }
-        })
-    }, [props.name]);
+            .then(res => {
+                setData(res);
+                OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
+                    res.name === props.name && setIdKey(res.id);
+                })    
+            })
+            .catch(e => alert('fail'));
+    }, [props.name])
 
     const favoriteClick = useCallback(() => {
         isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
@@ -75,8 +66,7 @@ const MainSource = (props) => {
     });
 
     const deleteFavorite = useCallback(() => {
-        if(idKey == 0)
-            return ;
+        if(idKey == 0) return ;
         const obj = [];
         obj[0] = {
             id: 0,
@@ -87,9 +77,7 @@ const MainSource = (props) => {
             name: props.name
         })
         deleteFavProject(obj)
-        .catch(e => {
-            console.log(e);
-        })
+        .catch(e => console.log(e));
     });
 
     return ( 
@@ -98,10 +86,12 @@ const MainSource = (props) => {
                 <div>
                     {
                         sessionStorage.getItem('isLogin') === 'true' ?
-                        <After isFavorite={isFavorite} 
-                        favoriteClick={favoriteClick} name={props.name}/>:
+                        <After 
+                            isFavorite={isFavorite} 
+                            favoriteClick={favoriteClick} 
+                            name={props.name}/>:
                         <div className='before'>
-                            {props.name}
+                            {props.name}   
                         </div>
                     }
                 </div>
