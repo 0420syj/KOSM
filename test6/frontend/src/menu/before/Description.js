@@ -1,6 +1,5 @@
 import React from 'react';
 import './Description.scss';
-import {WIDTH, HEIGHT} from '../../constants';
 
 const Description = () => {
     return ( 

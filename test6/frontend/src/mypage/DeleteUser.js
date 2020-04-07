@@ -30,7 +30,7 @@ const DeleteUser = () => {
             history.push('/')
             sessionStorage.setItem('isLogin', 'false');
             }).catch((error) => {
-                alert("삭제 실패!" + "\nCheck console log, or your server status.")
+                alert("삭제 실패!")
                 console.log(error)
             });
         };

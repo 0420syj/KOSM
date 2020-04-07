@@ -2,7 +2,7 @@ import React, { useState, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import OpenSourceData from '../data/OpenSourceData';
 import './SourceList.scss';
-import { WIDTH, HEIGHT } from '../constants';
+import { WIDTH } from '../constants';
 import { useEffect } from 'react';
 import {getProjectAll} from '../util/APIUtils'
 const SourceList = memo(() => {
