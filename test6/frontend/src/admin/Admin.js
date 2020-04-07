@@ -96,9 +96,10 @@ const Admin = () => {
         const handleSave = (e) => {
             e.preventDefault();
             console.log(boardData.length);
-            boardData.map(val => {
-                console.log(val.id + "," + val.status);
-            })
+
+            // boardData.map(val => {
+            //     console.log(val.id + "," + val.status);
+            // })
 
             modifyBoard(boardData).then(() => {
                 alert("정상적으로 저장되었습니다.");
@@ -298,7 +299,7 @@ const Admin = () => {
     
             return (
               <li key={page.toString()}>
-                  <a href="#" onClick={ handleClick } style={ activeStyle } className="page-button">{ page }</a>
+                  <a href="#board-title" onClick={ handleClick } style={ activeStyle } className="page-button">{ page }</a>
               </li>
             );
           };

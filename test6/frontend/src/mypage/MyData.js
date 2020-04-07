@@ -49,11 +49,14 @@ const MyData = () => {
                 <div className='subTitle'>이메일</div>
                 <input 
                     type='text' 
-                    style={{width: '100%'}}
+                    style={{
+                        width: '100%',
+                        background: '#414141',
+                        fontSize: '25px'
+                    }}
                     className='input'
                     onChange={onChange}
                     name='username'
-                    style={{background: '#414141', fontSize: '25px'}}
                     placeholder={`${sessionStorage.getItem('email')}`}
                     readOnly/>
             </div>

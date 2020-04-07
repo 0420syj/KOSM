@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './Board.scss';
+import React, { useState } from 'react';
 import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import {writeBoard} from '../util/APIUtils'
 import { useHistory } from "react-router-dom";
 import './Write.scss'

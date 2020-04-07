@@ -12,7 +12,7 @@ import Footer from '../menu/Footer'
 import { Button, Badge } from 'reactstrap';
 import './Board.scss';
 
-const Board = (props) => {
+const Board = () => {
     
     // const [use, setUse] = useState({
     //     id: "순번",
@@ -66,6 +66,7 @@ const Board = (props) => {
                     width: '70px'
                 };
             },
+            sort: true,
         },
         {
             dataField: 'title',
@@ -147,6 +148,11 @@ const Board = (props) => {
             },
         }
     ];
+
+    const sortOption = [{
+        dataField: 'id',
+        order: 'desc' // 내림차순
+    }]
 
     const pageButtonRenderer = ({
         page,
@@ -232,6 +238,7 @@ const Board = (props) => {
                                                             {...props.baseProps}
                                                             {...paginationTableProps}
                                                             noDataIndication="내용이 없습니다"
+                                                            defaultSorted={ sortOption }
                                                         />
                                                         {renderButton()}
                                                         <div className="page-container">

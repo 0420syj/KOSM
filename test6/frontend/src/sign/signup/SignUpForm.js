@@ -24,7 +24,7 @@ const SignUp = () => {
         {
             checkUsernameAvailability(nickname)  
             .then(res => {
-                if(res.available==true)
+                if(res.available===true)
                     {
                         setUserInfo({
                             ...userInfo,
@@ -77,7 +77,7 @@ const SignUp = () => {
 
             checkEmailAvailability(email)  
             .then(res => {
-                if(res.available==true)
+                if(res.available===true)
                     {
                         setUserInfo({
                             ...userInfo,

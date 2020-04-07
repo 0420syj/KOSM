@@ -23,6 +23,7 @@ function getWindowDimensions(){
         height
     }
 }
+
 const {innerWidth: width, innerHeight: height} = window;
 
 
