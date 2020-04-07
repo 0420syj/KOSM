@@ -4,7 +4,7 @@
 
 import React, {useState, useEffect, useCallback} from 'react';
 import { Crawl, getFavProject } from '../../util/APIUtils';
-import {MdStar, MdStarBorder, MdFullscreenExit} from 'react-icons/md'
+import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
 import {addFavProject, deleteFavProject} from '../../util/APIUtils';
 import OpenSourceData from '../../data/OpenSourceData';
@@ -81,7 +81,6 @@ const MainSource = (props) => {
     });
 
     return ( 
-        <div>
             <div>
                 <div>
                     {
@@ -123,7 +122,6 @@ const MainSource = (props) => {
                     </div>
                 }
             </div>
-        </div>
     )
 }
 
@@ -131,14 +129,14 @@ const After = ({isFavorite, favoriteClick, name}) => {
     return (
         <div className='after'>
             <div className='star'>
-                {
-                    isFavorite === true ?
-                    <IconContext.Provider
-                        value={{color: 'yellow', size: '30px'}}>
-                        <MdStar onClick = {favoriteClick}/> 
-                    </IconContext.Provider> :
-                    <MdStarBorder size='30px' onClick = {favoriteClick}/>
-                }
+                <IconContext.Provider 
+                    value={{color: '#f2cc0c', size: '40px'}}>
+                    {
+                        isFavorite === true 
+                        ? <MdStar onClick = {favoriteClick}/> 
+                        : <MdStarBorder onClick = {favoriteClick}/>
+                    }
+                </IconContext.Provider>
             </div>
             <div className='name'>
                 {name}

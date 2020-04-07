@@ -1,7 +1,8 @@
 /*
     취약점 리스트를 그리는 컴포넌트
 */
-import React, {useState, useEffect, memo} from 'react';
+// import React, {useState, useEffect, memo} from 'react';
+import React, {memo} from 'react';
 import ContentList from './content_list/ContentList';
 import './MainContent.scss';
 const MainContent = memo(({data, name}) => {
