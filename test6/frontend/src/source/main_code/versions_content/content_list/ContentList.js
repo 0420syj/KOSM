@@ -68,8 +68,10 @@ const ContentList = ({date, summary, score, title, name}) => {
     }, []);
 
     return ( 
-        <div>
-            <div className='contents'>
+        <>
+            <div className='contents'
+                // style={{backgroundColor:"red"}}
+                >
                 <div className='contentTitle'>
                     <Link to={`/source/${name}/${title}`} 
                         className='title-link' >
@@ -84,13 +86,13 @@ const ContentList = ({date, summary, score, title, name}) => {
                 </div>
             </div>
             <Hr/>
-        </div>
+        </>
     )
 }
 
 const Hr = styled.hr`
     border: 0.5px solid white;
-    margin-left: 130px;
-    margin-right: 30px;
+    // margin-left: 130px;
+    // margin-right: 30px;
 `
 export default ContentList;

@@ -25,7 +25,7 @@ const Source = ({match}) => {
             </div>
             <div className="source">
                 <MainSource name={match.params.item}/>
-                </div>
+            </div>
             <div className="bottom">
                 <Footer/>
             </div>
