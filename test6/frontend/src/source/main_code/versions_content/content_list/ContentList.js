@@ -19,16 +19,16 @@ const Score = (props) => {
                 case '2.':
                 case '3.':
                 case '4.':
-                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#F2CC0C'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#F2CC0C', color: 'black', fontWeight: 'bold'}}>{data}<br/><br/></span>
                 case '5.':
                 case '6.':
-                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#EC971F'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#EC971F', color: 'black', fontWeight: 'bold'}}>{data}<br/><br/></span>
                 case '7.':
                 case '8.':
                 case '10':
-                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#D9534F'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#D9534F', color: 'black', fontWeight: 'bold'}}>{data}<br/><br/></span>
                 case '9.': 
-                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000'}}>{data}<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000', color: '#a9a9a9', fontWeight: 'bold'}}>{data}<br/><br/></span>
             }
         }
     })
@@ -69,9 +69,7 @@ const ContentList = ({date, summary, score, title, name}) => {
 
     return ( 
         <>
-            <div className='contents'
-                // style={{backgroundColor:"red"}}
-                >
+            <div className='contents'>
                 <div className='contentTitle'>
                     <Link to={`/source/${name}/${title}`} 
                         className='title-link' >

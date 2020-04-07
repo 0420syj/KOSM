@@ -79,9 +79,13 @@ html, body {
     margin-right: 50px;
     padding-left: 10px;
     padding-right: 10px;
+
+    // 이거 진짜로
     background-color: #333333;
-    // border: solid 0.5px #1a1a1a;
+    border-radius: 9px;
     box-shadow: inset 0 0 10px;
+    // 이쁜데ㅠ
+    
     height: 500px; // 실제 높이
     overflow-y: auto;
     -ms-overflow-style: none;

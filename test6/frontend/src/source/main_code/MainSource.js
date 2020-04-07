@@ -66,7 +66,7 @@ const MainSource = (props) => {
     });
 
     const deleteFavorite = useCallback(() => {
-        if(idKey == 0) return ;
+        if(idKey === 0) return ;
         const obj = [];
         obj[0] = {
             id: 0,
