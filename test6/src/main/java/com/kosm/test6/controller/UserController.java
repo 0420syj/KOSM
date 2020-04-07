@@ -54,7 +54,7 @@ public class UserController {
         members.add(member);
 
         projectRepository.saveAndFlush(project);
-
+        System.out.println("Success"+request.getProject_id());
         return request.getProject_id();
     }
 
