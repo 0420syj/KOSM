@@ -12,26 +12,6 @@ const AfterMainSource = ({release, releaseDate, github, date, graph}) => {
         <div className='afterMainSource'>
             <div className='div'>
                 <span className='topPage'>
-                    {
-                        graph !== null&&
-                        <span className='link'>
-                            <a      //그래프 사이트로 가는 링크
-                                className='link-text' 
-                                href={graph}>
-                                <img src="/icons/graph.png" alt="Graph" width="32px" height="32px"/>
-                            </a>
-                        </span>
-                    }
-                    {
-                        github !== null &&
-                        <span className='link'>
-                            <a      //깃허브 사이트로 가는 링크
-                                className='link-text'
-                                href={github}>
-                                <img src="/icons/github.png" alt="GitHub" width="32px" height="32px"/>
-                            </a>
-                        </span>
-                    }
                 </span>
             </div>
             <div className='topPage' style={{paddingBottom: '20px'}}>
