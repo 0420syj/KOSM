@@ -48,8 +48,8 @@ const MainFavorite = ({favItems, setFavItems}) => {
         <div className='favoriteContainer'>
             <div className='favTitle'>내 즐겨찾기</div>
             <div className='favTitle2'>
-                <div style={{marginRight:`285px`}} className='favTitle3'>패치 업데이트</div>
-                <div style={{minWidth: '180px'}} className='favTitle3'>취약점 업데이트</div>
+                <div className='favTitle3'>패치 업데이트</div>
+                <div className='favTitle4'>취약점 업데이트</div>
             </div>
             <div className='favContents'>
                 {
