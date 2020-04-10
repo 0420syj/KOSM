@@ -79,20 +79,33 @@ const MainSource = (props) => {
         deleteFavProject(obj)
         .catch(e => console.log(e));
     });
-
     return ( 
             <div>
                 <div>
-                    {
-                        sessionStorage.getItem('isLogin') === 'true' && data.length !== 0 ?
-                        <After 
-                            isFavorite={isFavorite} 
-                            favoriteClick={favoriteClick} 
-                            name={props.name}/>:
-                        <div className='before'>
-                            {props.name}   
-                        </div>
-                    }
+                    <div>
+                        <span>
+                            {
+                                sessionStorage.getItem('isLogin') === 'true' && data.length !== 0 ?
+                                <span>
+                                    <After 
+                                        isFavorite={isFavorite} 
+                                        favoriteClick={favoriteClick} 
+                                        graph={data[0].graph}
+                                        githyb={data[0].Link}
+                                        name={props.name}/> 
+                                </span>:
+                                <div className='before'>
+                                    {props.name}   
+                                    <span>
+                                        {
+                                            data.length !== 0 && 
+                                            <Link graph={data[0].graph} github={data[0].Link}/>
+                                        }
+                                    </span>
+                                </div>
+                            }
+                        </span>
+                    </div>
                 </div>
                 {
                     data.length === 0 ?    //데이터가 없다면
@@ -125,10 +138,10 @@ const MainSource = (props) => {
     )
 }
 
-const After = ({isFavorite, favoriteClick, name}) => {
+const After = ({isFavorite, favoriteClick, name, github, graph}) => {
     return (
-        <div className='after'>
-            <div className='star'>
+        <span className='after'>
+            <span className='star'>
                 <IconContext.Provider 
                     value={{color: '#f2cc0c', size: '40px'}}>
                     {
@@ -137,12 +150,44 @@ const After = ({isFavorite, favoriteClick, name}) => {
                         : <MdStarBorder onClick = {favoriteClick}/>
                     }
                 </IconContext.Provider>
-            </div>
-            <div className='name'>
+            </span>
+            <span className='name'>
                 {name}
-            </div>
-        </div>
+            </span>
+            <span className='link'>
+                <Link graph={graph} github={github}/>                                    
+            </span>
+        </span>
     )
 }
 
+
+const Link = ({graph, github}) => {
+    return (
+        <span className='linkContainer'>
+            <span className='graph'>
+                {
+                    graph !== null &&
+                    <span>
+                        <a      //그래프 사이트로 가는 링크
+                            href={graph}>
+                            <img src="/icons/graph.png" alt="Graph" width="25px" height="25px"/>
+                        </a>
+                    </span>
+                }
+            </span>
+            <span className='github'>
+                {
+                    github !== null &&                 
+                    <span>
+                        <a      //깃허브 사이트로 가는 링크
+                            href={github}>
+                            <img src="/icons/github.png" alt="GitHub" width="25px" height="25px"/>
+                        </a>
+                    </span>
+                }
+            </span>
+        </span>
+    )
+}
 export default MainSource;
