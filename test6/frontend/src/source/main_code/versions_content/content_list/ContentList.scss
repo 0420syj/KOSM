@@ -3,7 +3,7 @@
     display:flex;
     .contentTitle{
         height: 100px;
-        width: 220px;
+        width: 270px;
         padding-top: 10px;
         font-family: NotoSans;
         font-size: 20px;
@@ -44,6 +44,7 @@
         display: flex;
         margin-left: 30px;
         width: 200px;
+        min-width: 162px;
         height: 100%;
         font-family: NotoSans;
         font-size: 15px;
