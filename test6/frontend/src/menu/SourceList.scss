@@ -28,9 +28,19 @@ li > a:hover{
 }
 
 .collapse.show {
-  margin-left: 18px;
-  margin-right: 18px;
-  background-color: #393939;
+  margin-left: 22px;
+  //margin-right: 16px;
+  //background-color: #393939;
+  border-left: 1px solid #8b8b8b;
+}
+
+.btn-category {
+  width:100%;
+  text-align: left;
+  font-family : NotoSans;
+  font-size: 20px;
+  line-height: 34px;
+  letter-spacing: 2px;
 }
 
 div { // div 대신 html 쓰면 싹다 바뀜

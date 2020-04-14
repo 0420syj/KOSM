@@ -1,11 +1,12 @@
-import React, { useState, memo, useCallback, Fragment } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import OpenSourceData from '../data/OpenSourceData';
 import './SourceList.scss';
 import { WIDTH } from '../constants';
 import { useEffect } from 'react';
 import {getProjectAll} from '../util/APIUtils'
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
+import { Collapse, Button } from 'reactstrap';
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 const SourceList = memo(() => {
     const [data, setData] = useState([]);                       //검색했을 때 나오는 리스트를 담은 배열
@@ -44,7 +45,9 @@ const SourceList = memo(() => {
     const Category = ({title, body}) => {
         return (
             <>
-                <Button color="secondary" onClick={toggle}>{title}</Button>
+                <Button color="secondary" onClick={toggle} className="btn-category">
+                    {isOpen ? <IoIosArrowDown/> : <IoIosArrowForward/>}{title}
+                </Button>
                 <Collapse 
                     isOpen={isOpen}
                     className="opensource-item">
