@@ -62,7 +62,8 @@ const MainSource = (props) => {
             project_id: idKey,
             user_id: sessionStorage.getItem('userId')
         }
-        addFavProject(obj)
+        if(idKey !== 0)
+            addFavProject(obj)
     });
 
     const deleteFavorite = useCallback(() => {
