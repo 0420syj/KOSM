@@ -84,7 +84,7 @@ public class WebCrawler {
     }
     @PostMapping("/detailcrawler")
     public  ResponseEntity<?> Hello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
-      JsonObject.newinit();
+      JsonObject.newinit_Object();
  /*
             Document ?��?��?�� : ?��결해?�� ?��?��?�� HTML ?���? 문서
             Element ?��?��?��  : Documnet?�� HTML ?��?��
@@ -94,8 +94,8 @@ public class WebCrawler {
         String url =CrawlRequest.getUrl();
 
         String title = "div p[data-testid=vuln-description]";
-        String type="div.col-lg-6 input[value]";
-        String date = "div#row tbody tr td span[data-testid]";
+   //     String type="div.col-lg-6 input[value]";
+    //    String date = "div#row tbody tr td span[data-testid]";
         String link="tbody > tr > td > [href]";
         String info="div.bs-callout.bs-callout-info";
         String score="span.severityDetail";
@@ -106,7 +106,7 @@ public class WebCrawler {
             System.out.println(e.getMessage());
         }        
         Elements titles = doc.select(title); // -- 2. doc?��?�� selector?�� ?��?��?�� �??��??? Elemntes ?��?��?��?�� ?��?��?��.
-        Elements types = doc.select(type);
+     //   Elements types = doc.select(type);
         Elements links = doc.select(link);
         Elements infos = doc.select(info);
         Elements scores = doc.select(score);
@@ -124,14 +124,14 @@ public class WebCrawler {
         {  C+=(scores.get(i).text()+',');}
      for(int i=0;i<infos.size();i++)        
        {   D+=(infos.get(i).text()+',');}
-       JsonObject.put("type",types.toString()); 
+      // JsonObject.put("type",types.toString()); 
       
       System.out.println(A);
        JsonObject.put("title",A);
        JsonObject.put("links",B);
        JsonObject.put("scores",C);
        JsonObject.put("infos",D.substring(8));
-       JsonObject.put("date",date);
+     //  JsonObject.put("date",date);
        JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
       System.out.println(JsonObject.Size());
