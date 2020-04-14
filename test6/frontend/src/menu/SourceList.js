@@ -110,7 +110,7 @@ const SourceList = memo(() => {
                     overflowY: 'scroll',
                     height: 'calc(100% - 178px)' // 원래길이 699px
                 }}>
-                <Category title={"Apache"} body={apache}/>
+                { inputText.length === 0 && <Category title={"Apache"} body={apache}/>}
                 <ul className="opensource-item">
                     {
                         inputText.length === 0 ?
