@@ -45,6 +45,7 @@ public class Scheduling {
     //@Scheduled(fixedDelay = 100000000) // 20�?
     public void simplePrintln() throws MessagingException {
         List<UserProject> projects = userProjectRepository.findAll();
+       
        // List<Member> members = userRepository.findAll();
         Member member;
         Optional<Member> optional;
@@ -53,15 +54,19 @@ public class Scheduling {
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
         for (int i= 0; i < projects.size(); i++) {
             optional = userRepository.findById((long) projects.get(i).getUser_id());
-             member=optional.get();
-             helper.setTo(member.getEmail());
-             helper.setSubject("Testing from Spring Boot");
-            
-            String content ="This is a Kosm. Check your OpenSource News!!";
+            member=optional.get();
+            helper.setTo(member.getEmail());
+            helper.setSubject("Testing from Spring Boot");
+
+            Optional<Project> target_pjt = projectRepository.findById((long)projects.get(i).getProject_id());
+            Project target = target_pjt.get();
+            String projectName = target.getName();
+        
+            String content ="This is a Kosm.\n" + projectName + "is updated!\n" + "Check your OpenSource News!!";
             helper.setText("<h1>Thank you for Reading!</h1>" +content, true);
             javaMailSender.send(msg);
             System.out.println("success");
-       }
+       }        
     }
     @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
     public void Monitoring_Project() throws MessagingException {
@@ -79,15 +84,15 @@ public class Scheduling {
         String release="div div h4 a";
         String time="relative-time";
         for (int i= 0; i < projects.size(); i++) {
-             Project prj=projects.get(i);
-             try {
-                 doc = Jsoup.connect(url+prj.getName()).get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
-             } catch (IOException e) {
-                 System.out.println(e.getMessage());
-                 System.out.println("fail");
-             }  
-             if(prj.getLink()!=null&&!prj.getLink().isEmpty()) 
-             {
+            Project prj=projects.get(i);
+            try {
+                doc = Jsoup.connect(url+prj.getName()).get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                System.out.println("fail");
+            }  
+            if(prj.getLink()!=null&&!prj.getLink().isEmpty()) 
+            {
                 try {
                     doc2 = Jsoup.connect(prj.getLink()+"/releases").get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
                     Elements example2 = doc2.select(release);
@@ -108,11 +113,11 @@ public class Scheduling {
                 }  
             }
              
-             Elements examples = doc.select(date);
-             prj.setCveDate(examples.get(0).text());
-             projectRepository.saveAndFlush(prj);
+            Elements examples = doc.select(date);
+            prj.setCveDate(examples.get(0).text());
+            projectRepository.saveAndFlush(prj);
             System.out.println(prj.getName());
         }
-            System.out.println("success");
-        }
-    } 
+        System.out.println("success");
+    }
+} 
