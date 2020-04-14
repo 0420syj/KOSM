@@ -50,6 +50,7 @@ public class WebCrawler {
         String date = "div#row tbody tr td span[data-testid]";
         String score = "div#row tbody tr td[nowrap=nowrap]";
         String example="";
+        String total= "div.row div.col-sm-12.col-lg-3>strong";
         Document doc = null;            
         try {
             doc = Jsoup.connect(url).get(); // -- 
@@ -60,10 +61,12 @@ public class WebCrawler {
         Elements summaries = doc.select(summary);
         Elements dates = doc.select(date);
         Elements scores = doc.select(score);
+        Elements totals = doc.select(total);
         JsonObject.put("graph",graph); 
         JsonObject.put("Link",Link); 
         JsonObject.put("Release",Release); 
         JsonObject.put("ReleaseDate",ReleaseDate); 
+        JsonObject.put("total",totals.get(0).text()); 
         for(int i=0;i<titles.size();i++) {
              // -- 3. Elemntes 길이만큼 반복?��?��.
             JsonObject.put("title",titles.get(i).text()); 
@@ -121,7 +124,7 @@ public class WebCrawler {
      for(int i=0;i<links.size();i++)
         {  B+=(links.get(i).attr("href")+','); }
      for(int i=0;i<scores.size();i++)    
-        {  C+=(scores.get(i).text()+',');}
+        {  if(!scores.get(i).text().equals("N/A")) C+=(scores.get(i).text()+',');}
      for(int i=0;i<infos.size();i++)        
        {   D+=(infos.get(i).text()+',');}
       // JsonObject.put("type",types.toString()); 

@@ -47,6 +47,7 @@ const MainSource = (props) => {
         Crawl(signupRequest)
             .then(res => {
                 setData(res);
+                console.log(res);
                 OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
                     res.name === props.name && setIdKey(res.id);
                 })    
