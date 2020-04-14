@@ -16,6 +16,8 @@ const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [idKey, setIdKey] = useState(0);
     const [data, setData] = useState([]);
+    const [dataCount, setDataCount] = useState(0);
+
     useEffect(() => {
         isFavorite === true ? addFavorite() : deleteFavorite();
     }, [isFavorite])
@@ -36,7 +38,7 @@ const MainSource = (props) => {
 
     useEffect(() => {       //크롤링하는 부분
         setData([]);
-        const url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
+        const url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name + '&startIndex=' + dataCount; //이거는 keyword에 오픈소스이름넣어서 보내는거
         const signupRequest = {
             url:url,
             name: props.name 
@@ -79,6 +81,7 @@ const MainSource = (props) => {
         deleteFavProject(obj)
         .catch(e => console.log(e));
     });
+
     return ( 
             <div>
                 <div>
@@ -129,12 +132,26 @@ const MainSource = (props) => {
                         <div className='vul'>
                             Vulnerability <span>검색결과 : {data.length}건</span>
                         </div>
-                        <div className="vul-content">
-                            <MainContent data={data} name={props.name}/>
-                        </div>
+                            <div className="vul-content">
+                                <MainContent data={data} name={props.name}/>
+                            </div>
+                            <div 
+                                style={{justifyContent:'center', marginTop: '30px'}}
+                                className='btn-toolbar' 
+                                role='toolbar' 
+                                aria-label="Toolbar with button groups">
+                                
+                                <button className="btn btn-secondary">1</button>
+                            </div>
                     </div>
                 }
             </div>
+    )
+}
+
+const ButtonGroup = ({count}) => {
+    return (
+        <span></span>
     )
 }
 
