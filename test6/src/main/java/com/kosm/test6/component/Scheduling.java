@@ -2,10 +2,14 @@ package com.kosm.test6.component;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.kosm.test6.repository.AchievoRepository;
 import com.kosm.test6.repository.ProjectRepository;
 import com.kosm.test6.model.Member;
 import com.kosm.test6.model.UserProject;
 import com.kosm.test6.model.Project;
+import com.kosm.test6.model.Achievo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +37,9 @@ public class Scheduling {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AchievoRepository AchievoRepository;
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -115,4 +122,47 @@ public class Scheduling {
         }
             System.out.println("success");
         }
-    } 
+
+    @Transactional
+    @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
+    public void insert_in_DB() throws MessagingException, IOException {
+   // List<Achievo> projects = .findAll();
+   String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=Spring&search_type=all";
+   String total= "div.row div.col-sm-12.col-lg-3>strong";
+   String cvecode = "div#row tbody tr th strong";
+   String summary = "div#row tbody tr td p";
+   String date = "div#row tbody tr td span[data-testid]";
+   String score = "div#row tbody tr td[nowrap=nowrap]";
+   String index="&startIndex=";
+   int all=1;
+   Document doc = null;  
+   Document doc2 = null; 
+   List<Achievo> projects = AchievoRepository.findAll();
+   try {
+    doc = Jsoup.connect(url).get(); // -- 1. get방식?�� URL?�� ?��결해?�� �??��?�� 값을 doc?�� ?��?��?��.
+    Elements Total = doc.select(total);
+    all=Integer.parseInt(Total.text());
+} catch (IOException e) {
+    System.out.println(e.getMessage());
+    System.out.println("fail");
+}  
+for(int i=0;i<all;i+=20)
+{
+    doc = Jsoup.connect(url+index+i).get(); //    
+    for(int j=0;i+j<all&&j<20;j++)
+    {   
+        Elements cves = doc.select(cvecode); // -- 
+        Elements summaries = doc.select(summary);
+        Elements dates = doc.select(date);
+        Elements scores = doc.select(score);
+        String A=cves.get(j).text();
+        String B=summaries.get(j).text();
+        String C=dates.get(j).text();
+        String D=scores.get(j).text();
+        Achievo ach=new Achievo(A,B,C,D);
+        AchievoRepository.saveAndFlush(ach);
+        System.out.println(cves.get(j).text());
+    }
+}
+}
+} 
