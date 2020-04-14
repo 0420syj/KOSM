@@ -110,7 +110,7 @@ const SourceList = memo(() => {
                     overflowY: 'scroll',
                     height: 'calc(100% - 178px)' // 원래길이 699px
                 }}>
-                { inputText.length === 0 && <Category title={"Apache"} body={apache}/>}
+                <Category title={"Apache"} body={apache}/>
                 <ul className="opensource-item">
                     {
                         inputText.length === 0 ?
@@ -125,14 +125,14 @@ const SourceList = memo(() => {
                                 </li>)
                         }) : 
                         data.map(item => {
-                                return (
-                                <li key={item.id}>
-                                    <Link
-                                        to={`/source/${item.name}`}
-                                        className='sourceList'>
-                                        {item.name}
-                                    </Link>
-                                </li>
+                            return (
+                            <li key={item.id}>
+                                <Link
+                                    to={`/source/${item.name}`}
+                                    className='sourceList'>
+                                    {item.name}
+                                </Link>
+                            </li>
                             )
                         })
                     }
