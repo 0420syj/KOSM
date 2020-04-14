@@ -1,3 +1,13 @@
+.waiting{
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    .content{
+        margin-top: 200px;
+
+    }   
+}
+
 .hr{
     margin-top: 19.5px;
     background: #e4e4e4;

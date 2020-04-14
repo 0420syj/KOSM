@@ -2,7 +2,7 @@
     즐겨찾기, 취약점을 버전별로 보여주는 페이지
 */
 
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
 import { Crawl, getFavProject } from '../../util/APIUtils';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
@@ -16,8 +16,10 @@ const MainSource = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [idKey, setIdKey] = useState(0);
     const [data, setData] = useState([]);
-    const [dataCount, setDataCount] = useState(0);
-
+    const [url, setUrl] = useState('');
+    const [rendering, setRendering] = useState(true);
+    const [selected, setSelected] = useState(1);    //선택된 페이지 저장
+    
     useEffect(() => {
         isFavorite === true ? addFavorite() : deleteFavorite();
     }, [isFavorite])
@@ -35,25 +37,46 @@ const MainSource = (props) => {
         }
     }, [props.name]);
 
-
     useEffect(() => {       //크롤링하는 부분
         setData([]);
-        const url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name + '&startIndex=' + dataCount; //이거는 keyword에 오픈소스이름넣어서 보내는거
+        setSelected(1);
+        const first_url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
         const signupRequest = {
-            url:url,
+            url:first_url,
             name: props.name 
         }
 
         Crawl(signupRequest)
             .then(res => {
                 setData(res);
-                console.log(res);
                 OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
                     res.name === props.name && setIdKey(res.id);
                 })    
             })
             .catch(e => alert('fail'));
     }, [props.name])
+
+    useEffect(() => {       //누른 페이지에 따라 링크가 변함
+        setUrl(`https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=${props.name}&startIndex=${(selected - 1)*20}`);
+        setRendering(false);
+    }, [selected])
+
+    useEffect(() => {       //페이지 번호 눌렀을 때 들어오는 값
+        if(url !== ''){
+            Crawl({
+                url: url,
+                name: props.name
+            })
+            .then(res => {
+                setData(res);
+                OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
+                    res.name === props.name && setIdKey(res.id);
+                })    
+                setRendering(true);
+            })
+            .catch(e => alert('fail'));
+        }
+    }, [url]);
 
     const favoriteClick = useCallback(() => {
         isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
@@ -132,18 +155,17 @@ const MainSource = (props) => {
                             />   
                         </div>
                         <div className='vul'>
-                            Vulnerability <span>검색결과 : {data.length}건</span>
+                            Vulnerability <span>검색결과 : {data[0].total}건</span>
                         </div>
                             <div className="vul-content">
-                                <MainContent data={data} name={props.name}/>
+                                <MainContent data={data} name={props.name} rendering={rendering}/>
                             </div>
                             <div 
                                 style={{justifyContent:'center', marginTop: '30px'}}
                                 className='btn-toolbar' 
                                 role='toolbar' 
                                 aria-label="Toolbar with button groups">
-                                
-                                <button className="btn btn-secondary">1</button>
+                                <ButtonGroup count={Math.ceil(data[0].total / 20)} setSelected={setSelected} selected={selected}/>
                             </div>
                     </div>
                 }
@@ -151,11 +173,50 @@ const MainSource = (props) => {
     )
 }
 
-const ButtonGroup = ({count}) => {
+const ButtonGroup = memo(({count, setSelected, selected}) => {
+    const [cnt, setCnt] = useState([]);
+    const [select, setSelect] = useState(1);
+    useEffect(() => {
+        for(let i = 1; i <= count; i++) {
+            setCnt(item => [
+                ...item, 
+                i
+            ]);
+        }
+    }, [count]);
+
+    useEffect(() => {
+        console.log(select);
+    }, [select])
+
+    const onClick = useCallback((e) => {
+        setSelected(e.target.value);
+        setSelect(e.target.value);
+    })
+
     return (
-        <span></span>
+        <>
+            {
+                cnt.length !== 0 && 
+                cnt.map(item => {
+                    return (
+                        parseInt(item) === parseInt(select) ? 
+                        <button 
+                            className='btn btn-secondary' 
+                            value={item}
+                            key={item}
+                            style={{background:'#000000'}}>{item}</button>:
+                        <button 
+                            className='btn btn-secondary' 
+                            onClick={onClick}
+                            value={item}
+                            key={item}>{item}</button> 
+                    )
+                })
+            }
+        </>
     )
-}
+})
 
 const After = ({isFavorite, favoriteClick, name, github, graph}) => {
     return (
