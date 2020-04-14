@@ -16,6 +16,9 @@ private JSONArray jsonArrayList=new JSONArray();
         public void newinit(){
                 jsonArrayList=new JSONArray();
         }
+        public void newinit_Object(){
+                jsonObeject=new JSONObject();
+        }
         public void put(String A,String B)
         {
          jsonObeject.put(A,B); 
