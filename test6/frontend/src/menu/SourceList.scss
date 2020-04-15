@@ -76,3 +76,39 @@ div { // div 대신 html 쓰면 싹다 바뀜
     border:1px solid #f4f4f4
   }
 }
+
+.source-list-container{
+  width: 444px;
+  height: 915px;
+  background: #414141;
+  padding-left: 48px;
+  padding-top: 38px;
+  .project{
+    color: #e4e4e4;
+    width: 121px;
+    height: 41px;
+    font-family: NotoSans;
+    font-size: 30px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    margin-bottom: 33px; // 41 + 33 = 74
+  }
+  .label{
+    justify-content: left;
+    display: flex;
+    .input{
+      font-family: NotoSans;
+      width: 361px;
+      height: 44px;
+      border: none;
+      border-radius: 9px;
+      background-color: #f5f5f5;
+      padding: 2px 8px;
+      margin-bottom: 52px; // 44 + 52 = 96
+    }
+  }
+}

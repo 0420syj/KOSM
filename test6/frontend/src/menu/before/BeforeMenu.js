@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './BeforeMenu.scss';
 // import { WIDTH, HEIGHT } from '../../constants';
 
-const BeforeMenu = () => {
+const BeforeMenu = memo(() => {
     const [isDropdown, setIsDropdown] = useState(false);
     const toggle = () => {
         setIsDropdown(prev => !prev);
@@ -47,6 +47,6 @@ const BeforeMenu = () => {
             </div>
         </div>
     )
-}
+})
 
 export default BeforeMenu;
