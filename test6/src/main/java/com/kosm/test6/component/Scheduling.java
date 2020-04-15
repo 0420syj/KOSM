@@ -68,7 +68,7 @@ public class Scheduling {
             System.out.println("success");
        }        
     }
-    @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
+  //  @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
     public void Monitoring_Project() throws MessagingException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";

@@ -34,7 +34,7 @@ public class WebCrawler {
     
     @PostMapping("/webcrawler")
     public  ResponseEntity<?> sayHello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
-
+      JsonObject.newinit_Object();
         //String url = "https://www.w3schools.com";
         Project prj;
         Optional<Project> op=projectRepository.findByName(CrawlRequest.getName());
@@ -76,11 +76,12 @@ public class WebCrawler {
             JsonObject.add(JsonObject.deepclone());
            // System.out.println(JsonObject.toJsonString());
         }
-        JsonObject.add(JsonObject.deepclone());
+     //   JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
       System.out.println(JsonObject.Size());
       JsonObject.newinit();
     //    System.out.println(i);
+    System.out.println(jsonInfo);
         return new ResponseEntity<String>(jsonInfo, HttpStatus.OK);
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
 
@@ -133,13 +134,13 @@ public class WebCrawler {
        JsonObject.put("title",A);
        JsonObject.put("links",B);
        JsonObject.put("scores",C);
-       JsonObject.put("infos",D.substring(8));
+       JsonObject.put("infos",D.substring(11));
      //  JsonObject.put("date",date);
        JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
       System.out.println(JsonObject.Size());
       JsonObject.newinit();
-    //    System.out.println(i);
+        System.out.println(jsonInfo);
         return new ResponseEntity<String>(jsonInfo, HttpStatus.OK);
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
 
