@@ -28,6 +28,8 @@ public class Project{
 
     private String Graph;
 
+    private String category;
+
 
 
     @ManyToMany(fetch = FetchType.EAGER)
