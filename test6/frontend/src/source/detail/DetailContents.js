@@ -4,7 +4,7 @@
 import React, {memo, useEffect, useState} from 'react';
 import {Link, Route} from 'react-router-dom';
 import './DetailContents.scss';
-const DetailContents = ({infos, link, title}) => {
+const DetailContents = ({infos, link, title, scores}) => {
     const [linkArray, setLink] = useState([]);
     let idx = 0;
     useEffect(() => {setLink(link.split(','));}, [])
@@ -12,6 +12,9 @@ const DetailContents = ({infos, link, title}) => {
     return ( 
         <div className='detailContents'>
             <div style={{marginTop: '30px'}}></div>
+            <div className='scores'>
+                {scores}
+            </div>
             <div className='title'>
                 Description
                 <div className='content'>{title}</div>
