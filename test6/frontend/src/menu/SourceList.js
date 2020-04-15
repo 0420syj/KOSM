@@ -36,6 +36,10 @@ const SourceList = memo(() => {
                                 </Link>                    
                             </li>
                         )
+                        setOpenSource(openSource => [
+                            ...openSource,
+                            item
+                        ])
                         OpenSourceData.push(item);
                     });
                     res.default.map(item => {       //임시로 other에 저장한 데이터
@@ -47,8 +51,14 @@ const SourceList = memo(() => {
                                 </Link>                    
                             </li>
                         );    
+                        setOpenSource(openSource => [
+                            ...openSource,
+                            item
+                        ])
+
                         OpenSourceData.push(item);
                     });
+                    
                 })
                 .catch(e => console.log(e));
         }
