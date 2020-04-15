@@ -53,7 +53,7 @@ const MainSource = (props) => {
                     res.name === props.name && setIdKey(res.id);
                 })    
             })
-            .catch(e => alert('fail'));
+            .catch(e => console.log(e));
     }, [props.name])
 
     useEffect(() => {       //누른 페이지에 따라 링크가 변함
@@ -74,7 +74,7 @@ const MainSource = (props) => {
                 })    
                 setRendering(true);
             })
-            .catch(e => alert('fail'));
+            .catch(e => console.log(e));
         }
     }, [url]);
 

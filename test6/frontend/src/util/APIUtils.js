@@ -217,7 +217,7 @@ export function getAvgRate(id){
 
 export function getProjectAll(){  //DB에서 프로젝트 가져오기
     return request({
-        url:  API_BASE_URL + "/api/project/list",
+        url:  API_BASE_URL + "/api/project/category",
         method: 'GET'            
     });
 }
