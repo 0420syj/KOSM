@@ -2,7 +2,6 @@ import React, { useState, memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './BeforeMenu.scss';
-// import { WIDTH, HEIGHT } from '../../constants';
 
 const BeforeMenu = memo(() => {
     const [isDropdown, setIsDropdown] = useState(false);

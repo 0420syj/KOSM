@@ -11,7 +11,6 @@ import {detailCrawl} from '../../util/APIUtils';
 const DetailMain = ({match}) => {
     const url = "https://nvd.nist.gov/vuln/detail/" + match.params.source;
     const [data, setData] = useState([]);
-    console.log(url);
 
     useEffect(() => {
         detailCrawl({url: url})      
@@ -48,7 +47,8 @@ const DetailMain = ({match}) => {
                     <DetailContents
                         infos={data[0].infos}
                         link={data[0].links}
-                        title={data[0].title}/>
+                        title={data[0].title}
+                        scores={data[0].scores}/>
                 }
             </div>
             <div className="bottom">
