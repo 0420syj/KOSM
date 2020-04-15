@@ -31,6 +31,9 @@ const DetailMain = ({match}) => {
                 <SourceList />
             </div>
             <div className="detail-main-content">
+                <div className='detail-title-content'>
+                    {match.params.source}
+                </div>
                 {
                     data.length === 0 ? 
                     <div 
@@ -45,8 +48,7 @@ const DetailMain = ({match}) => {
                     <DetailContents
                         infos={data[0].infos}
                         link={data[0].links}
-                        title={data[0].title}
-                        location={match.params.source}/>
+                        title={data[0].title}/>
                 }
             </div>
             <div className="bottom">

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {memo} from 'react';
 import SourceList from '../SourceList';
 import Description from './Description';
 import BeforeMenu from './BeforeMenu';
 import Footer from '../Footer';
 import './BeforeLogin.scss';
 
-const BeforeLogin = (props) => {
+const BeforeLogin = memo(() => {
     return (
         <div className="container">
             <div className="top">
@@ -22,6 +22,6 @@ const BeforeLogin = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default BeforeLogin;
