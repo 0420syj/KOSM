@@ -12,7 +12,7 @@ const Home = () => {
     }); 
     useEffect(() => {
         setUser({
-            ...user,
+            //...user, 필요없지 않나?
             isLogin : false
         });
     }, [user.isLogin]);
