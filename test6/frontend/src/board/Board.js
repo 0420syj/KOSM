@@ -10,6 +10,7 @@ import AfterMenu from '../menu/after/AfterMenu';
 import SourceList from '../menu/SourceList';
 import Footer from '../menu/Footer'
 import { Button, Badge } from 'reactstrap';
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import './Board.scss';
 
 const Board = () => {
@@ -189,8 +190,8 @@ const Board = () => {
         custom: true,
         totalSize: data.length,
         pageButtonRenderer,
-        prePageText: '◀',
-        nextPageText: '▶',
+        prePageText: <IoIosArrowBack/>,
+        nextPageText: <IoIosArrowForward/>,
     };
 
     return (

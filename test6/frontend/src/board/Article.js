@@ -6,6 +6,7 @@ import BeforeMenu from '../menu/before/BeforeMenu';
 import AfterMenu from '../menu/after/AfterMenu';
 import SourceList from '../menu/SourceList';
 import Footer from '../menu/Footer'
+import { MdDehaze } from "react-icons/md";
 import './Article.scss';
 
 class Article extends Component {
@@ -103,7 +104,7 @@ class Article extends Component {
                                 className="go-board-button"
                                 onClick={goBoard}
                                 >
-                                ≡ 목록
+                                <MdDehaze/> 목록
                             </Button>
                         </div>
                     </div>

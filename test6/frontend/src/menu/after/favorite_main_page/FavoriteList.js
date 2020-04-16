@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import './FavoriteList.scss';
 import {IconContext} from 'react-icons';
 import {Link} from 'react-router-dom';
-import { useEffect } from 'react';
 
 const FavoriteList = ({name, type, idx, favItem, setFavItem}) => {
     const onClick = () => {
