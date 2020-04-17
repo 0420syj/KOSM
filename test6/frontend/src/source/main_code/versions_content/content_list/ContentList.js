@@ -25,10 +25,12 @@ const Score = (props) => {
                     return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#EC971F', color: 'black', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
                 case '7.':
                 case '8.':
-                case '10':
-                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000', color: '#a9a9a9', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#d9534f', color: 'black', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
                 case '9.': 
                     return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000', color: '#a9a9a9', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
+                case '10':
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000', color: '#a9a9a9', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
+                
             }
         }
     })
