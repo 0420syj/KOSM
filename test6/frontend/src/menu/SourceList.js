@@ -12,8 +12,15 @@ const SourceList = memo(() => {
     const [data, setData] = useState([]);                       //검색했을 때 나오는 리스트를 담은 배열
     const [inputText, setInputText] = useState('');             //검색창에 들어가는 데이터
     const [openSourceData, setOpenSource] = useState([]);       //검색하기 전 오픈소스 리스트
-    const [isOpen, setIsOpen] = useState(false);                //카테고리 Open 상태인지 체크
-    const toggle = () => setIsOpen(!isOpen);                    //카테고리 토글 상태
+
+    // 카테고리 Open 상태관리
+    const [isOpenApache, setIsOpenApache] = useState(true);
+    const [isOpenOthers, setIsOpenOthers] = useState(true);
+
+    // 카테고리별 토글 Function
+    const toggleApache = () => setIsOpenApache(!isOpenApache);
+    const toggleOthers = () => setIsOpenOthers(!isOpenOthers);
+    
 
     const onChange = useCallback((e) => {
         setInputText(e.target.value);     //검색하는 문자들을 소문자로 변환해준다.
@@ -64,7 +71,7 @@ const SourceList = memo(() => {
         }
     }, [])
 
-    const Category = memo(({title, body}) => {
+    const Category = memo(({title, body, toggle, isOpen}) => {
         return (
             <>
                 <Button 
@@ -108,8 +115,8 @@ const SourceList = memo(() => {
                             {
                                 OpenSourceData.length != 0 &&
                                 <div>
-                                    <Category title={'Apache'} body={apaches}/>
-                                    <Category title={'others'} body={others}/>
+                                    <Category title={'Apache'} body={apaches} toggle={toggleApache} isOpen={isOpenApache}/>
+                                    <Category title={'Others'} body={others} toggle={toggleOthers} isOpen={isOpenOthers}/>
                                 </div> 
                             }
                         </div> : 
