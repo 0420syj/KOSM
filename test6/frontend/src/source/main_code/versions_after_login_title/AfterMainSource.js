@@ -8,7 +8,7 @@ const AfterMainSource = ({release, releaseDate, github, date, graph}) => {
     
     useEffect(() => {
         setNewDate(date.split(';'))
-    }, [])
+    }, [date])
 
     return ( 
         <div className='afterMainSource'>

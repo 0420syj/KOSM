@@ -1,13 +1,12 @@
 /*
     버전별 세부사항 주 내용
 */
-import React, {memo, useEffect, useState} from 'react';
-import {Link, Route} from 'react-router-dom';
+import React, { useEffect, useState} from 'react';
 import './DetailContents.scss';
 const DetailContents = ({infos, link, title, scores}) => {
     const [linkArray, setLink] = useState([]);
     let idx = 0;
-    useEffect(() => {setLink(link.split(','));}, [])
+    useEffect(() => {setLink(link.split(','));}, [link])
 
     return ( 
         <div className='detailContents'>
@@ -36,6 +35,7 @@ const DetailContents = ({infos, link, title, scores}) => {
                                 <a 
                                     key={idx++} 
                                     target='_blank' 
+                                    rel="noopener noreferrer"
                                     href={`${item}`}>
                                     <div>{item}</div>
                                 </a>

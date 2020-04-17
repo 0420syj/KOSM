@@ -25,6 +25,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
         favItem.map((item) => {
             item === false && temp.current.push(favItems[i])
             i++;
+            return true;
         });
         deleteFavProject(temp.current)
             .then(() => {
@@ -39,8 +40,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
     
     useEffect(() => {
         const obj = [];
-        let i = 0;
-        favItems.map((items) => obj.push(true))
+        favItems.map(() => obj.push(true))
         setFavItem(obj);
     }, [favItems])
         
@@ -53,7 +53,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
             </div>
             <div className='favContents'>
                 {
-                    favItems.length != 0 ?
+                    favItems.length !== 0 ?
                     <div>
                         {
                             favItems.map((items) => {
@@ -69,6 +69,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
                                             setFavItem={setFavItem}/>
                                     </div>
                                 )}
+                                return true;
                             }) 
                         }
                         <div className='bottomButton'>
