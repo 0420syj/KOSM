@@ -19,7 +19,7 @@ const DetailMain = ({match}) => {
                 console.log(res);       //여기서 데이터 불러 옴
             })
             .catch(e => console.log(e));
-    }, []);
+    }, [url]);
 
     return ( 
         <div className="container">

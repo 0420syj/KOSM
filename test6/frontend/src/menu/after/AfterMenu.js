@@ -48,13 +48,14 @@ const AfterMenu = memo((props) => {
                 <div className='also-menu-container'>
                     <div className='leftContainer'>
                         {
-                            useMemo(() => {
+                            useMemo(
+                                () => {
                                 return (
                                     <Link to='/' style={{color: 'inherit', textDecoration: 'none'}}>
                                         <Title/>
                                     </Link>
                                 )
-                            })
+                            }, [])
                         }
                     </div>
                     <div className="menu" style={{display: 'flex', justifyContent:'space-between', width: '219.2px', marginRight: '50px', height: '100%'}}>

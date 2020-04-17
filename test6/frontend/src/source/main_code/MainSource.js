@@ -2,7 +2,7 @@
     즐겨찾기, 취약점을 버전별로 보여주는 페이지
 */
 
-import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
+import React, {useState, useEffect, useCallback, memo} from 'react';
 import { Crawl, getFavProject } from '../../util/APIUtils';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';

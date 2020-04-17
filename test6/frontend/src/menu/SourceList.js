@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback } from 'react';
+import React, { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 import './SourceList.scss';
 import { useEffect } from 'react';
@@ -11,7 +11,9 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 const SourceList = memo(() => {
     const [data, setData] = useState([]);                       //검색했을 때 나오는 리스트를 담은 배열
     const [inputText, setInputText] = useState('');             //검색창에 들어가는 데이터
-    const [openSourceData, setOpenSource] = useState([]);       //검색하기 전 오픈소스 리스트
+    // Warning 삭제
+    // eslint-disable-next-line
+    const [openSource, setOpenSource] = useState([]);       //검색하기 전 오픈소스 리스트
 
     // 카테고리 Open 상태관리
     const [isOpenApache, setIsOpenApache] = useState(true);
@@ -20,14 +22,13 @@ const SourceList = memo(() => {
     // 카테고리별 토글 Function
     const toggleApache = () => setIsOpenApache(!isOpenApache);
     const toggleOthers = () => setIsOpenOthers(!isOpenOthers);
-    
 
-    const onChange = useCallback((e) => {
+    const onChange = (e) => {
         setInputText(e.target.value);     //검색하는 문자들을 소문자로 변환해준다.
         setData(OpenSourceData.filter(item => {
-            return item.name.toLowerCase().indexOf(e.target.value) !== -1
+            return item.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
         }));
-    });
+    };
 
 
     useEffect(() => {       //화면이 렌더링 되기 전에 getProjectAll()를 이용해서 서버에서 오픈소스 리스트들을 받아온다.
@@ -48,6 +49,7 @@ const SourceList = memo(() => {
                             item
                         ])
                         OpenSourceData.push(item);
+                        return true;
                     });
                     res.default.map(item => {       //임시로 other에 저장한 데이터
                         others.push(
@@ -64,6 +66,7 @@ const SourceList = memo(() => {
                         ])
 
                         OpenSourceData.push(item);
+                        return true;
                     });
                     
                 })
@@ -113,11 +116,11 @@ const SourceList = memo(() => {
                         inputText.length === 0 ?            //아무런 검색이 안될 때
                         <div>
                             {
-                                OpenSourceData.length != 0 &&
-                                <div>
+                                OpenSourceData.length !== 0 &&
+                                <>
                                     <Category title={'Apache'} body={apaches} toggle={toggleApache} isOpen={isOpenApache}/>
                                     <Category title={'Others'} body={others} toggle={toggleOthers} isOpen={isOpenOthers}/>
-                                </div> 
+                                </>
                             }
                         </div> : 
                         data.map(item => {

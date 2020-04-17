@@ -10,7 +10,9 @@ import './ContentList.scss';
 
 const Score = (props) => {
     let index = 0;
-    const colorRender = useCallback((data) => {
+    // Warning 삭제
+    // eslint-disable-next-line
+    const colorRender = useCallback(data => {
         const v = data[0] + data[1];
         if(data != null){
             switch(v){
@@ -30,7 +32,8 @@ const Score = (props) => {
                     return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000', color: '#a9a9a9', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
                 case '10':
                     return <span key={index++} style={{marginLeft: '25px', height: '30px', background: '#000000', color: '#a9a9a9', fontWeight: 'bold'}}>&nbsp;{data}&nbsp;<br/><br/></span>
-                
+                default : 
+                    return <span key={index++} style={{marginLeft: '25px', height: '30px', background: 'darkgrey', color: 'black', fontWeight: 'bold'}}>&nbsp;N/A&nbsp;<br/><br/></span>
             }
         }
     })
@@ -51,11 +54,11 @@ const Score = (props) => {
 
 const ContentList = ({date, summary, score, title, name}) => {
     const [newScore, setNewScore] = useState([]);
-    const [rank, setRank] = useState([]);
+    // const [rank, setRank] = useState([]);
 
     const settingScore = useCallback(() => {
         const arr = score.split(' ');
-        let str = '';
+        // let str = '';
         for(let i = 0; i < arr.length; i++){
             if(i % 3 === 0)
                 setNewScore(prev => [...prev, arr[i].trim()]);
@@ -63,10 +66,12 @@ const ContentList = ({date, summary, score, title, name}) => {
                 setNewScore(prev => [...prev, arr[i - 1] + ' ' + arr[i]]);
             }
         }
-    });
+    }, [score]);
 
     useEffect(() => {
         settingScore();
+        // Warning 삭제
+        // eslint-disable-next-line
     }, []);
 
     return ( 
