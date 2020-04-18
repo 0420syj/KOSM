@@ -16,7 +16,6 @@ const DetailMain = ({match}) => {
         detailCrawl({url: url})      
             .then(res => {
                 setData(res);
-                console.log(res);       //여기서 데이터 불러 옴
             })
             .catch(e => console.log(e));
     }, [url]);
