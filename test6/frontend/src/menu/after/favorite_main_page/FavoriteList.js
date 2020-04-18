@@ -38,8 +38,8 @@ const FavoriteList = ({name, type, idx, favItem, setFavItem}) => {
                     2020.03.05
                 </span>
             </div>
-            <div style={{width: '1200px', marginLeft: '100px', marginTop: '14.5px'}}>
-                <hr style={{border: '0.5px solid #e4e4e4'}}/>
+            <div style={{width: '1150px', marginLeft: '100px', marginBottom: '14.5px'}}>
+                <hr style={{border: '0.5px solid #e4e4e4', marginTop: '5px'}}/>
             </div>
         </div>
     )

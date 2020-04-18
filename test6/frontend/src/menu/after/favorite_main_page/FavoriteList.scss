@@ -10,9 +10,9 @@
         
         .name{
             width: 550px;
-            height: 38px;
+            height: 36px;
             font-family: NotoSans;
-            font-size: 28px;
+            font-size: 34px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
@@ -21,6 +21,7 @@
             text-align: left;
             color: #eaeaea;
             .link{
+                align-content: center;
                 text-decoration: none;
                 color: #e4e4e4;
                 &:hover{
