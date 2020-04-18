@@ -25,7 +25,6 @@ const MainSource = (props) => {
             setIsFavorite(false);
             getFavProject(sessionStorage.getItem('userId'))
             .then(res => {  //내가 즐겨찾기 한 목록과 이름이 일치하면 즐겨찾기 버튼 추가
-                console.log(res);
                 res.map((items) => {
                     items.name === props.name && setIsFavorite(true);
                 })

@@ -1,7 +1,7 @@
 /*
     로그인하고 난 후의 첫 화면
 */
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, memo} from 'react';
 import FavoriteList from './FavoriteList';
 import './MainFavorite.scss';
 import {deleteFavProject} from '../../../util/APIUtils';
@@ -11,6 +11,7 @@ import styled from 'styled-components'
 const MainFavorite = ({favItems, setFavItems}) => {
     const [favItem, setFavItem] = useState([]); //true로만 구성
     const [page, setPage] = useState(1);        
+    const [selected, setSelected] = useState(1);
     const temp = useRef([]);
     let index = -1;
 
@@ -27,12 +28,14 @@ const MainFavorite = ({favItems, setFavItems}) => {
             i++;
             return true;
         });
+
         deleteFavProject(temp.current)
             .then(() => {
                 getFavProject(sessionStorage.getItem('userId'))
                     .then(res => {
-                        console.log(res);
                         setFavItems(res)
+                        setPage(1);
+                        setSelected(1);
                         temp.current=[];
                     })
             }).catch(e => {console.log(e)})
@@ -74,7 +77,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
                         }
                         <div className='bottomButton'>
                             <div className='bot'>
-                                <ListButton len={favItems.length / 5} setPage={setPage}/>
+                                <ListButton len={favItems.length / 5} setPage={setPage} selected={selected} setSelected={setSelected}/>
                             </div>
                         </div>
                         <div className='bottomButton'>
@@ -98,15 +101,20 @@ const MainFavorite = ({favItems, setFavItems}) => {
     )
 }
 
-const ListButton = (props) => {
+const ListButton = memo(({len, setPage, selected, setSelected}) => {
     const [list, setList] = useState([]);
 
     useEffect(() => {
         const arr = [];
-        for(let i = 1; i <= Math.ceil(props.len); i++)
+        for(let i = 1; i <= Math.ceil(len); i++)
             arr.push(i);
         setList(arr);
-    }, [props.len])
+    }, [len])
+
+    const onClick = (e) => {
+        setPage(e.target.value);
+        setSelected(e.target.value);
+    }
 
     const Button = styled.button`
         background: #6c757d;
@@ -117,23 +125,37 @@ const ListButton = (props) => {
         :active{
             background: #000000;
         }
-    `    
+    `
+
     return (
         <div className='btn-toolbar' role='toolbar' aria-label="Toolbar with button groups">
             {
                 list.map((items) => {
                     return (
-                        <Button 
-                            key={items} 
-                            onClick={() => {props.setPage(items)}} 
-                            type="button" 
-                            className="btn btn-secondary">
-                            {items}
-                        </Button>
+                        <div key={items}>
+                            {
+                                parseInt(items) === parseInt(selected) ? 
+                                <Button 
+                                    type="button" 
+                                    value={items}
+                                    onClick={onClick}
+                                    style={{background: '#000000'}}
+                                    className="btn btn-secondary">
+                                    {items}
+                                </Button>:
+                                <Button 
+                                    type="button" 
+                                    value={items}
+                                    onClick={onClick}
+                                    className="btn btn-secondary">
+                                    {items}
+                                </Button>
+                            }
+                        </div>
                 )})
             }
         </div>
     )
-}
+})
 
 export default MainFavorite;
