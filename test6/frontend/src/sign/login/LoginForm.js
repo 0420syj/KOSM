@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import './LoginForm.scss';
 import { login, getCurrentUser } from '../../util/APIUtils';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'reactstrap';
 
-const LoginForm = (props) => {
+const LoginForm = memo((props) => {
     const [userinfo, setUserInfo] = useState({
         email:'',     //username이랑 email나누기
         username: '',
@@ -89,6 +89,6 @@ const LoginForm = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default LoginForm;

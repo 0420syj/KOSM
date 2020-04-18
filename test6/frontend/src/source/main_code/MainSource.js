@@ -25,9 +25,8 @@ const MainSource = (props) => {
             setIsFavorite(false);
             getFavProject(sessionStorage.getItem('userId'))
             .then(res => {  //내가 즐겨찾기 한 목록과 이름이 일치하면 즐겨찾기 버튼 추가
-                console.log(res);
                 res.map((items) => {
-                    items.name === props.name && setIsFavorite(true);
+                    return items.name === props.name && setIsFavorite(true);
                 })
             })
             .catch(e => {console.log(e)})
@@ -47,7 +46,7 @@ const MainSource = (props) => {
             .then(res => {
                 setData(res);
                 OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
-                    res.name === props.name && setIdKey(res.id);
+                   return res.name === props.name && setIdKey(res.id);
                 })    
             })
             .catch(e => console.log(e));
@@ -67,7 +66,7 @@ const MainSource = (props) => {
             .then(res => {
                 setData(res);
                 OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
-                    res.name === props.name && setIdKey(res.id);
+                    return res.name === props.name && setIdKey(res.id);
                 })    
                 setRendering(true);
             })
@@ -79,21 +78,18 @@ const MainSource = (props) => {
         isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
         isFavorite === false ? addFavorite() : deleteFavorite();
         setIsFavorite(!isFavorite);
-    });
+    }, []);
 
     const addFavorite = useCallback(() => {
         const obj = {
             project_id: idKey,
             user_id: sessionStorage.getItem('userId')
         }
-        console.log('sending data')
-        console.log(obj)
         if(idKey !== 0)
             addFavProject(obj)
-    });
+    }, []);
 
     const deleteFavorite = useCallback(() => {
-        console.log('I called this function')
         if(idKey === 0) return ;
         const obj = [];
         obj[0] = {
@@ -106,7 +102,7 @@ const MainSource = (props) => {
         })
         deleteFavProject(obj)
         .catch(e => console.log(e));
-    });
+    }, []);
 
     return ( 
             <div>
@@ -185,10 +181,6 @@ const ButtonGroup = memo(({count, setSelected, selected}) => {
             ]);
         }
     }, [count]);
-
-    useEffect(() => {
-        console.log(select);
-    }, [select])
 
     const onClick = useCallback((e) => {
         setSelected(e.target.value);
