@@ -112,3 +112,24 @@
   color: #eaeaea;
 
 }
+
+.cancel-button {
+  margin-left : 20px;
+
+  width: 150px;
+  height: 52px;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  background-color: #707070;
+
+  font-family: NotoSans;
+  font-size: 23px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.09;
+  letter-spacing: -1.15px;
+  text-align: center;
+  color: #eaeaea;
+}

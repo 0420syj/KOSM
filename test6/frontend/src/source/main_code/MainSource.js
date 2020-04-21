@@ -2,7 +2,7 @@
     즐겨찾기, 취약점을 버전별로 보여주는 페이지
 */
 
-import React, {useState, useEffect, useCallback, memo} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import { Crawl, getFavProject } from '../../util/APIUtils';
 import {MdStar, MdStarBorder} from 'react-icons/md'
 import {IconContext} from 'react-icons';
@@ -55,7 +55,7 @@ const MainSource = (props) => {
     useEffect(() => {       //누른 페이지에 따라 링크가 변함
         setUrl(`https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=${props.name}&startIndex=${(selected - 1)*20}`);
         setRendering(false);
-    }, [selected])
+    }, [props.name, selected])
 
     useEffect(() => {       //페이지 번호 눌렀을 때 들어오는 값
         if(url !== ''){
@@ -72,11 +72,16 @@ const MainSource = (props) => {
             })
             .catch(e => console.log(e));
         }
-    }, [url]);
+    }, [props.name, url]);
 
     const favoriteClick = () => {
-        isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
-        isFavorite === false ? addFavorite() : deleteFavorite();
+        isFavorite === false ? function() {
+                addFavorite()
+                alert('즐겨찾기가 추가 되었습니다')
+            }()
+            : function() {
+                deleteFavorite()
+                alert('즐겨찾기를 삭제하였습니다.')}()
         setIsFavorite(!isFavorite);
     };
 
@@ -182,10 +187,10 @@ const ButtonGroup = memo(({count, setSelected, selected}) => {
         }
     }, [count]);
 
-    const onClick = useCallback((e) => {
+    const onClick = (e) => {
         setSelected(e.target.value);
         setSelect(e.target.value);
-    })
+    }
 
     return (
         <>

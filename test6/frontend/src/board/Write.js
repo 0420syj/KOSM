@@ -79,6 +79,8 @@ const Write = () => {
         });
     }
 
+//    const btnCancel = 
+
     return (
         <div className="container">
             <div className="top">
@@ -108,8 +110,11 @@ const Write = () => {
                         placeholder="내용을 입력해주세요."
                         onChange={e => {validateContent(e.target.value)}}>
                     </Input>
-                    <div style={{textAlign:'center'}}>
+                    <div style={{ textAlign: 'center' }}>
                         <Button className="okay-button" onClick={handleSubmit}>확인</Button>
+                        <Button className="cancel-button" onClick={() => {
+                            history.push('/board')
+                        }}>취소</Button>
                     </div>
                 </Form>
             </div>
