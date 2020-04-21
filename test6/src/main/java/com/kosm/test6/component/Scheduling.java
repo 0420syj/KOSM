@@ -125,12 +125,8 @@ public class Scheduling {
             projectRepository.saveAndFlush(prj);
             System.out.println(prj.getName());
         }
-<<<<<<< HEAD
         System.out.println("success");
     }
-=======
-            System.out.println("success");
-        }
 
     @Transactional
     @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
