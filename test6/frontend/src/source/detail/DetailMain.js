@@ -2,6 +2,9 @@
     버전별 세부사항 메인 페이지
 */
 import React, {useEffect, useState} from 'react';
+import { useHistory } from "react-router-dom";
+import { Button } from 'reactstrap';
+import { MdDehaze } from "react-icons/md";
 import SourceList from '../../menu/SourceList';
 import DetailTitle from './DetailTitle';
 import DetailContents from './DetailContents';
@@ -11,6 +14,8 @@ import {detailCrawl} from '../../util/APIUtils';
 const DetailMain = ({match}) => {
     const url = "https://nvd.nist.gov/vuln/detail/" + match.params.source;
     const [data, setData] = useState([]);
+
+    let history = useHistory();
 
     useEffect(() => {
         detailCrawl({url: url})      
@@ -30,6 +35,18 @@ const DetailMain = ({match}) => {
             </div>
             <div className="detail-main-content">
                 <div className='detail-title-content'>
+                <Button
+                                className="go-board-button"
+                                onClick={() => {
+                                    let arr = history.location.pathname.split('/')
+                                    console.log(arr)
+                                    history.push({
+                                        pathname: '../' + arr[2],
+                                    });
+                                }}
+                                >
+                                <MdDehaze/> 목록
+                            </Button><br/>
                     {match.params.source}
                 </div>
                 {

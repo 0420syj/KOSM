@@ -19,7 +19,7 @@ class Article extends Component {
             content: "내용",
             author: "작성자",
             status: "상태",
-            date: "날짜 : 이게 출력된다는 건 게시글 load 실패했다는 뜻",
+            date: "Error",
         }
     }
 
