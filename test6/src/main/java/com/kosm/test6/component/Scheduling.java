@@ -48,7 +48,8 @@ public class Scheduling {
     @Autowired
     JavaMailSender javaMailSender;
     
-    private final UserProjectRepository userProjectRepository;// UserProject
+    @Autowired
+    private UserProjectRepository userProjectRepository;// UserProject
 
     //@Scheduled(fixedDelay = 100000000) // 20�?
     public void simplePrintln(Long pjt_id) throws MessagingException {
