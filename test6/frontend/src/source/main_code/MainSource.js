@@ -74,22 +74,22 @@ const MainSource = (props) => {
         }
     }, [url]);
 
-    const favoriteClick = useCallback(() => {
+    const favoriteClick = () => {
         isFavorite === false ? alert('즐겨찾기가 추가 되었습니다') : alert('즐겨찾기를 삭제하였습니다.');
         isFavorite === false ? addFavorite() : deleteFavorite();
         setIsFavorite(!isFavorite);
-    }, []);
+    };
 
-    const addFavorite = useCallback(() => {
+    const addFavorite = () => {
         const obj = {
             project_id: idKey,
             user_id: sessionStorage.getItem('userId')
         }
         if(idKey !== 0)
             addFavProject(obj)
-    }, []);
+    };
 
-    const deleteFavorite = useCallback(() => {
+    const deleteFavorite = () => {
         if(idKey === 0) return ;
         const obj = [];
         obj[0] = {
@@ -102,7 +102,7 @@ const MainSource = (props) => {
         })
         deleteFavProject(obj)
         .catch(e => console.log(e));
-    }, []);
+    };
 
     return ( 
             <div>
