@@ -4,6 +4,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
+
 import com.kosm.test6.repository.OpenSourceRepository;
 import com.kosm.test6.repository.ProjectRepository;
 import com.kosm.test6.model.Member;
@@ -19,6 +21,8 @@ import com.kosm.test6.repository.UserRepository;
 import com.kosm.test6.repository.UserProjectRepository;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+
+import java.util.ArrayList;
 //import com.kosm.test6.payload.UserSummary;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +33,7 @@ import org.jsoup.select.Elements;
 import org.jsoup.nodes.Document;
 
 @Component
+@RequiredArgsConstructor
 public class Scheduling {
 
     @Autowired
@@ -42,12 +47,17 @@ public class Scheduling {
 
     @Autowired
     JavaMailSender javaMailSender;
-    @Autowired
-    private UserProjectRepository userProjectRepository;// UserProject
+    
+    private final UserProjectRepository userProjectRepository;// UserProject
 
     //@Scheduled(fixedDelay = 100000000) // 20�?
     public void simplePrintln(Long pjt_id) throws MessagingException {
-        List<UserProject> members_id = userProjectRepository.findByProject_id(pjt_id);
+        List<UserProject> all_id = userProjectRepository.findAll();
+        List<UserProject> members_id = new ArrayList<UserProject>();
+        for(int i = 0; i < all_id.size(); i++){
+            if(all_id.get(i).getProject_id() == pjt_id)
+                members_id.add(all_id.get(i));
+        } 
        
        // List<Member> members = userRepository.findAll();
         Member member;
