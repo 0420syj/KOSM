@@ -15,14 +15,17 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "Achievo")
-public class Achievo {
+@Table(name = "OpenSource")
+public class OpenSource {
     
 	//@Id
   //  @GeneratedValue(strategy = GenerationType.IDENTITY)
    // private Long id;
     @Id
     private String code;
+
+    private String Libirary;
+
     @Column(length = 10000)
     private String summary ;
 
@@ -31,8 +34,9 @@ public class Achievo {
     private String score;
 
     @Builder
-    public Achievo(String code, String summary, String date, String score) {
+    public OpenSource(String code, String Libirary,String summary, String date, String score) {
         this.code=code;
+        this.Libirary=Libirary;
         this.summary =summary;
         this.date=date;
         this.score=score;
