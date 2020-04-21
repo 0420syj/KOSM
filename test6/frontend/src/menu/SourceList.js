@@ -81,7 +81,7 @@ const SourceList = memo(() => {
                     color="secondary" 
                     onClick={toggle} 
                     className="btn-category">
-                    {isOpen ? <IoIosArrowDown/> : <IoIosArrowForward/>}{title}
+                    {isOpen ? <IoIosArrowDown/> : <IoIosArrowForward/>} {title} ({body.length})
                 </Button>
                 <Collapse 
                     isOpen={isOpen}

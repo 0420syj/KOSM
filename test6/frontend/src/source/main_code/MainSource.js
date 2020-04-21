@@ -243,7 +243,7 @@ const Link = ({graph, github}) => {
                     graph !== null &&
                     <span>
                         <a      //그래프 사이트로 가는 링크
-                            href={graph} target="_blank">
+                            href={graph} target="_blank" rel="noopener noreferrer">
                             <img src="/icons/graph.png" alt="Graph" width="25px" height="25px"/>
                         </a>
                     </span>
@@ -254,7 +254,7 @@ const Link = ({graph, github}) => {
                     github !== null &&                 
                     <span>
                         <a      //깃허브 사이트로 가는 링크
-                            href={github} target="_blank">
+                            href={github} target="_blank" rel="noopener noreferrer">
                             <img src="/icons/github.png" alt="GitHub" width="25px" height="25px"/>
                         </a>
                     </span>
