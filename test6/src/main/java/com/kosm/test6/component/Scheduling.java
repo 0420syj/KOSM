@@ -11,10 +11,6 @@ import com.kosm.test6.model.UserProject;
 import com.kosm.test6.model.Project;
 import com.kosm.test6.model.OpenSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import java.util.stream.Collectors;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -50,8 +46,8 @@ public class Scheduling {
     private UserProjectRepository userProjectRepository;// UserProject
 
     //@Scheduled(fixedDelay = 100000000) // 20�?
-    public void simplePrintln() throws MessagingException {
-        List<UserProject> projects = userProjectRepository.findAll();
+    public void simplePrintln(Long pjt_id) throws MessagingException {
+        List<UserProject> members_id = userProjectRepository.findByProject_id(pjt_id);
        
        // List<Member> members = userRepository.findAll();
         Member member;
@@ -59,13 +55,14 @@ public class Scheduling {
         MimeMessage msg = javaMailSender.createMimeMessage();
          //true = multipart message
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-        for (int i= 0; i < projects.size(); i++) {
-            optional = userRepository.findById((long) projects.get(i).getUser_id());
-            member=optional.get();
+        for (int i= 0; i < members_id.size(); i++) {
+            //optional = userRepository.findById((long) projects.get(i).getUser_id());
+            optional =userRepository.findById(members_id.get(i).getUser_id());
+            member = optional.get();
             helper.setTo(member.getEmail());
             helper.setSubject("Testing from Spring Boot");
 
-            Optional<Project> target_pjt = projectRepository.findById((long)projects.get(i).getProject_id());
+            Optional<Project> target_pjt = projectRepository.findById((long)members_id.get(i).getProject_id());
             Project target = target_pjt.get();
             String projectName = target.getName();
         
@@ -121,65 +118,68 @@ public class Scheduling {
             }
              
             Elements examples = doc.select(date);
-            prj.setCveDate(examples.get(0).text());
+            if(!prj.getCveDate().equals(examples.get(0).text())){
+                prj.setCveDate(examples.get(0).text());
+                simplePrintln(prj.getId());
+            }
             projectRepository.saveAndFlush(prj);
             System.out.println(prj.getName());
         }
+
         System.out.println("success");
     }
 
     @Transactional
     @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
     public void insert_in_DB() throws MessagingException, IOException {
-   List<Project> projects = projectRepository.findAll();
-   String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
-   String total= "div.row div.col-sm-12.col-lg-3>strong";
-   String cvecode = "div#row tbody tr th strong";
-   String summary = "div#row tbody tr td p";
-   String date = "div#row tbody tr td span[data-testid]";
-   String score = "div#row tbody tr td[nowrap=nowrap]";
-   String index="&startIndex=";
-   int all=1;
-   Document doc = null;  
-   Document doc2 = null; 
-   List<OpenSource> openSources = openSourceRepository.findAll();
-   System.out.println(projects.size());
-for (int k= 0; k < projects.size(); k++) {
-    Project prj=projects.get(k);
-    try {
-        doc = Jsoup.connect(url+prj.getName()).get();
-        Elements Total = doc.select(total);
-        all=Integer.parseInt(Total.text());
-    } catch (IOException e) {
-        System.out.println(e.getMessage());
-        System.out.println("fail");
-    }
-    System.out.println(prj.getName());  
-    for(int i=0;i<all;i+=20)
-    { 
-        try {
-        doc2 = Jsoup.connect(url+prj.getName()+index+i).get(); //    
-        } catch (IOException e) {
-        System.out.println(e.getMessage());
-        System.out.println("fail");
-        }    
-        for(int j=0;i+j<all&&j<20;j++)   
-        {      
-            Elements cves = doc2.select(cvecode); // --    
-            Elements summaries = doc2.select(summary);   
-            Elements dates = doc2.select(date);   
-            Elements scores = doc2.select(score);   
-            String A=cves.get(j).text();    
-            String B=summaries.get(j).text();   
-            String C=dates.get(j).text();    
-            String D=scores.get(j).text();    
-            OpenSource opc=new OpenSource(A,prj.getName(),B,C,D);    
-            openSourceRepository.saveAndFlush(opc);
-         //   System.out.println(cves.get(j).text());    
+        List<Project> projects = projectRepository.findAll();
+        String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
+        String total= "div.row div.col-sm-12.col-lg-3>strong";
+        String cvecode = "div#row tbody tr th strong";
+        String summary = "div#row tbody tr td p";
+        String date = "div#row tbody tr td span[data-testid]";
+        String score = "div#row tbody tr td[nowrap=nowrap]";
+        String index="&startIndex=";
+        int all=1;
+        Document doc = null;  
+        Document doc2 = null; 
+        List<OpenSource> openSources = openSourceRepository.findAll();
+        System.out.println(projects.size());
+        for (int k= 0; k < projects.size(); k++) {
+            Project prj=projects.get(k);
+            try {
+                doc = Jsoup.connect(url+prj.getName()).get();
+                Elements Total = doc.select(total);
+                all=Integer.parseInt(Total.text());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                System.out.println("fail");
+            }
+            System.out.println(prj.getName());  
+            for(int i=0;i<all;i+=20)
+            { 
+                try {
+                    doc2 = Jsoup.connect(url+prj.getName()+index+i).get(); //    
+                } catch (IOException e) {
+                System.out.println(e.getMessage());
+                System.out.println("fail");
+                }    
+                for(int j=0;i+j<all&&j<20;j++)   
+                {      
+                    Elements cves = doc2.select(cvecode); // --    
+                    Elements summaries = doc2.select(summary);   
+                    Elements dates = doc2.select(date);   
+                    Elements scores = doc2.select(score);   
+                    String A=cves.get(j).text();    
+                    String B=summaries.get(j).text();   
+                    String C=dates.get(j).text();    
+                    String D=scores.get(j).text();    
+                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,D);    
+                    openSourceRepository.saveAndFlush(opc);
+                //   System.out.println(cves.get(j).text());    
+                }
+            }
+    
         }
     }
-    
 }
-
-}
-} 

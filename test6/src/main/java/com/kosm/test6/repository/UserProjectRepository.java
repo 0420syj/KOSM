@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserProjectRepository extends JpaRepository<UserProject, Long> {
-    //List<UserProject> findByProject_idIn(List<Long> userIds);
+    List<UserProject> findByProject_id(Long userId);
 
 }
