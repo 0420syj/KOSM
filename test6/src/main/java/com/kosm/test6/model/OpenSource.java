@@ -20,8 +20,10 @@ public class OpenSource {
     
 	//@Id
   //  @GeneratedValue(strategy = GenerationType.IDENTITY)
-   // private Long id;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     private String code;
 
     private String libirary;

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OpenSourceRepository extends JpaRepository<OpenSource, String> {
+public interface OpenSourceRepository extends JpaRepository<OpenSource, Long> {
 
 //	List<OpenSource> findByLibirary();
     //Optional<Achievo> findbycvecode(String cvecode);
