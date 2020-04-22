@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import com.kosm.test6.service.JsonCompponent;
 import com.kosm.test6.payload.Crawling;
+import com.kosm.test6.repository.OpenSourceRepository;
 import com.kosm.test6.repository.ProjectRepository;
 
 import org.json.simple.JSONObject;
@@ -18,8 +19,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.kosm.test6.model.OpenSource;
 import com.kosm.test6.model.Project;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 @RestController
 @RequestMapping("/api/auth")
@@ -32,12 +36,16 @@ public class WebCrawler {
     @Autowired
     private ProjectRepository projectRepository;
     
+    @Autowired
+    private OpenSourceRepository openSourceRepository;
+
     @PostMapping("/webcrawler")
     public  ResponseEntity<?> sayHello(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
       JsonObject.newinit_Object();
         //String url = "https://www.w3schools.com";
         Project prj;
         Optional<Project> op=projectRepository.findByName(CrawlRequest.getName());
+        List<OpenSource> openSources = openSourceRepository.findBylibirary(CrawlRequest.getName());
         prj=op.get();
        
         String url =CrawlRequest.getUrl();
@@ -45,6 +53,7 @@ public class WebCrawler {
         String Link=prj.getLink();
         String Release=prj.getVersion();
         String ReleaseDate=prj.getReleaseDate();
+        /*
         String title = "div#row tbody tr th strong";
         String summary = "div#row tbody tr td p";
         String date = "div#row tbody tr td span[data-testid]";
@@ -66,13 +75,14 @@ public class WebCrawler {
         JsonObject.put("Link",Link); 
         JsonObject.put("Release",Release); 
         JsonObject.put("ReleaseDate",ReleaseDate); 
-        JsonObject.put("total",totals.get(0).text()); 
-        for(int i=0;i<titles.size();i++) {
+        JsonObject.put("total",totals.get(0).text()); */
+        for(int i=0;i<openSources.size();i++) {
+            OpenSource openSource=openSources.get(i);
              // -- 3. Elemntes 길이만큼 반복?��?��.
-            JsonObject.put("title",titles.get(i).text()); 
-            JsonObject.put("date",dates.get(i).text()); 
-            JsonObject.put("summary",summaries.get(i).text()); 
-            JsonObject.put("score",scores.get(i).text()); 
+            JsonObject.put("title",openSource.getCode()); 
+            JsonObject.put("date",openSource.getDate()); 
+            JsonObject.put("summary",openSource.getSummary()); 
+            JsonObject.put("score",openSource.getScore()); 
             JsonObject.add(JsonObject.deepclone());
            // System.out.println(JsonObject.toJsonString());
         }

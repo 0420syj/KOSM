@@ -24,7 +24,7 @@ public class OpenSource {
     @Id
     private String code;
 
-    private String Libirary;
+    private String libirary;
 
     @Column(length = 10000)
     private String summary ;
@@ -36,7 +36,7 @@ public class OpenSource {
     @Builder
     public OpenSource(String code, String Libirary,String summary, String date, String score) {
         this.code=code;
-        this.Libirary=Libirary;
+        this.libirary=Libirary;
         this.summary =summary;
         this.date=date;
         this.score=score;
