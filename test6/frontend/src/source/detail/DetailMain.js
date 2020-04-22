@@ -39,7 +39,6 @@ const DetailMain = ({match}) => {
                                 className="go-board-button"
                                 onClick={() => {
                                     let arr = history.location.pathname.split('/')
-                                    console.log(arr)
                                     history.push({
                                         pathname: '../' + arr[2],
                                     });

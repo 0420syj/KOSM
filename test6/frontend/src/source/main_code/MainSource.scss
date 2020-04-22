@@ -53,7 +53,7 @@ html, body {
 
 .minititle{
     margin-left: 100px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .vul{
@@ -74,6 +74,33 @@ html, body {
     }
 }
 
+.vul-content-title{
+    border-radius: 9px 9px 0px 0px;
+    height: 30px;
+    margin-left: 100px;
+    margin-right: 50px;
+    background: #555555;
+    display:flex;
+    text-align: center;
+    color: #e4e4e4;
+    font-size: 20px;
+    .code-number{
+        width: 270px;
+        align-self: center;
+    }
+    .description{
+        font-size: 20px;
+        height: 30px;
+        text-align: center;
+        width: 70%;
+        margin-top:0px;
+    }
+    .severity{
+        width: 200px;
+        align-self: center;
+    }
+}
+
 .vul-content {
     margin-left: 100px;
     margin-right: 50px;
@@ -82,11 +109,11 @@ html, body {
 
     // 이거 진짜로
     background-color: #333333;
-    border-radius: 9px;
+    border-radius: 0px 0px 9px 9px;
     box-shadow: inset 0 0 10px;
     // 이쁜데ㅠ
     
-    height: 500px; // 실제 높이
+    height: 550px; // 실제 높이
     overflow-y: auto;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
