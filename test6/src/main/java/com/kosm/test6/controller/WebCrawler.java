@@ -70,12 +70,12 @@ public class WebCrawler {
         Elements summaries = doc.select(summary);
         Elements dates = doc.select(date);
         Elements scores = doc.select(score);
-        Elements totals = doc.select(total);
+        Elements totals = doc.select(total);*/
         JsonObject.put("graph",graph); 
         JsonObject.put("Link",Link); 
         JsonObject.put("Release",Release); 
         JsonObject.put("ReleaseDate",ReleaseDate); 
-        JsonObject.put("total",totals.get(0).text()); */
+        JsonObject.put("total",Integer.toString(openSources.size())); 
         for(int i=0;i<openSources.size();i++) {
             OpenSource openSource=openSources.get(i);
              // -- 3. Elemntes 길이만큼 반복?��?��.
