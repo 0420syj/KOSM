@@ -10,6 +10,8 @@ import { addFavProject, deleteFavProject } from '../../util/APIUtils';
 import OpenSourceData from '../../data/OpenSourceData';
 import AfterMainSource from './versions_after_login_title/AfterMainSource';
 import MainContent from './versions_content/MainContent';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import './MainSource.scss';
 
 const MainSource = (props) => {
@@ -19,7 +21,7 @@ const MainSource = (props) => {
     const [url, setUrl] = useState('');
     const [rendering, setRendering] = useState(true);
     const [selected, setSelected] = useState(1);    //선택된 페이지 저장
-
+    const [arrowIcon, setArrowIcon] = useState(false);
     useEffect(() => {               //즐겨찾기 버튼에 색 추가
         if (sessionStorage.getItem('isLogin') === 'true') {   //로그인 된 상태라면
             setIsFavorite(false);
@@ -110,6 +112,10 @@ const MainSource = (props) => {
             .catch(e => console.log(e));
     };
 
+    const arrowIconClick = () => {
+        setArrowIcon(!arrowIcon);
+    }
+
     return (
         <div>
             <div>
@@ -143,7 +149,6 @@ const MainSource = (props) => {
                     <div style={{ width: '100%', justifyContent: 'center' }}>
                         <div style={{ marginTop: '80px' }} className="text-center">
                             <div style={{ color: '#e4e4e4' }} className="spinner-border" role="status">
-                                <span className="sr-only">Loading...</span>
                             </div>
                         </div>
                     </div> :
@@ -160,15 +165,24 @@ const MainSource = (props) => {
                         <div className='vul'>
                             Vulnerability <span>검색결과 : {data[0].total}건</span>
                         </div>
+                        <div className='vul-content-title'>
+                            <div className='code-number'>Vulnerability ID</div>
+                            <div className='description'>Description</div>
+                            <div className='severity'>Severity {arrowIcon ?<ArrowDropDownIcon onClick={arrowIconClick}/> : <ArrowDropUpIcon onClick={arrowIconClick}/>}
+                            </div>
+                        </div>
                         <div className="vul-content">
                             <MainContent data={data} name={props.name} rendering={rendering} />
                         </div>
                         <div
-                            style={{ justifyContent: 'center', marginTop: '30px' }}
+                            style={{ justifyContent: 'center', marginTop: '25px' }}
                             className='btn-toolbar'
                             role='toolbar'
                             aria-label="Toolbar with button groups">
-                            <ButtonGroup count={Math.ceil(data[0].total / 20)} setSelected={setSelected} selected={selected} />
+                            <ButtonGroup 
+                                count={Math.ceil(data[0].total / 20)}   
+                                setSelected={setSelected} 
+                                selected={selected} />
                         </div>
                     </div>
             }
