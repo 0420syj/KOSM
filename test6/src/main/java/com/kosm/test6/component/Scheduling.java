@@ -140,8 +140,9 @@ public class Scheduling {
         System.out.println("success");
     }
 
-    // @Transactional
-    // @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
+    @Transactional
+    @Scheduled(fixedDelay = 100000000)
+    // 'open_source' table insert function. Annotate the above 2 lines of code if you don't want to crawl
     public void insert_in_DB() throws MessagingException, IOException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";

@@ -48,9 +48,11 @@ const DetailMain = ({match}) => {
                     <span>{match.params.source}</span>    
                     <a 
                         target='_blank'
+                        rel="noopener noreferrer"
                         href={nvdLink}>
                         <img 
                             className='nvdLink'
+                            alt=''
                             src={nvdIcon}/>
                     </a>
                 </div>
