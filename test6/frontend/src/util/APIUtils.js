@@ -293,3 +293,19 @@ export function modifyBoard(modifyBoardRequest) {
         body: JSON.stringify(modifyBoardRequest)
     })
 }
+
+export function V3(CrawlRequest) {
+    return request({        
+        url: API_BASE_URL + "/api/auth/V3",
+        method: 'POST',
+        body:JSON.stringify(CrawlRequest)
+    });
+}
+
+export function V2(CrawlRequest) {
+    return request({        
+        url: API_BASE_URL + "/api/auth/V2",
+        method: 'POST',
+        body:JSON.stringify(CrawlRequest)
+    });
+}
