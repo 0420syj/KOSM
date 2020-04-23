@@ -29,7 +29,9 @@ const MainContent = memo(({rendering, data, name}) => {
                                         <ContentList
                                             date={item.date}
                                             summary={item.summary}
-                                            score={item.score}
+                                            v2={item.v2}
+                                            v3={item.v3}
+                                            //score={item.score}
                                             title={item.title}
                                             name={name}/>
                                     </div>
