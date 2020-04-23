@@ -186,7 +186,14 @@ public class Scheduling {
                     String B=summaries.get(j).text();   
                     String C=dates.get(j).text();    
                     String D=scores.get(j).text();    
-                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,D);    
+                    String[] E =D.split(" ");
+                    double V3=0;
+                    double V2=0;
+                    if(E.length>3)
+                        {V3=Double.parseDouble(E[1]);V2=Double.parseDouble(E[4]);}
+                    else if(E.length==3)
+                        V2=Double.parseDouble(E[1]);
+                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,V3,V2);   
                     openSourceRepository.saveAndFlush(opc);
                 //   System.out.println(cves.get(j).text());    
                 }
