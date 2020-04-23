@@ -13,6 +13,10 @@
         margin-bottom: 30px;
     }
 
+    .date{
+        margin-bottom: 20px;
+    }
+
     .detailTitle{
         padding-right: 10%;
         display: inline-block;
@@ -38,6 +42,12 @@
             width: 90%;
             line-height: 1.5;
             margin-top: 20px;
+            .preference{
+                color: #e4e4e4;
+                &:hover{
+                    color: #3aada8;
+                }
+            }
         }
 
         .hr{
