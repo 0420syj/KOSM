@@ -21,6 +21,7 @@ const DetailMain = ({match}) => {
     useEffect(() => {
         detailCrawl({url: nvdLink})      
             .then(res => {
+                console.log(res);
                 setData(res);
             })
             .catch(e => console.log(e));

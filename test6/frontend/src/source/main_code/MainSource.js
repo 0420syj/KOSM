@@ -27,11 +27,11 @@ const MainSource = (props) => {
         if(severity === 'normal'){
         } 
         else if(severity === 'ver3'){
-            V3()
-            .then(res => {
-                console.log(res);
-            })
-            .catch(e => console.log(e));
+            // V3()
+            // .then(res => {
+            //     console.log(res);
+            // })
+            // .catch(e => console.log(e));
         }else if(severity === 'ver2'){
             alert('ver2');
         }
@@ -185,7 +185,7 @@ const MainSource = (props) => {
                             <div className='severity'>Severity</div>
                         </div>
                         <div className="vul-content">
-                            <MainContent data={data} name={props.name} rendering={rendering} />
+                            <MainContent data={data} name={props.name} rendering={rendering} selected = {selected}/>
                         </div>
                         <div
                             style={{ justifyContent: 'center', marginTop: '20px' }}
@@ -226,7 +226,6 @@ const ButtonGroup = memo(({ count, setSelected, selected }) => {
             {
                 cnt.length !== 0 &&
                 cnt.map(item => {
-                    // console.log(item)
                     return (
                         parseInt(item) === parseInt(select)
                             ? <button
