@@ -36,6 +36,7 @@ const SourceList = memo(() => {
             getProjectAll()
                 .then(res => {
                     res.Apache.map(item => {
+                        console.log(res);
                         apaches.push(                   //apache에 저장            
                             <li key={item.id}>
                                 <Link to={`/source/${item.name}`}

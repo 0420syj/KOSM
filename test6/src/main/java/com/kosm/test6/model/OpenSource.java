@@ -33,15 +33,18 @@ public class OpenSource {
 
     private String date;
 
-    private String score;
+    private double V3;
+
+    private double V2;
 
     @Builder
-    public OpenSource(String code, String Libirary,String summary, String date, String score) {
+    public OpenSource(String code, String Libirary,String summary, String date, double V3,double V2) {
         this.code=code;
         this.libirary=Libirary;
         this.summary =summary;
         this.date=date;
-        this.score=score;
+        this.V3=V3;
+        this.V2=V2;
 	}
 
 	
