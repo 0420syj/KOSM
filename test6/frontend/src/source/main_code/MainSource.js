@@ -27,7 +27,6 @@ const MainSource = (props) => {
         if(severity === 'normal'){
         } 
         else if(severity === 'ver3'){
-<<<<<<< HEAD
             const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
             const signupRequest = {
                 url: first_url,
@@ -38,13 +37,6 @@ const MainSource = (props) => {
                 console.log(res);
             })
             .catch(e => console.log(e));
-=======
-            // V3()
-            // .then(res => {
-            //     console.log(res);
-            // })
-            // .catch(e => console.log(e));
->>>>>>> c4d0c2a9a97a593b9c3957fda9aab59c1fed5cfa
         }else if(severity === 'ver2'){
             const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
             const signupRequest = {
