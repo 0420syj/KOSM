@@ -10,8 +10,7 @@ import { addFavProject, deleteFavProject } from '../../util/APIUtils';
 import OpenSourceData from '../../data/OpenSourceData';
 import AfterMainSource from './versions_after_login_title/AfterMainSource';
 import MainContent from './versions_content/MainContent';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Radio from '@material-ui/core/Radio';
 import './MainSource.scss';
 
 const MainSource = (props) => {
@@ -21,7 +20,7 @@ const MainSource = (props) => {
     const [url, setUrl] = useState('');
     const [rendering, setRendering] = useState(true);
     const [selected, setSelected] = useState(1);    //선택된 페이지 저장
-    const [arrowIcon, setArrowIcon] = useState(false);
+    const [severity, setSeverity] = useState('normal');
     useEffect(() => {               //즐겨찾기 버튼에 색 추가
         if (sessionStorage.getItem('isLogin') === 'true') {   //로그인 된 상태라면
             setIsFavorite(false);
@@ -111,11 +110,7 @@ const MainSource = (props) => {
         deleteFavProject(obj)
             .catch(e => console.log(e));
     };
-
-    const arrowIconClick = () => {
-        setArrowIcon(!arrowIcon);
-    }
-
+    
     return (
         <div>
             <div>
@@ -123,23 +118,23 @@ const MainSource = (props) => {
                     <span>
                         {
                             sessionStorage.getItem('isLogin') === 'true' && data.length !== 0 ?
+                            <span>
+                                <After
+                                    isFavorite={isFavorite}
+                                    favoriteClick={favoriteClick}
+                                    graph={data[0].graph}
+                                    github={data[0].Link}
+                                    name={props.name} />
+                            </span> :
+                            <div className='before'>
+                                {props.name}
                                 <span>
-                                    <After
-                                        isFavorite={isFavorite}
-                                        favoriteClick={favoriteClick}
-                                        graph={data[0].graph}
-                                        github={data[0].Link}
-                                        name={props.name} />
-                                </span> :
-                                <div className='before'>
-                                    {props.name}
-                                    <span>
-                                        {
-                                            data.length !== 0 &&
-                                            <Link graph={data[0].graph} github={data[0].Link} />
-                                        }
-                                    </span>
-                                </div>
+                                    {
+                                        data.length !== 0 &&
+                                        <Link graph={data[0].graph} github={data[0].Link} />
+                                    }
+                                </span>
+                            </div>
                         }
                     </span>
                 </div>
@@ -165,17 +160,19 @@ const MainSource = (props) => {
                         <div className='vul'>
                             Vulnerability <span>검색결과 : {data[0].total}건</span>
                         </div>
+                        <div className='mainRadioGroup'>
+                            <RadioGroup severity={severity} setSeverity={setSeverity}/>
+                        </div>
                         <div className='vul-content-title'>
                             <div className='code-number'>Vulnerability ID</div>
                             <div className='description'>Description</div>
-                            <div className='severity'>Severity {arrowIcon ?<ArrowDropDownIcon onClick={arrowIconClick}/> : <ArrowDropUpIcon onClick={arrowIconClick}/>}
-                            </div>
+                            <div className='severity'>Severity</div>
                         </div>
                         <div className="vul-content">
                             <MainContent data={data} name={props.name} rendering={rendering} />
                         </div>
                         <div
-                            style={{ justifyContent: 'center', marginTop: '25px' }}
+                            style={{ justifyContent: 'center', marginTop: '20px' }}
                             className='btn-toolbar'
                             role='toolbar'
                             aria-label="Toolbar with button groups">
@@ -255,6 +252,42 @@ const After = ({ isFavorite, favoriteClick, name, github, graph }) => {
         </span>
     )
 }
+
+const RadioGroup = memo(({severity, setSeverity}) => {
+    const handleChange = (e) => {setSeverity(e.target.value);}
+    return (
+        <span className='radioGroup'>
+            <span className='radioTitle'>Normal: </span>
+            <Radio
+                checked={severity === 'normal'}
+                onChange={handleChange}
+                value="normal"
+                color="default"
+                name="radio-button-demo"
+                className='radioButton'
+                size="small"/>
+            <span className='radioTitle'>version 3.x</span>
+            <Radio
+                checked={severity === '3'}
+                onChange={handleChange}
+                value="3"
+                color="default"
+                name="radio-button-demo"
+                className='radioButton'
+                size="small"/>
+            <span className='radioTitle'>version 2.x</span>
+            <Radio
+                checked={severity === '2'}
+                onChange={handleChange}
+                value="2"
+                color="default"
+                name="radio-button-demo"
+                className='radioButton'
+                size="small"/>
+        </span>
+    )
+})
+
 
 
 const Link = ({ graph, github }) => {

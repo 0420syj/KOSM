@@ -140,9 +140,9 @@ public class Scheduling {
         System.out.println("success");
     }
 
-
     @Transactional
     @Scheduled(fixedDelay = 100000000)
+    // 'open_source' table insert function. Annotate the above 2 lines of code if you don't want to crawl
     public void insert_in_DB() throws MessagingException, IOException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
@@ -186,14 +186,7 @@ public class Scheduling {
                     String B=summaries.get(j).text();   
                     String C=dates.get(j).text();    
                     String D=scores.get(j).text();    
-                    String[] E =D.split(" ");
-                    double V3=0;
-                    double V2=0;
-                    if(E.length>3)
-                        {V3=Double.parseDouble(E[1]);V2=Double.parseDouble(E[4]);}
-                    else if(E.length==3)
-                        V2=Double.parseDouble(E[1]);
-                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,V3,V2);    
+                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,D);    
                     openSourceRepository.saveAndFlush(opc);
                 //   System.out.println(cves.get(j).text());    
                 }

@@ -40,7 +40,7 @@ html, body {
     background: #393939;
     // background-image: url("/bg.png");
     // background-size: cover;
-    overflow: hidden;
+    overflow: auto;
 
     .detail-title-content{
         margin-left: 100px;
@@ -56,6 +56,12 @@ html, body {
         font-style: normal;
         letter-spacing: normal;
         text-align: left;
+
+        .nvdLink{
+            width: 100px;
+            height: 100px;
+            margin-left: 30px;
+        }
     }
 }
 
