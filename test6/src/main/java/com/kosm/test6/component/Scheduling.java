@@ -15,6 +15,7 @@ import com.kosm.test6.model.OpenSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.management.Query;
 
 //import com.kosm.test6.payload.UserSummary;
 import com.kosm.test6.repository.UserRepository;
@@ -202,11 +203,18 @@ public class Scheduling {
         }
     }
    // @Transactional
- //   @Scheduled(fixedDelay = 100000000) // 100��
+  //  @Scheduled(fixedDelay = 100000000) // 100��
     public void example()
     {
-        List<OpenSource> openSources = openSourceRepository.findBylibirary("OpenSSL");
-        System.out.println(openSources.size());
+   //     String jql = "Select f from Foo as f order by f.id desc";
+        //Query sortQuery = entityManager.createQuery(jql);
+        List<OpenSource> openSources = openSourceRepository.findBylibiraryOrderByV3Desc("Apache Ant");
+
+        for(int i=0;i<openSources.size();i++)
+        {
+            OpenSource op=openSources.get(i);
+            System.out.println(op.getCode());
+        }
     
     } 
 }

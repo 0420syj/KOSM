@@ -27,13 +27,27 @@ const MainSource = (props) => {
         if(severity === 'normal'){
         } 
         else if(severity === 'ver3'){
-            V3()
+            const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
+            const signupRequest = {
+                url: first_url,
+                name: props.name
+            }
+            V3(signupRequest)
             .then(res => {
                 console.log(res);
             })
             .catch(e => console.log(e));
         }else if(severity === 'ver2'){
-            alert('ver2');
+            const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
+            const signupRequest = {
+                url: first_url,
+                name: props.name
+            }
+            V2(signupRequest)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(e => console.log(e));
         }
     }, [severity])
 

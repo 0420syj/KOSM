@@ -97,13 +97,13 @@ public class WebCrawler {
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
 
     }
-    @PostMapping("/V3?sort=v3,desc")
+    @PostMapping("/V3")
     public  ResponseEntity<?> Sorting_V3(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
       JsonObject.newinit_Object();
         //String url = "https://www.w3schools.com";
         Project prj;
         Optional<Project> op=projectRepository.findByName(CrawlRequest.getName());
-        List<OpenSource> openSources = openSourceRepository.findBylibirary(CrawlRequest.getName());
+        List<OpenSource> openSources = openSourceRepository.findBylibiraryOrderByV3Desc(CrawlRequest.getName());
         prj=op.get();
        
         String url =CrawlRequest.getUrl();
@@ -155,13 +155,13 @@ public class WebCrawler {
       // return ResponseEntity.ok().body(new ApiResponse(true,titles.text()));
 
   }
-  @PostMapping("/V2?sort=v2,desc")
+  @PostMapping("/V2")
     public  ResponseEntity<?> Sorting_V2(@Valid @RequestBody Crawling CrawlRequest) throws CloneNotSupportedException {
       JsonObject.newinit_Object();
         //String url = "https://www.w3schools.com";
         Project prj;
         Optional<Project> op=projectRepository.findByName(CrawlRequest.getName());
-        List<OpenSource> openSources = openSourceRepository.findBylibirary(CrawlRequest.getName());
+        List<OpenSource> openSources = openSourceRepository.findBylibiraryOrderByV2Desc(CrawlRequest.getName());
         prj=op.get();
        
         String url =CrawlRequest.getUrl();
@@ -261,7 +261,7 @@ public class WebCrawler {
        JsonObject.put("title",A);
        JsonObject.put("links",B);
        JsonObject.put("scores",C);
-       JsonObject.put("infos",D.substring(11));
+       JsonObject.put("infos",D);
      //  JsonObject.put("date",date);
        JsonObject.add(JsonObject.deepclone());
         String jsonInfo = JsonObject.ArraytoJsonString();
