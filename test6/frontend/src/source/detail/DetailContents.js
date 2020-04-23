@@ -14,14 +14,14 @@ const DetailContents = ({infos, link, title, scores}) => {
             <div className='scores'>
                 {scores}
             </div>
+            <div className='date'>
+                <span className='lastModified'>
+                    NVD Published Date: this is empty now   NVD Last Modified: {infos}
+                </span>
+            </div>
             <div className='title'>
                 Description
                 <div className='content'>{title}</div>
-                <hr className='hr'/>
-            </div>
-            <div className='title'>
-                Modified
-                <div className='content'>{infos}</div>
                 <hr className='hr'/>
             </div>
             <div className='title'>
@@ -37,7 +37,7 @@ const DetailContents = ({infos, link, title, scores}) => {
                                     target='_blank' 
                                     rel="noopener noreferrer"
                                     href={`${item}`}>
-                                    <div>{item}</div>
+                                    <div className='preference'>{item}</div>
                                 </a>
                             )
                         }

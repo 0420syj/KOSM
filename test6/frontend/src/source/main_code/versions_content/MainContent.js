@@ -5,8 +5,9 @@
 import React, {memo} from 'react';
 import ContentList from './content_list/ContentList';
 import './MainContent.scss';
-const MainContent = memo(({rendering, data, name}) => {
+const MainContent = memo(({rendering, data, name, selected}) => {
     let idx = 0;
+    console.log(selected);
     return ( 
         <div >
             {
@@ -25,6 +26,7 @@ const MainContent = memo(({rendering, data, name}) => {
                         {
                             data.map((item) => {
                                 return (
+                                    idx >= (selected - 1) * 20 && idx < selected * 20 ?
                                     <div key={idx++}>
                                         <ContentList
                                             date={item.date}
@@ -34,7 +36,7 @@ const MainContent = memo(({rendering, data, name}) => {
                                             //score={item.score}
                                             title={item.title}
                                             name={name}/>
-                                    </div>
+                                    </div>: <div key={idx++}></div>
                                 )
                             })
                         }
