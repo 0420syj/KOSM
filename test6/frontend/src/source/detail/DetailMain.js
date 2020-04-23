@@ -12,21 +12,19 @@ import Footer from '../../menu/Footer'
 import './DetailMain.scss';
 import {detailCrawl} from '../../util/APIUtils';
 
-const nvdIcon = 'https://applets.imgix.net/https%3A%2F%2Fassets.ifttt.com%2Fimages%2Fchannels%2F393895903%2Ficons%2Fmonochrome_large.png%3Fversion%3D0?w=240&h=240&auto=compress&s=f1dab2b3ab2b9e6d4cf69ddd3ac73699';
 const DetailMain = ({match}) => {
-    const url = "https://nvd.nist.gov/vuln/detail/" + match.params.source;
-    const [data, setData] = useState([]);
+    const nvdIcon = 'https://applets.imgix.net/https%3A%2F%2Fassets.ifttt.com%2Fimages%2Fchannels%2F393895903%2Ficons%2Fmonochrome_large.png%3Fversion%3D0?w=240&h=240&auto=compress&s=f1dab2b3ab2b9e6d4cf69ddd3ac73699';
     const nvdLink = `https://nvd.nist.gov/vuln/detail/${match.params.source}`;
-
+    const [data, setData] = useState([]);
     let history = useHistory();
 
     useEffect(() => {
-        detailCrawl({url: url})      
+        detailCrawl({url: nvdLink})      
             .then(res => {
                 setData(res);
             })
             .catch(e => console.log(e));
-    }, [url]);
+    }, [nvdLink]);
 
     return ( 
         <div className="container">

@@ -126,7 +126,7 @@ public class AuthController {
                         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
                         helper.setFrom("KOSM <kosm.manager@gmail.com>"); // 완 : 전 이거없인 회원가입이 되지않아요ㅠ
                         helper.setTo(signUpRequest.getEmail());
-                        System.out.println(signUpRequest.getEmail()+"FUck");
+                        System.out.println(signUpRequest.getEmail());
                         helper.setSubject("KOSM 회원가입을 환영합니다.");
                       
                         String url= "http://localhost:3000/success/"+secret;
@@ -156,7 +156,7 @@ public class AuthController {
     @PostMapping("/signok")
     public ResponseEntity<?> registerUser(@Valid @RequestBody HashRequest hashRequest) {
         // Creating user's account
-        System.out.println(hashRequest.getHash()+"FUck1");
+        System.out.println(hashRequest.getHash());
         try{    //TempRepository
                TempMember tempuser =TempRepository.findByHash(hashRequest.getHash());
                 Member user = new Member(tempuser.getUsername(),
