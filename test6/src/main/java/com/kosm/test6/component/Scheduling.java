@@ -140,8 +140,8 @@ public class Scheduling {
         System.out.println("success");
     }
 
-    @Transactional
-    @Scheduled(fixedDelay = 100000000)
+    // @Transactional
+    // @Scheduled(fixedDelay = 100000000)
     // 'open_source' table insert function. Annotate the above 2 lines of code if you don't want to crawl
     public void insert_in_DB() throws MessagingException, IOException {
         List<Project> projects = projectRepository.findAll();

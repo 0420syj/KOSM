@@ -11,6 +11,7 @@ import OpenSourceData from '../../data/OpenSourceData';
 import AfterMainSource from './versions_after_login_title/AfterMainSource';
 import MainContent from './versions_content/MainContent';
 import Radio from '@material-ui/core/Radio';
+import {V3, V2} from '../../util/APIUtils';
 import './MainSource.scss';
 
 const MainSource = (props) => {
@@ -21,6 +22,21 @@ const MainSource = (props) => {
     const [rendering, setRendering] = useState(true);
     const [selected, setSelected] = useState(1);    //선택된 페이지 저장
     const [severity, setSeverity] = useState('normal');
+
+    useEffect(() => {
+        if(severity === 'normal'){
+        } 
+        else if(severity === 'ver3'){
+            V3()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(e => console.log(e));
+        }else if(severity === 'ver2'){
+            alert('ver2');
+        }
+    }, [severity])
+
     useEffect(() => {               //즐겨찾기 버튼에 색 추가
         if (sessionStorage.getItem('isLogin') === 'true') {   //로그인 된 상태라면
             setIsFavorite(false);
@@ -255,6 +271,9 @@ const After = ({ isFavorite, favoriteClick, name, github, graph }) => {
 
 const RadioGroup = memo(({severity, setSeverity}) => {
     const handleChange = (e) => {setSeverity(e.target.value);}
+
+
+
     return (
         <span className='radioGroup'>
             <span className='radioTitle'>Normal: </span>
@@ -268,18 +287,18 @@ const RadioGroup = memo(({severity, setSeverity}) => {
                 size="small"/>
             <span className='radioTitle'>version 3.x</span>
             <Radio
-                checked={severity === '3'}
+                checked={severity === 'ver3'}
                 onChange={handleChange}
-                value="3"
+                value="ver3"
                 color="default"
                 name="radio-button-demo"
                 className='radioButton'
                 size="small"/>
             <span className='radioTitle'>version 2.x</span>
             <Radio
-                checked={severity === '2'}
+                checked={severity === 'ver2'}
                 onChange={handleChange}
-                value="2"
+                value="ver2"
                 color="default"
                 name="radio-button-demo"
                 className='radioButton'

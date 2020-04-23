@@ -13,7 +13,6 @@ const Score = (props) => {
     // Warning 삭제
     // eslint-disable-next-line
     const colorRender = useCallback(data => {
-        console.log(data)
         const v = data[0] + data[1];
         if(data != null){
             switch(v){
@@ -62,10 +61,9 @@ const ContentList = ({date, summary, v2, v3, title, name}) => {
         // const arr = score.split(' ');
 
         for(let i = 0; i < v3.length; i++)
-            if(i % 3 === 0) setNewScore(prev => [...prev, v3]);
+            if(i % 3 === 1) setNewScore(prev => [...prev, 'V3.1', v3]);
         for(let i = 0; i < v2.length; i++)
-            if(i % 3 === 2) setNewScore(prev => [...prev, v2]);
-
+            if(i % 3 === 2) setNewScore(prev => [...prev, 'V2', v2]);
         // if(i % 3 === 0)
         //     setNewScore(prev => [...prev, arr[i].trim()]);
         // else if(i % 3 === 2){
