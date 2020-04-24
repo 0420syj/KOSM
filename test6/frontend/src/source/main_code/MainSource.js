@@ -3,7 +3,7 @@
 */
 
 import React, { useState, useEffect, memo } from 'react';
-import { Crawl, getFavProject, changePassword } from '../../util/APIUtils';
+import { Crawl, getFavProject } from '../../util/APIUtils';
 import { MdStar, MdStarBorder } from 'react-icons/md'
 import { IconContext } from 'react-icons';
 import { addFavProject, deleteFavProject } from '../../util/APIUtils';
