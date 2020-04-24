@@ -22,11 +22,28 @@ const MainSource = (props) => {
     const [rendering, setRendering] = useState(true);
     const [selected, setSelected] = useState(1);    //선택된 페이지 저장
     const [severity, setSeverity] = useState('normal');
-
+    const [lastModified, setLastModified] = useState('');
+    const [lastVersion, setLastVersion] = useState('');
+    
     useEffect(() => {
-        if(severity === 'normal'){
+        if(severity === 'normal' && data.length){
+            setData([]);
+            setSelected(1);
+            const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
+            const signupRequest = {
+                url: first_url,
+                name: props.name
+            }
+    
+            Crawl(signupRequest)
+                .then(res => {
+                    setData(res);
+                })
+                .catch(e => console.log(e));
         } 
         else if(severity === 'ver3'){
+            setData([]);
+            setSelected(1);
             const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
             const signupRequest = {
                 url: first_url,
@@ -34,10 +51,13 @@ const MainSource = (props) => {
             }
             V3(signupRequest)
             .then(res => {
-                console.log(res);
+                setData([]);
+                setData(res);
             })
             .catch(e => console.log(e));
         }else if(severity === 'ver2'){
+            setSelected(1);
+            setData([]);
             const first_url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=" + props.name; //이거는 keyword에 오픈소스이름넣어서 보내는거
             const signupRequest = {
                 url: first_url,
@@ -45,7 +65,7 @@ const MainSource = (props) => {
             }
             V2(signupRequest)
             .then(res => {
-                console.log(res);
+                setData(res);
             })
             .catch(e => console.log(e));
         }
@@ -76,6 +96,9 @@ const MainSource = (props) => {
         Crawl(signupRequest)
             .then(res => {
                 setData(res);
+                setSeverity('normal')
+                setLastModified(res[0].date);
+                setLastVersion(res[0].ReleaseDate);
                 OpenSourceData.map((res) => {       //내가 어떤 데이터를 추가할건지를 setIdKey함수를 통해서 설정
                     return res.name === props.name && setIdKey(res.id);
                 })
@@ -83,10 +106,10 @@ const MainSource = (props) => {
             .catch(e => console.log(e));
     }, [props.name])
 
-    useEffect(() => {       //누른 페이지에 따라 링크가 변함
-        setUrl(`https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=${props.name}&startIndex=${(selected - 1) * 20}`);
-        setRendering(false);
-    }, [props.name, selected])
+    // useEffect(() => {       //누른 페이지에 따라 링크가 변함
+    //     setUrl(`https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=${props.name}&startIndex=${(selected - 1) * 20}`);
+    //     setRendering(false);
+    // }, [props.name, selected])
 
     useEffect(() => {       //페이지 번호 눌렀을 때 들어오는 값
         if (url !== '') {
@@ -183,8 +206,8 @@ const MainSource = (props) => {
                                 github={data[0].Link}   //github 사이트
                                 graph={data[0].graph}   //graph url
                                 release={data[0].Release}   //깃허브의 release 버전
-                                releaseDate={data[0].ReleaseDate}   //깃허브 release된 날짜
-                                date={data[0].date}     //취약점 시간
+                                releaseDate={lastVersion}   //깃허브 release된 날짜
+                                date={lastModified}     //취약점 시간
                             />
                         </div>
                         <div className='vul'>
@@ -284,12 +307,9 @@ const After = ({ isFavorite, favoriteClick, name, github, graph }) => {
 
 const RadioGroup = memo(({severity, setSeverity}) => {
     const handleChange = (e) => {setSeverity(e.target.value);}
-
-
-
     return (
         <span className='radioGroup'>
-            <span className='radioTitle'>Normal: </span>
+            <span className='radioTitle'>Latest: </span>
             <Radio
                 checked={severity === 'normal'}
                 onChange={handleChange}
