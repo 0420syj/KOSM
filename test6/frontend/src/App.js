@@ -14,6 +14,7 @@ import DeleteUser from './mypage/DeleteUser';
 import DetailMain from './source/detail/DetailMain';
 import ScrollToTop from './ScrollToTop';
 import Admin from './admin/Admin'
+import About from './about/About'
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 function App() {
   useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
             <Route exact path='/changepwd' component={Change}/>
             <Route exact path='/deleteuser' component={DeleteUser}/>
             <Route exact path='/admin' component={Admin}/>
+            <Route exact path='/about' component={About}/>
           </ScrollToTop>
         </Router>
     </div>
