@@ -63,8 +63,8 @@ html, body {
 }
 
 .about-kosm, .about-us {
+  margin-bottom: 50px;
 }
-
 
 .title {
   font-style: normal;
@@ -76,6 +76,8 @@ html, body {
   letter-spacing: normal;
   text-align: center;
   color: #eaeaea;
+
+  margin-bottom: 16px;
 }
 
 .content {
@@ -87,4 +89,43 @@ html, body {
   letter-spacing: normal;
   text-align: center;
   color: #eaeaea;
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.member-img {
+  width: 82px;
+  height: 82px;
+  margin-right: 16px;
+  border-radius: 4px;
+}
+
+.member-text {
+  box-sizing: border-box;
+  display: block;
+
+  font-family: 'NotoSans';
+  font-size: 20px;
+  font-stretch: normal;
+  letter-spacing: normal;
+
+  .member-name {
+    margin-bottom: 4px;
+
+    font-weight: bold;
+    font-style: normal;
+    color: #eaeaea;
+  }
+
+  .member-job, .member-univ {
+    margin: 0;
+
+    font-size:16px;
+    font-weight: lighter;
+    color: #aaaaaa;
+  }
 }
