@@ -4,7 +4,8 @@ import AfterMenu from '../menu/after/AfterMenu';
 import SourceList from '../menu/SourceList';
 import Footer from '../menu/Footer'
 import { Button, Badge } from 'reactstrap';
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdHome } from "react-icons/md";
+import { AiOutlineHome } from "react-icons/ai";
 import './About.scss';
 
 const About = () => {
@@ -16,8 +17,7 @@ const About = () => {
             return <BeforeMenu />
     };
 
-    // 멤버 아이템 후보1
-    const MemberItem = ({ img, name, job, univ, email }) => {
+    const MemberItem = ({ img, name, job, univ, email, icon, github }) => {
         return (
             <div style={{ width: '390px', marginLeft: "20px", marginRight: '20px' }}>
                 <div className="member-info">
@@ -30,9 +30,9 @@ const About = () => {
                 </div>
                 <div className='member-contact'>
                     <p className='member-email'><MdEmail /> {email ? email : '이메일을 입력해주세요'}</p>
-                    <p className='member-github'>
-                        <a href='https://github.com/0420syj' target='_blank' rel="noopener noreferrer">
-                            <img src='/icons/github.png' alt='' className='github-icon'/>https://github.com/0420syj
+                    <p className='member-github'>{!icon && <MdHome/>}
+                        <a href={github} target='_blank' rel="noopener noreferrer">
+                            <img src={icon == 'github' ? '/icons/github.png' : ''} alt='' className='github-icon'/>{github ? github : '주소를 입력해주세요'}
                         </a>
                     </p>
                 </div>
@@ -51,8 +51,8 @@ const About = () => {
             <div className="about">
                 <div className='about-container'>
                     <div className='about-kosm'>
-                        <div className='title'>KOSM</div>
-                        <div className='content'>Kangpago OpenSource Management</div>
+                        <div className='title' style={{ color:'hsl(177, 50%, 45%)' }}>KOSM</div>
+                        <div className='content' style={{ fontSize: '28px' }}>Kangpago OpenSource Management</div>
                     </div>
                     <div className='about-us'>
                         <div className='title' style={{ textAlign: 'left', marginBottom: '40px' }}>만든 사람들</div>
@@ -62,13 +62,19 @@ const About = () => {
                                 name={'강태완'}
                                 job={'Front-End Developer'}
                                 univ={'광운대학교 소프트웨어학부(15)'}
+                                email={'king6096211@naver.com'}
+                                icon={'github'}
+                                github={'https://github.com/taewankang'}
+                                
                             />
                             <MemberItem
-                                // img={'http~~'}
+                                // img={'https://avatars1.githubusercontent.com/u/22449484?s=460&u=cc26a7d57d32d35faeb2950845ae551eae301606&v=4'}
                                 name={'심 완'}
                                 job={'Front-End Developer'}
                                 univ={'광운대학교 소프트웨어학부(15)'}
                                 email={'0420syj@naver.com'}
+                                icon={'github'}
+                                github={'https://github.com/0420syj'}
                             />
                         </div>
                         <div className='member-row'>
@@ -77,12 +83,18 @@ const About = () => {
                                 name={'백근우'}
                                 job={'Back-End Developer'}
                                 univ={'광운대학교 소프트웨어학부(15)'}
+                                email={'geunu3751@gmail.com'}
+                                icon={'github'}
+                                github={'https://github.com/geunwoo'}
                             />
                             <MemberItem
                                 // img={'http~~'}
                                 name={'손창환'}
                                 job={'Back-End Developer'}
                                 univ={'광운대학교 소프트웨어학부(15)'}
+                                email={'sonch12@naver.com'}
+                                icon={'github'}
+                                github={'https://github.com/Changhwan-Son'}
                             />
                         </div>
                         <div className='member-row'>
@@ -91,12 +103,16 @@ const About = () => {
                                 name={'김예원'}
                                 job={'Web Designer'}
                                 univ={'광운대학교 미디어커뮤니케이션학부(16)'}
+                                email={''}
+                                github={''}
                             />
                             <MemberItem
                                 // img={'http~~'}
                                 name={'허채원'}
                                 job={'Web Designer'}
                                 univ={'광운대학교 미디어커뮤니케이션학부(16)'}
+                                email={''}
+                                github={''}
                             />
                         </div>
                     </div>

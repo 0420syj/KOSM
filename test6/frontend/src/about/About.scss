@@ -63,6 +63,7 @@ html, body {
 }
 
 .about-kosm, .about-us {
+  margin-top: 30px;
   margin-bottom: 50px;
 }
 
@@ -108,6 +109,8 @@ html, body {
   height: 82px;
   margin-right: 16px;
   border-radius: 4px;
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
 }
 
 .member-text {
@@ -153,6 +156,14 @@ html, body {
 
     font-weight: normal;
     color: #eaeaea;
+    a {
+      color:hsl(177, 50%, 45%);
+    }
+
+    a:hover {
+      color:hsl(177, 50%, 35%);
+      // text-decoration: underline;
+    }
   }
 
   .github-icon {
