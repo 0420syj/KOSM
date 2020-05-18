@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.mapping.Collection;
+
 import lombok.Getter;
 import lombok.Setter;
 
