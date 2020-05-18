@@ -21,23 +21,6 @@ const pushArr = (response, arrName, setOpenSource) => {
     })
 }
 
-const reset = (setOpenSource) => {
-    if(OpenSourceData.length === 0){
-        getProjectAll()
-            .then(res => {
-                console.log(res);
-                pushArr(res.communication_application, communicationApplication, setOpenSource);
-                pushArr(res.database, database, setOpenSource);
-                pushArr(res.development_tool, developmentTool, setOpenSource);
-                pushArr(res.website_software, websiteSoftware, setOpenSource);
-                pushArr(res.image_media, imageMedia, setOpenSource);
-                pushArr(res.others, others, setOpenSource);
-                pushArr(res.office_software, office, setOpenSource);
-            })
-            .catch(e => console.log(e));
-    }
-}
-
 const SourceList = memo(() => {
     const [data, setData] = useState([]);                       //검색했을 때 나오는 리스트를 담은 배열
     const [inputText, setInputText] = useState('');             //검색창에 들어가는 데이터
@@ -68,9 +51,6 @@ const SourceList = memo(() => {
             return item.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
         }));
     };
-
-
-
 
     useEffect(() => {       //화면이 렌더링 되기 전에 getProjectAll()를 이용해서 서버에서 오픈소스 리스트들을 받아온다.
         reset(setOpenSource);
@@ -148,4 +128,20 @@ const SourceList = memo(() => {
     )
 });
 
+const reset = (setOpenSource) => {
+    if(OpenSourceData.length === 0){
+        getProjectAll()
+            .then(res => {
+                console.log(res);
+                pushArr(res.communication_application, communicationApplication, setOpenSource);
+                pushArr(res.database, database, setOpenSource);
+                pushArr(res.development_tool, developmentTool, setOpenSource);
+                pushArr(res.website_software, websiteSoftware, setOpenSource);
+                pushArr(res.image_media, imageMedia, setOpenSource);
+                pushArr(res.others, others, setOpenSource);
+                pushArr(res.office_software, office, setOpenSource);
+            })
+            .catch(e => console.log(e));
+    }
+}
 export default SourceList;

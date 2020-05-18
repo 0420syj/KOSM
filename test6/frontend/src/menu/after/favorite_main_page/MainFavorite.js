@@ -12,6 +12,8 @@ const MainFavorite = ({favItems, setFavItems}) => {
     const [favItem, setFavItem] = useState([]); //true로만 구성
     const [page, setPage] = useState(1);        
     const [selected, setSelected] = useState(1);
+    const [publish, setPublish] = useState('');
+    const [modify, setModify] = useState('');
     const temp = useRef([]);
     let index = -1;
 
@@ -45,14 +47,15 @@ const MainFavorite = ({favItems, setFavItems}) => {
         const obj = [];
         favItems.map(() => obj.push(true))
         setFavItem(obj);
+        console.log(favItems)
     }, [favItems])
         
     return ( 
         <div className='favoriteContainer'>
             <div className='favTitle'>내 즐겨찾기</div>
             <div className='favTitle2'>
-                <div className='favTitle3'>패치 업데이트</div>
-                <div className='favTitle4'>취약점 업데이트</div>
+                <div className='favTitle3'>NVD Published Date</div>
+                <div className='favTitle4'>NVD Last Modified</div>
             </div>
             <div className='favContents'>
                 {
@@ -65,6 +68,8 @@ const MainFavorite = ({favItems, setFavItems}) => {
                                 return (
                                     <div key={items.id} style={{color: '#FFFFFF'}}>
                                         <FavoriteList 
+                                            publish={items.date2}
+                                            modify={items.date}
                                             name={items.name} 
                                             type={favItem[index]}
                                             idx={index}
