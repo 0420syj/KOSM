@@ -5,8 +5,8 @@ import { API_BASE_URL, ACCESS_TOKEN} from '../constants';
 const request = (options) => {
     const headers = new Headers({})
 
-    if(localStorage.getItem(ACCESS_TOKEN)) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
+    if(sessionStorage.getItem(ACCESS_TOKEN)) {
+        headers.append('Authorization', 'Bearer ' + sessionStorage.getItem(ACCESS_TOKEN))
     }
 
     const defaults = {headers: headers};

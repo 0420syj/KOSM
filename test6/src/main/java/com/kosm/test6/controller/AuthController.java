@@ -162,13 +162,14 @@ public class AuthController {
                 Member user = new Member(tempuser.getUsername(),
                 tempuser.getEmail(), tempuser.getPassword());
                 TempRepository.delete(tempuser);
+                System.out.println("----------------"+user.getEmail());
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
 
                 Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                         .orElseThrow(() -> new AppException("User Role not set."));
 
                 user.setRoles(Collections.singleton(userRole));
-
+                System.out.println("----------------"+user.getEmail());
                 Member result = userRepository.save(user);
                 
                 URI location = ServletUriComponentsBuilder
@@ -179,7 +180,7 @@ public class AuthController {
         }
         catch (Exception e)
         {
-                //System.out.println(tempuser.getEmail()+"error1");
+                System.out.println(e);
               //  System.out.println(tempuser.getPassword()+"error2");
                 return new ResponseEntity<>(new ApiResponse(false, "Email isn't exits!"),
                         HttpStatus.BAD_REQUEST);

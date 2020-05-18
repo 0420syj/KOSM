@@ -28,8 +28,6 @@ const LoginForm = memo((props) => {
             sessionStorage.setItem('accessToken', res.accessToken);
             getCurrentUser()
             .then(res => {
-                console.log('inin');
-                console.log(res);
                 sessionStorage.setItem('isLogin', 'true');
                 sessionStorage.setItem('email', res.email);
                 sessionStorage.setItem('username', res.username);
