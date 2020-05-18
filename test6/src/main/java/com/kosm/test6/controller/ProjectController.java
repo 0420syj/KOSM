@@ -33,11 +33,26 @@ public class ProjectController {
         Map<String, List<ProjectListResponse>> target = new HashMap<>();
         List<Project> prjList;
 
-        prjList = projectRepository.findAllByCategory("Apache");
-        target.put("Apache", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+        prjList = projectRepository.findAllByCategory("office_software");
+        target.put("office_software", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
 
-        prjList = projectRepository.findAllByCategory("default");
-        target.put("default", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+        prjList = projectRepository.findAllByCategory("website_software");
+        target.put("website_software", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+
+        prjList = projectRepository.findAllByCategory("communication_application");
+        target.put("communication_application", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+
+        prjList = projectRepository.findAllByCategory("image_media");
+        target.put("image_media", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+
+        prjList = projectRepository.findAllByCategory("development_tool");
+        target.put("development_tool", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+
+        prjList = projectRepository.findAllByCategory("database");
+        target.put("database", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+
+        prjList = projectRepository.findAllByCategory("others");
+        target.put("others", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
 
         return target;
     }
