@@ -20,7 +20,7 @@ const Favorite = () => {
         <div>
             {
                 ready === false ?
-                <div style={{color: '#FFFFFF', fontSize: '50px'}}>Loading....</div> :
+                <div style={{marginLeft: '100px', marginTop: '100px', color: '#FFFFFF', fontSize: '50px'}}>Loading....</div> :
                 <MainFavorite favItems={favItems} setFavItems={setFavItems}/>
             }
         </div>

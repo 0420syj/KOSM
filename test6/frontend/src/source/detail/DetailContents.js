@@ -3,7 +3,7 @@
 */
 import React, { useEffect, useState} from 'react';
 import './DetailContents.scss';
-const DetailContents = ({infos, link, title, scores}) => {
+const DetailContents = ({publishDate, modifyDate, link, title, scores}) => {
     const [linkArray, setLink] = useState([]);
     let idx = 0;
     useEffect(() => {
@@ -59,21 +59,22 @@ const DetailContents = ({infos, link, title, scores}) => {
             <span style={{display: 'inline-block', width: '35px'}}>V2.1:</span>{colorRender(scoreV2)}
             </div>
             <div className='date'>
-                <span className='lastModified'>
-                    NVD Published Date: this is empty now   NVD Last Modified: {infos}
+                <span className='lastModified' style={{lineHeight: '1.5', marginBottom: '20px'}}>
+                    <div>NVD Published Date: {publishDate}</div>  
+                    <div>NVD Last Modified: {modifyDate}</div>
                 </span>
             </div>
-            <div className='title'>
+            <div className='titles'>
                 Description
-                <div className='content'>{title}</div>
+                <div className='contents'>{title}</div>
                 <hr className='hr'/>
             </div>
-            <div className='title'>
+            <div className='titles'>
                 Reference
-                <div className='content'>
+                <div className='contents'>
                 {
                     linkArray.length !== 0 && 
-                    <div style={{overflow: 'hidden'}}>
+                    <div style={{overflow: 'auto', height: '450px', marginBottom: '20px'}}>
                         {
                             linkArray.map(item => 
                                 <a 
