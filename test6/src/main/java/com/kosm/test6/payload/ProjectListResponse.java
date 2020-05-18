@@ -8,15 +8,20 @@ import lombok.Getter;
 public class ProjectListResponse {
     private Long id;
     private String name;
-    private String date;
-    private String date2;
+    private String date="null";
+    private String date2="null";
 
     public ProjectListResponse(Project entity) {
         this.id = entity.getId();
         this.name = entity.getName();
-        String[] arr1=entity.getCveDate().split(";");
+        if(entity.getCveDate()!=null)
+        {String[] arr1=entity.getCveDate().split(";");
         this.date=arr1[0];
+        }
+        if(entity.getReleaseDate()!=null)
+        {
         this.date2=entity.getReleaseDate();
+        }
     }
 
     public ProjectListResponse(Long id, String name) {

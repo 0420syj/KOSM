@@ -84,7 +84,7 @@ public class Scheduling {
             System.out.println("success");
        }        
     }
-  //  @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
+    //@Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
     public void Monitoring_Project() throws MessagingException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
@@ -114,11 +114,11 @@ public class Scheduling {
                     Elements example2 = doc2.select(release);
                     Elements EEEE=doc2.select(other_date2);
                     Elements example3 = doc2.select(time);
-                    if(!example2.isEmpty())
+                    if(!example2.isEmpty()&&example2.text()!=null)
                     {prj.setVersion(example2.get(0).text());
                     prj.setReleaseDate(example3.get(0).text());
                     }
-                    else if(!EEEE.isEmpty())
+                    else if(!EEEE.isEmpty()&&EEEE.text()!=null)
                     {
                     prj.setVersion(EEEE.get(0).text());
                     prj.setReleaseDate(example3.get(0).text());
@@ -130,12 +130,13 @@ public class Scheduling {
             }
              
             Elements examples = doc.select(date);
-            if(!prj.getCveDate().equals(examples.get(0).text())){
+            
+            if(prj.getCveDate()==null||(!examples.isEmpty()&&examples.text()!=null&&!prj.getCveDate().equals(examples.get(0).text()))){
                 prj.setCveDate(examples.get(0).text());
                 simplePrintln(prj.getId());
             }
             projectRepository.saveAndFlush(prj);
-            System.out.println(prj.getName());
+            System.out.println(prj.getName()+prj.getCveDate());
         }
 
         System.out.println("success");
