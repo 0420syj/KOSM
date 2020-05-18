@@ -4,7 +4,7 @@ import './Description.scss';
 const Description = () => {
     return ( 
         <div className="content-container">
-            <div className="title">
+            <div className="titles">
                 <div>Built for</div>
                 <div>developers</div>
             </div>

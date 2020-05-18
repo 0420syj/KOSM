@@ -34,14 +34,16 @@
         color: #eaeaea;
     }
 
-    .title{
+    .titles{
         font-family: NotoSans;
         font-size: 28px;
-        .content{
+        .contents{
             font-size: 15px;
             width: 90%;
+            height: 100%;
             line-height: 1.5;
             margin-top: 20px;
+            margin-bottom: 20px;
             .preference{
                 color: #e4e4e4;
                 &:hover{

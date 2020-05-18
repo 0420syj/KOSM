@@ -17,11 +17,15 @@ const DetailMain = ({match}) => {
     const nvdLink = `https://nvd.nist.gov/vuln/detail/${match.params.source}`;
     const [data, setData] = useState([]);
     let history = useHistory();
+    const [publish, setPublish] = useState('');
+    const [modify, setModify] = useState('');
 
     useEffect(() => {
         detailCrawl({url: nvdLink})      
             .then(res => {
-                console.log(res);
+                const spl = res[0].infos.split(',');
+                setPublish(spl[0]);
+                setModify(spl[1]);
                 setData(res);
             })
             .catch(e => console.log(e));
@@ -41,9 +45,8 @@ const DetailMain = ({match}) => {
                         className="go-board-button"
                         onClick={() => {
                             let arr = history.location.pathname.split('/')
-                            history.push({pathname: '../' + arr[2],});
-                        }}
-                        >
+                            history.push({pathname: '../' + arr[2]});
+                        }}>
                         <MdDehaze/> 목록
                     </Button><br/>
                     <span>{match.params.source}</span>    
@@ -69,7 +72,8 @@ const DetailMain = ({match}) => {
                         </span>
                     </div> :
                     <DetailContents
-                        infos={data[0].infos}
+                        publishDate={publish}
+                        modifyDate={modify}
                         link={data[0].links}
                         title={data[0].title}
                         scores={data[0].scores}/>
