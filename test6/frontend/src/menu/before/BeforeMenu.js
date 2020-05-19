@@ -23,6 +23,9 @@ const BeforeMenu = memo(() => {
                     marginRight: '50px',
                     width: '190px',
                     minWidth: '190px',}}>
+                <Link to='/about'>
+                    <span>소개</span>
+                </Link>
                 <Link to='/board'>
                     <span>게시판</span>
                 </Link>
