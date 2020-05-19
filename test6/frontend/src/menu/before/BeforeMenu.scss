@@ -31,8 +31,10 @@ a:hover, a:visited, a:link, a:active {
     }
 }
 
-.menu {
-    width: 60px;
+.beforeMenu {
+    width: 360px;
+    max-width: 300px;
+    min-width: 300px;
     height: 27px;
     font-family: 'NotoSans';
     font-size: 20px;
