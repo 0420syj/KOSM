@@ -59,6 +59,9 @@ const AfterMenu = memo((props) => {
                         }
                     </div>
                     <div className="menu" style={{display: 'flex', justifyContent:'space-between', width: '219.2px', marginRight: '50px', height: '100%'}}>
+                        <Link to='/about' style={{color: 'inherit', textDecoration: 'none'}}>
+                            <div style={{cursor: 'pointer'}}>소개</div>
+                        </Link>
                         <Link to='/board' style={{color: 'inherit', textDecoration: 'none'}}>
                             <div style={{cursor: 'pointer'}}>게시판</div>
                         </Link>
