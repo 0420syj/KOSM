@@ -72,13 +72,13 @@ public class Scheduling {
             optional =userRepository.findById(members_id.get(i).getUser_id());
             member = optional.get();
             helper.setTo(member.getEmail());
-            helper.setSubject("Testing from Spring Boot");
+            helper.setSubject("KOSM Update 알림");
 
             Optional<Project> target_pjt = projectRepository.findById((long)members_id.get(i).getProject_id());
             Project target = target_pjt.get();
             String projectName = target.getName();
         
-            String content ="This is a Kosm.\n" + projectName + "is updated!\n" + "Check your OpenSource News!!";
+            String content ="This is a Kosm.\n" + projectName + " is updated!\n" + "Check your OpenSource News!!";
             helper.setText("<h1>Thank you for Reading!</h1>" +content, true);
             javaMailSender.send(msg);
             System.out.println("success");
