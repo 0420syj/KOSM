@@ -67,10 +67,10 @@ const AfterMenu = memo((props) => {
                         </Link>
                         <div>
                             <Dropdown isOpen = {isDropdown} toggle={toggle}>
-                                <DropdownToggle className="username-button" style={{padding: '0px', background: '#414141', border: 'none'}}>
+                                <DropdownToggle className="username-button" style={{padding: '0px', background: '#414141', width: '80px', border: 'none'}}>
                                     {sessionStorage.getItem('username')}
                                 </DropdownToggle>
-                                <DropdownMenu className='dropdown-menu' style={{transform: 'translate(-35px, 0px)'}}>
+                                <DropdownMenu className='dropdown-menu' >
                                     <DropdownItem className="dropdown-item" onClick={logoutClick}>
                                         Logout
                                     </DropdownItem>

@@ -32,10 +32,10 @@ const FavoriteList = ({publish, modify, name, type, idx, favItem, setFavItem}) =
                     </Link>
                 </span>
                 <span className='patchDate'>
-                    {publish === 'null' ? '---' : publish}
+                    {publish === 'null' ? <span>&nbsp;&nbsp;&nbsp;&nbsp; ---</span> : publish}
                 </span>
                 <span className='vulDate'>
-                    {modify === 'null' ? '---' : modify}
+                    {modify === '' ? <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---</span> : modify}
                 </span>
             </div>
             <div style={{width: '1150px', marginLeft: '100px', marginBottom: '14.5px'}}>

@@ -18,11 +18,7 @@ const BeforeMenu = memo(() => {
                     KOSM
                 </Link>
             </div>
-            <div className="menu"
-                style={{
-                    marginRight: '50px',
-                    width: '190px',
-                    minWidth: '190px',}}>
+            <div className="beforeMenu" style={{marginRight:'50px'}}>
                 <Link to='/about'>
                     <span>소개</span>
                 </Link>
@@ -37,7 +33,7 @@ const BeforeMenu = memo(() => {
                         className="login-button">
                     로그인
                     </DropdownToggle>
-                    <DropdownMenu className='dropdownMenu' style={{transform: 'translate(-35px, 0px)'}}>
+                    <DropdownMenu className='dropdownMenu'>
                         <DropdownItem className='dropdownItem' onClick={() => {history.push('/login')}}>
                             Login
                         </DropdownItem>
