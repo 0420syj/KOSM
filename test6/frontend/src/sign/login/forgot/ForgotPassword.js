@@ -11,15 +11,10 @@ const ForgotPassword = () => {
     })
     const confirm = (e) => {
         e.preventDefault();
-         const userinfo = { 
-             email:data.email
-         }    
+         const userinfo = { email:data.email}
          forgot(userinfo)        
-         .then(res => {
-            alert(res);
-    }).catch(e => {
-        console.log(e);
-    })
+         .then(res => {alert(res)})
+         .catch(e => {})
     }
     const onChange = (e) => {
         setData({

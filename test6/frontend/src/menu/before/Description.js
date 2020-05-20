@@ -5,14 +5,12 @@ const Description = () => {
     return ( 
         <div className="content-container">
             <div className="titles">
-                <div>Built for</div>
-                <div>developers</div>
+                <div>Manage Opensource</div>
+                <div>for developers</div>
             </div>
             <div className="description">
-                <div>KOSM is a development platform inspried by the way</div>
-                <div>you work. From <span className="bold-font">open source</span> to <span className="bold-font">business</span>, you</div>
-                <div>can host and review code, manageprojects, and</div>
-                <div>build software alongside 40 million developers.</div>
+                <div><span className='bold-font'>KOSM</span> 은 오픈소스의 취약점의 변경 상태를 알려줌으로써</div>
+                <div>취약점을 인지하고 사용할 수 있도록 도와줍니다.</div>
             </div>
         </div>
     )

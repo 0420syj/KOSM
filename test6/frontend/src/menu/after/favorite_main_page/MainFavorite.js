@@ -18,8 +18,7 @@ const MainFavorite = ({favItems, setFavItems}) => {
     let index = -1;
 
     const buttonClick = (e) => {
-        let i = 0;
-        
+        let i = 0;        
         temp.current.push({
             id: 0,
             name: sessionStorage.getItem('email')
@@ -108,7 +107,6 @@ const MainFavorite = ({favItems, setFavItems}) => {
 
 const ListButton = memo(({len, setPage, selected, setSelected}) => {
     const [list, setList] = useState([]);
-
     useEffect(() => {
         const arr = [];
         for(let i = 1; i <= Math.ceil(len); i++)

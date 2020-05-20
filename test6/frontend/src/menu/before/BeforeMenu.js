@@ -5,12 +5,8 @@ import './BeforeMenu.scss';
 
 const BeforeMenu = memo(() => {
     const [isDropdown, setIsDropdown] = useState(false);
-    const toggle = () => {
-        setIsDropdown(prev => !prev);
-    }
-
+    const toggle = () => { setIsDropdown(prev => !prev) }
     const history = useHistory();
-
     return (
         <div className="top-container">
             <div className="logo">

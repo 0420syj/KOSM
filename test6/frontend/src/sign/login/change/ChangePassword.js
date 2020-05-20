@@ -5,9 +5,7 @@ import './ChangePassword.scss';
 import { useHistory } from "react-router-dom";
 
 const ChangePassword = () => {
-
-    let history = useHistory();
-    
+    let history = useHistory();   
     const [userInfo, setUserInfo] = useState({
         'prevpassword': '',
         'password': '',
@@ -21,29 +19,21 @@ const ChangePassword = () => {
             ...userInfo,
             [e.target.name]:e.target.value
         });
-        //console.log(userInfo)
     }
 
-    const validatePassWord = password =>
-    {
+    const validatePassWord = password => {
         // 영문숫자 조합 6~20자
         // 참고 : https://www.w3resource.com/javascript/form/password-validation.php
         const passWordRegExp = /^.*(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z]).*$/;
-        
-        if(password.match(passWordRegExp))
-        {
-            if(password !== userInfo.confirmpassword)
-            {
+        if(password.match(passWordRegExp)) {
+            if(password !== userInfo.confirmpassword) {
                 setUserInfo({
                     ...userInfo,
                     validPassWord: true,
                     validConfirmPassWord: false,
                     password
                 });
-            }
-
-            else
-            {
+            } else {
                 setUserInfo({
                     ...userInfo,
                     validPassWord: true,
@@ -51,10 +41,7 @@ const ChangePassword = () => {
                     password
                 });
             }
-        }
-
-        else
-        {
+        } else {
             setUserInfo({
                 ...userInfo,
                 validPassWord: false,
@@ -62,47 +49,34 @@ const ChangePassword = () => {
                 password
             });
         }
-
-        // console.log(userInfo)
     }
 
     const validateConfirmPassWord = confirmpassword => {
-        if(userInfo.validPassWord)
-        {
-            if(userInfo.password === confirmpassword)
-            {
+        if(userInfo.validPassWord) {
+            if(userInfo.password === confirmpassword) {
                 setUserInfo({
                     ...userInfo,
                     validConfirmPassWord: true,
                     confirmpassword
                 });
-            }
-
-            else
-            {
+            } else {
                 setUserInfo({
                     ...userInfo,
                     validConfirmPassWord: false,
                     confirmpassword
                 });
             }
-        }
-
-        else
-        {
+        } else {
             setUserInfo({
                 ...userInfo,
                 validConfirmPassWord: false,
                 confirmpassword
             });
         }
-
-        // console.log(userInfo)
     }
 
     const inputClassNameHelper = boolean => { 
-        switch(boolean)
-        {
+        switch(boolean) {
             case true:
                 return 'is-valid'; // 초록색 input
             case false:
@@ -115,21 +89,14 @@ const ChangePassword = () => {
     const renderSubmitBtn = () => {
         // 폼 안의 모든 값이 유효한지 검사
         const validateForm = () => {
-            return userInfo.validPassWord
-                && userInfo.validConfirmPassWord;
+            return userInfo.validPassWord && userInfo.validConfirmPassWord;
         }
 
         const validateDiffPassword = () => {
             return (userInfo.prevpassword !== userInfo.password) && (userInfo.prevpassword !== userInfo.confirmpassword);
         }
 
-        if(validateForm() && validateDiffPassword())
-        {
-            return(
-                true
-            )
-        }
-
+        if(validateForm() && validateDiffPassword()) { return true }
         else return false
     }
 
@@ -140,13 +107,11 @@ const ChangePassword = () => {
             beforePassword : userInfo.prevpassword,
             newPassword : userInfo.password
         }
-        // alert('email : ' + request.email + '\nbeforPassword : ' + request.beforePassword + '\nnewPassword : ' + request.newPassword)
         changePassword(request)       
         .then(() => {
             alert("비밀번호가 변경되었습니다.");
             history.push('/')
-        },(error) => {
-            console.log(error);
+        },() => {
             alert("변경 실패");
         });
     }

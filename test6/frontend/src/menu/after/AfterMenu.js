@@ -4,10 +4,8 @@ import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import './AfterMenu.scss';
 
 const Title = memo(() => {
-   
     return (
-    <div 
-        style={{
+    <div style={{
             cursor: 'pointer',
             height: '53px',
             fontFamily: 'Libre Franklin',
@@ -24,8 +22,6 @@ const Title = memo(() => {
     )
 });
 
-
-
 const AfterMenu = memo((props) => {
     const [isDropdown, setIsDropdown] = useState(false);
     const history = useHistory();
@@ -38,18 +34,14 @@ const AfterMenu = memo((props) => {
         sessionStorage.setItem('phonenumber', '');
         history.push('/');
     }
-    
     const toggle = () => {setIsDropdown(!isDropdown);}
-    
-
     return ( 
         <div>
             <div className='menuContainer'>
                 <div className='also-menu-container'>
                     <div className='leftContainer'>
                         {
-                            useMemo(
-                                () => {
+                            useMemo(() => {
                                 return (
                                     <Link to='/' style={{color: 'inherit', textDecoration: 'none'}}>
                                         <Title/>
