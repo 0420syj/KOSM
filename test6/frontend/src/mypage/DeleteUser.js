@@ -31,7 +31,6 @@ const DeleteUser = () => {
             sessionStorage.setItem('isLogin', 'false');
             }).catch((error) => {
                 alert("삭제 실패!")
-                console.log(error)
             });
         };
 
