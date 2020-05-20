@@ -11,7 +11,7 @@ const Favorite = () => {
             setFavItems(res);
             setTimeout(() => {setReady(true)}, 0);
         })
-        .catch(e => {console.log(e)})
+        .catch(() => {})
     }, [favItems.length]);
 
     return (

@@ -20,11 +20,9 @@ const LoginForm = memo((props) => {
     }
 
     const onSubmit = (e) => {
-        console.log('submit');
         e.preventDefault();
         login(userinfo)
         .then(res => {
-            console.log(res);
             sessionStorage.setItem('accessToken', res.accessToken);
             getCurrentUser()
             .then(res => {
@@ -35,11 +33,9 @@ const LoginForm = memo((props) => {
                 history.push('./');
                 return ;
             }).catch(e => {
-                console.log(e);
                 alert('아이디/비밀번호가 다릅니다.');
             })
         }).catch(e => {
-            console.log(e);
             alert('아이디/비밀번호가 다릅니다.');
         })
     }

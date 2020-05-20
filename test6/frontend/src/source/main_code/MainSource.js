@@ -67,7 +67,7 @@ const MainSource = (props) => {
             .then(res => {
                 setData(res);
             })
-            .catch(e => console.log(e));
+            .catch(() => {});
         }
     }, [severity])
 
@@ -80,7 +80,7 @@ const MainSource = (props) => {
                         return items.name === props.name && setIsFavorite(true);
                     })
                 })
-                .catch(e => { console.log(e) })
+                .catch(() => {})
         }
     }, [props.name]);
 
@@ -103,7 +103,7 @@ const MainSource = (props) => {
                     return res.name === props.name && setIdKey(res.id);
                 })
             })
-            .catch(e => console.log(e));
+            .catch(() => {});
     }, [props.name])
 
     // useEffect(() => {       //누른 페이지에 따라 링크가 변함

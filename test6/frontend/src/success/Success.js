@@ -8,10 +8,7 @@ const Success = ({match}) => {
     }
     signok(signupRequest)
     .then(res => {
-        console.log(res.body);
     },(error) => {
-        console.log(error);
-        console.log(signupRequest.hash);
     });
     return (  
         <div>       
