@@ -21,7 +21,7 @@ const About = () => {
         return (
             <div style={{ width: '390px', marginLeft: "20px", marginRight: '20px' }}>
                 <div className="member-info">
-                    <img src={img ? img : '/img.png'} alt={name} title={name} className="member-img" />
+                    <img src={img ? img : '/icons/member.png'} alt={name} title={name} className="member-img" />
                     <div className="member-text">
                         <p className="member-name">{name}</p>
                         <p className="member-job">{job}</p>
