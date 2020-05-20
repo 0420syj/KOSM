@@ -202,7 +202,7 @@ public class Scheduling {
                     OpenSource opc=new OpenSource(A,prj.getName(),B,C,V3,V2); 
                    // if(openSourceRepository.findByLibiraryAndCode(A,prj.getName())==null) 
                     //{
-                    if(!openSourceRepository.existsByLibiraryAndCode(A,prj.getName()))
+                    if(!openSourceRepository.existsByLibiraryAndCode(prj.getName(),A))
                     {
                     openSourceRepository.saveAndFlush(opc);
                     System.out.println(cves.get(j).text());   
