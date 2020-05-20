@@ -27,23 +27,22 @@ const Board = () => {
 
     useEffect(() => {
         getBoards()
-            .then(response => {
-                setData(response);
-                //console.log(response);
-            })
+            .then(response => { setData(response) })
     }, []);
 
     const { SearchBar } = Search;
 
     const renderButton = () => {
         if (sessionStorage.getItem('isLogin') !== 'false') {
-            return (<div 
-                align="right"
-                >
-                <Link to='/write'>
-                    <Button className="button-write">작성하기</Button>
-                </Link>
-            </div>)
+            return (
+                <div 
+                    align="right"
+                    >
+                    <Link to='/write'>
+                        <Button className="button-write">작성하기</Button>
+                    </Link>
+                </div>
+            )
         }
     };
 
@@ -162,7 +161,6 @@ const Board = () => {
         // title,
         onPageChange
       }) => {
-        // console.log("page : " + page)
         const handleClick = (e) => {
           e.preventDefault();
           onPageChange(page);

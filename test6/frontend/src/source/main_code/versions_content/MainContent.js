@@ -7,7 +7,6 @@ import ContentList from './content_list/ContentList';
 import './MainContent.scss';
 const MainContent = memo(({rendering, data, name, selected}) => {
     let idx = 0;
-    console.log(selected);
     return ( 
         <div >
             {

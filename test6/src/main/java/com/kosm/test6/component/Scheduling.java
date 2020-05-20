@@ -73,18 +73,22 @@ public class Scheduling {
             member = optional.get();
             helper.setTo(member.getEmail());
             helper.setSubject("KOSM Update 알림");
+            helper.setFrom("KOSM <kosm.manager@gmail.com>"); 
+            
 
             Optional<Project> target_pjt = projectRepository.findById((long)members_id.get(i).getProject_id());
             Project target = target_pjt.get();
             String projectName = target.getName();
         
             String content ="This is a Kosm.\n" + projectName + " is updated!\n" + "Check your OpenSource News!!";
-            helper.setText("<h1>Thank you for Reading!</h1>" +content, true);
+           
+            String emailContent = "<div style='width:700px;border:1px solid #cecece;border-top:1px solid #3aada8;font-size:20px;'><img src='https://kwangwoon-syllabus.s3.ap-northeast-2.amazonaws.com/kosm_bg.gif'><div style='width:100%;border-bottom:1px solid #cecece;'><div style='width:600px;margin:0 auto;margin-bottom:64px;margin-top:40px;'><span style='color:#363636;font-size:16px;line-height:22px;'>" + projectName + "의 새로운 취약점 업데이트가 발견되었습니다.<br><br>아래 버튼을 클릭하여 확인해주세요.<br></span><br><br><span style='font-size:16px;color:#808080;'>KOSM Team</span><center><a class='mail_btn' href='" + "https://localhost:3000" + "' target='_blank'style='display:block;:50px;padding-left:30px;padding-right:30px;font-size:20px;color:white;line-:48px;margin:0 auto;text-align:center;display:inline-block;border-radius:10px;text-decoration:none;margin-top:35px;border:1px solid #f7870f;background:#fe931f;background-position:95% center;'rel='noreferrer noopener'>회원가입<img src='http://earthtory.com/res/img/mail/common/arrow_yellow.gif'style='float:right;margin-top:18px;margin-left:5px;' alt=''></a></center></div></div><!-- <div style='width:700px;height:56px;'><a class='app_button' href='https://play.google.com/store/apps/details?id=com.earthtory' target='_blank' style='margin-left:20px;float:left;border:1px solid #c9c9c9;:80px;:29px;border-radius:3px;font-size:13px;font-weight:bold;color:#363c48;text-align:center;display:block;margin-right:5px;text-decoration:none;line-:28px;margin-top:13px;' rel='noreferrer noopener'>Android</a><a class='app_button' href='https://itunes.apple.com/kr/app/eoseutoli-earthtory-juyo-gwangwangji/id919377935?mt=8' target='_blank' style='float:left;border:1px solid #c9c9c9;:80px;:29px;border-radius:3px;font-size:13px;font-weight:bold;color:#363c48;text-align:center;display:block;margin-right:5px;text-decoration:none;line-:28px;margin-top:13px;' rel='noreferrer noopener'>iOS</a><a class='ss_btn' href='http://blog.earthtory.com/' target='_blank' style='float:right;margin-left:10px;margin-right:20px;margin-top:12px;border:0px;' rel='noreferrer noopener'><img src='http://earthtory.com/res/img/mail/common/ss_bl.gif' alt='' border='0'></a><a class='ss_btn' href='https://www.facebook.com/Earthtory' target='_blank' style='float:right;margin-left:10px;margin-top:12px;border:0px;' rel='noreferrer noopener'><img src='http://earthtory.com/res/img/mail/common/ss_fb.gif' alt='' border='0'></a></div> --></div>";
+            helper.setText(emailContent, true);
             javaMailSender.send(msg);
             System.out.println("success");
        }        
     }
-    //@Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
+    @Scheduled(fixedDelay = 100000000) // 100�� //link���� ��¥ ũ�Ѹ� ���������Ʈ ��¥ ũ�Ѹ���ȸ;
     public void Monitoring_Project() throws MessagingException {
         List<Project> projects = projectRepository.findAll();
         String url="https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=";
@@ -93,7 +97,7 @@ public class Scheduling {
         MimeMessage msg = javaMailSender.createMimeMessage();
          //true = multipart message
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-        Document doc = null;  
+        Document doc = null;    
         Document doc2 = null; 
         String date="div#row tbody tr td span[data-testid]";
         String other_date2="div>div>div>div>ul>li>a>span ";

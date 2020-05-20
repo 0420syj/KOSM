@@ -41,7 +41,6 @@ const Admin = () => {
                 setIsAdmin({
                     isAdmin: false
                 })
-                console.log(error)
             });
         };
 
@@ -59,7 +58,6 @@ const Admin = () => {
             getBoards()
                 .then(response => {
                     setData(response);
-                    //console.log(response);
                 })
         }, []);
     
@@ -82,12 +80,10 @@ const Admin = () => {
             var boardId = boardData.map(val => {
                 return val.id;
             })
-            // console.log(boardId);
             deleteBoard(boardId).then(() => {
                 alert("정상적으로 삭제되었습니다.");
             }).catch((error) => {
                 alert("Delete Fail")
-                console.log(error)
             });
         };
 
@@ -95,17 +91,14 @@ const Admin = () => {
     
         const handleSave = (e) => {
             e.preventDefault();
-            console.log(boardData.length);
 
             // boardData.map(val => {
-            //     console.log(val.id + "," + val.status);
             // })
 
             modifyBoard(boardData).then(() => {
                 alert("정상적으로 저장되었습니다.");
             }).catch((error) => {
                 alert("Save Fail")
-                console.log(error)
             });
         };
 
@@ -120,14 +113,11 @@ const Admin = () => {
                 };
                 if(isSelect) {
                     setBoardData(boardData.concat(data));
-                    console.log("추가");
                 }
                 else {
                     const items = boardData.filter(item => item.id !== data.id)
                     setBoardData(items);
-                    console.log("삭제");
                 }
-                //console.log(e);
             },
             onSelectAll: (isSelect, rows, e) => {
                 var rowsData = rows.map(value => {
@@ -136,10 +126,8 @@ const Admin = () => {
                     data.status = value.status;
                     return data;
                 });
-                console.log(rowsData)
 
                 isSelect ? setBoardData(rowsData) : setBoardData([]);
-                //console.log(e);
             },
             /*
             selectColumnStyle: ({
@@ -280,7 +268,6 @@ const Admin = () => {
             // title,
             onPageChange
           }) => {
-            // console.log("page : " + page)
             const handleClick = (e) => {
               e.preventDefault();
               onPageChange(page);

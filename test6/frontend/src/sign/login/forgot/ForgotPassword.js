@@ -11,13 +11,10 @@ const ForgotPassword = () => {
     })
     const confirm = (e) => {
         e.preventDefault();
-         const userinfo = { 
-             email:data.email
-         }    
+         const userinfo = { email:data.email}
          forgot(userinfo)        
-         .then(() => {
-            alert('임시 비밀번호가 메일로 발송되었습니다.');
-        }).catch(e => { console.log(e)})
+         .then(() => {alert('임시 비밀번호가 메일로 발송되었습니다.')})
+         .catch(e => { alert('임시 비밀번호 발송 실패')})
     }
     const onChange = (e) => {
         setData({
