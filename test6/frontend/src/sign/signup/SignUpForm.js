@@ -42,9 +42,7 @@ const SignUp = () => {
                         alert("이미 있는 닉네임입니다.");
                     }
                
-            },(error) => {
-                console.log(error);
-                //onsole.log(signupRequest.email);
+            },() => {
                 alert("fail");
             });
         
@@ -95,11 +93,7 @@ const SignUp = () => {
                         alert("이미 등록된 아이디입니다.");
                     }
                
-            },(error) => {
-                console.log(error);
-                //onsole.log(signupRequest.email);
-                alert("fail");
-            });
+            },(error) => { alert("fail") });
         }
 
         // 이메일 형식 조건 false 일때

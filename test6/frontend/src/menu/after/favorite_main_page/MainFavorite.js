@@ -39,14 +39,13 @@ const MainFavorite = ({favItems, setFavItems}) => {
                         setSelected(1);
                         temp.current=[];
                     })
-            }).catch(e => {console.log(e)})
+            }).catch(() => {})
     }
     
     useEffect(() => {
         const obj = [];
         favItems.map(() => obj.push(true))
         setFavItem(obj);
-        console.log(favItems)
     }, [favItems])
         
     return ( 

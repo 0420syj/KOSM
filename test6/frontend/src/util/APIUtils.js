@@ -75,7 +75,6 @@ export function detailCrawl(CrawlRequest) {
 }
 
 export function forgot(CrawlRequest) {
-    console.log(CrawlRequest);
     return String_Request({
         url: API_BASE_URL + "/api/auth/forgot",
         method: 'POST',
@@ -90,7 +89,6 @@ export function Mail(CrawlRequest) {
     });
 }
 export function signup(signupRequest) {
-    console.log(signupRequest);
     return request({
         url: API_BASE_URL + "/api/auth/signup",
         method: 'POST',
@@ -98,7 +96,6 @@ export function signup(signupRequest) {
     });
 }
 export function signok(HashRequest) {
-    console.log(HashRequest);
     return request({
         url: API_BASE_URL + "/api/auth/signok",
         method: 'POST',
@@ -152,7 +149,6 @@ export function checkUsernameAvailability(username) {
 
 export function checkEmailAvailability(email) {
     return request({
-        // http://localhost:5000
         url: API_BASE_URL + "/api/user/checkEmailAvailability?email=" + email,
         method: 'GET'
     });

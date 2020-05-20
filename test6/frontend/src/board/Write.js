@@ -24,7 +24,6 @@ const Write = () => {
             validTitle: true,
             title
         })
-        // console.log(article)
     }
     
     const validateContent = content => {
@@ -33,7 +32,6 @@ const Write = () => {
             validContent: true,
             content
         })
-        // console.log(article)
     }
 
     const validateCondition = () => {
@@ -74,13 +72,8 @@ const Write = () => {
         writeBoard(boardSaveRequest)
         .then(() => {
             history.push('/board')
-        }).catch((error) => {
-            console.log(error)
-        });
+        }).catch(() => {});
     }
-
-//    const btnCancel = 
-
     return (
         <div className="container">
             <div className="top">

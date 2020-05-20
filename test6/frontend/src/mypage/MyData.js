@@ -17,7 +17,6 @@ const MyData = () => {
             ...userInfo,
             [e.target.name]:e.target.value
         });
-        //console.log(userInfo)
     }
 
     const onSubmit = (e) => {
@@ -32,12 +31,10 @@ const MyData = () => {
         changeName(userInfo)
         .then(() => {
             alert("닉네임이 변경되었습니다.")
-            // console.log(userInfo.username);
             sessionStorage.setItem('username', userInfo.username);
             history.push('/')
             }).catch((error) => {
                 alert("변경 실패!")
-                console.log(error)
             });
         };
     return ( 

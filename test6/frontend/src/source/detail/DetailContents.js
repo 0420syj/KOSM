@@ -21,8 +21,6 @@ const DetailContents = ({publishDate, modifyDate, link, title, scores}) => {
         scoreV3 = arr[0]
         scoreV2 = arr[1]
     }
-        
-    // console.log(arr)
 
     const colorRender = data => {
         let flag
