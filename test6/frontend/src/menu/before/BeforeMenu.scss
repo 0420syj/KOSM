@@ -58,9 +58,8 @@ a:hover, a:visited, a:link, a:active {
         padding:0px;
         background:#414141;
         border:none;
-        color:#e4e4e4;
-        
-        width: 60px;
+        color:#e4e4e4;        
+        width: 100px;
         height: 27px;
         font-family: 'NotoSans';
         font-size: 20px;
@@ -71,7 +70,7 @@ a:hover, a:visited, a:link, a:active {
         letter-spacing: normal;
         text-align: center;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         display: flex;
     }
 
