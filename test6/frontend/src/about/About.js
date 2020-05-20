@@ -21,7 +21,7 @@ const About = () => {
         return (
             <div style={{ width: '390px', marginLeft: "20px", marginRight: '20px' }}>
                 <div className="member-info">
-                    <img src={img ? img : '/icons/member.png'} alt={name} title={name} className="member-img" />
+                    <img src={img ? img : '/icons/member2.png'} alt={name} title={name} className="member-img" />
                     <div className="member-text">
                         <p className="member-name">{name}</p>
                         <p className="member-job">{job}</p>
@@ -30,11 +30,11 @@ const About = () => {
                 </div>
                 <div className='member-contact'>
                     <p className='member-email'><MdEmail /> {email ? email : '이메일을 입력해주세요'}</p>
-                    <p className='member-github'>{!icon && <MdHome/>}
+                    {github && <p className='member-github'>{!icon && <MdHome/>}
                         <a href={github} target='_blank' rel="noopener noreferrer">
-                            <img src={icon == 'github' ? '/icons/github.png' : ''} alt='' className='github-icon'/>{github ? github : '주소를 입력해주세요'}
+                            <img src={icon === 'github' ? '/icons/github.png' : ''} alt='' className='github-icon'/>{github ? github : '주소를 입력해주세요'}
                         </a>
-                    </p>
+                    </p>}
                 </div>
             </div>
         )
@@ -68,7 +68,7 @@ const About = () => {
                                 
                             />
                             <MemberItem
-                                // img={'https://avatars1.githubusercontent.com/u/22449484?s=460&u=cc26a7d57d32d35faeb2950845ae551eae301606&v=4'}
+                                img={'https://avatars1.githubusercontent.com/u/22449484?s=460&u=cc26a7d57d32d35faeb2950845ae551eae301606&v=4'}
                                 name={'심 완'}
                                 job={'Front-End Developer'}
                                 univ={'광운대학교 소프트웨어학부(15)'}
@@ -103,7 +103,7 @@ const About = () => {
                                 name={'김예원'}
                                 job={'Web Designer'}
                                 univ={'광운대학교 미디어커뮤니케이션학부(16)'}
-                                email={''}
+                                email={'kimyewon10@gmail.com'}
                                 github={''}
                             />
                             <MemberItem
@@ -111,7 +111,7 @@ const About = () => {
                                 name={'허채원'}
                                 job={'Web Designer'}
                                 univ={'광운대학교 미디어커뮤니케이션학부(16)'}
-                                email={''}
+                                email={'h8476952@naver.com'}
                                 github={''}
                             />
                         </div>
