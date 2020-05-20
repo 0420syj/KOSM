@@ -132,7 +132,6 @@ const reset = (setOpenSource) => {
     if(OpenSourceData.length === 0){
         getProjectAll()
             .then(res => {
-                console.log(res);
                 pushArr(res.communication_application, communicationApplication, setOpenSource);
                 pushArr(res.database, database, setOpenSource);
                 pushArr(res.development_tool, developmentTool, setOpenSource);
