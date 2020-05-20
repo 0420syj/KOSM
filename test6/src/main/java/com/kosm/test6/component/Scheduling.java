@@ -196,6 +196,8 @@ public class Scheduling {
                     else if(E.length==3)
                         V2=Double.parseDouble(E[1]);
                     OpenSource opc=new OpenSource(A,prj.getName(),B,C,V3,V2); 
+                   // if(openSourceRepository.findByLibiraryAndCode(A,prj.getName())==null) 
+                    //{
                     if(!openSourceRepository.existsByLibiraryAndCode(A,prj.getName()))
                     {
                     openSourceRepository.saveAndFlush(opc);
