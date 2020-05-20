@@ -140,13 +140,11 @@ const ChangePassword = () => {
             beforePassword : userInfo.prevpassword,
             newPassword : userInfo.password
         }
-        // alert('email : ' + request.email + '\nbeforPassword : ' + request.beforePassword + '\nnewPassword : ' + request.newPassword)
         changePassword(request)       
         .then(() => {
             alert("비밀번호가 변경되었습니다.");
             history.push('/')
         },(error) => {
-            console.log(error);
             alert("변경 실패");
         });
     }

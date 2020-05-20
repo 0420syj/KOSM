@@ -6,8 +6,7 @@ import './AfterMenu.scss';
 const Title = memo(() => {
    
     return (
-    <div 
-        style={{
+    <div style={{
             cursor: 'pointer',
             height: '53px',
             fontFamily: 'Libre Franklin',
@@ -67,7 +66,7 @@ const AfterMenu = memo((props) => {
                         </Link>
                         <div>
                             <Dropdown isOpen = {isDropdown} toggle={toggle}>
-                                <DropdownToggle className="username-button" style={{padding: '0px', background: '#414141', width: '80px', border: 'none'}}>
+                                <DropdownToggle className="username-button" style={{padding: '0px', justifyContent:'center', background: '#414141', width: '100px', border: 'none'}}>
                                     {sessionStorage.getItem('username')}
                                 </DropdownToggle>
                                 <DropdownMenu className='dropdown-menu' >
