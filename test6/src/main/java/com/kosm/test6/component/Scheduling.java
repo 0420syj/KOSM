@@ -142,8 +142,8 @@ public class Scheduling {
         System.out.println("success");
     }
 
-    // @Transactional
-    // @Scheduled(fixedDelay = 100000000)
+     @Transactional
+     @Scheduled(fixedDelay = 100000000)
     // 'open_source' table insert function. Annotate the above 2 lines of code if you don't want to crawl
     public void insert_in_DB() throws MessagingException, IOException {
         List<Project> projects = projectRepository.findAll();
@@ -195,9 +195,13 @@ public class Scheduling {
                         {V3=Double.parseDouble(E[1]);V2=Double.parseDouble(E[4]);}
                     else if(E.length==3)
                         V2=Double.parseDouble(E[1]);
-                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,V3,V2);   
+                    OpenSource opc=new OpenSource(A,prj.getName(),B,C,V3,V2); 
+                    if(!openSourceRepository.existsByLibiraryAndCode(A,prj.getName()))
+                    {
                     openSourceRepository.saveAndFlush(opc);
-                //   System.out.println(cves.get(j).text());    
+                    System.out.println(cves.get(j).text());   
+                    }
+                    else  System.out.println("already exits"); 
                 }
             }
     

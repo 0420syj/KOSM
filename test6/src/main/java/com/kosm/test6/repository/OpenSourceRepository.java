@@ -19,6 +19,8 @@ public interface OpenSourceRepository extends JpaRepository<OpenSource, Long> {
     //Optional<Achievo> findbycvecode(String cvecode);
 
     List<OpenSource> findBylibirary(String libirary);
+    List<OpenSource> findByLibiraryAndCode(String libirary,String code);
+    Boolean existsByLibiraryAndCode(String libirary,String code);
     List<OpenSource> findBylibiraryOrderByV3Desc(String libirary);
     List<OpenSource> findBylibiraryOrderByV2Desc(String libirary);
    
