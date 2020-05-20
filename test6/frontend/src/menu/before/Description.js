@@ -9,8 +9,10 @@ const Description = () => {
                 <div>for developers</div>
             </div>
             <div className="description">
-                <div><span className='bold-font'>KOSM</span> sends you an email about the changed vulnerability</div>
-                <div>취약점을 인지하고 사용할 수 있도록 도와줍니다.</div>
+                <div><span className='bold-font'>KOSM</span> sends you an email about</div>
+                <div>the changed vulnerability in open source.</div>
+                <div>It also helps to recognize the version</div>
+                <div>of the latest vulnerability</div>
             </div>
         </div>
     )
