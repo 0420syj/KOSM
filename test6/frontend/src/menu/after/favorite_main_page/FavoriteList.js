@@ -4,7 +4,7 @@ import './FavoriteList.scss';
 import {IconContext} from 'react-icons';
 import {Link} from 'react-router-dom';
 
-const FavoriteList = ({publish, modify, name, type, idx, favItem, setFavItem}) => {
+const FavoriteList = ({publish, modify, name, type, idx, favItem, setFavItem, flag}) => {
     const onClick = () => {
         const temp = [].concat(favItem);
         temp[idx] = !temp[idx];
@@ -30,6 +30,7 @@ const FavoriteList = ({publish, modify, name, type, idx, favItem, setFavItem}) =
                         className='link'>
                         {name}
                     </Link>
+                    {flag && <span className="favorite-new">NEW</span>}
                 </span>
                 <span className='patchDate'>
                     {publish === 'null' ? <span>&nbsp;&nbsp;&nbsp;&nbsp; ---</span> : publish}

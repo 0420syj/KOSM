@@ -128,8 +128,12 @@ public class AuthController {
                         helper.setTo(signUpRequest.getEmail());
                         System.out.println(signUpRequest.getEmail());
                         helper.setSubject("KOSM 회원가입을 환영합니다.");
-                      
-                        String url= "http://localhost:3000/success/"+secret;
+
+                        // myIpAddress : AWS 올리기 전에 변경
+                        // String myIpAddress = "http://" + "172.16.101.94" + ":3000/success/";
+                        String myIpAddress = "http://" + "localhost" + ":3000/success/";
+
+                        String url= myIpAddress +secret;
                         JsonObject.put("key",secret);
                         String jsonInfo = JsonObject.toJsonString();
                         //  String content = "please Enter this Link for signup.!" + 

@@ -47,7 +47,27 @@ const MainFavorite = ({favItems, setFavItems}) => {
         favItems.map(() => obj.push(true))
         setFavItem(obj);
     }, [favItems])
-        
+
+    const diffDays = (calcDate) => {
+        // One day Time in ms (milliseconds) 
+        var one_day = 1000 * 60 * 60 * 24
+
+        // To set present_dates to two variables 
+        var present_date = new Date();
+
+        // To Calculate next year's Christmas if passed already. 
+        if (present_date.getMonth() == 11 && present_date.getdate() > 25)
+            calcDate.setFullYear(calcDate.getFullYear() + 1)
+
+        // To Calculate the result in milliseconds and then converting into days 
+        var Result = Math.round(present_date.getTime() - calcDate.getTime()) / (one_day);
+
+        // To remove the decimals from the (Result) resulting days value 
+        var Final_Result = Result.toFixed(0) - 1;
+
+        return Final_Result;
+    }
+
     return ( 
         <div className='favoriteContainer'>
             <div className='favTitle'>내 즐겨찾기</div>
@@ -62,13 +82,33 @@ const MainFavorite = ({favItems, setFavItems}) => {
                         {
                             favItems.map((items) => {
                                 index++;
+
+                                // Pubilsh Date 계산
+                                var publishDate = new Date(items.date2),
+                                publishMonth = '' + (publishDate.getMonth()),
+                                publishDay = '' + publishDate.getDate(),
+                                publishYear = publishDate.getFullYear();
+
+                                // Modify Date 계산
+                                var modifyDate = new Date(items.date),
+                                modifyMonth = '' + (modifyDate.getMonth()),
+                                modifyDay = '' + modifyDate.getDate(),
+                                modifyYear = modifyDate.getFullYear();
+
+                                // 날짜 차이 계산
+                                var diffPublish = diffDays(new Date(publishYear, publishMonth, publishDay))
+                                var diffModify = diffDays(new Date(modifyYear, modifyMonth, modifyDay))
+
+                                var flag = diffPublish <= 7 || diffModify <= 7
+
                                 if(index >= (page - 1) * 5 && index < 5 * page) {
                                 return (
                                     <div key={items.id} style={{color: '#FFFFFF'}}>
                                         <FavoriteList 
                                             publish={items.date2}
                                             modify={items.date}
-                                            name={items.name} 
+                                            name={items.name}
+                                            flag={flag}
                                             type={favItem[index]}
                                             idx={index}
                                             favItem={favItem}

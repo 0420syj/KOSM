@@ -1,4 +1,7 @@
+// API_BASE_URL : AWS 올리기 전에 변경
+// export const API_BASE_URL = 'http://172.16.101.94:5000';
 export const API_BASE_URL = 'http://localhost:5000';
+
 export const ACCESS_TOKEN = 'accessToken';
 
 export const POLL_LIST_SIZE = 30;
