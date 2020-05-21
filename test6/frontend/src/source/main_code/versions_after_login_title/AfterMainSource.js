@@ -16,7 +16,7 @@ const AfterMainSource = ({release, releaseDate, github, date, graph}) => {
                 <span className='topPage'>
                 </span>
             </div>
-            <div className='topPage' style={{paddingBottom: '20px'}}>
+            <div className='topPage' style={{paddingBottom: '20px', minWidth: '900px'}}>
                 <span className='text'>
                     <span>
                         <span className='title'>
