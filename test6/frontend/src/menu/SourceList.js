@@ -4,7 +4,7 @@ import './SourceList.scss';
 import { useEffect } from 'react';
 import {getProjectAll} from '../util/APIUtils'
 import OpenSourceData from '../data/OpenSourceData';
-import {communicationApplication, database, developmentTool, websiteSoftware, imageMedia, office, others} from '../data/OpenSourceData';
+import {communicationApplication, database, developmentTool, websiteSoftware, imageMedia, office, others, security} from '../data/OpenSourceData';
 import { Collapse, Button } from 'reactstrap';
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
@@ -36,6 +36,8 @@ const SourceList = memo(() => {
     const [isOpenImage, setIsOpenImage] = useState(true);
     const [isOpenOthers, setIsOpenOthers] = useState(true);
     const [isOpenOffice, setIsOpenOffice] = useState(true);
+    const [isOpenSecurity, setIsOpenSecurity] = useState(true);
+
     // 카테고리별 토글 Function
     const toggleWeb = () => setIsOpenWeb(!isOpenWeb);
     const toggleCommun = () => setIsOpenCommun(!isOpenCommun);
@@ -44,6 +46,7 @@ const SourceList = memo(() => {
     const toggleImage = () => setIsOpenImage(!isOpenImage);
     const toggleOthers = () => setIsOpenOthers(!isOpenOthers);
     const toggleOffice = () => setIsOpenOffice(!isOpenOffice);
+    const toggleSecurity = () => setIsOpenSecurity(!isOpenSecurity);
 
     const onChange = (e) => {
         setInputText(e.target.value);     //검색하는 문자들을 소문자로 변환해준다.
@@ -100,12 +103,13 @@ const SourceList = memo(() => {
                             {
                                 OpenSourceData.length !== 0 &&
                                 <>
-                                    <Category title={'web-software'} body={websiteSoftware} toggle={toggleWeb} isOpen={isOpenWeb}/>
-                                    <Category title={'communication-application'} body={communicationApplication} toggle={toggleCommun} isOpen={isOpenCommun}/>
-                                    <Category title={'development-tool'} body={developmentTool} toggle={toggleDevel} isOpen={isOpenDevel}/>
-                                    <Category title={'database'} body={database} toggle={toggleData} isOpen={isOpenData}/>
-                                    <Category title={'image/media'} body={imageMedia} toggle={toggleImage} isOpen={isOpenImage}/>
-                                    <Category title={'office-software'} body={office} toggle={toggleOffice} isOpen={isOpenOffice}/>
+                                    <Category title={'Web Software'} body={websiteSoftware} toggle={toggleWeb} isOpen={isOpenWeb}/>
+                                    <Category title={'Communication Application'} body={communicationApplication} toggle={toggleCommun} isOpen={isOpenCommun}/>
+                                    <Category title={'Development Tool'} body={developmentTool} toggle={toggleDevel} isOpen={isOpenDevel}/>
+                                    <Category title={'Database'} body={database} toggle={toggleData} isOpen={isOpenData}/>
+                                    <Category title={'Image/Media'} body={imageMedia} toggle={toggleImage} isOpen={isOpenImage}/>
+                                    <Category title={'Office Software'} body={office} toggle={toggleOffice} isOpen={isOpenOffice}/>
+                                    <Category title={'Security'} body={security} toggle={toggleSecurity} isOpen={isOpenSecurity}/>
                                     <Category title={'Others'} body={others} toggle={toggleOthers} isOpen={isOpenOthers}/>
                                 </>
                             }
@@ -132,6 +136,7 @@ const reset = (setOpenSource) => {
     if(OpenSourceData.length === 0){
         getProjectAll()
             .then(res => {
+                console.log(res);
                 pushArr(res.communication_application, communicationApplication, setOpenSource);
                 pushArr(res.database, database, setOpenSource);
                 pushArr(res.development_tool, developmentTool, setOpenSource);
@@ -139,6 +144,7 @@ const reset = (setOpenSource) => {
                 pushArr(res.image_media, imageMedia, setOpenSource);
                 pushArr(res.others, others, setOpenSource);
                 pushArr(res.office_software, office, setOpenSource);
+                pushArr(res.security, security, setOpenSource);
             })
             .catch(e => console.log(e));
     }

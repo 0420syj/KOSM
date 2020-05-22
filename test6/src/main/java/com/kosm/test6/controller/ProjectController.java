@@ -45,6 +45,9 @@ public class ProjectController {
         prjList = projectRepository.findAllByCategory("image_media");
         target.put("image_media", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
 
+        prjList = projectRepository.findAllByCategory("security");
+        target.put("security", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
+
         prjList = projectRepository.findAllByCategory("development_tool");
         target.put("development_tool", prjList.stream().map(project -> new ProjectListResponse(project)).collect(Collectors.toList()));
 

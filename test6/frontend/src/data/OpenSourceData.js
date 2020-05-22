@@ -7,4 +7,5 @@ export const developmentTool = [];
 export const websiteSoftware = [];
 export const imageMedia = [];
 export const office = [];
+export const security = [];
 export default app;
