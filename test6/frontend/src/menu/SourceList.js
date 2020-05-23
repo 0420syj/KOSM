@@ -104,7 +104,7 @@ const SourceList = memo(() => {
                                 OpenSourceData.length !== 0 &&
                                 <>
                                     <Category title={'Web Software'} body={websiteSoftware} toggle={toggleWeb} isOpen={isOpenWeb}/>
-                                    <Category title={'Communication Application'} body={communicationApplication} toggle={toggleCommun} isOpen={isOpenCommun}/>
+                                    <Category title={'Communication App'} body={communicationApplication} toggle={toggleCommun} isOpen={isOpenCommun}/>
                                     <Category title={'Development Tool'} body={developmentTool} toggle={toggleDevel} isOpen={isOpenDevel}/>
                                     <Category title={'Database'} body={database} toggle={toggleData} isOpen={isOpenData}/>
                                     <Category title={'Image/Media'} body={imageMedia} toggle={toggleImage} isOpen={isOpenImage}/>

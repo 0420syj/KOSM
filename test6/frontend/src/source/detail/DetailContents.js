@@ -72,9 +72,9 @@ const DetailContents = ({publishDate, modifyDate, link, title, scores}) => {
                 <div className='contents'>
                 {
                     linkArray.length !== 0 && 
-                    <div style={{overflow: 'auto', height: '450px', marginBottom: '20px'}}>
+                    <div style={{overflow: 'auto',width: '1300px',  height: '450px', marginBottom: '20px'}}>
                         {
-                            linkArray.map(item => 
+                            linkArray.map(item =>
                                 <a 
                                     key={idx++} 
                                     target='_blank' 
