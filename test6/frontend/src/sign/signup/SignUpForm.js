@@ -216,7 +216,7 @@ const SignUp = () => {
         }
         signup(signupRequest).then(() => <Redirect to="/"/>)
         .catch((error) => {
-            alert("fail");
+            
         });
     }
 
