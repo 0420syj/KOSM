@@ -22,4 +22,5 @@
 4. ReactJS
 5. Bootstrap
 
-논문 :  SpringBoot 기반의 오픈소스 보안 취약점 및 패치 정보 제공 웹 어플리케이션. 한국정보과학회 학술발표논문집, 1462-1464.
+논문 :  SpringBoot 기반의 오픈소스 보안 취약점 및 패치 정보 제공 웹 어플리케이션. 한국정보과학회 학술발표논문집, 1462-1464.
+(링크 : https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09874812)
